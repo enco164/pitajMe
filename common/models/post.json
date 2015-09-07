@@ -23,6 +23,11 @@
       "type": "belongsTo",
       "model": "Category",
       "foreignKey": ""
+    },
+    "account": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": ""
     }
   },
   "acls": [

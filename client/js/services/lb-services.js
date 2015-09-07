@@ -1237,6 +1237,33 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use Account.post.findById() instead.
+        "prototype$__findById__post": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Accounts/:id/post/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Account.post.destroyById() instead.
+        "prototype$__destroyById__post": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Accounts/:id/post/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Account.post.updateById() instead.
+        "prototype$__updateById__post": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Accounts/:id/post/:fk",
+          method: "PUT"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Account#prototype$__findById__followers
@@ -1831,6 +1858,31 @@ module.factory(
          */
         "prototype$__count__accessTokens": {
           url: urlBase + "/Accounts/:id/accessTokens/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Account.post() instead.
+        "prototype$__get__post": {
+          isArray: true,
+          url: urlBase + "/Accounts/:id/post",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Account.post.create() instead.
+        "prototype$__create__post": {
+          url: urlBase + "/Accounts/:id/post",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Account.post.destroyAll() instead.
+        "prototype$__delete__post": {
+          url: urlBase + "/Accounts/:id/post",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Account.post.count() instead.
+        "prototype$__count__post": {
+          url: urlBase + "/Accounts/:id/post/count",
           method: "GET"
         },
 
@@ -2694,6 +2746,30 @@ module.factory(
           method: "POST"
         },
 
+        // INTERNAL. Use Post.account() instead.
+        "::get::Post::account": {
+          url: urlBase + "/Posts/:id/account",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Question.account() instead.
+        "::get::Question::account": {
+          url: urlBase + "/Questions/:id/account",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Answer.account() instead.
+        "::get::Answer::account": {
+          url: urlBase + "/Answers/:id/account",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Comment.account() instead.
+        "::get::Comment::account": {
+          url: urlBase + "/Comments/:id/account",
+          method: "GET"
+        },
+
         // INTERNAL. Use Follow.follower() instead.
         "::get::Follow::follower": {
           url: urlBase + "/Follows/:id/follower",
@@ -2921,6 +2997,307 @@ module.factory(
     */
     R.modelName = "Account";
 
+    /**
+     * @ngdoc object
+     * @name lbServices.Account.post
+     * @header lbServices.Account.post
+     * @object
+     * @description
+     *
+     * The object `Account.post` groups methods
+     * manipulating `Post` instances related to `Account`.
+     *
+     * Call {@link lbServices.Account#post Account.post()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#post
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Queries post of Account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Post` object.)
+         * </em>
+         */
+        R.post = function() {
+          var TargetResource = $injector.get("Post");
+          var action = TargetResource["::get::Account::post"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Account.post#count
+         * @methodOf lbServices.Account.post
+         *
+         * @description
+         *
+         * Counts post of Account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.post.count = function() {
+          var TargetResource = $injector.get("Post");
+          var action = TargetResource["::count::Account::post"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Account.post#create
+         * @methodOf lbServices.Account.post
+         *
+         * @description
+         *
+         * Creates a new instance in post of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Post` object.)
+         * </em>
+         */
+        R.post.create = function() {
+          var TargetResource = $injector.get("Post");
+          var action = TargetResource["::create::Account::post"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Account.post#createMany
+         * @methodOf lbServices.Account.post
+         *
+         * @description
+         *
+         * Creates a new instance in post of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Post` object.)
+         * </em>
+         */
+        R.post.createMany = function() {
+          var TargetResource = $injector.get("Post");
+          var action = TargetResource["::createMany::Account::post"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Account.post#destroyAll
+         * @methodOf lbServices.Account.post
+         *
+         * @description
+         *
+         * Deletes all post of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.post.destroyAll = function() {
+          var TargetResource = $injector.get("Post");
+          var action = TargetResource["::delete::Account::post"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Account.post#destroyById
+         * @methodOf lbServices.Account.post
+         *
+         * @description
+         *
+         * Delete a related item by id for post.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for post
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.post.destroyById = function() {
+          var TargetResource = $injector.get("Post");
+          var action = TargetResource["::destroyById::Account::post"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Account.post#findById
+         * @methodOf lbServices.Account.post
+         *
+         * @description
+         *
+         * Find a related item by id for post.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for post
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Post` object.)
+         * </em>
+         */
+        R.post.findById = function() {
+          var TargetResource = $injector.get("Post");
+          var action = TargetResource["::findById::Account::post"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Account.post#updateById
+         * @methodOf lbServices.Account.post
+         *
+         * @description
+         *
+         * Update a related item by id for post.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for post
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Post` object.)
+         * </em>
+         */
+        R.post.updateById = function() {
+          var TargetResource = $injector.get("Post");
+          var action = TargetResource["::updateById::Account::post"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -2977,6 +3354,60 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use Category.questions.findById() instead.
+        "prototype$__findById__questions": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/questions/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.questions.destroyById() instead.
+        "prototype$__destroyById__questions": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/questions/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Category.questions.updateById() instead.
+        "prototype$__updateById__questions": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/questions/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Category.answers.findById() instead.
+        "prototype$__findById__answers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/answers/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.answers.destroyById() instead.
+        "prototype$__destroyById__answers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/answers/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Category.answers.updateById() instead.
+        "prototype$__updateById__answers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/answers/:fk",
+          method: "PUT"
+        },
+
         // INTERNAL. Use Category.posts() instead.
         "prototype$__get__posts": {
           isArray: true,
@@ -2999,6 +3430,56 @@ module.factory(
         // INTERNAL. Use Category.posts.count() instead.
         "prototype$__count__posts": {
           url: urlBase + "/Categories/:id/posts/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.questions() instead.
+        "prototype$__get__questions": {
+          isArray: true,
+          url: urlBase + "/Categories/:id/questions",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.questions.create() instead.
+        "prototype$__create__questions": {
+          url: urlBase + "/Categories/:id/questions",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Category.questions.destroyAll() instead.
+        "prototype$__delete__questions": {
+          url: urlBase + "/Categories/:id/questions",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Category.questions.count() instead.
+        "prototype$__count__questions": {
+          url: urlBase + "/Categories/:id/questions/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.answers() instead.
+        "prototype$__get__answers": {
+          isArray: true,
+          url: urlBase + "/Categories/:id/answers",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.answers.create() instead.
+        "prototype$__create__answers": {
+          url: urlBase + "/Categories/:id/answers",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Category.answers.destroyAll() instead.
+        "prototype$__delete__answers": {
+          url: urlBase + "/Categories/:id/answers",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Category.answers.count() instead.
+        "prototype$__count__answers": {
+          url: urlBase + "/Categories/:id/answers/count",
           method: "GET"
         },
 
@@ -3881,6 +4362,608 @@ module.factory(
           var action = TargetResource["::updateById::Category::posts"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.Category.questions
+     * @header lbServices.Category.questions
+     * @object
+     * @description
+     *
+     * The object `Category.questions` groups methods
+     * manipulating `Question` instances related to `Category`.
+     *
+     * Call {@link lbServices.Category#questions Category.questions()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category#questions
+         * @methodOf lbServices.Category
+         *
+         * @description
+         *
+         * Queries questions of Category.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Question` object.)
+         * </em>
+         */
+        R.questions = function() {
+          var TargetResource = $injector.get("Question");
+          var action = TargetResource["::get::Category::questions"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.questions#count
+         * @methodOf lbServices.Category.questions
+         *
+         * @description
+         *
+         * Counts questions of Category.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.questions.count = function() {
+          var TargetResource = $injector.get("Question");
+          var action = TargetResource["::count::Category::questions"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.questions#create
+         * @methodOf lbServices.Category.questions
+         *
+         * @description
+         *
+         * Creates a new instance in questions of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Question` object.)
+         * </em>
+         */
+        R.questions.create = function() {
+          var TargetResource = $injector.get("Question");
+          var action = TargetResource["::create::Category::questions"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.questions#createMany
+         * @methodOf lbServices.Category.questions
+         *
+         * @description
+         *
+         * Creates a new instance in questions of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Question` object.)
+         * </em>
+         */
+        R.questions.createMany = function() {
+          var TargetResource = $injector.get("Question");
+          var action = TargetResource["::createMany::Category::questions"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.questions#destroyAll
+         * @methodOf lbServices.Category.questions
+         *
+         * @description
+         *
+         * Deletes all questions of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.questions.destroyAll = function() {
+          var TargetResource = $injector.get("Question");
+          var action = TargetResource["::delete::Category::questions"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.questions#destroyById
+         * @methodOf lbServices.Category.questions
+         *
+         * @description
+         *
+         * Delete a related item by id for questions.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for questions
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.questions.destroyById = function() {
+          var TargetResource = $injector.get("Question");
+          var action = TargetResource["::destroyById::Category::questions"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.questions#findById
+         * @methodOf lbServices.Category.questions
+         *
+         * @description
+         *
+         * Find a related item by id for questions.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for questions
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Question` object.)
+         * </em>
+         */
+        R.questions.findById = function() {
+          var TargetResource = $injector.get("Question");
+          var action = TargetResource["::findById::Category::questions"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.questions#updateById
+         * @methodOf lbServices.Category.questions
+         *
+         * @description
+         *
+         * Update a related item by id for questions.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for questions
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Question` object.)
+         * </em>
+         */
+        R.questions.updateById = function() {
+          var TargetResource = $injector.get("Question");
+          var action = TargetResource["::updateById::Category::questions"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Category.answers
+     * @header lbServices.Category.answers
+     * @object
+     * @description
+     *
+     * The object `Category.answers` groups methods
+     * manipulating `Answer` instances related to `Category`.
+     *
+     * Call {@link lbServices.Category#answers Category.answers()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category#answers
+         * @methodOf lbServices.Category
+         *
+         * @description
+         *
+         * Queries answers of Category.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Answer` object.)
+         * </em>
+         */
+        R.answers = function() {
+          var TargetResource = $injector.get("Answer");
+          var action = TargetResource["::get::Category::answers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.answers#count
+         * @methodOf lbServices.Category.answers
+         *
+         * @description
+         *
+         * Counts answers of Category.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.answers.count = function() {
+          var TargetResource = $injector.get("Answer");
+          var action = TargetResource["::count::Category::answers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.answers#create
+         * @methodOf lbServices.Category.answers
+         *
+         * @description
+         *
+         * Creates a new instance in answers of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Answer` object.)
+         * </em>
+         */
+        R.answers.create = function() {
+          var TargetResource = $injector.get("Answer");
+          var action = TargetResource["::create::Category::answers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.answers#createMany
+         * @methodOf lbServices.Category.answers
+         *
+         * @description
+         *
+         * Creates a new instance in answers of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Answer` object.)
+         * </em>
+         */
+        R.answers.createMany = function() {
+          var TargetResource = $injector.get("Answer");
+          var action = TargetResource["::createMany::Category::answers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.answers#destroyAll
+         * @methodOf lbServices.Category.answers
+         *
+         * @description
+         *
+         * Deletes all answers of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.answers.destroyAll = function() {
+          var TargetResource = $injector.get("Answer");
+          var action = TargetResource["::delete::Category::answers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.answers#destroyById
+         * @methodOf lbServices.Category.answers
+         *
+         * @description
+         *
+         * Delete a related item by id for answers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for answers
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.answers.destroyById = function() {
+          var TargetResource = $injector.get("Answer");
+          var action = TargetResource["::destroyById::Category::answers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.answers#findById
+         * @methodOf lbServices.Category.answers
+         *
+         * @description
+         *
+         * Find a related item by id for answers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for answers
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Answer` object.)
+         * </em>
+         */
+        R.answers.findById = function() {
+          var TargetResource = $injector.get("Answer");
+          var action = TargetResource["::findById::Category::answers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Category.answers#updateById
+         * @methodOf lbServices.Category.answers
+         *
+         * @description
+         *
+         * Update a related item by id for answers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for answers
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Answer` object.)
+         * </em>
+         */
+        R.answers.updateById = function() {
+          var TargetResource = $injector.get("Answer");
+          var action = TargetResource["::updateById::Category::answers"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -3913,6 +4996,12 @@ module.factory(
         // INTERNAL. Use Post.category() instead.
         "prototype$__get__category": {
           url: urlBase + "/Posts/:id/category",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Post.account() instead.
+        "prototype$__get__account": {
+          url: urlBase + "/Posts/:id/account",
           method: "GET"
         },
 
@@ -4335,6 +5424,65 @@ module.factory(
           method: "POST"
         },
 
+        // INTERNAL. Use Account.post.findById() instead.
+        "::findById::Account::post": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Accounts/:id/post/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Account.post.destroyById() instead.
+        "::destroyById::Account::post": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Accounts/:id/post/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Account.post.updateById() instead.
+        "::updateById::Account::post": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Accounts/:id/post/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Account.post() instead.
+        "::get::Account::post": {
+          isArray: true,
+          url: urlBase + "/Accounts/:id/post",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Account.post.create() instead.
+        "::create::Account::post": {
+          url: urlBase + "/Accounts/:id/post",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Account.post.createMany() instead.
+        "::createMany::Account::post": {
+          isArray: true,
+          url: urlBase + "/Accounts/:id/post",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Account.post.destroyAll() instead.
+        "::delete::Account::post": {
+          url: urlBase + "/Accounts/:id/post",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Account.post.count() instead.
+        "::count::Account::post": {
+          url: urlBase + "/Accounts/:id/post/count",
+          method: "GET"
+        },
+
         // INTERNAL. Use Category.posts.findById() instead.
         "::findById::Category::posts": {
           params: {
@@ -4566,6 +5714,42 @@ module.factory(
           return action.apply(R, arguments);
         };
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Post#account
+         * @methodOf lbServices.Post
+         *
+         * @description
+         *
+         * Fetches belongsTo relation account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.account = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::get::Post::account"];
+          return action.apply(R, arguments);
+        };
+
     return R;
   }]);
 
@@ -4597,6 +5781,12 @@ module.factory(
         // INTERNAL. Use Question.category() instead.
         "prototype$__get__category": {
           url: urlBase + "/Questions/:id/category",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Question.account() instead.
+        "prototype$__get__account": {
+          url: urlBase + "/Questions/:id/account",
           method: "GET"
         },
 
@@ -5018,6 +6208,65 @@ module.factory(
           url: urlBase + "/Questions/change-stream",
           method: "POST"
         },
+
+        // INTERNAL. Use Category.questions.findById() instead.
+        "::findById::Category::questions": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/questions/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.questions.destroyById() instead.
+        "::destroyById::Category::questions": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/questions/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Category.questions.updateById() instead.
+        "::updateById::Category::questions": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/questions/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Category.questions() instead.
+        "::get::Category::questions": {
+          isArray: true,
+          url: urlBase + "/Categories/:id/questions",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.questions.create() instead.
+        "::create::Category::questions": {
+          url: urlBase + "/Categories/:id/questions",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Category.questions.createMany() instead.
+        "::createMany::Category::questions": {
+          isArray: true,
+          url: urlBase + "/Categories/:id/questions",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Category.questions.destroyAll() instead.
+        "::delete::Category::questions": {
+          url: urlBase + "/Categories/:id/questions",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Category.questions.count() instead.
+        "::count::Category::questions": {
+          url: urlBase + "/Categories/:id/questions/count",
+          method: "GET"
+        },
       }
     );
 
@@ -5191,6 +6440,42 @@ module.factory(
           return action.apply(R, arguments);
         };
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Question#account
+         * @methodOf lbServices.Question
+         *
+         * @description
+         *
+         * Fetches belongsTo relation account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Post id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.account = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::get::Question::account"];
+          return action.apply(R, arguments);
+        };
+
     return R;
   }]);
 
@@ -5222,6 +6507,12 @@ module.factory(
         // INTERNAL. Use Answer.category() instead.
         "prototype$__get__category": {
           url: urlBase + "/Answers/:id/category",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Answer.account() instead.
+        "prototype$__get__account": {
+          url: urlBase + "/Answers/:id/account",
           method: "GET"
         },
 
@@ -5643,6 +6934,65 @@ module.factory(
           url: urlBase + "/Answers/change-stream",
           method: "POST"
         },
+
+        // INTERNAL. Use Category.answers.findById() instead.
+        "::findById::Category::answers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/answers/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.answers.destroyById() instead.
+        "::destroyById::Category::answers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/answers/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Category.answers.updateById() instead.
+        "::updateById::Category::answers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Categories/:id/answers/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Category.answers() instead.
+        "::get::Category::answers": {
+          isArray: true,
+          url: urlBase + "/Categories/:id/answers",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Category.answers.create() instead.
+        "::create::Category::answers": {
+          url: urlBase + "/Categories/:id/answers",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Category.answers.createMany() instead.
+        "::createMany::Category::answers": {
+          isArray: true,
+          url: urlBase + "/Categories/:id/answers",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Category.answers.destroyAll() instead.
+        "::delete::Category::answers": {
+          url: urlBase + "/Categories/:id/answers",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Category.answers.count() instead.
+        "::count::Category::answers": {
+          url: urlBase + "/Categories/:id/answers/count",
+          method: "GET"
+        },
       }
     );
 
@@ -5816,6 +7166,42 @@ module.factory(
           return action.apply(R, arguments);
         };
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Answer#account
+         * @methodOf lbServices.Answer
+         *
+         * @description
+         *
+         * Fetches belongsTo relation account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Post id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.account = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::get::Answer::account"];
+          return action.apply(R, arguments);
+        };
+
     return R;
   }]);
 
@@ -5847,6 +7233,12 @@ module.factory(
         // INTERNAL. Use Comment.category() instead.
         "prototype$__get__category": {
           url: urlBase + "/Comments/:id/category",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Comment.account() instead.
+        "prototype$__get__account": {
+          url: urlBase + "/Comments/:id/account",
           method: "GET"
         },
 
@@ -6438,6 +7830,42 @@ module.factory(
         R.category = function() {
           var TargetResource = $injector.get("Category");
           var action = TargetResource["::get::Comment::category"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Comment#account
+         * @methodOf lbServices.Comment
+         *
+         * @description
+         *
+         * Fetches belongsTo relation account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Post id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.account = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::get::Comment::account"];
           return action.apply(R, arguments);
         };
 
@@ -7245,6 +8673,18 @@ module
      */
     this.setUrlBase = function(url) {
       urlBase = url;
+    };
+
+    /**
+     * @ngdoc method
+     * @name lbServices.LoopBackResourceProvider#getUrlBase
+     * @methodOf lbServices.LoopBackResourceProvider
+     * @description
+     * Get the URL of the REST API server. The URL provided
+     * to the code generator (`lb-ng` or `grunt-loopback-sdk-angular`) is used.
+     */
+    this.getUrlBase = function() {
+      return urlBase;
     };
 
     this.$get = ['$resource', function($resource) {

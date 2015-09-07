@@ -25,6 +25,9 @@ module.exports = function(grunt) {
           ]
         }
       ]
+    },
+    docularserver: {
+      targetDir: "docular_generated"
     }
   });
 

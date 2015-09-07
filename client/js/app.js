@@ -19,8 +19,17 @@ var app = angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
-      }
-    )
+      })
+      .when('/questions', {
+        templateUrl: 'views/questions.html',
+        controller: 'QuestionCtrl',
+        controllerAs: 'question'
+      })
+      .when('/answers', {
+        templateUrl: 'views/answers.html',
+        controller: 'AnswerCtrl',
+        controllerAs: 'answer'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -33,5 +42,5 @@ var app = angular
     LoopBackResourceProvider.setAuthHeader('X-Access-Token');
 
     // Change the URL where to access the LoopBack REST API server
-    LoopBackResourceProvider.setUrlBase('http://localhost:3000');
+    LoopBackResourceProvider.setUrlBase('http://localhost:3000/api');
   });

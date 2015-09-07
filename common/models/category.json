@@ -19,7 +19,17 @@
     "posts": {
       "type": "hasMany",
       "model": "Post",
-      "foreignKey": ""
+      "foreignKey": "categoryId"
+    },
+    "questions": {
+      "type": "hasMany",
+      "model": "Question",
+      "foreignKey": "categoryId"
+    },
+    "answers": {
+      "type": "hasMany",
+      "model": "Answer",
+      "foreignKey": "categoryId"
     }
   },
   "acls": [],

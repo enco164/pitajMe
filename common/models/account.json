@@ -49,6 +49,11 @@
       "foreignKey": "followerId",
       "keyThrough": "followeeId",
       "through": "Follow"
+    },
+    "posts": {
+      "type": "hasMany",
+      "model": "Post",
+      "foreignKey": "accountId"
     }
   },
   "acls": [
