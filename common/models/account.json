@@ -1,0 +1,71 @@
+{
+  "name": "Account",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "about": {
+      "type": "string"
+    },
+    "personality": {
+      "type": "string"
+    },
+    "sex": {
+      "type": "string"
+    },
+    "relationship": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "occupation": {
+      "type": "string"
+    },
+    "dob": {
+      "type": "date"
+    },
+    "image": {
+      "type": "string"
+    },
+    "level": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "followers": {
+      "type": "hasMany",
+      "model": "Account",
+      "foreignKey": "followeeId",
+      "keyThrough": "followerId",
+      "through": "Follow"
+    },
+    "following": {
+      "type": "hasMany",
+      "model": "Account",
+      "foreignKey": "followerId",
+      "keyThrough": "followeeId",
+      "through": "Follow"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "find"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "findById"
+    }
+  ],
+  "methods": {}
+}
