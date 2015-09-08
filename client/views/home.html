@@ -10,9 +10,10 @@
             <li class="active"><a href="index.html">Homepage</a></li>
             <li><a href="post.html">Post page</a></li>
             <li><a href="style-page.html">Style page</a></li>
-            <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
+            <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
-                <li><a href="#">Log in</a></li>
+                <li ng-show="!logged"><a href="/#/login">Login</a></li>
+                <li ng-show="logged"><a href="/#/login" ng-click="logout_fn()">Logout</a></li>
                 <li><a href="#">Registration</a></li>
                 <li><a href="#">Contact</a></li>
                 <li class="divider"></li>
@@ -45,7 +46,7 @@
               <a href="#" ng-show="{{!question.isAnonymous}}">{{question.account.username}}</a>
               <span>{{question.timestamp}}</span>
             </h1>
-            <h3>{{question.title}}</h3>
+            <h3><a href="/#/answers" ng-click="openAnswers(question)">{{question.title}}</a></h3>
             <h2>{{question.text}}</h2>
             <div class="stats">
               <div class="favs"><span class="glyphicon glyphicon-heart"></span>213</div>

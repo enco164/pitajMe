@@ -10,11 +10,12 @@ app.controller('LoginCtrl', [
     var sc = this;
 
     $scope.login_fn = function(){
-      Account.login({username: $scope.email, password: $scope.password}, function(){
-        console.log("Uspeo");
+      Account.login({username: $scope.username, password: $scope.password}, function(accessToken, err) {
+        window.location.replace('/#/')
       });
-      console.log('login: ' + $scope.email, $scope.password);
+      console.log('login: ' + $scope.username, $scope.password);
     };
+
 
 
   }

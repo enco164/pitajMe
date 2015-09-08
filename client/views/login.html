@@ -13,7 +13,8 @@
             <li class="active"><a href="style-page.html">Style page</a></li>
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
-                <li><a href="#">Log in</a></li>
+                <li ng-show="!logged"><a href="#">Login</a></li>
+                <li ng-show="logged"><a href="#">Logout</a></li>
                 <li><a href="#">Registration</a></li>
                 <li><a href="#">Contact</a></li>
                 <li class="divider"></li>
@@ -44,8 +45,8 @@
             <form role="form" class="form-signin" ng-submit="login_fn();">
               <h1>Registration</h1>
               <div class="form-group">
-                <label for="email">Email address</label>
-                <input id="email" type="email" placeholder="Email address" required="" class="form-control" ng-model="email"/>
+                <label for="email">Username</label>
+                <input id="email" type="text" placeholder="Username" required="" class="form-control" ng-model="username"/>
               </div>
               <div class="form-group">
                 <label for="password">Password</label>

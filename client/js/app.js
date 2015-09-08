@@ -25,6 +25,11 @@ var app = angular
         controller: 'AnswerCtrl',
         controllerAs: 'answer'
       })
+      .when('/registration', {
+        templateUrl: 'views/registration.html',
+        controller: 'RegistrationCtrl',
+        controllerAs: 'registration'
+      })
       .otherwise({
         redirectTo: '/'
       });

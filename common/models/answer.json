@@ -12,6 +12,11 @@
       "type": "belongsTo",
       "model": "Category",
       "foreignKey": ""
+    },
+    "question": {
+      "type": "belongsTo",
+      "model": "Question",
+      "foreignKey": ""
     }
   },
   "acls": [],

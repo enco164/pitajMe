@@ -50,7 +50,7 @@
       "keyThrough": "followeeId",
       "through": "Follow"
     },
-    "posts": {
+    "post": {
       "type": "hasMany",
       "model": "Post",
       "foreignKey": "accountId"

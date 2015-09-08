@@ -4,12 +4,22 @@
 app.controller('AnswerCtrl', [
   '$scope',
   'Answer',
-  function($scope, Answer){
-    $scope.answers = Answer.find({
-      include: 'categories'
-    }, function(err, questions){
-      console.log($scope.answers);
+  'Question',
+  'Account',
+  function($scope, Answer, Question, Account){
+    var id = localStorage.getItem('questId');
+    $scope.question = Question.findById({
+      id: id,
+      filter:{ include: ['account', 'category']}
     });
 
+    $scope.answers = Answer.find({
+      filter: {
+        include: ['account', 'question', 'category'],
+        //ne includuje account podatke
+        where: {questionId: id}
+      }
+    }, function(err, questions){
+    })
   }
 ]);

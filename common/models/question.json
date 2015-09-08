@@ -17,6 +17,11 @@
       "type": "belongsTo",
       "model": "Category",
       "foreignKey": ""
+    },
+    "answer": {
+      "type": "hasMany",
+      "model": "Answer",
+      "foreignKey": ""
     }
   },
   "acls": [],

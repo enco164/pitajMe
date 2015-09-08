@@ -4,7 +4,8 @@
 app.controller('HomeCtrl', [
   '$scope',
   'Question',
-  function($scope, Question){
+  'Account',
+  function($scope, Question, Account){
     $scope.questions = Question.find({
       filter: {
         include: ['account', 'category']
@@ -17,9 +18,24 @@ app.controller('HomeCtrl', [
         var day = date.getDate()-1;
         var year = date.getFullYear();
         $scope.questions[i].timestamp = day + '.' + month + '.' + year;
-        console.log(timestamp, date, $scope.questions[i].timestamp)
       }
-      console.log($scope.questions);
     });
+
+    $scope.openAnswers = function(question){
+      console.log(question);
+      localStorage.setItem('questId', question.id);
+    }
+
+    if (localStorage.getItem('$LoopBack$accessTokenId')){
+      $scope.logged = true;
+    } else $scope.logged = false;
+
+    $scope.logout_fn = function(){
+      var token = localStorage.getItem('$LoopBack$accessTokenId');
+      console.log(token);
+      Account.logout(token, function(err) {
+        console.log(err || 'Logged out');
+      });
+    }
   }
 ]);
