@@ -8,13 +8,15 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="index.html">Homepage</a></li>
-              <li><a href="post.html">Post page</a></li>
-              <li class="active"><a href="style-page.html">Style page</a></li>
-              <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
+              <li class="active"><a href="/#/">Homepage</a></li>
+              <li><a href="/#/ask-question">Ask Question</a></li>
+              <li><a href="/#/">Style page</a></li>
+              <li ng-show="logged"><a href="/#/myProfile">Profile page</a></li>
+              <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
                 <ul role="menu" class="dropdown-menu">
-                  <li><a href="#">Log in</a></li>
-                  <li><a href="#">Registration</a></li>
+                  <li ng-show="!logged"><a href="/#/login">Login</a></li>
+                  <li ng-show="logged"><a href="/#/login" ng-click="logout()">Logout</a></li>
+                  <li><a href="/#/registration">Registration</a></li>
                   <li><a href="#">Contact</a></li>
                   <li class="divider"></li>
                   <li class="dropdown-header">More options</li>
@@ -41,13 +43,35 @@
       Question title: {{question.title}}<br/>
       Question text: {{question.text}}<br/>
       Question timestamp: {{question.timestamp}}<br/>
-      Question category: {{question.category.name}}
+      Question category: {{question.category.name}}<br/>
+      Question account: {{question.account.username}}
       <br/><br/></h4>
       <hr/>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="quick-post">
+            <form role="form" class="form-signin">
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label for="topic-content">Answer content</label>
+                  <textarea id="topic-content" type="text" placeholder="Enter Answer content" rows="3" required="required" class="form-control" ng-model="answer.text"></textarea>
+                </div>
+              </div>
+              <div class="form-bottom">
+                <label class="checkbox">
+                  <input ng-model="answer.isAnonymous" type="checkbox"/> Send Answer as Anonymous
+                </label>
+                <button type="submit" class="btn-red" ng-click="sendAnswer(answer)">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
       <div ng-repeat="answer in answers">
         Odgovor: {{answer.text}}<br/>
-        User id: {{answer.accountId}}<br/>
-        Timestamp: {{answer.timestamp}}<br/><br/><br/>
+        Account username: {{answer.account.username}}<br/>
+        Timestamp: {{answer.timestamp}}<br/>
+        Anonymous: {{answer.isAnonymous}}<br/><br/><br/>
         <!--TODO: username, age, timestamp-->
         <!--TODO: like dislike po polu (kolikolikova ima od devojaka koliko od momaka i isto to za dislike)-->
       </div>

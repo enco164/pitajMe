@@ -17,8 +17,28 @@
       "type": "belongsTo",
       "model": "Question",
       "foreignKey": ""
+    },
+    "comment": {
+      "type": "hasMany",
+      "model": "Comment",
+      "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "delete"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "update"
+    }
+  ],
   "methods": {}
 }

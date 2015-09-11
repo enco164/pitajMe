@@ -1,4 +1,4 @@
-<div id="content-wrap">
+<div id="contenr-wrap">
   <header>
     <div class="row">
       <div class="container">
@@ -45,69 +45,38 @@
           <div class="content">
             <div class="row">
               <div class="col-md-8">
-
-                <h1>Registration</h1>
+                <h1>Ask Question</h1>
                 <div id="errorMessage" class="alert alert-danger" role="alert" ng-show="error">
                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                   <span class="sr-only">Error:</span>
                   {{errorMessage}}
                 </div>
                 <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input id="email" type="email" placeholder="Email address" required="" class="form-control" ng-model="acc.email"/>
+                  <label for="title">Title</label>
+                  <input id="title" type="text" placeholder="Title" required="required" class="form-control" ng-model="question.title"/>
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
-                  <input id="password" type="password" placeholder="Password" required="required" class="form-control" ng-model="acc.password"/>
+                  <label for="text">Text</label>
+                  <input id="text" type="text" placeholder="Write Question" required="required" class="form-control" ng-model="question.text"/>
                 </div>
 
               </div>
               <div class="col-md-12 container">
-                <hr class="form-devider"/>
-                <div class="form-group">
-                  <label for="uname">Username</label>
-                  <input id="uname" type="text" placeholder="Username" required="required" class="form-control" ng-model="acc.username"/>
-                </div>
                 <div class="form-group row">
-                  <label for="country_box" class="col-md-12">Country</label>
-                  <div id="country_box" class="col-md-4">
-                    <select class="form-control" name="country" id="country" ng-init="acc.country = countries[0]" ng-model="acc.country" ng-options="country.name for country in countries">
+                  <label for="category_box" class="col-md-12">Category</label>
+                  <div id="category_box" class="col-md-4">
+                    <select class="form-control" name="category" id="category" ng-model="question.category" ng-options="category.name for category in categories">
                     </select>
                   </div>
                 </div>
               </div>
               <div class="col-md-12">
-                <hr class="form-devider"/>
                 <div class="form-group">
-                  <div class="row">
-                    <label for="day" class="col-md-12">Date of birth:</label>
-                    <div class="col-md-4">
-                      <select id="day" class="form-control" ng-init="acc.day = days[0]" ng-model="acc.day" ng-options="day.name for day in days">
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <select id="month" class="form-control" ng-init="acc.month = months[0]" ng-model="acc.month" ng-options="month.name for month in months">
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <select id="year" class="form-control" ng-init="acc.year = years[0]" ng-model="acc.year" ng-options="year.name for year in years">
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="gender">Choose gender</label>
-                  <div id="gender" class="radio" ng-model="acc.sex">
-                    <label class="radio-inline" ng-repeat="s in sex">
-                      <input type="radio" name="gender" value="{{s.name}}" ng-model="acc.sex"/>{{s.name}}
-                    </label>
-                  </div>
-                  <hr class="form-devider"/>
                   <div class="form-bottom">
                     <label class="checkbox">
-                      <!--<input type="checkbox" value="remember-me"/> I agree to<a href="#">Terms &amp; Conditions</a>-->
+                      <input ng-model="question.isAnonymous" type="checkbox"/> Ask Question as Anonymous
                     </label>
-                    <button type="submit" class="btn-red" ng-click="createAccount(acc)">Register</button>
+                    <button type="submit" class="btn-red" ng-click="sendQuestion(question)">Send</button>
                   </div>
                 </div>
               </div>
@@ -138,4 +107,5 @@
       </aside>
     </div>
   </section>
-</div>
+  </div>
+

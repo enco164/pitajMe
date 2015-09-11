@@ -30,6 +30,26 @@ var app = angular
         controller: 'RegistrationCtrl',
         controllerAs: 'registration'
       })
+      .when('/myProfile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl',
+        controllerAs: 'profile'
+      })
+      .when('/user-detail', {
+        templateUrl: 'views/user.html',
+        controller: 'UserCtrl',
+        controllerAs: 'user'
+      })
+      .when('/ask-question', {
+        templateUrl: 'views/askQuestion.html',
+        controller: 'AskQuestionCtrl',
+        controllerAs: 'askQuestion'
+      })
+      .when('/edit-profile', {
+        templateUrl: 'views/editProfile.html',
+        controller: 'EditProfileCtrl',
+        controllerAs: 'editProfile'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -7,14 +7,15 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html">Homepage</a></li>
-            <li><a href="post.html">Post page</a></li>
-            <li><a href="style-page.html">Style page</a></li>
+            <li class="active"><a href="/#/">Homepage</a></li>
+            <li><a href="/#/ask-question">Ask Question</a></li>
+            <li><a href="/#/">Style page</a></li>
+            <li ng-show="logged"><a href="/#/myProfile">Profile page</a></li>
             <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
                 <li ng-show="!logged"><a href="/#/login">Login</a></li>
-                <li ng-show="logged"><a href="/#/login" ng-click="logout_fn()">Logout</a></li>
-                <li><a href="#">Registration</a></li>
+                <li ng-show="logged"><a href="/#/login" ng-click="logout()">Logout</a></li>
+                <li><a href="/#/registration">Registration</a></li>
                 <li><a href="#">Contact</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">More options</li>
@@ -37,25 +38,57 @@
 </header>
 <section class="container ng-scope">
   <div class="row">
-    <div class="grid posts" >
-      <div class="grid-item col-md-3" ng-repeat="question in questions">
-        <article><a href="#"><img src="img/post-test-1.jpg" alt="Test image 1" class="img-responsive"/></a>
-          <div class="post-content clearfix boy-post">
-            <h1>
-              <a href="" ng-show="{{question.isAnonymous}}">Anonymous</a>
-              <a href="#" ng-show="{{!question.isAnonymous}}">{{question.account.username}}</a>
-              <span>{{question.timestamp}}</span>
-            </h1>
-            <h3><a href="/#/answers" ng-click="openAnswers(question)">{{question.title}}</a></h3>
-            <h2>{{question.text}}</h2>
-            <div class="stats">
-              <div class="favs"><span class="glyphicon glyphicon-heart"></span>213</div>
-              <div class="boys"><span class="glyphicon glyphicon-heart"></span>42</div>
-              <div class="girls"><span class="glyphicon glyphicon-heart"></span>21</div>
-            </div>
+    <div class="content col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="quick-post">
+            <form role="form" class="form-signin">
+              <div class="row">
+                <div class="form-group col-md-8">
+                  <label for="title">Question title</label>
+                  <input id ="title" type="text" placeholder="Question title" required="required" class="form-control" ng-model="question.title"/>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="category">Choose category:</label>
+                  <select class="form-control" name="category" id="category" required="required" ng-model="question.category" ng-options="category.name for category in categories">
+                  </select>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="topic-content">Question content</label>
+                  <textarea id="topic-content" type="text" placeholder="Enter Question content" rows="3" required="required" class="form-control" ng-model="question.text"></textarea>
+                </div>
+              </div>
+              <div class="form-bottom">
+                <label class="checkbox">
+                  <input ng-model="question.isAnonymous" type="checkbox"/> Ask Question as Anonymous
+                </label>
+                <button type="submit" class="btn-red" ng-click="sendQuestion(question)">Send</button>
+              </div>
+            </form>
           </div>
-        </article>
+        </div>
+      </div>
+      <div class="grid posts"  id="grid-posts">
+        <div class="grid-item col-md-3" ng-repeat="question in questions">
+          <article><a href="#"><img src="img/post-test-1.jpg" alt="Test image 1" class="img-responsive"/></a>
+            <div class="post-content clearfix boy-post">
+              <h1>
+                <a ng-show="{{question.isAnonymous}}">Anonymous</a>
+                <a href="/#/user-detail" ng-show="{{!question.isAnonymous}}" ng-click="getProfile(question.account.id)">{{question.account.username}}</a>
+                <span>{{question.timestamp}}</span>
+              </h1>
+              <h1>{{question.category.name}}</h1>
+              <h3><a href="/#/answers" ng-click="openAnswers(question)">{{question.title}}</a></h3>
+              <h2>{{question.text}}</h2>
+              <div class="stats">
+                <div>Answers: {{question.answers.count}}</div>
+                <div class="favs"><span class="glyphicon glyphicon-heart"></span>213</div>
+                <div class="boys"><span class="glyphicon glyphicon-heart"></span>42</div>
+                <div class="girls"><span class="glyphicon glyphicon-heart"></span>21</div>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
-  </div>
 </section>
