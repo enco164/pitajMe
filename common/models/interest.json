@@ -1,21 +1,18 @@
 {
-  "name": "Follow",
+  "name": "Interest",
   "base": "PersistedModel",
   "idInjection": true,
-  "options": {
-    "validateUpsert": true
-  },
   "properties": {},
   "validations": [],
   "relations": {
-    "follower": {
+    "account": {
       "type": "belongsTo",
       "model": "Account",
       "foreignKey": ""
     },
-    "followee": {
+    "category": {
       "type": "belongsTo",
-      "model": "Account",
+      "model": "Category",
       "foreignKey": ""
     }
   },

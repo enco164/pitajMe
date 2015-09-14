@@ -37,7 +37,6 @@ app.controller('EditProfileCtrl', [
     };
 
     $scope.logout = function(){
-      console.log("bla bla");
       Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
         console.log(err);
       });

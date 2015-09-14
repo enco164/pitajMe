@@ -7,8 +7,9 @@ app.controller('UserCtrl', [
   'Question',
   'Account',
   'Follow',
+  'Interest',
   '$routeParams',
-  function($scope, Question, Account, Follow, $routeParams){
+  function($scope, Question, Account, Follow, Interest, $routeParams){
 
     $scope.params = $routeParams;
     console.log('R: ' + $routeParams);
@@ -76,5 +77,15 @@ app.controller('UserCtrl', [
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 
+    $scope.int = Interest.find({
+      filter:{
+        where:{
+          accountId: localStorage.getItem('$LoopBack$currentUserId')
+        }
+      }
+    }, function(success, err){
+      console.log($scope.int);
+      console.log(localStorage.getItem('$LoopBack$currentUserId'));
+    });
   }
 ]);

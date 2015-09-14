@@ -54,6 +54,13 @@
       "type": "hasMany",
       "model": "Post",
       "foreignKey": "accountId"
+    },
+    "interests": {
+      "type": "hasMany",
+      "model": "Category",
+      "foreignKey": "categoryId",
+      "keyThrough": "accountId",
+      "through": "Interest"
     }
   },
   "acls": [
@@ -74,7 +81,7 @@
     {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
-      "principalId": "$owner",
+      "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "update"
     },
@@ -91,7 +98,14 @@
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "__get__following"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__get__interests"
     }
   ],
-  "methods": {}
+  "methods": []
 }

@@ -48,7 +48,9 @@ app.controller('HomeCtrl', [
     };
 
     $scope.logout = function(){
-      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')});
+      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
+        console.log(err);
+      });
     };
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');

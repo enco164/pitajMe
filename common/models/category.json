@@ -30,8 +30,15 @@
       "type": "hasMany",
       "model": "Answer",
       "foreignKey": "categoryId"
+    },
+    "interests": {
+      "type": "hasMany",
+      "model": "Account",
+      "foreignKey": "accountId",
+      "keyThrough": "categoryId",
+      "through": "Interest"
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": []
 }

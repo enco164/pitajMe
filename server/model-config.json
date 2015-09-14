@@ -59,5 +59,9 @@
   "Follow": {
     "dataSource": "db",
     "public": true
+  },
+  "Interest": {
+    "dataSource": "db",
+    "public": true
   }
 }
