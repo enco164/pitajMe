@@ -30,12 +30,12 @@ var app = angular
         controller: 'RegistrationCtrl',
         controllerAs: 'registration'
       })
-      .when('/myProfile', {
+      .when('/my-profile', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl',
         controllerAs: 'profile'
       })
-      .when('/user-detail', {
+      .when('/user-detail/:id', {
         templateUrl: 'views/user.html',
         controller: 'UserCtrl',
         controllerAs: 'user'

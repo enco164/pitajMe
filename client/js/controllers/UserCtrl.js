@@ -27,6 +27,8 @@ app.controller('UserCtrl', [
       //console.log(success)
     });
 
+    //TODO !!!!!!!!
+    $scope.fo
     $scope.followees = Follow.find({
       followerId: localStorage.getItem('$LoopBack$currentUserId'),
       followeeId: localStorage.getItem('getProfile')
