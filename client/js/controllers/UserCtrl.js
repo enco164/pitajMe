@@ -32,7 +32,12 @@ app.controller('UserCtrl', [
     });
 
     //TODO !!!!!!!! Account.prototype$__get__follower()
-    $scope.followees = Follow.find({
+    $scope.followees = Account.prototype$__get__following({
+      id: localStorage.getItem('$LoopBack$currentUserId')
+    }, function(success, error){
+      console.log(success);
+    });
+    /*$scope.followees = Follow.find({
       filter:{
         where:{
           followerId: localStorage.getItem('$LoopBack$currentUserId'),
@@ -41,7 +46,7 @@ app.controller('UserCtrl', [
       }
     }, function(success){
       if (success.length == 1) $scope.follows = success[0].id;
-    });
+    });*/
 
     //TODO ne treba u svakom kontroleru da stoji logout funkcija
     $scope.logout = function(){
