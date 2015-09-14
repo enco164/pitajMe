@@ -74,7 +74,7 @@
             <div class="post-content clearfix boy-post">
               <h1>
                 <a ng-show="{{question.isAnonymous}}">Anonymous</a>
-                <a href="/#/user-detail/{{question.accountId}}" ng-show="{{!question.isAnonymous}}" ng-click="getProfile(question.account.id)">{{question.account.username}}</a>
+                <a href="/#/user-detail/{{question.accountId}}" ng-show="{{!question.isAnonymous}}">{{question.account.username}}</a>
                 <span>{{question.timestamp}}</span>
               </h1>
               <h1>{{question.category.name}}</h1>

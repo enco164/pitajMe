@@ -51,10 +51,6 @@ app.controller('HomeCtrl', [
       localStorage.setItem('questId', question.id);
     };
 
-    $scope.getProfile= function(id){
-      localStorage.setItem('getProfile', id);
-    };
-
     $scope.logout = function(){
       console.log("bla bla");
       Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {

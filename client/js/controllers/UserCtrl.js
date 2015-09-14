@@ -31,10 +31,14 @@ app.controller('UserCtrl', [
       //console.log(success)
     });
 
-    //TODO !!!!!!!!
+    //TODO !!!!!!!! Account.prototype$__get__follower()
     $scope.followees = Follow.find({
-      followerId: localStorage.getItem('$LoopBack$currentUserId'),
-      followeeId: $scope.params.id
+      filter:{
+        where:{
+          followerId: localStorage.getItem('$LoopBack$currentUserId'),
+          followeeId: $scope.params.id
+        }
+      }
     }, function(success){
       if (success.length == 1) $scope.follows = success[0].id;
     });
