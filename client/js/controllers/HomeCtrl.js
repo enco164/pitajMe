@@ -47,15 +47,8 @@ app.controller('HomeCtrl', [
       },function(question, err){});
     };
 
-    $scope.openAnswers = function(question){
-      localStorage.setItem('questId', question.id);
-    };
-
     $scope.logout = function(){
-      console.log("bla bla");
-      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
-        console.log(err);
-      });
+      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')});
     };
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');

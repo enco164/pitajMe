@@ -7,16 +7,17 @@ app.controller('AnswerCtrl', [
   'Answer',
   'Question',
   'Account',
-  function($scope, Answer, Question, Account){
-    var id = localStorage.getItem('questId');
+  '$routeParams',
+  function($scope, Answer, Question, Account, $routeParams){
+    $scope.params = $routeParams;
     $scope.question = Question.findById({
-      id: id,
+      id: $scope.params.id,
       filter:{ include: ['account', 'category']}
     });
 
 
     $scope.answers = Question.answer({
-      id: id,
+      id: $scope.params.id,
       filter: {include: 'question'}
     }, function(){
       for(var i=0; i<$scope.answers.length; i++){
@@ -39,17 +40,14 @@ app.controller('AnswerCtrl', [
         isAnonymous: answer.isAnonymous,
         timestamp: new Date,
         accountId: localStorage.getItem('$LoopBack$currentUserId'),
-        questionId: id
+        questionId: $scope.params.id
       }, function(answer, err){
         console.log("answer", answer || err);
       });
     };
 
     $scope.logout = function(){
-      console.log("bla bla");
-      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
-        console.log(err);
-      });
+      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')});
     };
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');

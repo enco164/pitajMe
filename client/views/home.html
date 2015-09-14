@@ -78,7 +78,7 @@
                 <span>{{question.timestamp}}</span>
               </h1>
               <h1>{{question.category.name}}</h1>
-              <h3><a href="/#/answers" ng-click="openAnswers(question)">{{question.title}}</a></h3>
+              <h3><a href="/#/answers/{{question.id}}">{{question.title}}</a></h3>
               <h2>{{question.text}}</h2>
               <div class="stats">
                 <div>Answers: {{question.answers.count}}</div>

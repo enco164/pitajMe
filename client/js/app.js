@@ -20,7 +20,7 @@ var app = angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .when('/answers', {
+      .when('/answers/:id', {
         templateUrl: 'views/answers.html',
         controller: 'AnswerCtrl',
         controllerAs: 'answer'
