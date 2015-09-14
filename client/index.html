@@ -17,9 +17,9 @@
 
 </head>
 <body ng-app="app">
-
-<div ng-view></div>
-
+<div ng-controller="MainCtrl">
+  <div ng-view></div>
+</div>
 <footer>
   <div class="row">
     <div class="container">
@@ -58,6 +58,7 @@
 <script src="js/services/countryService.js"></script>
 <script src="js/services/dateServices.js"></script>
 <script src="js/services/detailsService.js"></script>
+<script src="js/controllers/MainCtrl.js"></script>
 <script src="js/controllers/HomeCtrl.js"></script>
 <script src="js/controllers/LoginCtrl.js"></script>
 <script src="js/controllers/AnswerCtrl.js"></script>

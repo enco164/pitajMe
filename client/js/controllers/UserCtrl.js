@@ -7,10 +7,14 @@ app.controller('UserCtrl', [
   'Question',
   'Account',
   'Follow',
-  function($scope, Question, Account, Follow){
+  '$routeParams',
+  function($scope, Question, Account, Follow, $routeParams){
+
+    $scope.params = $routeParams;
+    console.log('R: ' + $routeParams);
 
     $scope.account = Account.findById({
-      id: localStorage.getItem('getProfile')
+      id: $scope.params.id
     }, function(){
       var date = new Date(Date.now() - (new Date($scope.account.dob)).getTime());
       $scope.account.age = Math.abs(date.getUTCFullYear() - 1970);
@@ -19,7 +23,7 @@ app.controller('UserCtrl', [
     $scope.questions = Question.find({
       filter:{
         where: {
-          accountId: localStorage.getItem('getProfile')
+          accountId: $scope.params.id
         },
         include: 'category'
       }
@@ -28,10 +32,9 @@ app.controller('UserCtrl', [
     });
 
     //TODO !!!!!!!!
-    $scope.fo
     $scope.followees = Follow.find({
       followerId: localStorage.getItem('$LoopBack$currentUserId'),
-      followeeId: localStorage.getItem('getProfile')
+      followeeId: $scope.params.id
     }, function(success){
       if (success.length == 1) $scope.follows = success[0].id;
     });
@@ -48,7 +51,7 @@ app.controller('UserCtrl', [
     $scope.follow = function(){
       Follow.create({
         followerId: localStorage.getItem('$LoopBack$currentUserId'),
-        followeeId: localStorage.getItem('getProfile')
+        followeeId: $scope.params.id
       }, function(success){
         $scope.follows = success.id;
       });
