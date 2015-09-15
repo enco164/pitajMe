@@ -1,141 +1,100 @@
-<div id="content-wrap">
-  <header>
-    <div class="row">
-      <div class="container">
-        <div id="main-nav" role="navigation" class="navbar navbar-default">
-          <div class="navbar-header">
-            <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand"><img src="img/logo.png" alt="Logo" class="img-responsive"/></a>
-          </div>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="/#/">Homepage</a></li>
-              <li><a href="/#/ask-question">Ask Question</a></li>
-              <li><a href="/#/">Style page</a></li>
-              <li ng-show="logged"><a href="/#/my-profile">Profile page</a></li>
-              <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
-                <ul role="menu" class="dropdown-menu">
-                  <li ng-show="!logged"><a href="/#/login">Login</a></li>
-                  <li ng-show="logged"><a href="/#/login" ng-click="logout()">Logout</a></li>
-                  <li><a href="/#/registration">Registration</a></li>
-                  <li><a href="#">Contact</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">More options</li>
-                  <li><a href="#">Forgot password</a></li>
-                </ul>
-              </li>
-              <li>
-                <form action="" class="navbar-form navbar-right search-form">
-                  <div class="form-group has-feedback">
-                    <label for="search" class="sr-only">Search</label>
-                    <input id="search" type="text" name="search" placeholder="Search" class="form-control"/><span class="glyphicon glyphicon-search form-control-feedback"></span>
-                  </div>
-                </form>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+<section class="container">
+  <div class="row">
+    <form role="form" class="form-signin">
+      <div class="col-md-9">
+        <div class="content">
+          <div class="row">
+            <div class="col-md-8">
 
-  <section class="container">
-    <div class="row">
-      <form role="form" class="form-signin">
-        <div class="col-md-9">
-          <div class="content">
-            <div class="row">
-              <div class="col-md-8">
-
-                <h1>Registration</h1>
-                <div id="errorMessage" class="alert alert-danger" role="alert" ng-show="error">
-                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                  <span class="sr-only">Error:</span>
-                  {{errorMessage}}
-                </div>
-                <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input id="email" type="email" placeholder="Email address" required="" class="form-control" ng-model="acc.email"/>
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input id="password" type="password" placeholder="Password" required="required" class="form-control" ng-model="acc.password"/>
-                </div>
-
+              <h1>Registration</h1>
+              <div id="errorMessage" class="alert alert-danger" role="alert" ng-show="error">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{errorMessage}}
               </div>
-              <div class="col-md-12 container">
-                <hr class="form-devider"/>
-                <div class="form-group">
-                  <label for="uname">Username</label>
-                  <input id="uname" type="text" placeholder="Username" required="required" class="form-control" ng-model="acc.username"/>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input id="email" type="email" placeholder="Email address" required="" class="form-control" ng-model="acc.email"/>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Password" required="required" class="form-control" ng-model="acc.password"/>
+              </div>
+
+            </div>
+            <div class="col-md-12 container">
+              <hr class="form-devider"/>
+              <div class="form-group">
+                <label for="uname">Username</label>
+                <input id="uname" type="text" placeholder="Username" required="required" class="form-control" ng-model="acc.username"/>
+              </div>
+              <div class="form-group row">
+                <label for="country_box" class="col-md-12">Country</label>
+                <div id="country_box" class="col-md-4">
+                  <select class="form-control" name="country" id="country" ng-init="acc.country = countries[0]" ng-model="acc.country" ng-options="country.name for country in countries">
+                  </select>
                 </div>
-                <div class="form-group row">
-                  <label for="country_box" class="col-md-12">Country</label>
-                  <div id="country_box" class="col-md-4">
-                    <select class="form-control" name="country" id="country" ng-init="acc.country = countries[0]" ng-model="acc.country" ng-options="country.name for country in countries">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <hr class="form-devider"/>
+              <div class="form-group">
+                <div class="row">
+                  <label for="day" class="col-md-12">Date of birth:</label>
+                  <div class="col-md-4">
+                    <select id="day" class="form-control" ng-init="acc.day = days[0]" ng-model="acc.day" ng-options="day.name for day in days">
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <select id="month" class="form-control" ng-init="acc.month = months[0]" ng-model="acc.month" ng-options="month.name for month in months">
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <select id="year" class="form-control" ng-init="acc.year = years[0]" ng-model="acc.year" ng-options="year.name for year in years">
                     </select>
                   </div>
                 </div>
               </div>
-              <div class="col-md-12">
-                <hr class="form-devider"/>
-                <div class="form-group">
-                  <div class="row">
-                    <label for="day" class="col-md-12">Date of birth:</label>
-                    <div class="col-md-4">
-                      <select id="day" class="form-control" ng-init="acc.day = days[0]" ng-model="acc.day" ng-options="day.name for day in days">
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <select id="month" class="form-control" ng-init="acc.month = months[0]" ng-model="acc.month" ng-options="month.name for month in months">
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <select id="year" class="form-control" ng-init="acc.year = years[0]" ng-model="acc.year" ng-options="year.name for year in years">
-                      </select>
-                    </div>
-                  </div>
+              <div class="form-group">
+                <label for="gender">Choose gender</label>
+                <div id="gender" class="radio" ng-model="acc.sex">
+                  <label class="radio-inline" ng-repeat="s in sex">
+                    <input type="radio" name="gender" value="{{s.name}}" ng-model="acc.sex"/>{{s.name}}
+                  </label>
                 </div>
-                <div class="form-group">
-                  <label for="gender">Choose gender</label>
-                  <div id="gender" class="radio" ng-model="acc.sex">
-                    <label class="radio-inline" ng-repeat="s in sex">
-                      <input type="radio" name="gender" value="{{s.name}}" ng-model="acc.sex"/>{{s.name}}
-                    </label>
-                  </div>
-                  <hr class="form-devider"/>
-                  <div class="form-bottom">
-                    <label class="checkbox">
-                      <!--<input type="checkbox" value="remember-me"/> I agree to<a href="#">Terms &amp; Conditions</a>-->
-                    </label>
-                    <button type="submit" class="btn-red" ng-click="createAccount(acc)">Register</button>
-                  </div>
+                <hr class="form-devider"/>
+                <div class="form-bottom">
+                  <label class="checkbox">
+                    <!--<input type="checkbox" value="remember-me"/> I agree to<a href="#">Terms &amp; Conditions</a>-->
+                  </label>
+                  <button type="submit" class="btn-red" ng-click="createAccount(acc)">Register</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </form>
-      <aside class="main-sidebar col-md-3">
-        <article>
-          <h4> <a href="#">Top posts</a></h4>
-          <ul>
-            <li><a href="#">Caramels caramels lemon drops liquorice pudding</a></li>
-            <li><a href="#">Tart cheesecake danish candy chocolate</a></li>
-            <li><a href="#">Toffee lemon drops jujubes jelly  bar liquorice</a></li>
-            <li><a href="#">Caramels caramels lemon drops liquorice pudding</a></li>
-            <li><a href="#">Tart cheesecake danish candy chocolate</a></li>
-            <li><a href="#">Toffee lemon drops jujubes jelly  bar liquorice</a></li>
-          </ul>
-        </article>
-        <article class="most-loved">
-          <h4> <a href="#">Most loved</a></h4>
-          <ul>
-            <li><a href="#">Caramels caramels lemon drops liquorice pudding</a></li>
-            <li><a href="#">Tart cheesecake danish candy chocolate</a></li>
-            <li><a href="#">Toffee lemon drops jujubes jelly  bar liquorice</a></li>
-          </ul>
-        </article>
-      </aside>
-    </div>
-  </section>
-</div>
+      </div>
+    </form>
+    <aside class="main-sidebar col-md-3">
+      <article>
+        <h4> <a href="#">Top posts</a></h4>
+        <ul>
+          <li><a href="#">Caramels caramels lemon drops liquorice pudding</a></li>
+          <li><a href="#">Tart cheesecake danish candy chocolate</a></li>
+          <li><a href="#">Toffee lemon drops jujubes jelly  bar liquorice</a></li>
+          <li><a href="#">Caramels caramels lemon drops liquorice pudding</a></li>
+          <li><a href="#">Tart cheesecake danish candy chocolate</a></li>
+          <li><a href="#">Toffee lemon drops jujubes jelly  bar liquorice</a></li>
+        </ul>
+      </article>
+      <article class="most-loved">
+        <h4> <a href="#">Most loved</a></h4>
+        <ul>
+          <li><a href="#">Caramels caramels lemon drops liquorice pudding</a></li>
+          <li><a href="#">Tart cheesecake danish candy chocolate</a></li>
+          <li><a href="#">Toffee lemon drops jujubes jelly  bar liquorice</a></li>
+        </ul>
+      </article>
+    </aside>
+  </div>
+</section>

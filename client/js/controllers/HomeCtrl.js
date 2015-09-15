@@ -9,6 +9,8 @@ app.controller('HomeCtrl', [
   'Category',
   function($scope, Question, Account, Category){
 
+    $scope.class = 'content-wrap';
+
 
     $scope.questions = Question.find({
       filter: {

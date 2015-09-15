@@ -168,7 +168,7 @@ module.factory(
          *
          *  - `id` – `{*}` - User id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -285,7 +285,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "prototype$__count__accessTokens": {
           url: urlBase + "/Users/:id/accessTokens/count",
@@ -432,7 +432,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Users/:id/exists",
@@ -630,7 +630,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Users/count",
@@ -690,7 +690,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `options` – `{object=}` - 
+         *  - `options` – `{object=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -704,7 +704,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `changes` – `{ReadableStream=}` - 
+         *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
           url: urlBase + "/Users/change-stream",
@@ -745,9 +745,9 @@ module.factory(
          *
          * The response body contains properties of the AccessToken created on login.
          * Depending on the value of `include` parameter, the body may contain additional properties:
-         * 
+         *
          *   - `user` - `{User}` - Data of the currently logged in user. (`include=user`)
-         * 
+         *
          *
          */
         "login": {
@@ -820,11 +820,11 @@ module.factory(
          *
          * @param {Object=} parameters Request parameters.
          *
-         *  - `uid` – `{string}` - 
+         *  - `uid` – `{string}` -
          *
-         *  - `token` – `{string}` - 
+         *  - `token` – `{string}` -
          *
-         *  - `redirect` – `{string=}` - 
+         *  - `redirect` – `{string=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -1791,7 +1791,7 @@ module.factory(
          *
          *  - `id` – `{*}` - User id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -1908,7 +1908,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "prototype$__count__accessTokens": {
           url: urlBase + "/Accounts/:id/accessTokens/count",
@@ -1953,7 +1953,7 @@ module.factory(
          *
          *  - `id` – `{*}` - User id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -2070,7 +2070,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "prototype$__count__followers": {
           url: urlBase + "/Accounts/:id/followers/count",
@@ -2090,7 +2090,7 @@ module.factory(
          *
          *  - `id` – `{*}` - User id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -2207,7 +2207,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "prototype$__count__following": {
           url: urlBase + "/Accounts/:id/following/count",
@@ -2379,7 +2379,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Accounts/:id/exists",
@@ -2577,7 +2577,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Accounts/count",
@@ -2637,7 +2637,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `options` – `{object=}` - 
+         *  - `options` – `{object=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -2651,7 +2651,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `changes` – `{ReadableStream=}` - 
+         *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
           url: urlBase + "/Accounts/change-stream",
@@ -2692,9 +2692,9 @@ module.factory(
          *
          * The response body contains properties of the AccessToken created on login.
          * Depending on the value of `include` parameter, the body may contain additional properties:
-         * 
+         *
          *   - `user` - `{User}` - Data of the currently logged in user. (`include=user`)
-         * 
+         *
          *
          */
         "login": {
@@ -2767,11 +2767,11 @@ module.factory(
          *
          * @param {Object=} parameters Request parameters.
          *
-         *  - `uid` – `{string}` - 
+         *  - `uid` – `{string}` -
          *
-         *  - `token` – `{string}` - 
+         *  - `token` – `{string}` -
          *
-         *  - `redirect` – `{string=}` - 
+         *  - `redirect` – `{string=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -3196,7 +3196,7 @@ module.factory(
          *
          *  - `id` – `{*}` - User id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -3246,7 +3246,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.post.count = function() {
           var TargetResource = $injector.get("Post");
@@ -3497,7 +3497,7 @@ module.factory(
          *
          *  - `id` – `{*}` - User id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -3547,7 +3547,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.interests.count = function() {
           var TargetResource = $injector.get("Category");
@@ -4283,7 +4283,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Categories/:id/exists",
@@ -4481,7 +4481,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Categories/count",
@@ -4541,7 +4541,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `options` – `{object=}` - 
+         *  - `options` – `{object=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -4555,7 +4555,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `changes` – `{ReadableStream=}` - 
+         *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
           url: urlBase + "/Categories/change-stream",
@@ -4841,7 +4841,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -4891,7 +4891,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.posts.count = function() {
           var TargetResource = $injector.get("Post");
@@ -5142,7 +5142,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -5192,7 +5192,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.questions.count = function() {
           var TargetResource = $injector.get("Question");
@@ -5443,7 +5443,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -5493,7 +5493,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.answers.count = function() {
           var TargetResource = $injector.get("Answer");
@@ -5744,7 +5744,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -5794,7 +5794,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.interests.count = function() {
           var TargetResource = $injector.get("Account");
@@ -6307,7 +6307,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Posts/:id/exists",
@@ -6505,7 +6505,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Posts/count",
@@ -6565,7 +6565,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `options` – `{object=}` - 
+         *  - `options` – `{object=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -6579,7 +6579,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `changes` – `{ReadableStream=}` - 
+         *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
           url: urlBase + "/Posts/change-stream",
@@ -6853,7 +6853,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -6889,7 +6889,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -7144,7 +7144,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Questions/:id/exists",
@@ -7342,7 +7342,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Questions/count",
@@ -7402,7 +7402,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `options` – `{object=}` - 
+         *  - `options` – `{object=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -7416,7 +7416,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `changes` – `{ReadableStream=}` - 
+         *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
           url: urlBase + "/Questions/change-stream",
@@ -7637,7 +7637,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -7673,7 +7673,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -7723,7 +7723,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -7773,7 +7773,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.answer.count = function() {
           var TargetResource = $injector.get("Answer");
@@ -8235,7 +8235,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Answers/:id/exists",
@@ -8433,7 +8433,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Answers/count",
@@ -8493,7 +8493,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `options` – `{object=}` - 
+         *  - `options` – `{object=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -8507,7 +8507,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `changes` – `{ReadableStream=}` - 
+         *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
           url: urlBase + "/Answers/change-stream",
@@ -8787,7 +8787,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -8823,7 +8823,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -8859,7 +8859,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -8909,7 +8909,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -8959,7 +8959,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.comment.count = function() {
           var TargetResource = $injector.get("Comment");
@@ -9369,7 +9369,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Comments/:id/exists",
@@ -9567,7 +9567,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Comments/count",
@@ -9627,7 +9627,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `options` – `{object=}` - 
+         *  - `options` – `{object=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -9641,7 +9641,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `changes` – `{ReadableStream=}` - 
+         *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
           url: urlBase + "/Comments/change-stream",
@@ -9856,7 +9856,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -9892,7 +9892,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -9928,7 +9928,7 @@ module.factory(
          *
          *  - `id` – `{*}` - Post id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -10131,7 +10131,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Follows/:id/exists",
@@ -10329,7 +10329,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Follows/count",
@@ -10389,7 +10389,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `options` – `{object=}` - 
+         *  - `options` – `{object=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -10403,7 +10403,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `changes` – `{ReadableStream=}` - 
+         *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
           url: urlBase + "/Follows/change-stream",
@@ -10559,7 +10559,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -10595,7 +10595,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -10798,7 +10798,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Interests/:id/exists",
@@ -10996,7 +10996,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Interests/count",
@@ -11056,7 +11056,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `options` – `{object=}` - 
+         *  - `options` – `{object=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -11070,7 +11070,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `changes` – `{ReadableStream=}` - 
+         *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
           url: urlBase + "/Interests/change-stream",
@@ -11226,7 +11226,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -11262,7 +11262,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.

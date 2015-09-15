@@ -11,107 +11,104 @@ app.controller('UserCtrl', [
   '$routeParams',
   function($scope, Question, Account, Follow, Interest, $routeParams){
 
+    $scope.class = 'content-wrap';
+
     $scope.params = $routeParams;
-    console.log('R: ' + $routeParams);
 
-    $scope.account = Account.findById({
-      id: $scope.params.id
-    }, function(account){
-      var date = new Date(Date.now() - (new Date($scope.account.dob)).getTime());
-      $scope.account.age = Math.abs(date.getUTCFullYear() - 1970);
-      $scope.account.dob = time(account.dob);
-    });
+    $scope.isMe = Account.getCurrentId() == $scope.params.id;
 
-    $scope.questions = Question.find({
+    $scope.getAccount = function(){
+
+      $scope.account = Account.findById({
+        id: $scope.params.id,
+        filter: {include: ['following', 'followers']}
+      }, function(){
+        var date = new Date(Date.now() - (new Date($scope.account.dob)).getTime());
+        $scope.account.age = Math.abs(date.getUTCFullYear() - 1970);
+        console.log($scope.account);
+      });
+
+    };
+
+    $scope.getAccount();
+
+    Question.find({
       filter:{
         where: {
           accountId: $scope.params.id
         },
         include: 'category'
       }
-    }, function(questions){
-      for (var i=0; i<questions.length; i++){
-        $scope.questions[i].timestamp = time(questions[i].timestamp);
-      }
+    }, function(value, responseHeaders){
+      $scope.questions = value;
+      console.log(value);
+    }, function(error){
+      console.log(error);
     });
 
-    //TODO !!!!!!!! Account.prototype$__get__follower()
-    $scope.followees = Account.prototype$__get__following({
-      id: localStorage.getItem('$LoopBack$currentUserId')
-    }, function(followees){
-      followees.forEach(function(e, index){
-        if (e.id == $scope.params.id) $scope.follows = true;
-        else $scope.follows = false;
-      });
-    });
-    /*$scope.followees = Follow.find({
-      filter:{
-        where:{
-          followerId: localStorage.getItem('$LoopBack$currentUserId'),
-          followeeId: $scope.params.id
-        }
-      }
-    }, function(success){
-      if (success.length == 1) $scope.follows = success[0].id;
-    });*/
-
-    //TODO ne treba u svakom kontroleru da stoji logout funkcija
-    $scope.logout = function(){
-      Account.logout({
-        id: localStorage.getItem('$LoopBack$currentUserId')
-      }, function(success, err) {});
-    };
+    $scope.logout = function(){Account.logout({id: Account.getCurrentId()});};
 
     $scope.follow = function(){
-      Follow.create({
-        followerId: localStorage.getItem('$LoopBack$currentUserId'),
-        followeeId: $scope.params.id
-      }, function(success){
-        $scope.follows = success.id;
-      });
+
+      Account.prototype$__link__following(
+        {
+          id: Account.getCurrentId(),
+          fk: $scope.params.id
+        },
+        {},
+        function successCb(value, responseHeaders){
+          console.log('follow() return value: ' + JSON.stringify(value));
+          $scope.isFollowing = true;
+          $scope.getAccount();
+        },
+        function error(httpResponse){
+          console.log('follow() error: ' + JSON.stringify(httpResponse));
+        }
+      );
+
     };
 
     $scope.unfollow = function(){
-      /*Account.prototype$__delete__following({
-        id: localStorage.getItem('$LoopBack$currentUserId')
-      }, function(){});*/
-
-      Follow.find({
-        filter:{
-          where:{
-            followerId: localStorage.getItem('$LoopBack$currentUserId'),
-            followeeId: $scope.params.id
-          }
+      Account.prototype$__unlink__following(
+        {
+          id: Account.getCurrentId(),
+          fk: $scope.params.id
+        },
+        function successCb(value, responseHeaders){
+          $scope.isFollowing = false;
+          console.log('unfollow() return value: ' + JSON.stringify(value));
+          $scope.getAccount();
+        },
+        function error(httpResponse){
+          console.log('unfollow() error: ' + JSON.stringify(httpResponse));
         }
-      }, function(follow){
-        Follow.delete({
-          id: follow[0].id
-        }, function(){
-          $scope.follows = false;
-        });
-      });
-
+      );
     };
 
-    $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
-
-    $scope.int = Interest.find({
-      filter:{
-        where:{
-          accountId: localStorage.getItem('$LoopBack$currentUserId')
-        },
-        include: ['account', 'category']
+    Account.prototype$__exists__following(
+      {
+        id: Account.getCurrentId(),
+        fk: $scope.params.id
+      },
+      function successCb(value, responseHeaders){
+        $scope.isFollowing = true;
+        console.log('isFollowing return value: ' + JSON.stringify(value));
+      },
+      function error(httpResponse){
+        $scope.isFollowing = false;
+        console.log('isFollowing error: ' + JSON.stringify(httpResponse));
       }
-    }, function(success, err){});
+    );
 
-    function time(timestamp){
-      var date = new Date(timestamp);
-      var month = date.getMonth()+1;
-      var day = date.getDate();
-      var year = date.getFullYear();
-      return day + '.' + month + '.' + year;
-    }
-
+    //$scope.int = Interest.find({
+    //  filter:{
+    //    where:{
+    //      accountId: localStorage.getItem('$LoopBack$currentUserId')
+    //    }
+    //  }
+    //}, function(success, err){
+    //  console.log($scope.int);
+    //  console.log(localStorage.getItem('$LoopBack$currentUserId'));
+    //});
   }
-
 ]);

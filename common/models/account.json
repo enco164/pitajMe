@@ -104,7 +104,28 @@
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW",
+      "property": "__exists__following"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
       "property": "__get__interests"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__link__following"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__unlink__following"
     }
   ],
   "methods": []
