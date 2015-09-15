@@ -64,6 +64,12 @@
                 <button type="submit" class="btn-red" ng-click="sendAnswer(answer)">Send</button>
               </div>
             </form>
+            <br/>
+            <div class="alert alert-danger" role="alert" ng-show="message" style="text-transform: uppercase;">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Error:</span>
+              {{message}}
+            </div>
           </div>
         </div>
       </div>

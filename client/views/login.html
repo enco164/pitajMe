@@ -44,7 +44,7 @@
         <div class="row">
           <div class="col-md-8">
             <form role="form" class="form-signin" ng-submit="login_fn();">
-              <h1>Registration</h1>
+              <h1>Login</h1>
               <div class="form-group">
                 <label for="email">Username</label>
                 <input id="email" type="text" placeholder="Username" required="" class="form-control" ng-model="username"/>
@@ -57,9 +57,15 @@
             <hr class="form-devider"/>
             <div class="form-bottom">
               <label class="checkbox">
-                <input type="checkbox" value="remember-me"/> Remember me
+                <input type="checkbox" value="remember-me" checked="checked" ng-model="check"/> Remember me
               </label>
               <button type="submit" class="btn-red" ng-click="login_fn();">Log in</button>
+            </div>
+            <br/>
+            <div class="alert alert-danger" role="alert" ng-show="message" style="text-transform: uppercase;">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Error:</span>
+              {{message}}
             </div>
           </div>
         </div>

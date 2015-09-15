@@ -11,22 +11,25 @@ app.controller('ProfileCtrl', [
 
     $scope.account = Account.findById({
       id: localStorage.getItem('$LoopBack$currentUserId')
-    }, function(){
+    }, function(account){
       var date = new Date(Date.now() - (new Date($scope.account.dob)).getTime());
       $scope.account.age = Math.abs(date.getUTCFullYear() - 1970);
+      $scope.account.dob = time(account.dob);
     });
 
     $scope.questions = Question.find({
       filter:{
         where: {
           accountId: localStorage.getItem('$LoopBack$currentUserId'),
-          isAnonymous: false
+          isAnonymous: false  //TODO resiti na neki drugi nacin
         },
         include: 'category',
         order: 'timestamp DESC'
       }
-    }, function(success, err){
-      //console.log(success)
+    }, function(questions){
+      for (var i=0; i<questions.length; i++){
+        $scope.questions[i].timestamp = time(questions[i].timestamp);
+      }
     });
 
     $scope.answers = Answer.find({
@@ -38,7 +41,11 @@ app.controller('ProfileCtrl', [
         include: ['question'],
         order: 'timestamp DESC'
       }
-    }, function (answers, err) {});
+    }, function (answers) {
+      for (var i=0; i<answers.length; i++){
+        $scope.answers[i].timestamp = time(answers[i].timestamp);
+      }
+    });
 
     $scope.logout = function(){
       console.log("bla bla");
@@ -76,6 +83,15 @@ app.controller('ProfileCtrl', [
     } else {
       $scope.logged = false;
       window.location.replace('/#/');
+    }
+
+    function time(timestamp){
+      var date = new Date(timestamp);
+      var month = date.getMonth()+1;
+      var day = date.getDate();
+      var year = date.getFullYear();
+      var time = day + '.' + month + '.' + year;
+      return time;
     }
   }
 ]);
