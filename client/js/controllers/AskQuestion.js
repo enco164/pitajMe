@@ -23,10 +23,12 @@ app.controller('AskQuestionCtrl', [
     $scope.sendQuestion = function(question){
       Question.create({
         title: $scope.question.title, text: $scope.question.text, isAnonymous: $scope.question.isAnonymous,
-        accountId: $scope.question.accountId, categoryId: $scope.question.category.id, timestamp: new Date()
+        accountId: $scope.question.accountId, categoryId: $scope.question.category.id
       },function(question, err){
-        $scope.questions.push(question);
         console.log("question", question || err);
+      }, function(httpResponse){
+        console.log(httpResponse);
+        $scope.message = httpResponse.data.error.message;
       });
     };
 

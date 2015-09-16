@@ -15,7 +15,8 @@ app.controller('LoginCtrl', [
         username: $scope.username,
         password: $scope.password
       }, function(value, responseHeaders) {
-        window.location.replace('/#/')
+        window.location.replace('/#/');
+        console.log(value);
       }, function(httpResponse){
         console.log(httpResponse);
         $scope.message = httpResponse.data.error.message;
@@ -31,6 +32,12 @@ app.controller('LoginCtrl', [
         console.log(httpResponse);
       });
     };
+
+    /*Account.isValid(function (valid) {
+      if (!valid) {
+        console.log(user.errors);
+      }
+    });*/
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 

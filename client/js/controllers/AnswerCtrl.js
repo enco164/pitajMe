@@ -13,9 +13,9 @@ app.controller('AnswerCtrl', [
     $scope.question = Question.findById({
       id: $scope.params.id,
       filter:{ include: ['account', 'category']}       //TODO (cak i kada se includuje account, kao rezultat je postoji objekat Account, vec samo accountId)
-    }, function(question){
-      $scope.question.timestamp = time(question.timestamp);
-    });
+    }, function(value, responseHeaders){
+      $scope.question.timestamp = time(value.timestamp);
+    }, function(httpResponse){});
 
     getAnswers();
 
@@ -23,15 +23,15 @@ app.controller('AnswerCtrl', [
       $scope.answers = Question.answer({
         id: $scope.params.id,
         filter: {include: ['question', 'account']}
-      }, function(answers){
+      }, function(value, responseHeaders){
         for(var i=0; i<$scope.answers.length; i++){
-          $scope.answers[i].timestamp = time(answers[i].timestamp);
+          $scope.answers[i].timestamp = time(value[i].timestamp);
           $scope.answers[i].account = Account.findById({
             id: $scope.answers[i].accountId
           });
         }
-      });
-    };
+      }, function(httpResponse){});
+    }
 
 
     $scope.answer = {

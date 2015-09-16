@@ -27,7 +27,6 @@ app.controller('RegistrationCtrl', [
     };
 
     $scope.createAccount = function(acc){
-      console.log(acc);
       if (acc.day.name == 'Day' || acc.month.name == 'Month' || acc.year.name == 'Year'){
         $scope.error = true;
         $scope.errorMessage = 'Please insert Date of birth';
@@ -46,8 +45,11 @@ app.controller('RegistrationCtrl', [
           country: $scope.acc.country.name,
           dob: $scope.acc.day.name+"/"+$scope.acc.month.name+"/"+$scope.acc.year.name,
           sex: $scope.acc.sex
-        }, function(account, err) {
+        }, function(value, responseHeaders) {
           window.location.replace('/#/login');
+        }, function(httpResponse){
+          $scope.error= true;
+          $scope.errorMessage = httpResponse.data.error.message;
         });
       }
     };

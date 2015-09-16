@@ -17,7 +17,7 @@ app.controller('HomeCtrl', [
         order: 'timestamp DESC',
         include: ['account', 'category']
       }
-    }, function(questions, err){
+    }, function(value, responseHeaders){
       for (var i = 0;i<$scope.questions.length; i++){
         var timestamp = $scope.questions[i].timestamp;
         var date = new Date(timestamp);
@@ -30,7 +30,7 @@ app.controller('HomeCtrl', [
           id: $scope.questions[i].id
         }, function(count, err){});
       }
-    });
+    }, function(httpResponse){});
 
     $scope.question = {
       title: "",
@@ -43,15 +43,19 @@ app.controller('HomeCtrl', [
     $scope.categories = Category.find();
 
     $scope.sendQuestion = function(question){
-      Question.create({
+      Question.create({},{
         title: $scope.question.title, text: $scope.question.text, isAnonymous: $scope.question.isAnonymous,
         accountId: $scope.question.accountId, categoryId: $scope.question.category.id, timestamp: new Date()
-      },function(question, err){});
+      },function(value, responseHeaders){}, function(httpResponse){});
     };
 
     $scope.logout = function(){
-      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
-        console.log(err);
+      Account.logout({},{
+        id: localStorage.getItem('$LoopBack$currentUserId')
+      }, function(value, responseHeaders) {
+        console.log(value);
+      }, function(httpResponse){
+        console.log(httpResponse);
       });
     };
 
