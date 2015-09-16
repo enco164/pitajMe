@@ -6,10 +6,11 @@ app.controller('UserCtrl', [
   '$scope',
   'Question',
   'Account',
+  'Category',
   'Follow',
   'Interest',
   '$routeParams',
-  function($scope, Question, Account, Follow, Interest, $routeParams){
+  function($scope, Question, Account, Category, Follow, Interest, $routeParams){
 
     $scope.class = 'content-wrap';
 
@@ -100,15 +101,12 @@ app.controller('UserCtrl', [
       }
     );
 
-    //$scope.int = Interest.find({
-    //  filter:{
-    //    where:{
-    //      accountId: localStorage.getItem('$LoopBack$currentUserId')
-    //    }
-    //  }
-    //}, function(success, err){
-    //  console.log($scope.int);
-    //  console.log(localStorage.getItem('$LoopBack$currentUserId'));
-    //});
+    $scope.interests = Account.interests({
+      id: $scope.params.id
+    }, function(value, responseHeaders){
+      console.log(value, responseHeaders);
+    }, function(httpResponse){
+      console.log(httpResponse);
+    });
   }
 ]);

@@ -34,8 +34,8 @@
     "interests": {
       "type": "hasMany",
       "model": "Account",
-      "foreignKey": "accountId",
-      "keyThrough": "categoryId",
+      "foreignKey": "categoryId",
+      "keyThrough": "accountId",
       "through": "Interest"
     }
   },

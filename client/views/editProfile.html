@@ -130,12 +130,14 @@
                     <input type="radio" name="gender" value="{{s.name}}" ng-model="account.sex"/>{{s.name}}
                   </label>
                 </div>
+                <label for="category">Follow category</label>
+                <div id="category" ng-repeat="category in categories" >
+                  <!--<input type="checkbox" value="category.id" name="category.name" ng-checked="category.isChecked"/>{{category.name}}-->
+                  <input type="checkbox" ng-model="category.isChecked" checklist-value="category">{{category.name}}
+                </div>
                 <hr class="form-devider"/>
                 <div class="form-bottom">
-                  <label class="checkbox">
-                    <!--<input type="checkbox" value="remember-me"/> I agree to<a href="#">Terms &amp; Conditions</a>-->
-                  </label>
-                  <button type="submit" class="btn-red" ng-click="editAccountount(account)">Save changes</button>
+                  <button type="submit" class="btn-red" ng-click="editAccount(account)">Save changes</button>
                 </div>
               </div>
             </div>

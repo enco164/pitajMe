@@ -41,6 +41,10 @@ account = {{account}}
         <img src="" alt="avatar" ng-show="!account.image"/>
       </div>
       <div>
+        <label for="interest">Interests: </label>
+        <span id="interest" ng-repeat="interest in interests">{{interest.name}} </span>
+      </div>
+      <div>
         <label for="level">Level</label>
         <span id="level"><!--TODO--></span>
       </div>

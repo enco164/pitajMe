@@ -5,15 +5,15 @@
   "properties": {},
   "validations": [],
   "relations": {
-    "account": {
+    "accounts": {
       "type": "belongsTo",
       "model": "Account",
-      "foreignKey": ""
+      "foreignKey": "accountId"
     },
-    "category": {
+    "categories": {
       "type": "belongsTo",
       "model": "Category",
-      "foreignKey": ""
+      "foreignKey": "categoryId"
     }
   },
   "acls": [
