@@ -61,6 +61,11 @@
       "foreignKey": "categoryId",
       "keyThrough": "accountId",
       "through": "Interest"
+    },
+    "likes": {
+      "type": "hasMany",
+      "model": "Like",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -128,5 +133,5 @@
       "property": "__unlink__following"
     }
   ],
-  "methods": []
+  "methods": {}
 }

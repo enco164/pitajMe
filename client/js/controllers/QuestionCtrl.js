@@ -12,37 +12,42 @@ app.controller('QuestionCtrl', [
     $scope.params = $routeParams;
 
     function reloadQuestion(){
-    $scope.question = Question.findById({
-      id: $scope.params.id,
-      filter:{
-        include:[
-          { relation: 'account' },
-          { relation: 'answer',
-            scope: {
-              include: [
-                { relation: 'account' },
-                { relation: 'comment',
-                  scope: { include: { relation: 'account' } }
-                }
-              ], order: 'timestamp DESC'
-            }
-          },
-          { relation: 'category' }
-        ],
-        order: 'timestamp DESC'
-      }
-    }, function(value, responseHeaders){
-      $scope.question.timestamp = time(value.timestamp);
-      $scope.answers = value.answer;
-      for(var i=0; i<$scope.answers.length; i++){
-        $scope.answers[i].timestamp = time($scope.answers[i].timestamp);
-        $scope.answers[i].comment.forEach(function(e, j){
-          $scope.answers[i].comment[j].timestamp = time(e.timestamp);
-        })
-      }
-    }, function(httpResponse){
-      console.log(httpResponse);
-    });
+      $scope.question = Question.findById({
+        id: $scope.params.id,
+        filter:{
+          include:[
+            { relation: 'account' },
+            { relation: 'likes' },
+            { relation: 'answer',
+              scope: {
+                include: [
+                  { relation: 'account' },
+                  { relation: 'likes' },
+                  { relation: 'comment',
+                    scope: { include: [
+                      { relation: 'account' },
+                      { relation: 'likes' }]
+                    }
+                  }
+                ], order: 'timestamp DESC'
+              }
+            },
+            { relation: 'category' }
+          ],
+          order: 'timestamp DESC'
+        }
+      }, function(value, responseHeaders){
+        $scope.question.timestamp = time(value.timestamp);
+        $scope.answers = value.answer;
+        for(var i=0; i<$scope.answers.length; i++){
+          $scope.answers[i].timestamp = time($scope.answers[i].timestamp);
+          $scope.answers[i].comment.forEach(function(e, j){
+            $scope.answers[i].comment[j].timestamp = time(e.timestamp);
+          })
+        }
+      }, function(httpResponse){
+        console.log(httpResponse);
+      });
     }
 
     reloadQuestion();
@@ -95,5 +100,13 @@ app.controller('QuestionCtrl', [
       var time = day + '.' + month + '.' + year;
       return time;
     }
+
+    $scope.likeQuestion = function(){/*
+      Question.prototype$__create__likes({id: $scope.question.id},
+        {},
+
+      );*/
+    }
+
   }
 ]);

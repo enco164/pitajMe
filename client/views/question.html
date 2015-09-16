@@ -40,6 +40,12 @@
   <div class="container">
     <div class="row"><h4>
       <!--TODO ubaciti i usera za pitanje-->
+
+      <p>Likes: {{question.likes}}</p>
+      <button ng-click="likeQuestion();">like question</button>
+
+
+
       Question title: {{question.title}}<br/>
       Question text: {{question.text}}<br/>
       Question timestamp: {{question.timestamp}}<br/>
@@ -74,6 +80,8 @@
         </div>
       </div>
       <div ng-repeat="answer in question.answer">
+
+        <p>{{answer}}</p>
         Odgovor: {{answer.text}}<br/>
         Account username: {{answer.account.username}}<br/>
         Timestamp: {{answer.timestamp}}<br/>

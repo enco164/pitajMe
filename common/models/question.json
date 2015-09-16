@@ -22,6 +22,11 @@
       "type": "hasMany",
       "model": "Answer",
       "foreignKey": ""
+    },
+    "likes": {
+      "type": "hasMany",
+      "model": "Like",
+      "polymorphic": "likeable"
     }
   },
   "acls": [
@@ -40,5 +45,5 @@
       "property": "update"
     }
   ],
-  "methods": []
+  "methods": {}
 }
