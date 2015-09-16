@@ -20,10 +20,10 @@ var app = angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .when('/answers/:id', {
-        templateUrl: 'views/answers.html',
-        controller: 'AnswerCtrl',
-        controllerAs: 'answer'
+      .when('/question/:id', {
+        templateUrl: 'views/question.html',
+        controller: 'QuestionCtrl',
+        controllerAs: 'questionView'
       })
       .when('/registration', {
         templateUrl: 'views/registration.html',

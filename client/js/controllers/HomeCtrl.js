@@ -11,7 +11,6 @@ app.controller('HomeCtrl', [
 
     $scope.class = 'content-wrap';
 
-
     $scope.questions = Question.find({
       filter: {
         order: 'timestamp DESC',
@@ -20,12 +19,7 @@ app.controller('HomeCtrl', [
     }, function(value, responseHeaders){
       for (var i = 0;i<$scope.questions.length; i++){
         var timestamp = $scope.questions[i].timestamp;
-        var date = new Date(timestamp);
-        var month = date.getMonth()+1;
-        var day = date.getDate()-1;
-        var year = date.getFullYear();
-        $scope.questions[i].timestamp = day + '.' + month + '.' + year;
-
+        $scope.questions[i].timestamp = time(timestamp);
         $scope.questions[i].answers = Question.answer.count({
           id: $scope.questions[i].id
         }, function(count, err){});
@@ -36,7 +30,7 @@ app.controller('HomeCtrl', [
       title: "",
       text: "",
       isAnonymous: "",
-      accountId: localStorage.getItem('$LoopBack$currentUserId'),
+      accountId: Account.getCurrentId(),
       category  : ""
     };
 
@@ -51,7 +45,7 @@ app.controller('HomeCtrl', [
 
     $scope.logout = function(){
       Account.logout({},{
-        id: localStorage.getItem('$LoopBack$currentUserId')
+        id: Account.getCurrentId()
       }, function(value, responseHeaders) {
         console.log(value);
       }, function(httpResponse){
@@ -61,5 +55,13 @@ app.controller('HomeCtrl', [
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 
+    function time(timestamp){
+      var date = new Date(timestamp);
+      var month = date.getMonth()+1;
+      var day = date.getDate();
+      var year = date.getFullYear();
+      var time = day + '.' + month + '.' + year;
+      return time;
+    }
   }
 ]);

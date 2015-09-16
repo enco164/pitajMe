@@ -61,7 +61,7 @@
                 <label class="checkbox">
                   <input ng-model="answer.isAnonymous" type="checkbox"/> Send Answer as Anonymous
                 </label>
-                <button type="submit" class="btn-red" ng-click="sendAnswer(answer)">Send</button>
+                <button type="submit" class="btn-red" ng-click="sendAnswer(question, answer)">Send</button>
               </div>
             </form>
             <br/>
@@ -73,11 +73,31 @@
           </div>
         </div>
       </div>
-      <div ng-repeat="answer in answers">
+      <div ng-repeat="answer in question.answer">
         Odgovor: {{answer.text}}<br/>
         Account username: {{answer.account.username}}<br/>
         Timestamp: {{answer.timestamp}}<br/>
         Anonymous: {{answer.isAnonymous}}<br/><br/><br/>
+        <div class="col-md-10 col-md-offset-1">
+        <h5>Comments</h5>
+        <div ng-repeat="comment in answer.comment">
+          Text: {{comment.text}}<br/>
+          Timestamp: {{comment.timestamp}}<br/>
+          Account username: {{comment.account.username}}<br/><br/><br/>
+        </div>
+        <form action="">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label for="answer-content">Comment content</label>
+              <textarea id="answer-content" type="text" placeholder="Enter Comment content" rows="2" required="required" class="form-control" ng-model="comment.text"></textarea>
+            </div>
+          </div>
+          <div class="form-bottom">
+            <button type="submit" class="btn-red" ng-click="sendComment(answer, comment)">Send</button>
+          </div>
+        </form>
+        </div>
+        <hr/>
         <!--TODO: username, age, timestamp-->
         <!--TODO: like dislike po polu (kolikolikova ima od devojaka koliko od momaka i isto to za dislike)-->
       </div>
