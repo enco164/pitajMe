@@ -16,17 +16,18 @@ app.controller('QuestionCtrl', [
         id: $scope.params.id,
         filter:{
           include:[
-            { relation: 'account' },
             { relation: 'likes' },
+            { relation: 'account' },
             { relation: 'answer',
               scope: {
                 include: [
-                  { relation: 'account' },
                   { relation: 'likes' },
+                  { relation: 'account' },
                   { relation: 'comment',
                     scope: { include: [
-                      { relation: 'account' },
-                      { relation: 'likes' }]
+                      { relation: 'likes' },
+                      { relation: 'account' }
+                    ]
                     }
                   }
                 ], order: 'timestamp DESC'
@@ -93,11 +94,58 @@ app.controller('QuestionCtrl', [
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 
 
-    $scope.likeQuestion = function(){/*
-      Question.prototype$__create__likes({id: $scope.question.id},
-        {},
+    $scope.likeQuestion = function(){
+      Question.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
+        {value: 1},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    }
 
-      );*/
+    $scope.unlikeQuestion = function(){
+      Question.likes.unlink({id: $scope.question.id, fk: Account.getCurrentId()},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    }
+
+    $scope.dislikeQuestion = function(){
+      Question.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
+        {value: -1},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    }
+
+    $scope.undislikeQuestion = function(){
+      Question.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    }
+
+    $scope.deleteQuestion = function(){
+
     }
 
   }

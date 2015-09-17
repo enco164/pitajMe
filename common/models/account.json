@@ -65,8 +65,10 @@
     },
     "likes": {
       "type": "hasMany",
-      "model": "Like",
-      "foreignKey": ""
+      "model": "Post",
+      "foreignKey": "accountId",
+      "keyThrough": "postId",
+      "through": "Like"
     }
   },
   "acls": [

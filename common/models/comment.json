@@ -12,11 +12,6 @@
       "type": "belongsTo",
       "model": "Answer",
       "foreignKey": ""
-    },
-    "likes": {
-      "type": "hasMany",
-      "model": "Like",
-      "polymorphic": "likeable"
     }
   },
   "acls": [

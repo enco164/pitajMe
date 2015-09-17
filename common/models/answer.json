@@ -22,11 +22,6 @@
       "type": "hasMany",
       "model": "Comment",
       "foreignKey": ""
-    },
-    "likes": {
-      "type": "hasMany",
-      "model": "Like",
-      "polymorphic": "likeable"
     }
   },
   "acls": [

@@ -10,26 +10,26 @@ module.exports = function(Question) {
       Category.findOne({name: "Other"},
         function successCb(value, responseHeaders){
           self.categoryId = value.id;
+          if (self.opinionFrom == undefined) self.opinionFrom = 3;
+          self.timestamp = new Date();
+
+          next();
         },
         function error(error){
           self.categoryId = '55f2fa39402083e10506203d';
         }
       );
     }
-
-    if (this.opinionFrom == undefined) this.opinionFrom = 3;
-    this.timestamp = new Date();
-
-    next();
   };
 
   Question.beforeDestroy = function(next) {
     var self = this;
 
     Question.answer.destroyAll({
-     id: self.id
-     }, function(value, responseHeaders){}, function(httpResponse){});
+      id: self.id
+    }, function(value, responseHeaders){
+      next();
+    }, function(httpResponse){});
 
-    next();
   };
 };

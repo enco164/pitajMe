@@ -28,6 +28,13 @@
       "type": "belongsTo",
       "model": "Account",
       "foreignKey": ""
+    },
+    "likes": {
+      "type": "hasMany",
+      "model": "Account",
+      "foreignKey": {"as":"postId"},
+      "keyThrough": "accountId",
+      "through": "Like"
     }
   },
   "acls": [

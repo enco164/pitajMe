@@ -13,14 +13,15 @@
   },
   "validations": [],
   "relations": {
-    "likeable": {
+    "post": {
       "type": "belongsTo",
-      "polymorphic": true
+      "model": "Post",
+      "foreignKey": "postId"
     },
     "account": {
       "type": "belongsTo",
       "model": "Account",
-      "foreignKey": ""
+      "foreignKey": "accountId"
     }
   },
   "acls": [],
