@@ -14,7 +14,7 @@ app.controller('ProfileCtrl', [
     }, function(account){
       var date = new Date(Date.now() - (new Date($scope.account.dob)).getTime());
       $scope.account.age = Math.abs(date.getUTCFullYear() - 1970);
-      $scope.account.dob = time(account.dob);
+      $scope.account.dob = getDate(account.dob);
     });
 
     $scope.questions = Question.find({
@@ -85,7 +85,7 @@ app.controller('ProfileCtrl', [
       window.location.replace('/#/');
     }
 
-    function time(timestamp){
+    function getDate(timestamp){
       var date = new Date(timestamp);
       var month = date.getMonth()+1;
       var day = date.getDate();

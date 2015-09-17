@@ -64,3 +64,4 @@ var app = angular
     // Change the URL where to access the LoopBack REST API server
     LoopBackResourceProvider.setUrlBase('http://localhost:3000/api');
   });
+

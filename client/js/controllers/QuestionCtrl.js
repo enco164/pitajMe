@@ -92,14 +92,6 @@ app.controller('QuestionCtrl', [
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 
-    function time(timestamp){
-      var date = new Date(timestamp);
-      var month = date.getMonth()+1;
-      var day = date.getDate();
-      var year = date.getFullYear();
-      var time = day + '.' + month + '.' + year;
-      return time;
-    }
 
     $scope.likeQuestion = function(){/*
       Question.prototype$__create__likes({id: $scope.question.id},
