@@ -18,11 +18,18 @@ app.controller('HomeCtrl', [
       }
     }, function(value, responseHeaders){
       for (var i = 0;i<$scope.questions.length; i++){
+        if (value[i].account.sex == 'Male') $scope.questions[i].gender = 'boy';
+        else $scope.questions[i].gender = 'girl'
+
         var timestamp = $scope.questions[i].timestamp;
         $scope.questions[i].timestamp = time(timestamp);
+
         $scope.questions[i].answers = Question.answer.count({
           id: $scope.questions[i].id
-        }, function(count, err){});
+        }, function(value, responseHeaders){
+        }, function(httpResponse){});
+
+        Question.answer({}, function(value){console.log(value)})
       }
     }, function(httpResponse){});
 
@@ -38,9 +45,18 @@ app.controller('HomeCtrl', [
 
     $scope.sendQuestion = function(question){
       Question.create({},{
-        title: $scope.question.title, text: $scope.question.text, isAnonymous: $scope.question.isAnonymous,
-        accountId: $scope.question.accountId, categoryId: $scope.question.category.id, timestamp: new Date()
-      },function(value, responseHeaders){}, function(httpResponse){});
+        title: $scope.question.title,
+        text: $scope.question.text,
+        isAnonymous: $scope.question.isAnonymous,
+        accountId: $scope.question.accountId,
+        categoryId: $scope.question.category.id,
+        timestamp: new Date(),
+        opinionFrom: parseInt(question.opinionFrom)
+      },function(value, responseHeaders){
+        console.log(value);
+      }, function(httpResponse){
+        console.log(httpResponse);
+      });
     };
 
     $scope.logout = function(){

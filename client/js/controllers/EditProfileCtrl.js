@@ -26,7 +26,7 @@ app.controller('EditProfileCtrl', [
       id: localStorage.getItem('$LoopBack$currentUserId')
     }, function(){
       $scope.date = new Date($scope.account.dob);
-      $scope.account.day = ($scope.date.getDate()-1).toString();
+      $scope.account.day = ($scope.date.getDate()).toString();
       $scope.account.month = $scope.months[$scope.date.getMonth()+1].name;
       $scope.account.year = ($scope.date.getFullYear()).toString();
     });
@@ -46,7 +46,7 @@ app.controller('EditProfileCtrl', [
 
 
     $scope.editAccount = function(newAccount){
-      var day = parseInt(newAccount.day) +1;
+      var day = parseInt(newAccount.day);
       $scope.account.dob= newAccount.year+"/"+newAccount.month+"/"+day;
       Account.prototype$updateAttributes({ id: $scope.account.id }, $scope.account)
         .$promise.then(function() {});
@@ -75,7 +75,9 @@ app.controller('EditProfileCtrl', [
       $scope.categories.forEach(function(e, i){
         e.isChecked = false;
       });
-    }, function(){});
+    }, function(httpResponse){
+      console.log(httpResponse);
+    });
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 

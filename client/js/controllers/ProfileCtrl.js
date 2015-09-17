@@ -49,20 +49,24 @@ app.controller('ProfileCtrl', [
 
     $scope.logout = function(){
       console.log("bla bla");
-      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
+      Account.logout({
+        id: Account.getCurrentId()
+      }, function(err) {
         console.log(err);
       });
     };
 
     $scope.deleteQuestion = function(question){
-      Question.delete({
+      Question.destroyById({
         id: question.id
-      }, function(success, err){
+      }, function(value, responseHeaders){
         $scope.questions.forEach(function(q, index){
           if (q.id == question.id) {
             $scope.questions.splice(index, 1);
           }
         });
+      }, function(httpResponse){
+        console.log(httpResponse);
       });
     };
 

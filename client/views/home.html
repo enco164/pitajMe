@@ -20,6 +20,13 @@
                   <textarea id="topic-content" type="text" placeholder="Enter Question content" rows="3" required="required" class="form-control" ng-model="question.text"></textarea>
                 </div>
               </div>
+              <div>
+                <label>
+                  <input type="radio" name="opinionFrom" value="1" ng-model="question.opinionFrom"/>Male
+                  <input type="radio" name="opinionFrom" value="2" ng-model="question.opinionFrom"/>Female
+                  <input type="radio" name="opinionFrom" value="3" ng-model="question.opinionFrom"/>Both
+                </label>
+              </div>
               <div class="form-bottom">
                 <label class="checkbox">
                   <input ng-model="question.isAnonymous" type="checkbox"/> Ask Question as Anonymous
@@ -33,7 +40,8 @@
       <div class="grid posts"  id="grid-posts">
         <div class="grid-item col-md-3" ng-repeat="question in questions">
           <article><a href="#"><img src="img/post-test-1.jpg" alt="Test image 1" class="img-responsive"/></a>
-            <div class="post-content clearfix boy-post">
+            <!--TODO ako je musko onda je boy-post a ako je zensko onda girl-post-->
+            <div class="post-content clearfix {{question.gender}}-post">
               <h1>
                 <a ng-show="{{question.isAnonymous}}">Anonymous</a>
                 <a href="/#/user-detail/{{question.accountId}}" ng-show="{{!question.isAnonymous}}">{{question.account.username}}</a>
@@ -47,6 +55,15 @@
                 <div class="favs"><span class="glyphicon glyphicon-heart"></span>213</div>
                 <div class="boys"><span class="glyphicon glyphicon-heart"></span>42</div>
                 <div class="girls"><span class="glyphicon glyphicon-heart"></span>21</div>
+              </div>
+              <div>
+                <h1>
+                  <span>Question for:
+                    <span ng-show="question.opinionFrom == 1">boys</span>
+                    <span ng-show="question.opinionFrom == 2">girls</span>
+                    <span ng-show="question.opinionFrom == 3 || question.opinionFrom == undefined">boys and girls</span>
+                  </span>
+                </h1>
               </div>
             </div>
           </article>

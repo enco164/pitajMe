@@ -16,7 +16,20 @@ module.exports = function(Question) {
         }
       );
     }
+
+    if (this.opinionFrom == undefined) this.opinionFrom = 3;
     this.timestamp = new Date();
+
+    next();
+  };
+
+  Question.beforeDestroy = function(next) {
+    var self = this;
+
+    Question.answer.destroyAll({
+     id: self.id
+     }, function(value, responseHeaders){}, function(httpResponse){});
+
     next();
   };
 };
