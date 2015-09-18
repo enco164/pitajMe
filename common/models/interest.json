@@ -8,12 +8,12 @@
     "accounts": {
       "type": "belongsTo",
       "model": "Account",
-      "foreignKey": "accountId"
+      "foreignKey": ""
     },
     "categories": {
       "type": "belongsTo",
       "model": "Category",
-      "foreignKey": "categoryId"
+      "foreignKey": ""
     }
   },
   "acls": [

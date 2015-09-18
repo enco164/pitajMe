@@ -41,17 +41,17 @@
       "type": "hasMany",
       "model": "Account",
       "foreignKey": "followeeId",
-      "keyThrough": "followerId",
+      "keyThrough": "",
       "through": "Follow"
     },
     "following": {
       "type": "hasMany",
       "model": "Account",
       "foreignKey": "followerId",
-      "keyThrough": "followeeId",
+      "keyThrough": "",
       "through": "Follow"
     },
-    "post": {
+    "posts": {
       "type": "hasMany",
       "model": "Post",
       "foreignKey": "accountId"
