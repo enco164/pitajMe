@@ -1264,7 +1264,36 @@ module.factory(
           method: "PUT"
         },
 
-        // INTERNAL. Use Account.followers.findById() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__findById__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Find a related item by id for followers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for followers
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__findById__followers": {
           params: {
           'fk': '@fk'
@@ -1273,7 +1302,33 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Account.followers.destroyById() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__destroyById__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Delete a related item by id for followers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for followers
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
         "prototype$__destroyById__followers": {
           params: {
           'fk': '@fk'
@@ -1282,7 +1337,40 @@ module.factory(
           method: "DELETE"
         },
 
-        // INTERNAL. Use Account.followers.updateById() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__updateById__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Update a related item by id for followers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for followers
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__updateById__followers": {
           params: {
           'fk': '@fk'
@@ -1291,7 +1379,40 @@ module.factory(
           method: "PUT"
         },
 
-        // INTERNAL. Use Account.followers.link() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__link__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Add a related item by id for followers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for followers
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__link__followers": {
           params: {
           'fk': '@fk'
@@ -1300,7 +1421,33 @@ module.factory(
           method: "PUT"
         },
 
-        // INTERNAL. Use Account.followers.unlink() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__unlink__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Remove the followers relation to an item by id.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for followers
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
         "prototype$__unlink__followers": {
           params: {
           'fk': '@fk'
@@ -1309,7 +1456,36 @@ module.factory(
           method: "DELETE"
         },
 
-        // INTERNAL. Use Account.followers.exists() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__exists__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Check the existence of followers relation to an item by id.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for followers
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__exists__followers": {
           params: {
           'fk': '@fk'
@@ -1318,7 +1494,36 @@ module.factory(
           method: "HEAD"
         },
 
-        // INTERNAL. Use Account.following.findById() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__findById__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Find a related item by id for following.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for following
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__findById__following": {
           params: {
           'fk': '@fk'
@@ -1327,7 +1532,33 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Account.following.destroyById() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__destroyById__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Delete a related item by id for following.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for following
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
         "prototype$__destroyById__following": {
           params: {
           'fk': '@fk'
@@ -1336,7 +1567,40 @@ module.factory(
           method: "DELETE"
         },
 
-        // INTERNAL. Use Account.following.updateById() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__updateById__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Update a related item by id for following.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for following
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__updateById__following": {
           params: {
           'fk': '@fk'
@@ -1345,7 +1609,40 @@ module.factory(
           method: "PUT"
         },
 
-        // INTERNAL. Use Account.following.link() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__link__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Add a related item by id for following.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for following
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__link__following": {
           params: {
           'fk': '@fk'
@@ -1354,7 +1651,33 @@ module.factory(
           method: "PUT"
         },
 
-        // INTERNAL. Use Account.following.unlink() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__unlink__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Remove the following relation to an item by id.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for following
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
         "prototype$__unlink__following": {
           params: {
           'fk': '@fk'
@@ -1363,7 +1686,36 @@ module.factory(
           method: "DELETE"
         },
 
-        // INTERNAL. Use Account.following.exists() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__exists__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Check the existence of following relation to an item by id.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for following
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__exists__following": {
           params: {
           'fk': '@fk'
@@ -1642,51 +1994,275 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Account.followers() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__get__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Queries followers of Account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__get__followers": {
           isArray: true,
           url: urlBase + "/Accounts/:id/followers",
           method: "GET"
         },
 
-        // INTERNAL. Use Account.followers.create() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__create__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Creates a new instance in followers of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__create__followers": {
           url: urlBase + "/Accounts/:id/followers",
           method: "POST"
         },
 
-        // INTERNAL. Use Account.followers.destroyAll() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__delete__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Deletes all followers of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
         "prototype$__delete__followers": {
           url: urlBase + "/Accounts/:id/followers",
           method: "DELETE"
         },
 
-        // INTERNAL. Use Account.followers.count() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__count__followers
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Counts followers of Account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
         "prototype$__count__followers": {
           url: urlBase + "/Accounts/:id/followers/count",
           method: "GET"
         },
 
-        // INTERNAL. Use Account.following() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__get__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Queries following of Account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__get__following": {
           isArray: true,
           url: urlBase + "/Accounts/:id/following",
           method: "GET"
         },
 
-        // INTERNAL. Use Account.following.create() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__create__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Creates a new instance in following of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
         "prototype$__create__following": {
           url: urlBase + "/Accounts/:id/following",
           method: "POST"
         },
 
-        // INTERNAL. Use Account.following.destroyAll() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__delete__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Deletes all following of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
         "prototype$__delete__following": {
           url: urlBase + "/Accounts/:id/following",
           method: "DELETE"
         },
 
-        // INTERNAL. Use Account.following.count() instead.
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#prototype$__count__following
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * Counts following of Account.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
         "prototype$__count__following": {
           url: urlBase + "/Accounts/:id/following/count",
           method: "GET"
@@ -2328,178 +2904,6 @@ module.factory(
           method: "POST"
         },
 
-        // INTERNAL. Use Account.followers.findById() instead.
-        "::findById::Account::followers": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/followers/:fk",
-          method: "GET"
-        },
-
-        // INTERNAL. Use Account.followers.destroyById() instead.
-        "::destroyById::Account::followers": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/followers/:fk",
-          method: "DELETE"
-        },
-
-        // INTERNAL. Use Account.followers.updateById() instead.
-        "::updateById::Account::followers": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/followers/:fk",
-          method: "PUT"
-        },
-
-        // INTERNAL. Use Account.followers.link() instead.
-        "::link::Account::followers": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/followers/rel/:fk",
-          method: "PUT"
-        },
-
-        // INTERNAL. Use Account.followers.unlink() instead.
-        "::unlink::Account::followers": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/followers/rel/:fk",
-          method: "DELETE"
-        },
-
-        // INTERNAL. Use Account.followers.exists() instead.
-        "::exists::Account::followers": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/followers/rel/:fk",
-          method: "HEAD"
-        },
-
-        // INTERNAL. Use Account.following.findById() instead.
-        "::findById::Account::following": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/following/:fk",
-          method: "GET"
-        },
-
-        // INTERNAL. Use Account.following.destroyById() instead.
-        "::destroyById::Account::following": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/following/:fk",
-          method: "DELETE"
-        },
-
-        // INTERNAL. Use Account.following.updateById() instead.
-        "::updateById::Account::following": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/following/:fk",
-          method: "PUT"
-        },
-
-        // INTERNAL. Use Account.following.link() instead.
-        "::link::Account::following": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/following/rel/:fk",
-          method: "PUT"
-        },
-
-        // INTERNAL. Use Account.following.unlink() instead.
-        "::unlink::Account::following": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/following/rel/:fk",
-          method: "DELETE"
-        },
-
-        // INTERNAL. Use Account.following.exists() instead.
-        "::exists::Account::following": {
-          params: {
-          'fk': '@fk'
-          },
-          url: urlBase + "/Accounts/:id/following/rel/:fk",
-          method: "HEAD"
-        },
-
-        // INTERNAL. Use Account.followers() instead.
-        "::get::Account::followers": {
-          isArray: true,
-          url: urlBase + "/Accounts/:id/followers",
-          method: "GET"
-        },
-
-        // INTERNAL. Use Account.followers.create() instead.
-        "::create::Account::followers": {
-          url: urlBase + "/Accounts/:id/followers",
-          method: "POST"
-        },
-
-        // INTERNAL. Use Account.followers.createMany() instead.
-        "::createMany::Account::followers": {
-          isArray: true,
-          url: urlBase + "/Accounts/:id/followers",
-          method: "POST"
-        },
-
-        // INTERNAL. Use Account.followers.destroyAll() instead.
-        "::delete::Account::followers": {
-          url: urlBase + "/Accounts/:id/followers",
-          method: "DELETE"
-        },
-
-        // INTERNAL. Use Account.followers.count() instead.
-        "::count::Account::followers": {
-          url: urlBase + "/Accounts/:id/followers/count",
-          method: "GET"
-        },
-
-        // INTERNAL. Use Account.following() instead.
-        "::get::Account::following": {
-          isArray: true,
-          url: urlBase + "/Accounts/:id/following",
-          method: "GET"
-        },
-
-        // INTERNAL. Use Account.following.create() instead.
-        "::create::Account::following": {
-          url: urlBase + "/Accounts/:id/following",
-          method: "POST"
-        },
-
-        // INTERNAL. Use Account.following.createMany() instead.
-        "::createMany::Account::following": {
-          isArray: true,
-          url: urlBase + "/Accounts/:id/following",
-          method: "POST"
-        },
-
-        // INTERNAL. Use Account.following.destroyAll() instead.
-        "::delete::Account::following": {
-          url: urlBase + "/Accounts/:id/following",
-          method: "DELETE"
-        },
-
-        // INTERNAL. Use Account.following.count() instead.
-        "::count::Account::following": {
-          url: urlBase + "/Accounts/:id/following/count",
-          method: "GET"
-        },
-
         // INTERNAL. Use Category.interests.findById() instead.
         "::findById::Category::interests": {
           params: {
@@ -2782,9 +3186,9 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Interest.accounts() instead.
-        "::get::Interest::accounts": {
-          url: urlBase + "/Interests/:id/accounts",
+        // INTERNAL. Use Interest.account() instead.
+        "::get::Interest::account": {
+          url: urlBase + "/Interests/:id/account",
           method: "GET"
         },
 
@@ -3308,826 +3712,6 @@ module.factory(
         R.posts.updateById = function() {
           var TargetResource = $injector.get("Post");
           var action = TargetResource["::updateById::Account::posts"];
-          return action.apply(R, arguments);
-        };
-    /**
-     * @ngdoc object
-     * @name lbServices.Account.followers
-     * @header lbServices.Account.followers
-     * @object
-     * @description
-     *
-     * The object `Account.followers` groups methods
-     * manipulating `Account` instances related to `Account`.
-     *
-     * Call {@link lbServices.Account#followers Account.followers()}
-     * to query all related instances.
-     */
-
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account#followers
-         * @methodOf lbServices.Account
-         *
-         * @description
-         *
-         * Queries followers of Account.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `filter` – `{object=}` - 
-         *
-         * @param {function(Array.<Object>,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Array.<Object>} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.followers = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::get::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#count
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Counts followers of Account.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `where` – `{object=}` - Criteria to match model instances
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * Data properties:
-         *
-         *  - `count` – `{number=}` - 
-         */
-        R.followers.count = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::count::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#create
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Creates a new instance in followers of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.followers.create = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::create::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#createMany
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Creates a new instance in followers of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {function(Array.<Object>,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Array.<Object>} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.followers.createMany = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::createMany::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#destroyAll
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Deletes all followers of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * This method returns no data.
-         */
-        R.followers.destroyAll = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::delete::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#destroyById
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Delete a related item by id for followers.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for followers
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * This method returns no data.
-         */
-        R.followers.destroyById = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::destroyById::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#exists
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Check the existence of followers relation to an item by id.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for followers
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.followers.exists = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::exists::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#findById
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Find a related item by id for followers.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for followers
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.followers.findById = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::findById::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#link
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Add a related item by id for followers.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for followers
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.followers.link = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::link::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#unlink
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Remove the followers relation to an item by id.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for followers
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * This method returns no data.
-         */
-        R.followers.unlink = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::unlink::Account::followers"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.followers#updateById
-         * @methodOf lbServices.Account.followers
-         *
-         * @description
-         *
-         * Update a related item by id for followers.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for followers
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.followers.updateById = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::updateById::Account::followers"];
-          return action.apply(R, arguments);
-        };
-    /**
-     * @ngdoc object
-     * @name lbServices.Account.following
-     * @header lbServices.Account.following
-     * @object
-     * @description
-     *
-     * The object `Account.following` groups methods
-     * manipulating `Account` instances related to `Account`.
-     *
-     * Call {@link lbServices.Account#following Account.following()}
-     * to query all related instances.
-     */
-
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account#following
-         * @methodOf lbServices.Account
-         *
-         * @description
-         *
-         * Queries following of Account.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `filter` – `{object=}` - 
-         *
-         * @param {function(Array.<Object>,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Array.<Object>} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.following = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::get::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#count
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Counts following of Account.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `where` – `{object=}` - Criteria to match model instances
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * Data properties:
-         *
-         *  - `count` – `{number=}` - 
-         */
-        R.following.count = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::count::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#create
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Creates a new instance in following of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.following.create = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::create::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#createMany
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Creates a new instance in following of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {function(Array.<Object>,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Array.<Object>} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.following.createMany = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::createMany::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#destroyAll
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Deletes all following of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * This method returns no data.
-         */
-        R.following.destroyAll = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::delete::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#destroyById
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Delete a related item by id for following.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for following
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * This method returns no data.
-         */
-        R.following.destroyById = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::destroyById::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#exists
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Check the existence of following relation to an item by id.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for following
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.following.exists = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::exists::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#findById
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Find a related item by id for following.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for following
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.following.findById = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::findById::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#link
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Add a related item by id for following.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for following
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.following.link = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::link::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#unlink
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Remove the following relation to an item by id.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for following
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * This method returns no data.
-         */
-        R.following.unlink = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::unlink::Account::following"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Account.following#updateById
-         * @methodOf lbServices.Account.following
-         *
-         * @description
-         *
-         * Update a related item by id for following.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - User id
-         *
-         *  - `fk` – `{*}` - Foreign key for following
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.following.updateById = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::updateById::Account::following"];
           return action.apply(R, arguments);
         };
     /**
@@ -5627,9 +5211,9 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Interest.categories() instead.
-        "::get::Interest::categories": {
-          url: urlBase + "/Interests/:id/categories",
+        // INTERNAL. Use Interest.category() instead.
+        "::get::Interest::category": {
+          url: urlBase + "/Interests/:id/category",
           method: "GET"
         },
       }
@@ -13767,15 +13351,15 @@ module.factory(
       { 'id': '@id' },
       {
 
-        // INTERNAL. Use Interest.accounts() instead.
-        "prototype$__get__accounts": {
-          url: urlBase + "/Interests/:id/accounts",
+        // INTERNAL. Use Interest.account() instead.
+        "prototype$__get__account": {
+          url: urlBase + "/Interests/:id/account",
           method: "GET"
         },
 
-        // INTERNAL. Use Interest.categories() instead.
-        "prototype$__get__categories": {
-          url: urlBase + "/Interests/:id/categories",
+        // INTERNAL. Use Interest.category() instead.
+        "prototype$__get__category": {
+          url: urlBase + "/Interests/:id/category",
           method: "GET"
         },
 
@@ -14336,12 +13920,12 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.Interest#accounts
+         * @name lbServices.Interest#account
          * @methodOf lbServices.Interest
          *
          * @description
          *
-         * Fetches belongsTo relation accounts.
+         * Fetches belongsTo relation account.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -14364,20 +13948,20 @@ module.factory(
          * This usually means the response is a `Account` object.)
          * </em>
          */
-        R.accounts = function() {
+        R.account = function() {
           var TargetResource = $injector.get("Account");
-          var action = TargetResource["::get::Interest::accounts"];
+          var action = TargetResource["::get::Interest::account"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.Interest#categories
+         * @name lbServices.Interest#category
          * @methodOf lbServices.Interest
          *
          * @description
          *
-         * Fetches belongsTo relation categories.
+         * Fetches belongsTo relation category.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -14400,9 +13984,9 @@ module.factory(
          * This usually means the response is a `Category` object.)
          * </em>
          */
-        R.categories = function() {
+        R.category = function() {
           var TargetResource = $injector.get("Category");
-          var action = TargetResource["::get::Interest::categories"];
+          var action = TargetResource["::get::Interest::category"];
           return action.apply(R, arguments);
         };
 

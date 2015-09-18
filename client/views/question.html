@@ -63,7 +63,7 @@
         <div ng-repeat="comment in answer.comments">
           Text: {{comment.text}}<br/>
           Timestamp: {{comment.timestamp}}<br/>
-          Account username: <a href="/#/user-detail/:id">{{comment.account.username}}</a><br/>
+          Account username: <a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a><br/>
           Likes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>
           Dislikes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>
           <button ng-click="likeComment(comment);">like comment</button>

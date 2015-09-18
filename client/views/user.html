@@ -1,5 +1,5 @@
 
-account = {{account}}
+<!--account = {{account}}-->
 
 <h1 ng-if="isMe">ME</h1>
 <h1 ng-if="!isMe">NOT ME</h1>
@@ -55,23 +55,46 @@ account = {{account}}
       <a ng-if="isMe" href="/#/edit-profile">Edit Profile</a>
     </div>
     <hr/>
-    <h1>Questions</h1><br/>
+    <h1>Recent activity: </h1>
+
+    <h2>Questions</h2><br/>
     <div ng-repeat="question in questions">
-      Title: {{question.title}}<br/>
+      Title: <a href="/#/question/{{question.id}}">{{question.title}}</a><br/>
       Text: {{question.text}}<br/>
       Category: {{question.category.name}}<br/>
       Timestamp: {{question.timestamp}}
       <hr/>
     </div>
-    <h1>Following</h1>
-    <div ng-repeat="acc in account.following">
-      {{acc}}
+    <h2>Answers</h2>
+    <div ng-repeat="answer in answers">
+      Answer text: {{answer.text}}<br/>
+      Time: {{answer.timestamp}}<br/>
+      Is Anonymous: {{answer.isAnonymous}}<br/>
+      Answer to Question: <a href="{{answer.question[0].id}}">{{answer.question[0].title}}</a><br/>
       <hr/>
     </div>
-    <h1>Followers</h1>
-    <div ng-repeat="acc in account.followers">
-      {{acc}}
+    <h2>Comments</h2>
+    <div ng-repeat="comment in comments">
+      Text: {{comment.text}}<br/>
+      Time: {{comment.timestamp}}<br/>
+      Question: <a href="{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a>
       <hr/>
+    </div>
+    <div ng-show="isFollowing || isMe">
+      <h1>Following</h1>
+      <div ng-repeat="acc in account.following">
+        <!--{{acc}}-->
+        {{acc.username}},
+        {{acc.sex}}
+        <hr/>
+      </div>
+      <h1>Followers</h1>
+      <div ng-repeat="acc in account.followers">
+        <!--{{acc}}-->
+        {{acc.username}},
+        {{acc.sex}}
+        <hr/>
+      </div>
     </div>
   </din>
 </div>

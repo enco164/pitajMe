@@ -8,9 +8,10 @@ app.controller('UserCtrl', [
   'Account',
   'Category',
   'Follow',
+  'Post',
   'Interest',
   '$routeParams',
-  function($scope, Question, Account, Category, Follow, Interest, $routeParams){
+  function($scope, Question, Account, Category, Follow, Post, Interest, $routeParams){
 
     $scope.class = 'content-wrap';
 
@@ -33,15 +34,71 @@ app.controller('UserCtrl', [
 
     $scope.getAccount();
 
-    Question.find({
+    var weekBefore = new Date(new Date() - new Date(1000*60*60*24*7));
+
+    $scope.questions = Post.find({
       filter:{
         where: {
-          accountId: $scope.params.id
+          accountId: $scope.params.id,
+          type: 'question',
+          timestamp: {gte: weekBefore, lte: new Date()}
         },
-        include: 'category'
+        include: ['category', 'answers'],
+        order: 'timestamp DESC',
+        limit: 5
       }
     }, function(value, responseHeaders){
-      $scope.questions = value;
+      $scope.questions.forEach(function(e, i){
+        e.timestamp = time(e.timestamp);
+      });
+      console.log(value);
+    }, function(error){
+      console.log(error);
+    });
+
+    $scope.answers = Post.find({
+      filter:{
+        where: {
+          accountId: $scope.params.id,
+          type: 'answer',
+          timestamp: {gte: weekBefore, lte: new Date()}
+        },
+        include: ['question'],
+        order: 'timestamp DESC',
+        limit: 5
+      }
+    }, function(value, responseHeaders){
+      $scope.answers.forEach(function(e, i){
+        e.timestamp = time(e.timestamp);
+        console.log(e.question);
+      });
+      console.log(value);
+    }, function(error){
+      console.log(error);
+    });
+
+    $scope.comments = Post.find({
+      filter:{
+        where: {
+          accountId: $scope.params.id,
+          type: 'comment',
+          timestamp: {gte: weekBefore, lte: new Date()}
+        },
+        include: [
+          {relation: 'answer',
+          scope:{
+            include:[
+              {relation: 'question'}
+            ]
+          }}
+        ],
+        order: 'timestamp DESC',
+        limit: 5
+      }
+    }, function(value, responseHeaders){
+      $scope.comments.forEach(function(e, i){
+        e.timestamp = time(e.timestamp);
+      });
       console.log(value);
     }, function(error){
       console.log(error);
@@ -102,9 +159,12 @@ app.controller('UserCtrl', [
     );
 
     $scope.interests = Account.interests({
-      id: $scope.params.id
+      id: Account.getCurrentId()
     }, function(value, responseHeaders){
       console.log(value, responseHeaders);
+      /*value.forEach(function(e, i){
+        $scope.interests.category.push(e.name)
+      });*/
     }, function(httpResponse){
       console.log(httpResponse);
     });

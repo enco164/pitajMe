@@ -5,12 +5,12 @@
   "properties": {},
   "validations": [],
   "relations": {
-    "accounts": {
+    "account": {
       "type": "belongsTo",
       "model": "Account",
       "foreignKey": ""
     },
-    "categories": {
+    "category": {
       "type": "belongsTo",
       "model": "Category",
       "foreignKey": ""

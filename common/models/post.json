@@ -46,12 +46,26 @@
       "keyThrough": "accountId",
       "through": "Like"
     },
+    "question": {
+      "type": "hasMany",
+      "model": "Post",
+      "foreignKey": "answerId",
+      "keyThrough": "questionId",
+      "through": "Answer"
+    },
     "answers": {
       "type": "hasMany",
       "model": "Post",
       "foreignKey": "questionId",
       "keyThrough": "answerId",
       "through": "Answer"
+    },
+    "answer": {
+      "type": "hasMany",
+      "model": "Post",
+      "foreignKey": "commentId",
+      "keyThrough": "answerId",
+      "through": "Comment"
     },
     "comments": {
       "type": "hasMany",

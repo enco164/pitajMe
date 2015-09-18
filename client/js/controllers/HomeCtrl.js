@@ -72,5 +72,24 @@ app.controller('HomeCtrl', [
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 
+    //TODO sortiranje postova po broju odgovora
+    var weekBefore = new Date(new Date() - new Date(1000*60*60*24*7));
+
+    Post.find({
+      filter:{
+        where:{
+          type: "question",
+          timestamp: {gte: weekBefore, lte: new Date()}
+        },
+        include: [ 'likes', 'answers' ],
+        order: 'answers.length DESC',
+        limit: 10
+      }
+    }, function(value, responseHeaders){
+      console.log(value);
+    }, function(httpResponse){
+      console.log(httpResponse);
+    });
+
   }
 ]);
