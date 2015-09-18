@@ -27,6 +27,7 @@ app.controller('UserCtrl', [
       }, function(){
         var date = new Date(Date.now() - (new Date($scope.account.dob)).getTime());
         $scope.account.age = Math.abs(date.getUTCFullYear() - 1970);
+        $scope.account.dob = getDate($scope.account.dob);
         console.log($scope.account);
       });
 

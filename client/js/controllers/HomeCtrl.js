@@ -33,6 +33,12 @@ app.controller('HomeCtrl', [
       }
     }, function(httpResponse){});
 
+    $scope.categories = Category.find({}, function(value){
+      console.log(value);
+    }, function(httpResponse){
+      console.log(httpResponse);
+    });
+
     $scope.question = {
       title: "",
       text: "",
@@ -41,7 +47,13 @@ app.controller('HomeCtrl', [
       category  : ""
     };
 
-    $scope.categories = Category.find();
+    $scope.categories = Category.find({}, function(value, responseHeaders){
+      $scope.categories.forEach(function(e, i){
+        $scope.categories[i].count = Category.posts.count({
+          id: e.id
+        }, function(){}, function(){});
+      });
+    }, function(httpResponse){});
 
     $scope.sendQuestion = function(question){
       Post.create({},{

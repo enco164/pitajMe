@@ -19,7 +19,7 @@
     "posts": {
       "type": "hasMany",
       "model": "Post",
-      "foreignKey": "categoryId"
+      "foreignKey": ""
     },
     "interests": {
       "type": "hasMany",

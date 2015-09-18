@@ -50,6 +50,11 @@ var app = angular
         controller: 'EditProfileCtrl',
         controllerAs: 'editProfile'
       })
+      .when('/category/:id', {
+        templateUrl: 'views/category.html',
+        controller: 'CategoryCtrl',
+        controllerAs: 'category'
+      })
       .otherwise({
         redirectTo: '/'
       });

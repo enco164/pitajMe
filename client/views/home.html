@@ -70,5 +70,13 @@
         </div>
       </div>
     </div>
+    <aside class="main-sidebar col-md-3">
+      <article>
+        <h4> <a href="#">Categories</a></h4>
+        <ul ng-repeat="category in categories">
+          <li><a href="/#/category/{{category.id}}">{{category.name}} ({{category.count.count}})</a></li>
+        </ul>
+      </article>
+    </aside>
   </div>
 </section>

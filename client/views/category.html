@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="content col-md-9">
+      <div class="category-content">
+        <h1>Title: {{cat.name}}</h1>
+        <h2>About: {{cat.about}}</h2>
+      </div>
+      <div class="grid posts"  id="grid-posts">
+        <div class="grid-item col-md-3" ng-repeat="question in questions">
+          <article><a href="#"><img src="img/post-test-1.jpg" alt="Test image 1" class="img-responsive"/></a>
+            <!--TODO ako je musko onda je boy-post a ako je zensko onda girl-post-->
+            <div class="post-content clearfix {{question.gender}}-post">
+              <h1>
+                <a ng-show="{{question.isAnonymous}}">Anonymous</a>
+                <a href="/#/user-detail/{{question.accountId}}" ng-show="{{!question.isAnonymous}}">{{question.account.username}}</a>
+                <span>{{question.timestamp}}</span>
+                {{question.category.name}}</h1>
+
+              <h3><a href="/#/question/{{question.id}}">{{question.title}}</a></h3>
+              <h2>{{question.text}}</h2>
+              <div class="stats">
+                <div>Answers: {{question.answers.count}}</div>
+                <div class="favs"><span class="glyphicon glyphicon-heart"></span>213</div>
+                <div class="boys"><span class="glyphicon glyphicon-heart"></span>42</div>
+                <div class="girls"><span class="glyphicon glyphicon-heart"></span>21</div>
+              </div>
+              <div>
+                <h1>
+                  <span>Question for:
+                    <span ng-show="question.opinionFrom == 1">boys</span>
+                    <span ng-show="question.opinionFrom == 2">girls</span>
+                    <span ng-show="question.opinionFrom == 3 || question.opinionFrom == undefined">boys and girls</span>
+                  </span>
+                </h1>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

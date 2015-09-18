@@ -30,3 +30,13 @@ function time(timestamp) {
   }
   return Math.floor(seconds) + " seconds ago";
 }
+
+
+function getDate(timestamp){
+  var date = new Date(timestamp);
+  var month = date.getMonth()+1;
+  var day = date.getDate();
+  var year = date.getFullYear();
+  var time = day + '.' + month + '.' + year;
+  return time;
+}

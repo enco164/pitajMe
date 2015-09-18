@@ -88,14 +88,5 @@ app.controller('ProfileCtrl', [
       $scope.logged = false;
       window.location.replace('/#/');
     }
-
-    function getDate(timestamp){
-      var date = new Date(timestamp);
-      var month = date.getMonth()+1;
-      var day = date.getDate();
-      var year = date.getFullYear();
-      var time = day + '.' + month + '.' + year;
-      return time;
-    }
   }
 ]);
