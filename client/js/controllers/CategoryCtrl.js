@@ -6,10 +6,12 @@ app.controller('CategoryCtrl', [
   '$scope',
   'Category',
   'Post',
+  'Account',
   '$routeParams',
-  function($scope, Category, Post, $routeParams){
+  function($scope, Category, Post, Account, $routeParams){
 
     $scope.params = $routeParams;
+    $scope.interest = false;
 
 
       $scope.cat = Category.findById({
@@ -20,6 +22,16 @@ app.controller('CategoryCtrl', [
         console.log(httpResponse);
       });
 
+
+    Category.interests.exists({
+      id: $scope.params.id,
+      fk: Account.getCurrentId()
+    }, function(value, responseHeaders){
+      console.log(value);
+      $scope.interest = true;
+    }, function(httpResponse){
+      console.log(httpResponse);
+    });
 
     $scope.questions = Category.posts({
       id: $scope.params.id,
@@ -46,6 +58,30 @@ app.controller('CategoryCtrl', [
     }, function(httpResponse){
       console.log(httpResponse);
     });
+
+    $scope.likeCategory = function(){
+      Category.interests.link({
+        id: $scope.params.id,
+        fk: Account.getCurrentId()
+      }, function(value, responseHeaders){
+        console.log(value);
+        $scope.interest = true;
+      }, function(httpResponse){
+        console.log(httpResponse);
+      });
+    };
+
+    $scope.dislikeCategory = function(){
+      Category.interests.unlink({
+        id: $scope.params.id,
+        fk: Account.getCurrentId()
+      }, function(value, responseHeaders){
+        console.log(value);
+        $scope.interest = false;
+      }, function(httpResponse){
+        console.log(httpResponse);
+      });
+    };
 
     $scope.logout = function(){
       Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {

@@ -4,6 +4,10 @@
       <div class="category-content">
         <h1>Title: {{cat.name}}</h1>
         <h2>About: {{cat.about}}</h2>
+        <p>
+          <button ng-if="!interest" ng-click="likeCategory();">follow category</button>
+          <button ng-if="interest" ng-click="dislikeCategory();">unfollow category</button>
+        </p>
       </div>
       <div class="grid posts"  id="grid-posts">
         <div class="grid-item col-md-3" ng-repeat="question in questions">
