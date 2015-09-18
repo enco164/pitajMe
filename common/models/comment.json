@@ -1,6 +1,6 @@
 {
   "name": "Comment",
-  "base": "Post",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -8,27 +8,17 @@
   "properties": {},
   "validations": [],
   "relations": {
-    "answers": {
+    "answer": {
       "type": "belongsTo",
-      "model": "Answer",
+      "model": "Post",
+      "foreignKey": ""
+    },
+    "comment": {
+      "type": "belongsTo",
+      "model": "Post",
       "foreignKey": ""
     }
   },
-  "acls": [
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW",
-      "property": "delete"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW",
-      "property": "update"
-    }
-  ],
+  "acls": [],
   "methods": {}
 }

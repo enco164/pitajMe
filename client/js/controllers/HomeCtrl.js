@@ -4,32 +4,32 @@
  */
 app.controller('HomeCtrl', [
   '$scope',
-  'Question',
   'Account',
   'Category',
-  function($scope, Question, Account, Category){
+  'Post',
+  function($scope, Account, Category, Post){
 
     $scope.class = 'content-wrap';
 
-    $scope.questions = Question.find({
+    $scope.questions = Post.find({
       filter: {
+        where: {type: 'question'},
         order: 'timestamp DESC',
         include: ['account', 'category']
       }
     }, function(value, responseHeaders){
       for (var i = 0;i<$scope.questions.length; i++){
         if (value[i].account.sex == 'Male') $scope.questions[i].gender = 'boy';
-        else $scope.questions[i].gender = 'girl'
+        else $scope.questions[i].gender = 'girl';
 
         var timestamp = $scope.questions[i].timestamp;
         $scope.questions[i].timestamp = time(timestamp);
 
-        $scope.questions[i].answers = Question.answer.count({
+        $scope.questions[i].answers = Post.answers.count({
           id: $scope.questions[i].id
         }, function(value, responseHeaders){
         }, function(httpResponse){});
 
-        Question.answer({}, function(value){console.log(value)})
       }
     }, function(httpResponse){});
 
@@ -44,7 +44,8 @@ app.controller('HomeCtrl', [
     $scope.categories = Category.find();
 
     $scope.sendQuestion = function(question){
-      Question.create({},{
+      Post.create({},{
+        type: 'question',
         title: $scope.question.title,
         text: $scope.question.text,
         isAnonymous: $scope.question.isAnonymous,

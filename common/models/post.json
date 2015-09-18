@@ -6,9 +6,19 @@
     "validateUpsert": true
   },
   "properties": {
+    "type":{
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string"
+    },
     "text": {
       "type": "string",
       "required": true
+    },
+    "opinionFrom": {
+      "type": "number"
     },
     "timestamp": {
       "type": "date"
@@ -32,26 +42,25 @@
     "likes": {
       "type": "hasMany",
       "model": "Account",
-      "foreignKey": {"as":"postId"},
+      "foreignKey": "postId",
       "keyThrough": "accountId",
       "through": "Like"
+    },
+    "answers": {
+      "type": "hasMany",
+      "model": "Post",
+      "foreignKey": "questionId",
+      "keyThrough": "answerId",
+      "through": "Answer"
+    },
+    "comments": {
+      "type": "hasMany",
+      "model": "Post",
+      "foreignKey": "answerId",
+      "keyThrough": "commentId",
+      "through": "Comment"
     }
   },
-  "acls": [
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "DENY",
-      "property": "create"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW",
-      "property": "create"
-    }
-  ],
+  "acls": [],
   "methods": {}
 }

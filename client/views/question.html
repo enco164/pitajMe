@@ -2,11 +2,6 @@
     <div class="row"><h4>
       <!--TODO ubaciti i usera za pitanje-->
 
-      <p>Likes: {{question.likes}}
-        <button ng-click="likeQuestion();">like question</button>
-        <button ng-click="deleteQuestion()">delete question
-        </button>
-      </p>
 
 
 
@@ -15,6 +10,13 @@
       Question timestamp: {{question.timestamp}}<br/>
       Question category: {{question.category.name}}<br/>
       Account username: <a href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
+
+      <p>Likes: <span ng-repeat="acc in question.likes">{{acc.username}}</span> <br/>
+        <button ng-click="likeQuestion();">like question</button>
+        <button ng-click="dislikeQuestion();">like question</button>
+        <button ng-click="deleteQuestion()">delete question</button>
+      </p>
+
       <br/><br/></h4>
       <hr/>
       <div class="row">
@@ -31,7 +33,7 @@
                 <label class="checkbox">
                   <input ng-model="answer.isAnonymous" type="checkbox"/> Send Answer as Anonymous
                 </label>
-                <button type="submit" class="btn-red" ng-click="sendAnswer(question, answer)">Send</button>
+                <button type="submit" class="btn-red" ng-click="sendAnswer(answer)">Send</button>
               </div>
             </form>
             <br/>
@@ -43,19 +45,33 @@
           </div>
         </div>
       </div>
-      <div ng-repeat="answer in question.answer">
+      <div ng-repeat="answer in question.answers">
 
-        <p>{{answer}}</p>
         Odgovor: {{answer.text}}<br/>
         Account username: {{answer.account.username}}<br/>
         Timestamp: {{answer.timestamp}}<br/>
-        Anonymous: {{answer.isAnonymous}}<br/><br/><br/>
+        Anonymous: {{answer.isAnonymous}}<br/>
+        Likes: <span ng-repeat="acc in answer.likes">{{acc.username}} </span> <br/>
+        <button ng-click="likeAnswer(answer);">like answer</button>
+        <button ng-click="dislikeAnswer(answer)">dislike answer</button>
+        <button ng-click="deleteAnswer(answer);">delete answer</button>
+        <br/>
+        <br/><br/><br/>
+
         <div class="col-md-10 col-md-offset-1">
         <h5>Comments</h5>
-        <div ng-repeat="comment in answer.comment">
+        <div ng-repeat="comment in answer.comments">
           Text: {{comment.text}}<br/>
           Timestamp: {{comment.timestamp}}<br/>
-          Account username: <a href="/#/user-detail/:id">{{comment.account.username}}</a><br/><br/><br/>
+          Account username: <a href="/#/user-detail/:id">{{comment.account.username}}</a><br/>
+          Likes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>
+          Dislikes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>
+          <button ng-click="likeComment(comment);">like comment</button>
+          <button ng-click="dislikeComment(comment)">dislike comment</button>
+          <button ng-click="deleteComment(comment);">delete comment</button>
+          <br/>
+          <br/><br/>
+
         </div>
         <form action="">
           <div class="row">
@@ -71,7 +87,7 @@
         </div>
         <hr/>
         <!--TODO: username, age, timestamp-->
-        <!--TODO: like dislike po polu (kolikolikova ima od devojaka koliko od momaka i isto to za dislike)-->
+        <!--TODO: like dislike po polu (koliko ima od devojaka koliko od momaka i isto to za dislike)-->
       </div>
     </div>
   </div>

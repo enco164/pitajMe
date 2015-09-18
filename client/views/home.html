@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group col-md-12">
                   <label for="topic-content">Question content</label>
-                  <textarea id="topic-content" type="text" placeholder="Enter Question content" rows="3" required="required" class="form-control" ng-model="question.text"></textarea>
+                  <textarea id="topic-content" placeholder="Enter Question content" rows="3" required="required" class="form-control" ng-model="question.text"></textarea>
                 </div>
               </div>
               <div>
@@ -46,8 +46,8 @@
                 <a ng-show="{{question.isAnonymous}}">Anonymous</a>
                 <a href="/#/user-detail/{{question.accountId}}" ng-show="{{!question.isAnonymous}}">{{question.account.username}}</a>
                 <span>{{question.timestamp}}</span>
-              </h1>
-              <h1>{{question.category.name}}</h1>
+                {{question.category.name}}</h1>
+
               <h3><a href="/#/question/{{question.id}}">{{question.title}}</a></h3>
               <h2>{{question.text}}</h2>
               <div class="stats">

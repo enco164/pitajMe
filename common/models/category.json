@@ -21,16 +21,6 @@
       "model": "Post",
       "foreignKey": "categoryId"
     },
-    "questions": {
-      "type": "hasMany",
-      "model": "Question",
-      "foreignKey": "categoryId"
-    },
-    "answers": {
-      "type": "hasMany",
-      "model": "Answer",
-      "foreignKey": "categoryId"
-    },
     "interests": {
       "type": "hasMany",
       "model": "Account",

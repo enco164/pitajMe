@@ -16,12 +16,12 @@
     "post": {
       "type": "belongsTo",
       "model": "Post",
-      "foreignKey": "postId"
+      "foreignKey": ""
     },
     "account": {
       "type": "belongsTo",
       "model": "Account",
-      "foreignKey": "accountId"
+      "foreignKey": ""
     }
   },
   "acls": [],

@@ -7,44 +7,48 @@ app.controller('QuestionCtrl', [
   'Answer',
   'Question',
   'Account',
+  'Post',
   '$routeParams',
-  function($scope, Answer, Question, Account, $routeParams){
+  function($scope, Answer, Question, Account, Post, $routeParams){
     $scope.params = $routeParams;
 
+
     function reloadQuestion(){
-      $scope.question = Question.findById({
+      $scope.question = Post.findById({
         id: $scope.params.id,
-        filter:{
-          include:[
-            { relation: 'likes' },
-            { relation: 'account' },
-            { relation: 'answer',
-              scope: {
-                include: [
-                  { relation: 'likes' },
-                  { relation: 'account' },
-                  { relation: 'comment',
-                    scope: { include: [
-                      { relation: 'likes' },
-                      { relation: 'account' }
-                    ]
-                    }
-                  }
-                ], order: 'timestamp DESC'
-              }
-            },
-            { relation: 'category' }
-          ],
-          order: 'timestamp DESC'
+        filter: {
+          include: [
+            {relation: 'category'},
+            {relation: 'account'},
+            {relation: 'likes'},
+            {relation: 'answers',
+              order: 'timestamp DESC',
+              scope: {include: [
+                {relation: 'account'},
+                {relation: 'likes'},
+                {relation: 'comments',
+                  order: 'timestamp DESC',
+                  scope: { include: [
+                    {relation: 'account'},
+                    {relation: 'likes'}
+                  ]}
+                }
+              ]}
+            }
+          ]
         }
       }, function(value, responseHeaders){
         $scope.question.timestamp = time(value.timestamp);
-        $scope.answers = value.answer;
-        for(var i=0; i<$scope.answers.length; i++){
-          $scope.answers[i].timestamp = time($scope.answers[i].timestamp);
-          $scope.answers[i].comment.forEach(function(e, j){
-            $scope.answers[i].comment[j].timestamp = time(e.timestamp);
-          })
+        $scope.answers = value.answers;
+        if(!!$scope.answers) {
+          for (var i = 0; i < $scope.answers.length; i++) {
+            $scope.answers[i].timestamp = time($scope.answers[i].timestamp);
+            if(!!$scope.answers[i].comments) {
+              $scope.answers[i].comments.forEach(function (e, j) {
+                $scope.answers[i].comments[j].timestamp = time(e.timestamp);
+              });
+            }
+          }
         }
       }, function(httpResponse){
         console.log(httpResponse);
@@ -53,26 +57,35 @@ app.controller('QuestionCtrl', [
 
     reloadQuestion();
 
-    $scope.sendAnswer = function (question, answer) {
-      if (answer.isAnonymous == undefined) answer.isAnonymous = false;
-      Question.answer.create({
-        id: question.id
+    $scope.sendAnswer = function (answer) {
+      console.log(JSON.stringify(answer));
+      if (answer.isAnonymous == undefined) {
+        answer.isAnonymous = false;
+      }
+      Post.answers.create({
+        id: $scope.question.id
       },{
-        text: answer.text, isAnonymous: answer.isAnonymous, timestamp: new Date,
-        accountId: Account.getCurrentId(), questionId: $scope.params.id
+        type: 'answer',
+        text: answer.text,
+        isAnonymous: answer.isAnonymous,
+        timestamp: new Date,
+        accountId: Account.getCurrentId()
       }, function(value, responseHeaders){
-        reloadQuestion();
         console.log(value, responseHeaders);
+        reloadQuestion();
       }, function(httpResponse){
         console.log(httpResponse);
       });
     };
 
     $scope.sendComment = function(answer, comment){
-      Answer.comment.create({
+      Post.comments.create({
         id: answer.id
       },{
-        text: comment.text, accountId: Account.getCurrentId(), timestamp: new Date(), answerId: answer.id
+        type: 'comment',
+        text: comment.text,
+        accountId: Account.getCurrentId(),
+        timestamp: new Date()
       }, function(value, responseHeaders){
         console.log(value);
         reloadQuestion();
@@ -94,8 +107,14 @@ app.controller('QuestionCtrl', [
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 
 
+
+
+
+
+
+    /*Like and dislike for question*/
     $scope.likeQuestion = function(){
-      Question.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
+      Post.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
         {value: 1},
         function successCb(value, responseHeaders){
           console.log(value);
@@ -105,10 +124,10 @@ app.controller('QuestionCtrl', [
           console.log(error);
         }
       );
-    }
+    };
 
     $scope.unlikeQuestion = function(){
-      Question.likes.unlink({id: $scope.question.id, fk: Account.getCurrentId()},
+      Post.likes.unlink({id: $scope.question.id, fk: Account.getCurrentId()},
         function successCb(value, responseHeaders){
           console.log(value);
           reloadQuestion();
@@ -117,10 +136,10 @@ app.controller('QuestionCtrl', [
           console.log(error);
         }
       );
-    }
+    };
 
     $scope.dislikeQuestion = function(){
-      Question.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
+      Post.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
         {value: -1},
         function successCb(value, responseHeaders){
           console.log(value);
@@ -130,10 +149,10 @@ app.controller('QuestionCtrl', [
           console.log(error);
         }
       );
-    }
+    };
 
     $scope.undislikeQuestion = function(){
-      Question.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
+      Post.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
         function successCb(value, responseHeaders){
           console.log(value);
           reloadQuestion();
@@ -142,11 +161,137 @@ app.controller('QuestionCtrl', [
           console.log(error);
         }
       );
-    }
+    };
+
+
+
+
+    /*Like and dislike for answers*/
+    $scope.likeAnswer = function(answer){
+      Post.likes.link({id: answer.id, fk: Account.getCurrentId()},
+        {value: 1},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    };
+
+    $scope.unlikeAnswer = function(answer){
+      Post.likes.unlink({id: answer.id, fk: Account.getCurrentId()},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    };
+
+    $scope.dislikeAnswer = function(answer){
+      Post.likes.link({id: answer.id, fk: Account.getCurrentId()},
+        {value: -1},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    };
+
+    $scope.undislikeAnswer = function(answer){
+      Post.likes.link({id: answer.id, fk: Account.getCurrentId()},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    };
+
+
+
+
+    /*Like and dislike for comments*/
+    $scope.likeComment = function(comment){
+      Post.likes.link({id: comment.id, fk: Account.getCurrentId()},
+        {value: 1},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    };
+
+    $scope.unlikeComment = function(comment){
+      Post.likes.unlink({id: comment.id, fk: Account.getCurrentId()},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    };
+
+    $scope.dislikeComment = function(comment){
+      Post.likes.link({id: comment.id, fk: Account.getCurrentId()},
+        {value: -1},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    };
+
+    $scope.undislikeComment = function(comment){
+      Post.likes.link({fk: comment.id, id: Account.getCurrentId()},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        }
+      );
+    };
 
     $scope.deleteQuestion = function(){
 
-    }
+
+    };
+
+    $scope.deleteAnswer = function(answer){
+      Post.destroyById({id: answer.id},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          reloadQuestion();
+        },
+        function errorCb(error){
+          console.log(error);
+        });
+
+    };
+
+    $scope.deleteComment = function(comment){
+
+
+    };
 
   }
 ]);

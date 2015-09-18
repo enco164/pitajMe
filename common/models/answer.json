@@ -1,6 +1,6 @@
 {
   "name": "Answer",
-  "base": "Post",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -8,37 +8,17 @@
   "properties": {},
   "validations": [],
   "relations": {
-    "category": {
-      "type": "belongsTo",
-      "model": "Category",
-      "foreignKey": ""
-    },
     "question": {
       "type": "belongsTo",
-      "model": "Question",
+      "model": "Post",
       "foreignKey": ""
     },
-    "comment": {
-      "type": "hasMany",
-      "model": "Comment",
+    "answer": {
+      "type": "belongsTo",
+      "model": "Post",
       "foreignKey": ""
     }
   },
-  "acls": [
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW",
-      "property": "delete"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW",
-      "property": "update"
-    }
-  ],
+  "acls": [],
   "methods": {}
 }
