@@ -38,6 +38,9 @@ app.controller('QuestionCtrl', [
           ]
         }
       }, function(value, responseHeaders){
+        $scope.question.likes = {};
+        $scope.question.likes = Post.likes({id: $scope.question.id, filter: {where:{value: -1}}});
+
         $scope.question.timestamp = time(value.timestamp);
         $scope.answers = value.answers;
         if(!!$scope.answers) {

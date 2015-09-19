@@ -11,9 +11,9 @@
       Question category: {{question.category.name}}<br/>
       Account username: <a href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
 
-      <p>Likes: <span ng-repeat="acc in question.likes">{{acc.username}}</span> <br/>
+      <p>Likes: <span ng-repeat="acc in question.likes">{{acc.username}} </span> <br/>
         <button ng-click="likeQuestion();">like question</button>
-        <button ng-click="dislikeQuestion();">like question</button>
+        <button ng-click="dislikeQuestion();">dislike question</button>
         <button ng-click="deleteQuestion()">delete question</button>
       </p>
 
