@@ -7,6 +7,7 @@ app.controller('HomeCtrl', [
   'Account',
   'Category',
   'Post',
+  'Like',
   function($scope, Account, Category, Post){
 
     $scope.class = 'content-wrap';
@@ -15,7 +16,7 @@ app.controller('HomeCtrl', [
       filter: {
         where: {type: 'question'},
         order: 'timestamp DESC',
-        include: ['account', 'category']
+        include: ['account', 'category', 'likes']
       }
     }, function(value, responseHeaders){
       for (var i = 0;i<$scope.questions.length; i++){
@@ -29,6 +30,13 @@ app.controller('HomeCtrl', [
           id: $scope.questions[i].id
         }, function(value, responseHeaders){
         }, function(httpResponse){});
+        /*brojanje lajkova -- srediti da bude bolje, mozda cak i server to da uradi*/
+        $scope.questions[i].likes_male = 0;
+        $scope.questions[i].likes_female = 0;
+        for(var j = 0; j < $scope.questions[i].likes.length; j++){
+          if($scope.questions[i].likes[j].sex == 'Male') $scope.questions[i].likes_male++;
+          if($scope.questions[i].likes[j].sex == 'Female') $scope.questions[i].likes_female++;
+        }
 
       }
     }, function(httpResponse){});
