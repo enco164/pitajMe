@@ -16,7 +16,14 @@ app.controller('HomeCtrl', [
       filter: {
         where: {type: 'question'},
         order: 'timestamp DESC',
-        include: ['account', 'category', 'likes']
+        include: [
+          {relation: 'account'},
+          {relation: 'category'},
+          {relation: 'likes'},
+          {relation: 'answers',
+            scope: {include: 'account'}
+          }
+        ]
       }
     }, function(value, responseHeaders){
       for (var i = 0;i<$scope.questions.length; i++){
@@ -26,16 +33,23 @@ app.controller('HomeCtrl', [
         var timestamp = $scope.questions[i].timestamp;
         $scope.questions[i].timestamp = time(timestamp);
 
-        $scope.questions[i].answers = Post.answers.count({
+        $scope.questions[i].answ = Post.answers.count({
           id: $scope.questions[i].id
         }, function(value, responseHeaders){
         }, function(httpResponse){});
-        /*brojanje lajkova -- srediti da bude bolje, mozda cak i server to da uradi*/
+        /* TODO brojanje lajkova -- srediti da bude bolje, mozda cak i server to da uradi*/
         $scope.questions[i].likes_male = 0;
         $scope.questions[i].likes_female = 0;
         for(var j = 0; j < $scope.questions[i].likes.length; j++){
           if($scope.questions[i].likes[j].sex == 'Male') $scope.questions[i].likes_male++;
           if($scope.questions[i].likes[j].sex == 'Female') $scope.questions[i].likes_female++;
+        }
+        // TODO brojanje odgovora na pitanje - srediti kao i brojanje lajkova
+        $scope.questions[i].ans_female = 0;
+        $scope.questions[i].ans_male = 0;
+        for(var k = 0; k < $scope.questions[i].answers.length; k++){
+          if($scope.questions[i].answers[k].account.sex == 'Male') $scope.questions[i].ans_male++;
+          if($scope.questions[i].answers[k].account.sex == 'Female') $scope.questions[i].ans_female++;
         }
 
       }
@@ -90,7 +104,7 @@ app.controller('HomeCtrl', [
       });
     };
 
-    $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
+    $scope.logged = !!Account.isAuthenticated();
 
     //TODO sortiranje postova po broju odgovora
     var weekBefore = new Date(new Date() - new Date(1000*60*60*24*7));

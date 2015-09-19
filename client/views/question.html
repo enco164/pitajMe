@@ -7,16 +7,17 @@
 
       Question title: {{question.title}}<br/>
       Question text: {{question.text}}<br/>
-      Question timestamp: {{question.timestamp}}<br/>
+      Question timestamp: <span title="{{question.wholeTime}}">{{question.timestamp}}</span><br/>
       Question category: {{question.category.name}}<br/>
       Account username: <a href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
 
       <p>Likes: <span ng-repeat="acc in question.likes">{{acc.username}} </span> <br/>
-        <button ng-click="likeQuestion();">like question</button>
-        <button ng-click="unlikeQuestion();">unlike question</button>
-        <button ng-click="dislikeQuestion();">dislike question</button>
-        <button ng-click="undislikeQuestion();">undislike question</button>
-        <button ng-click="deleteQuestion()">delete question</button>
+        <button ng-show="!question.isLiked" ng-click="likeQuestion();">like question</button>
+        <button ng-show="question.isLiked" ng-click="unlikeQuestion();">unlike question</button>
+        <!--TODO srediti dislike funkciju-->
+        <!--<button ng-click="dislikeQuestion();">dislike question</button>
+        <button ng-click="undislikeQuestion();">undislike question</button>-->
+        <button ng-show="question.owner" ng-click="deleteQuestion()">delete question</button>
       </p>
 
       <br/><br/></h4>
@@ -54,9 +55,10 @@
         Timestamp: {{answer.timestamp}}<br/>
         Anonymous: {{answer.isAnonymous}}<br/>
         Likes: <span ng-repeat="acc in answer.likes">{{acc.username}} </span> <br/>
-        <button ng-click="likeAnswer(answer);">like answer</button>
-        <button ng-click="dislikeAnswer(answer)">dislike answer</button>
-        <button ng-click="deleteAnswer(answer);">delete answer</button>
+        <button ng-show="!answer.liked" ng-click="likeAnswer(answer);">like answer</button>
+        <button ng-show="answer.liked" ng-click="unlikeAnswer(answer);">unike answer</button>
+        <!--<button ng-click="dislikeAnswer(answer)">dislike answer</button>-->
+        <button ng-show="answer.owner" ng-click="deleteAnswer(answer);">delete answer</button>
         <br/>
         <br/><br/><br/>
 
@@ -68,9 +70,10 @@
           Account username: <a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a><br/>
           Likes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>
           Dislikes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>
-          <button ng-click="likeComment(comment);">like comment</button>
-          <button ng-click="dislikeComment(comment)">dislike comment</button>
-          <button ng-click="deleteComment(comment);">delete comment</button>
+          <!--<button ng-show="!comment.liked" ng-click="likeComment(comment);">like comment</button>-->
+          <!--<button ng-show="comment.liked" ng-click="unlikeComment(comment);">unlike comment</button>-->
+          <!--<button ng-click="dislikeComment(comment)">dislike comment</button>-->
+          <button ng-show="comment.owner" ng-click="deleteComment(comment);">delete comment</button>
           <br/>
           <br/><br/>
 

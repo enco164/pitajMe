@@ -12,7 +12,6 @@ app.controller('QuestionCtrl', [
   function($scope, Answer, Question, Account, Post, $routeParams){
     $scope.params = $routeParams;
 
-
     function reloadQuestion(){
       $scope.question = Post.findById({
         id: $scope.params.id,
@@ -39,15 +38,35 @@ app.controller('QuestionCtrl', [
         }
       }, function(value, responseHeaders){
         /*$scope.question.likes = {};
-        $scope.question.likes = Post.likes({id: $scope.question.id, filter: {where:{value: -1}}});
-*/
+         $scope.question.likes = Post.likes({id: $scope.question.id, filter: {where:{value: -1}}});
+         */
+        $scope.question.isLiked = false;
+        questionLiked();
+        $scope.question.owner = $scope.question.accountId == Account.getCurrentId();
+        $scope.question.wholeTime = getWholeDate(value.timestamp);
         $scope.question.timestamp = time(value.timestamp);
         $scope.answers = value.answers;
         if(!!$scope.answers) {
           for (var i = 0; i < $scope.answers.length; i++) {
+
+            $scope.index = i;
+            Post.likes.exists({
+              id: $scope.answers[i].id,
+              fk: Account.getCurrentId()
+            }, function(value, responseHeaders){
+              console.log(value);
+              $scope.answers[$scope.index].liked = true;
+            }, function(httpResponse){
+              console.log(httpResponse);
+              $scope.answers[$scope.index].liked = false;
+            });
+
+            $scope.answers[i].owner = $scope.answers[i].account.id == Account.getCurrentId();
             $scope.answers[i].timestamp = time($scope.answers[i].timestamp);
+
             if(!!$scope.answers[i].comments) {
               $scope.answers[i].comments.forEach(function (e, j) {
+                $scope.answers[i].comments[j].owner = $scope.answers[i].comments[j].account.id == Account.getCurrentId();
                 $scope.answers[i].comments[j].timestamp = time(e.timestamp);
               });
             }
@@ -107,9 +126,7 @@ app.controller('QuestionCtrl', [
       });
     };
 
-    $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
-
-
+    $scope.logged = !!Account.isAuthenticated();
 
 
 
@@ -121,6 +138,7 @@ app.controller('QuestionCtrl', [
         {value: 1},
         function successCb(value, responseHeaders){
           console.log(value);
+          $scope.question.isLiked = true;
           reloadQuestion();
         },
         function errorCb(error){
@@ -133,6 +151,7 @@ app.controller('QuestionCtrl', [
       Post.likes.unlink({id: $scope.question.id, fk: Account.getCurrentId()},
         function successCb(value, responseHeaders){
           console.log(value);
+          $scope.question.isLiked = false;
           reloadQuestion();
         },
         function errorCb(error){
@@ -165,6 +184,20 @@ app.controller('QuestionCtrl', [
         }
       );
     };
+
+    function questionLiked (){
+      Post.likes.exists({
+        id: $scope.params.id,
+        fk: Account.getCurrentId()
+      }, function(value, responseHeaders){
+        $scope.question.isLiked = true;
+        console.log(value);
+      }, function(httpResponse){
+        console.log(httpResponse);
+        //$scope.question.isLiked = false;
+      });
+    }
+
 
 
 
@@ -220,6 +253,22 @@ app.controller('QuestionCtrl', [
       );
     };
 
+    function answerLiked (answer){
+      console.log(answer.id);
+      Post.likes.exists({
+        id: answer.id,
+        fk: Account.getCurrentId()
+      }, function(value, responseHeaders){
+        console.log(value);
+        $scope.answerLike = true;
+      }, function(httpResponse){
+        console.log(httpResponse);
+        $scope.answerLike = false;
+        //$scope.question.isLiked = false;
+      });
+
+    }
+
 
 
 
@@ -273,6 +322,8 @@ app.controller('QuestionCtrl', [
         }
       );
     };
+
+
 
     $scope.deleteQuestion = function(){
 

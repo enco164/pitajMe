@@ -40,3 +40,14 @@ function getDate(timestamp){
   var time = day + '.' + month + '.' + year;
   return time;
 }
+
+function getWholeDate(timestamp){
+  var date = new Date(timestamp);
+  var minute = date.getMinutes();
+  var hour = date.getHours();
+  var month = date.getMonth()+1;
+  var day = date.getDate();
+  var year = date.getFullYear();
+  var time = day + '.' + month + '.' + year + ', ' + hour+':'+minute;
+  return time;
+}

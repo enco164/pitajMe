@@ -45,14 +45,16 @@
               <h1>
                 <a ng-show="{{question.isAnonymous}}">Anonymous</a>
                 <a href="/#/user-detail/{{question.accountId}}" ng-show="{{!question.isAnonymous}}">{{question.account.username}}</a>
-                <span>{{question.timestamp}}</span>
-                {{question.category.name}}</h1>
+                <span>{{question.timestamp}}</span><br/><br/>
+                Category: {{question.category.name}}</h1>
 
               <h3><a href="/#/question/{{question.id}}">{{question.title}}</a></h3>
               <h2>{{question.text}}</h2>
               <div class="stats">
-                <div>Answers: {{question.answers.count}}</div>
-                <div class="favs"><span class="glyphicon glyphicon-heart"></span>213</div>
+                <!--<div>Answers: {{question.answ.count}}</div>-->
+                <!--<div class="favs"><span class="glyphicon glyphicon-heart"></span>213</div>-->
+                <div class="boys"><span class="glyphicon glyphicon-comment"></span>{{question.ans_male}}</div>
+                <div class="girls"><span class="glyphicon glyphicon-comment"></span>{{question.ans_female}}</div>
                 <div class="boys"><span class="glyphicon glyphicon-heart"></span>{{question.likes_male}}</div>
                 <div class="girls"><span class="glyphicon glyphicon-heart"></span>{{question.likes_female}}</div>
               </div>
