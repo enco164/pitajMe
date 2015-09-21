@@ -1,0 +1,27 @@
+{
+  "facebook-login": {
+    "provider": "facebook",
+    "module": "passport-facebook",
+    "clientID": "891256094245407",
+    "clientSecret": "8439971903092fb6462b76568a2415a9",
+    "callbackURL": "http://localhost:3000/auth/facebook/callback",
+    "authPath": "/auth/facebook",
+    "callbackPath": "/auth/facebook/callback",
+    "successRedirect": "/#/",
+    "scope": ["email"]
+  },
+  "google-link": {
+    "provider": "google",
+    "module": "passport-google-oauth",
+    "strategy": "OAuth2Strategy",
+    "clientID": "324014476800-g7ro01i8irmuc0bjg4p4uvul3qa8q0ts.apps.googleusercontent.com",
+    "clientSecret": " 31BjttWInBJlhoqKeZUSzFbl",
+    "callbackURL": "http://localhost:3000/link/google/callback",
+    "authPath": "/auth/google",
+    "callbackPath": "/#/",
+    "successRedirect": "/#/",
+    "scope": ["email", "profile"],
+    "link": true
+  }
+
+}
