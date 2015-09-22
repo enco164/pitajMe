@@ -9,6 +9,12 @@
     "about": {
       "type": "string"
     },
+    "facebookId": {
+      "type": "string"
+    },
+    "googleId": {
+      "type": "string"
+    },
     "personality": {
       "type": "string"
     },
@@ -69,6 +75,21 @@
       "foreignKey": "accountId",
       "keyThrough": "postId",
       "through": "Like"
+    },
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "accessToken",
+      "foreignKey": ""
+    },
+    "identities": {
+      "type": "hasMany",
+      "model": "userIdentity",
+      "foreignKey": ""
+    },
+    "credentials": {
+      "type": "hasMany",
+      "model": "userCredential",
+      "foreignKey": ""
     }
   },
   "acls": [

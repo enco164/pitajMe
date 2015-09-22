@@ -27,7 +27,7 @@ app.controller('HomeCtrl', [
       }
     }, function(value, responseHeaders){
       for (var i = 0;i<$scope.questions.length; i++){
-        if (value[i].account.sex == 'Male') $scope.questions[i].gender = 'boy';
+        if ($scope.questions[i].account.sex == 'Male') $scope.questions[i].gender = 'boy';
         else $scope.questions[i].gender = 'girl';
 
         var timestamp = $scope.questions[i].timestamp;
@@ -54,12 +54,6 @@ app.controller('HomeCtrl', [
 
       }
     }, function(httpResponse){});
-
-    $scope.categories = Category.find({}, function(value){
-      console.log(value);
-    }, function(httpResponse){
-      console.log(httpResponse);
-    });
 
     $scope.question = {
       title: "",

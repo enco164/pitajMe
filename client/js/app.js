@@ -5,7 +5,8 @@ var app = angular
   .module('app', [
     'ngResource',
     'ngRoute',
-    'lbServices'
+    'lbServices',
+    'ngCookies'
   ])
   .config(['$routeProvider', '$locationProvider', function($routeProvider,
                                                            $locationProvider) {
@@ -55,6 +56,11 @@ var app = angular
         controller: 'CategoryCtrl',
         controllerAs: 'category'
       })
+      .when('/facebook-account', {
+        templateUrl: 'views/facebookAccount.html',
+        controller: 'AccountCtrl',
+        controllerAs: 'facebook'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -69,4 +75,3 @@ var app = angular
     // Change the URL where to access the LoopBack REST API server
     LoopBackResourceProvider.setUrlBase('http://localhost:3000/api');
   });
-

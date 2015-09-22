@@ -68,12 +68,16 @@
     "dataSource": "db",
     "public": true
   },
-  "UserCredential": {
+  "accessToken": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
-  "UserIdentity": {
+  "userCredential": {
     "dataSource": "db",
-    "public": true
+    "public": false
+  },
+  "userIdentity": {
+    "dataSource": "db",
+    "public": false
   }
 }
