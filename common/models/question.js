@@ -8,17 +8,20 @@ module.exports = function(Question) {
     var self = this;
     if (this.categoryId == undefined) {
       Category.findOne({name: "Other"},
-        function successCb(value, responseHeaders){
-          self.categoryId = value.id;
+        function (error, value){
+          console.log('Ovo mozda i radi?');
+          if(error){
+            self.categoryId = '55f2fa39402083e10506203d';
+            console.log('upao u error');
+
+
+          } else {
+            self.categoryId = value.id;
+          }
           if (self.opinionFrom == undefined) self.opinionFrom = 3;
           self.timestamp = new Date();
-
           next();
-        },
-        function error(error){
-          self.categoryId = '55f2fa39402083e10506203d';
-        }
-      );
+        });
     }
   };
 

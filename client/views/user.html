@@ -70,14 +70,14 @@
       Answer text: {{answer.text}}<br/>
       Time: {{answer.timestamp}}<br/>
       Is Anonymous: {{answer.isAnonymous}}<br/>
-      Answer to Question: <a href="{{answer.question[0].id}}">{{answer.question[0].title}}</a><br/>
+      Answer to Question: <a href="/#/question/{{answer.question[0].id}}">{{answer.question[0].title}}</a><br/>
       <hr/>
     </div>
     <h2>Comments</h2>
     <div ng-repeat="comment in comments">
       Text: {{comment.text}}<br/>
       Time: {{comment.timestamp}}<br/>
-      Question: <a href="{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a>
+      Question: <a href="/#/question/{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a>
       <hr/>
     </div>
     <div ng-show="isFollowing || isMe">
