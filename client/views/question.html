@@ -56,7 +56,7 @@
         Anonymous: {{answer.isAnonymous}}<br/>
         Likes: <span ng-repeat="acc in answer.likes">{{acc.username}} </span> <br/>
         <button ng-show="!answer.liked" ng-click="likeAnswer(answer);">like answer</button>
-        <button ng-show="answer.liked" ng-click="unlikeAnswer(answer);">unike answer</button>
+        <button ng-show="answer.liked" ng-click="unlikeAnswer(answer);">unlike answer</button>
         <!--<button ng-click="dislikeAnswer(answer)">dislike answer</button>-->
         <button ng-show="answer.owner" ng-click="deleteAnswer(answer);">delete answer</button>
         <br/>
@@ -68,12 +68,12 @@
           Text: {{comment.text}}<br/>
           Timestamp: {{comment.timestamp}}<br/>
           Account username: <a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a><br/>
-          Likes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>
-          Dislikes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>
+          <!--Likes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>-->
+          <!--Dislikes: <span ng-repeat="acc in comment.likes">{{acc.username}} </span> <br/>-->
           <!--<button ng-show="!comment.liked" ng-click="likeComment(comment);">like comment</button>-->
           <!--<button ng-show="comment.liked" ng-click="unlikeComment(comment);">unlike comment</button>-->
           <!--<button ng-click="dislikeComment(comment)">dislike comment</button>-->
-          <button ng-show="comment.owner" ng-click="deleteComment(comment);">delete comment</button>
+          <button ng-show="comment.owner" ng-click="deleteComment(comment, answer);">delete comment</button>
           <br/>
           <br/><br/>
 

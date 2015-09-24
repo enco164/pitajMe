@@ -26,7 +26,7 @@ app.controller('QuestionCtrl', [
                 {relation: 'account'},
                 {relation: 'likes'},
                 {relation: 'comments',
-                  order: 'timestamp DESC',
+                  order: 'timestamp ASC',
                   scope: { include: [
                     {relation: 'account'},
                     {relation: 'likes'}
@@ -94,7 +94,10 @@ app.controller('QuestionCtrl', [
         accountId: Account.getCurrentId()
       }, function(value, responseHeaders){
         console.log(value, responseHeaders);
-        reloadQuestion();
+        value.comments = [];
+        value.owner = true;
+        //$scope.answers.unshift(value);
+        $scope.answers.push(value);
       }, function(httpResponse){
         console.log(httpResponse);
       });
@@ -110,7 +113,10 @@ app.controller('QuestionCtrl', [
         timestamp: new Date()
       }, function(value, responseHeaders){
         console.log(value);
-        reloadQuestion();
+        value.owner = true;
+        $scope.answers.forEach(function(e, i){
+          if (e.id == answer.id) $scope.answers[i].comments.push(value);
+        });
       }, function(httpResponse){
         console.log(httpResponse);
       })
@@ -139,7 +145,6 @@ app.controller('QuestionCtrl', [
         function successCb(value, responseHeaders){
           console.log(value);
           $scope.question.isLiked = true;
-          reloadQuestion();
         },
         function errorCb(error){
           console.log(error);
@@ -152,7 +157,6 @@ app.controller('QuestionCtrl', [
         function successCb(value, responseHeaders){
           console.log(value);
           $scope.question.isLiked = false;
-          reloadQuestion();
         },
         function errorCb(error){
           console.log(error);
@@ -208,7 +212,10 @@ app.controller('QuestionCtrl', [
         {value: 1},
         function successCb(value, responseHeaders){
           console.log(value);
-          reloadQuestion();
+          $scope.answers.forEach(function(e, i){
+            if (e.id == answer.id) $scope.answers[i].liked = true;
+          });
+          //reloadQuestion();
         },
         function errorCb(error){
           console.log(error);
@@ -220,7 +227,10 @@ app.controller('QuestionCtrl', [
       Post.likes.unlink({id: answer.id, fk: Account.getCurrentId()},
         function successCb(value, responseHeaders){
           console.log(value);
-          reloadQuestion();
+          $scope.answers.forEach(function(e, i){
+            if (e.id == answer.id) $scope.answers[i].liked = false;
+          });
+          //reloadQuestion();
         },
         function errorCb(error){
           console.log(error);
@@ -252,23 +262,6 @@ app.controller('QuestionCtrl', [
         }
       );
     };
-
-    function answerLiked (answer){
-      console.log(answer.id);
-      Post.likes.exists({
-        id: answer.id,
-        fk: Account.getCurrentId()
-      }, function(value, responseHeaders){
-        console.log(value);
-        $scope.answerLike = true;
-      }, function(httpResponse){
-        console.log(httpResponse);
-        $scope.answerLike = false;
-        //$scope.question.isLiked = false;
-      });
-
-    }
-
 
 
 
@@ -326,15 +319,24 @@ app.controller('QuestionCtrl', [
 
 
     $scope.deleteQuestion = function(){
-
-
+    //TODO Post.question.destroyAll ??
+      Post.destroyById({id: $scope.question.id},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          window.location.replace('/#/');
+        },
+        function errorCb(error){
+          console.log(error);
+        });
     };
 
     $scope.deleteAnswer = function(answer){
       Post.destroyById({id: answer.id},
         function successCb(value, responseHeaders){
           console.log(value);
-          reloadQuestion();
+          $scope.answers.forEach(function(e, i){
+            if (answer.id == e.id) $scope.answers.splice(i, 1);
+          });
         },
         function errorCb(error){
           console.log(error);
@@ -342,10 +344,23 @@ app.controller('QuestionCtrl', [
 
     };
 
-    $scope.deleteComment = function(comment){
-
+    $scope.deleteComment = function(comment, answer){
+      Post.destroyById({id: comment.id},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          $scope.answers.forEach(function(e, i){
+            if (answer.id == e.id)
+              $scope.answers[i].comments.forEach(function(c, j){
+                if (comment.id == c.id) $scope.answers[i].comments.splice(j, 1);
+              })
+          });
+        },
+        function errorCb(error){
+          console.log(error);
+        });
 
     };
+
 
   }
 ]);

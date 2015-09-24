@@ -78,20 +78,37 @@ app.controller('HomeCtrl', [
     }, function(httpResponse){});
 
     $scope.sendQuestion = function(question){
-      Post.create({},{
-        type: 'question',
-        title: $scope.question.title,
-        text: $scope.question.text,
-        isAnonymous: $scope.question.isAnonymous,
-        accountId: $scope.question.accountId,
-        categoryId: $scope.question.category.id,
-        timestamp: new Date(),
-        opinionFrom: parseInt(question.opinionFrom)
-      },function(value, responseHeaders){
-        console.log(value);
-      }, function(httpResponse){
-        console.log(httpResponse);
-      });
+      if (question.title != "" && question.text != "") {
+        Post.create({}, {
+          type: 'question',
+          title: $scope.question.title,
+          text: $scope.question.text,
+          isAnonymous: $scope.question.isAnonymous,
+          accountId: $scope.question.accountId,
+          categoryId: $scope.question.category.id,
+          timestamp: new Date(),
+          opinionFrom: parseInt(question.opinionFrom)
+        }, function (value, responseHeaders) {
+          console.log(value);
+          $scope.q = Post.findById({
+            id: value.id,
+            filter: {
+              include: [
+                {relation: 'account'}, {relation: 'category'}, {relation: 'likes'},
+                {relation: 'answers', scope: {include: 'account'}}
+              ]
+            }
+          }, function (value, responseHeaders) {
+            $scope.q.timestamp = time($scope.q.timestamp);
+            if (value.account.sex == 'Male') $scope.q.gender = 'boy';
+            else $scope.q.gender = 'girl';
+          }, function (httpResponse) {
+          });
+          $scope.questions.unshift($scope.q);
+        }, function (httpResponse) {
+          console.log(httpResponse);
+        });
+      }
     };
 
     $scope.logout = function(){
