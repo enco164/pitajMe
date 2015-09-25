@@ -16,10 +16,10 @@ module.exports = function(Post) {
         var title = post.title;
         //console.log(post);
         /*
-        post.answersArr.forEach(function(ans){
-          console.log(ans.text);
-        });
-*/
+         post.answersArr.forEach(function(ans){
+         console.log(ans.text);
+         });
+         */
         console.log(post.answersArr);
 
         console.log('-----------------');
@@ -27,6 +27,24 @@ module.exports = function(Post) {
 
       cb(null, posts);
     });
+  };
+
+  Post.afterDestroy = function(next){
+    var self = this;
+    console.log(this);
+    /*if (self.type == 'question'){
+      var answers = Post.answers({
+            id: self.id
+      }, function(error, answers){
+        console.log(answers);
+        answers.forEach(function(e, i){
+          Post.comments.destroyAll({
+            id: e.id
+          }, function(err, success){});
+        });
+      });
+    }*/
+    next();
   };
 
   var weekBefore = new Date(new Date() - new Date(1000*60*60*24*7));

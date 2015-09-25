@@ -11,6 +11,7 @@ app.controller('QuestionCtrl', [
   '$routeParams',
   function($scope, Answer, Question, Account, Post, $routeParams){
     $scope.params = $routeParams;
+    $scope.editing=false;
 
     function reloadQuestion(){
       $scope.question = Post.findById({
@@ -48,7 +49,7 @@ app.controller('QuestionCtrl', [
         $scope.answers = value.answers;
         if(!!$scope.answers) {
           for (var i = 0; i < $scope.answers.length; i++) {
-
+            $scope.answers[i].wholeTime = getWholeDate($scope.answers[i].timestamp);
             $scope.index = i;
             Post.likes.exists({
               id: $scope.answers[i].id,
@@ -60,12 +61,14 @@ app.controller('QuestionCtrl', [
               console.log(httpResponse);
               $scope.answers[$scope.index].liked = false;
             });
-
+            $scope.answers[i].editing = false; //da li se trenutno edituje odgovor
             $scope.answers[i].owner = $scope.answers[i].account.id == Account.getCurrentId();
             $scope.answers[i].timestamp = time($scope.answers[i].timestamp);
 
             if(!!$scope.answers[i].comments) {
               $scope.answers[i].comments.forEach(function (e, j) {
+                $scope.answers[i].comments[j].editing = false;
+                $scope.answers[i].comments[j].wholeTime = getWholeDate($scope.answers[i].comments[j].timestamp);
                 $scope.answers[i].comments[j].owner = $scope.answers[i].comments[j].account.id == Account.getCurrentId();
                 $scope.answers[i].comments[j].timestamp = time(e.timestamp);
               });
@@ -94,10 +97,21 @@ app.controller('QuestionCtrl', [
         accountId: Account.getCurrentId()
       }, function(value, responseHeaders){
         console.log(value, responseHeaders);
-        value.comments = [];
-        value.owner = true;
-        //$scope.answers.unshift(value);
-        $scope.answers.push(value);
+        $scope.a = Post.findById({
+          id: value.id,
+          filter: {
+            include: [
+              {relation: 'account'}, {relation: 'category'}, {relation: 'likes'},
+              {relation: 'comments', scope: {include: 'account'}}
+            ]
+          }
+        }, function(value, responseHeaders){
+          $scope.a.comments = [];
+          $scope.a.owner = true;
+          $scope.a.timestamp = time($scope.a.timestamp);
+          //$scope.answers.unshift(value);
+          $scope.answers.push($scope.a);
+        }, function(httpResponse){});
       }, function(httpResponse){
         console.log(httpResponse);
       });
@@ -113,10 +127,17 @@ app.controller('QuestionCtrl', [
         timestamp: new Date()
       }, function(value, responseHeaders){
         console.log(value);
-        value.owner = true;
-        $scope.answers.forEach(function(e, i){
-          if (e.id == answer.id) $scope.answers[i].comments.push(value);
-        });
+        $scope.c = Post.findById({
+          id: value.id,
+          filter: { include: [ {relation: 'account'} ] }
+        }, function(value, responseHeaders){
+          $scope.c.owner = true;
+          $scope.c.timestamp = time(value.timestamp);
+          $scope.answers.forEach(function(e, i){
+            if (!$scope.answers[i].comments) $scope.answers[i].comments = [];
+            if (e.id == answer.id) $scope.answers[i].comments.push($scope.c);
+          });
+        }, function(httpResponse){});
       }, function(httpResponse){
         console.log(httpResponse);
       })
@@ -320,7 +341,7 @@ app.controller('QuestionCtrl', [
 
     $scope.deleteQuestion = function(){
     //TODO Post.question.destroyAll ??
-      Post.destroyById({id: $scope.question.id},
+      Post.removeById({id: $scope.question.id},
         function successCb(value, responseHeaders){
           console.log(value);
           window.location.replace('/#/');
@@ -330,8 +351,19 @@ app.controller('QuestionCtrl', [
         });
     };
 
+    $scope.updateQuestion = function(question){
+      $scope.editing = false;
+      Post.update({
+        where:{
+          id: question.id
+        }
+      }, {
+        text: question.text
+      }, function(value, responseHeaders){}, function(httpResponse){});
+    };
+
     $scope.deleteAnswer = function(answer){
-      Post.destroyById({id: answer.id},
+      Post.removeById({id: answer.id},
         function successCb(value, responseHeaders){
           console.log(value);
           $scope.answers.forEach(function(e, i){
@@ -341,11 +373,23 @@ app.controller('QuestionCtrl', [
         function errorCb(error){
           console.log(error);
         });
+    };
 
+    $scope.updateAnswer = function(answer){
+      $scope.answers.forEach(function(e, i){
+        if (e.id == answer.id) $scope.answers[i].editing = false;
+      });
+      Post.update({
+        where:{
+          id: answer.id
+        }
+      }, {
+        text: answer.text
+      }, function(value, responseHeaders){}, function(httpResponse){});
     };
 
     $scope.deleteComment = function(comment, answer){
-      Post.destroyById({id: comment.id},
+      Post.removeById({id: comment.id},
         function successCb(value, responseHeaders){
           console.log(value);
           $scope.answers.forEach(function(e, i){
@@ -358,7 +402,21 @@ app.controller('QuestionCtrl', [
         function errorCb(error){
           console.log(error);
         });
+    };
 
+    $scope.updateComment = function(comment){
+      $scope.answers.forEach(function(e, i){
+        $scope.answers[i].comments.forEach(function(m, j){
+          if (m.id == comment.id) $scope.answers[i].comments[j].editing = false;
+        });
+      });
+      Post.update({
+        where:{
+          id: comment.id
+        }
+      }, {
+        text: comment.text
+      }, function(value, responseHeaders){}, function(httpResponse){});
     };
 
 

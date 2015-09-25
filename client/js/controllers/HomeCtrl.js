@@ -95,13 +95,21 @@ app.controller('HomeCtrl', [
             filter: {
               include: [
                 {relation: 'account'}, {relation: 'category'}, {relation: 'likes'},
-                {relation: 'answers', scope: {include: 'account'}}
+                {relation: 'answers', scope: {include: 'account'}},
+                {relation: 'likes'},
+                {relation: 'answers',
+                  scope: {include: 'account'}
+                }
               ]
             }
           }, function (value, responseHeaders) {
             $scope.q.timestamp = time($scope.q.timestamp);
             if (value.account.sex == 'Male') $scope.q.gender = 'boy';
             else $scope.q.gender = 'girl';
+            $scope.q.likes_male = 0;
+            $scope.q.likes_female = 0;
+            $scope.q.ans_male = 0;
+            $scope.q.ans_female = 0;
           }, function (httpResponse) {
           });
           $scope.questions.unshift($scope.q);

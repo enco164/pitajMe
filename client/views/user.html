@@ -59,25 +59,40 @@
 
     <h2>Questions</h2><br/>
     <div ng-repeat="question in questions">
-      Title: <a href="/#/question/{{question.id}}">{{question.title}}</a><br/>
-      Text: {{question.text}}<br/>
-      Category: {{question.category.name}}<br/>
-      Timestamp: {{question.timestamp}}
+      <div class="col-md-10">
+        Title: <a href="/#/question/{{question.id}}">{{question.title}}</a><br/>
+        Text: {{question.text}}<br/>
+        Category: {{question.category.name}}<br/>
+        Timestamp: {{question.timestamp}}
+      </div>
+      <div ng-if="isMe" class="col-md-2">
+        <a href="" ng-click="deleteQuestion(question)">Delete Question</a>
+      </div>
       <hr/>
     </div>
     <h2>Answers</h2>
     <div ng-repeat="answer in answers">
-      Answer text: {{answer.text}}<br/>
-      Time: {{answer.timestamp}}<br/>
-      Is Anonymous: {{answer.isAnonymous}}<br/>
-      Answer to Question: <a href="{{answer.question[0].id}}">{{answer.question[0].title}}</a><br/>
+      <div class="col-md-10">
+        Answer text: {{answer.text}}<br/>
+        Time: {{answer.timestamp}}<br/>
+        Is Anonymous: {{answer.isAnonymous}}<br/>
+        Answer to Question: <a href="{{answer.question[0].id}}">{{answer.question[0].title}}</a><br/>
+      </div>
+      <div ng-if="isMe" class="col-md-2">
+        <a href="" ng-click="deleteAnswer(answer)">Delete Answer</a>
+      </div>
       <hr/>
     </div>
     <h2>Comments</h2>
     <div ng-repeat="comment in comments">
-      Text: {{comment.text}}<br/>
-      Time: {{comment.timestamp}}<br/>
-      Question: <a href="{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a>
+      <div class="col-md-10">
+        Text: {{comment.text}}<br/>
+        Time: {{comment.timestamp}}<br/>
+        Question: <a href="{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a>
+      </div>
+      <div ng-if="isMe" class="col-md-2">
+        <a href="" ng-click="deleteComment(comment)">Delete Comment</a>
+      </div>
       <hr/>
     </div>
     <div ng-show="isFollowing || isMe">

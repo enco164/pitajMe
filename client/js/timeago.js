@@ -48,6 +48,6 @@ function getWholeDate(timestamp){
   var month = date.getMonth()+1;
   var day = date.getDate();
   var year = date.getFullYear();
-  var time = day + '.' + month + '.' + year + ', ' + hour+':'+minute;
+  var time = day + '.' + month + '.' + year + ' at ' + hour+':'+minute;
   return time;
 }

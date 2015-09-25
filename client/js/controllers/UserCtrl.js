@@ -87,11 +87,11 @@ app.controller('UserCtrl', [
         },
         include: [
           {relation: 'answer',
-          scope:{
-            include:[
-              {relation: 'question'}
-            ]
-          }}
+            scope:{
+              include:[
+                {relation: 'question'}
+              ]
+            }}
         ],
         order: 'timestamp DESC',
         limit: 5
@@ -108,7 +108,6 @@ app.controller('UserCtrl', [
     $scope.logout = function(){Account.logout({id: Account.getCurrentId()});};
 
     $scope.follow = function(){
-
       Account.prototype$__link__following(
         {
           id: Account.getCurrentId(),
@@ -124,7 +123,6 @@ app.controller('UserCtrl', [
           console.log('follow() error: ' + JSON.stringify(httpResponse));
         }
       );
-
     };
 
     $scope.unfollow = function(){
@@ -164,10 +162,51 @@ app.controller('UserCtrl', [
     }, function(value, responseHeaders){
       console.log(value, responseHeaders);
       /*value.forEach(function(e, i){
-        $scope.interests.category.push(e.name)
-      });*/
+       $scope.interests.category.push(e.name)
+       });*/
     }, function(httpResponse){
       console.log(httpResponse);
     });
+
+    $scope.deleteQuestion = function(question){
+      //TODO Post.question.destroyAll ??
+      Post.removeById({id: question.id},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          $scope.questions.forEach(function(e, i){
+            if (e.id == question.id) $scope.questions.splice(i, 1);
+          });
+        },
+        function errorCb(error){
+          console.log(error);
+        });
+    };
+
+    $scope.deleteAnswer = function(answer){
+      Post.removeById({id: answer.id},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          $scope.answers.forEach(function(e, i){
+            if (answer.id == e.id) $scope.answers.splice(i, 1);
+          });
+        },
+        function errorCb(error){
+          console.log(error);
+        });
+    };
+
+    $scope.deleteComment = function(comment){
+      Post.removeById({id: comment.id},
+        function successCb(value, responseHeaders){
+          console.log(value);
+          $scope.comments.forEach(function(e, i){
+            if (comment.id == e.id) $scope.comments.splice(i, 1);
+          });
+        },
+        function errorCb(error){
+          console.log(error);
+        });
+    };
+
   }
 ]);
