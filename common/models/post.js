@@ -29,23 +29,45 @@ module.exports = function(Post) {
     });
   };
 
-  Post.afterDestroy = function(next){
-    var self = this;
-    console.log(this);
-    /*if (self.type == 'question'){
-      var answers = Post.answers({
-            id: self.id
-      }, function(error, answers){
-        console.log(answers);
-        answers.forEach(function(e, i){
-          Post.comments.destroyAll({
-            id: e.id
-          }, function(err, success){});
-        });
-      });
-    }*/
+
+  /**
+   * HOOK za before delete pitanja i odgovora
+   * ako se brise pitanje, brisu se svi njegovi odgovori
+   * ako se brise odgovor na pitanje, brisu se svi njegovi komentari
+   */
+  Post.observe('before delete', function(ctx, next) {
+    Post.find({
+      where: {
+        id:ctx.where.id
+      },
+      include: [
+        {relation: 'answers', scope: {include: 'comments'}},
+        {relation: 'comments'}]
+    }, function(err, post){
+      //console.log(err, post);
+      if (!post[0]) return;
+      if (post[0].type == 'question'){
+        var answers = post[0].__data.answers;
+        if (answers){
+          answers.forEach(function(e1, i){
+            Post.deleteById(e1.id, function (err, post) { });
+          })
+        }
+      }
+
+      if (post[0].type == 'answer'){
+        var comments = post[0].__data.comments;
+        if (comments){
+          comments.forEach(function(e, i){
+            Post.deleteById(e.id, function(err, post){
+              console.log(err, post.id);
+            });
+          });
+        }
+      }
+    });
     next();
-  };
+  });
 
   var weekBefore = new Date(new Date() - new Date(1000*60*60*24*7));
 

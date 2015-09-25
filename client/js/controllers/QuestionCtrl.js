@@ -389,6 +389,7 @@ app.controller('QuestionCtrl', [
     };
 
     $scope.deleteComment = function(comment, answer){
+      console.log(comment, answer);
       Post.removeById({id: comment.id},
         function successCb(value, responseHeaders){
           console.log(value);
