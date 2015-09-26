@@ -42,7 +42,13 @@
       </div>
       <div>
         <label for="interest">Interests: </label>
-        <span id="interest" ng-repeat="interest in interests">{{interest.name}} </span>
+        <div class="col-md-12">
+        <h6 ng-repeat="interest in interests"><span id="interest"
+              class="label label-primary col-md-2"
+              style="margin: 0.8%; padding: 1%;">
+          {{interest.name}}
+        </span></h6>
+        </div>
       </div>
       <div>
         <label for="level">Level</label>

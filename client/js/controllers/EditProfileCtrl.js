@@ -29,17 +29,24 @@ app.controller('EditProfileCtrl', [
       $scope.account.day = ($scope.date.getDate()).toString();
       $scope.account.month = $scope.months[$scope.date.getMonth()+1].name;
       $scope.account.year = ($scope.date.getFullYear()).toString();
+      console.log($scope.account);
     });
 
-    $scope.interests = {category: []}
-
-    Account.interests({
+    $scope.interests = Account.interests({
       id: Account.getCurrentId()
     }, function(value, responseHeaders){
       console.log(value, responseHeaders);
-      value.forEach(function(e, i){
-        $scope.interests.category.push(e.name)
-      });
+      $scope.account.interests = value;
+      $scope.categories = Category.find({},
+        function(value, responseHeaders){
+          $scope.categories.forEach(function(e1, i){
+            $scope.categories[i].inter = 'default';
+            $scope.interests.forEach(function(e2, j){
+              if (e2.id == e1.id) $scope.categories[i].inter = 'success';
+            });
+          });
+          console.log($scope.categories);
+        }, function(httpResponse){});
     }, function(httpResponse){
       console.log(httpResponse);
     });
@@ -49,19 +56,49 @@ app.controller('EditProfileCtrl', [
       var day = parseInt(newAccount.day);
       $scope.account.dob= newAccount.year+"/"+newAccount.month+"/"+day;
       Account.prototype$updateAttributes({ id: $scope.account.id }, $scope.account)
-        .$promise.then(function() {});
+        .$promise.then(function() {
+          window.location.replace('/#/user-detail/'+Account.getCurrentId());
+        });
       /*category.forEach(function(e, i){
-        if (e.isChecked == true){
-          Interest.findOne({
-            accountId: Account.getCurrentId(),
-            categoryId: e.id
-          }, function(value, responseHeaders){
-            console.log(value);
-          }, function(httpResponse){
-            console.log(httpResponse);
+       if (e.isChecked == true){
+       Interest.findOne({
+       accountId: Account.getCurrentId(),
+       categoryId: e.id
+       }, function(value, responseHeaders){
+       console.log(value);
+       }, function(httpResponse){
+       console.log(httpResponse);
+       });
+       }
+       });*/
+    };
+
+    $scope.followUnfollow = function(category){
+      var interest = {id: category.id, name: category.name, about: category.about};
+      if (category.inter == 'default'){
+        Category.interests.link({
+          id: category.id,
+          fk: Account.getCurrentId()
+        }, function(value, responseHeaders){
+          $scope.categories.forEach(function(e, i){
+            if (e.id == category.id) $scope.categories[i].inter = 'success';
           });
-        }
-      });*/
+        }, function(httpResponse){
+          console.log(httpResponse.data.error.errmsg);
+        });
+      }
+      else if (category.inter == 'success'){
+        Category.interests.unlink({
+          id: category.id,
+          fk: Account.getCurrentId()
+        }, function(value, responseHeaders){
+          $scope.categories.forEach(function(e, i){
+            if (e.id == category.id) $scope.categories[i].inter = 'default';
+          });
+        }, function(httpResponse){
+          console.log(httpResponse.data.error.errmsg);
+        });
+      }
     };
 
 
@@ -70,14 +107,6 @@ app.controller('EditProfileCtrl', [
         console.log(err);
       });
     };
-
-    $scope.categories = Category.find({}, function(value){
-      $scope.categories.forEach(function(e, i){
-        e.isChecked = false;
-      });
-    }, function(httpResponse){
-      console.log(httpResponse);
-    });
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 

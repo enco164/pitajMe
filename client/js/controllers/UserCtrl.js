@@ -37,73 +37,83 @@ app.controller('UserCtrl', [
 
     var weekBefore = new Date(new Date() - new Date(1000*60*60*24*7));
 
-    $scope.questions = Post.find({
-      filter:{
-        where: {
-          accountId: $scope.params.id,
-          type: 'question',
-          timestamp: {gte: weekBefore, lte: new Date()}
-        },
-        include: ['category', 'answers'],
-        order: 'timestamp DESC',
-        limit: 5
-      }
-    }, function(value, responseHeaders){
-      $scope.questions.forEach(function(e, i){
-        e.timestamp = time(e.timestamp);
+    function getQuestions(){
+      $scope.questions = Post.find({
+        filter:{
+          where: {
+            accountId: $scope.params.id,
+            type: 'question',
+            timestamp: {gte: weekBefore, lte: new Date()}
+          },
+          include: ['category', 'answers'],
+          order: 'timestamp DESC',
+          limit: 5
+        }
+      }, function(value, responseHeaders){
+        $scope.questions.forEach(function(e, i){
+          e.timestamp = time(e.timestamp);
+        });
+        console.log(value);
+      }, function(error){
+        console.log(error);
       });
-      console.log(value);
-    }, function(error){
-      console.log(error);
-    });
+    }
 
-    $scope.answers = Post.find({
-      filter:{
-        where: {
-          accountId: $scope.params.id,
-          type: 'answer',
-          timestamp: {gte: weekBefore, lte: new Date()}
-        },
-        include: ['question'],
-        order: 'timestamp DESC',
-        limit: 5
-      }
-    }, function(value, responseHeaders){
-      $scope.answers.forEach(function(e, i){
-        e.timestamp = time(e.timestamp);
-        console.log(e.question);
+    function getAnswers(){
+      $scope.answers = Post.find({
+        filter:{
+          where: {
+            accountId: $scope.params.id,
+            type: 'answer',
+            timestamp: {gte: weekBefore, lte: new Date()}
+          },
+          include: ['question'],
+          order: 'timestamp DESC',
+          limit: 5
+        }
+      }, function(value, responseHeaders){
+        $scope.answers.forEach(function(e, i){
+          e.timestamp = time(e.timestamp);
+          //console.log(e.question);
+        });
+        console.log(value);
+      }, function(error){
+        console.log(error);
       });
-      console.log(value);
-    }, function(error){
-      console.log(error);
-    });
+    }
 
-    $scope.comments = Post.find({
-      filter:{
-        where: {
-          accountId: $scope.params.id,
-          type: 'comment',
-          timestamp: {gte: weekBefore, lte: new Date()}
-        },
-        include: [
-          {relation: 'answer',
-            scope:{
-              include:[
-                {relation: 'question'}
-              ]
-            }}
-        ],
-        order: 'timestamp DESC',
-        limit: 5
-      }
-    }, function(value, responseHeaders){
-      $scope.comments.forEach(function(e, i){
-        e.timestamp = time(e.timestamp);
+    function getComments(){
+      $scope.comments = Post.find({
+        filter:{
+          where: {
+            accountId: $scope.params.id,
+            type: 'comment',
+            timestamp: {gte: weekBefore, lte: new Date()}
+          },
+          include: [
+            {relation: 'answer',
+              scope:{
+                include:[
+                  {relation: 'question'}
+                ]
+              }}
+          ],
+          order: 'timestamp DESC',
+          limit: 5
+        }
+      }, function(value, responseHeaders){
+        $scope.comments.forEach(function(e, i){
+          e.timestamp = time(e.timestamp);
+        });
+        console.log(value);
+      }, function(error){
+        console.log(error);
       });
-      console.log(value);
-    }, function(error){
-      console.log(error);
-    });
+    }
+
+    getQuestions();
+    getAnswers();
+    getComments();
 
     $scope.logout = function(){Account.logout({id: Account.getCurrentId()});};
 
@@ -176,6 +186,9 @@ app.controller('UserCtrl', [
           $scope.questions.forEach(function(e, i){
             if (e.id == question.id) $scope.questions.splice(i, 1);
           });
+          getQuestions();
+          getAnswers();
+          getComments();
         },
         function errorCb(error){
           console.log(error);
@@ -189,6 +202,8 @@ app.controller('UserCtrl', [
           $scope.answers.forEach(function(e, i){
             if (answer.id == e.id) $scope.answers.splice(i, 1);
           });
+          getAnswers();
+          getComments();
         },
         function errorCb(error){
           console.log(error);
@@ -202,6 +217,7 @@ app.controller('UserCtrl', [
           $scope.comments.forEach(function(e, i){
             if (comment.id == e.id) $scope.comments.splice(i, 1);
           });
+          getComments();
         },
         function errorCb(error){
           console.log(error);

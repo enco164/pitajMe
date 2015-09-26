@@ -10,8 +10,25 @@ app.controller(
     $scope.currentId = Account.getCurrentId();
     $scope.isAuthenticated = Account.isAuthenticated();
 
-    //$scope.isAuthenticated = Account.isAuthenticated();
-    //$scope.currentId = Account.currentId();
-    //$scope.logout = function(){Account.logout({id: Account.getCurrentId()});};
+    $scope.getProfile = function(){
+      $scope.currentId = Account.getCurrentId();
+      window.location.replace('/#/user-detail/'+$scope.currentId);
+    };
+
+    $scope.logout = function(){
+      Account.logout({},{
+        id: Account.getCurrentId()
+      }, function(value, responseHeaders) {
+        console.log(value);
+        $scope.isAuthenticated = false;
+        window.location.replace('/#/login');
+      }, function(httpResponse){
+        console.log(httpResponse);
+      });
+    };
+
+    $scope.isAuth = function(){
+      return Account.isAuthenticated();
+    };
   }
 );

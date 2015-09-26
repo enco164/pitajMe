@@ -340,7 +340,7 @@ app.controller('QuestionCtrl', [
 
 
     $scope.deleteQuestion = function(){
-    //TODO Post.question.destroyAll ??
+      //TODO Post.question.destroyAll ??
       Post.removeById({id: $scope.question.id},
         function successCb(value, responseHeaders){
           console.log(value);
