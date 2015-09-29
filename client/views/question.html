@@ -11,13 +11,20 @@
       Question timestamp: <span title="{{question.wholeTime}}">{{question.timestamp}}</span><br/>
       Question category: {{question.category.name}}<br/>
       Account username: <a href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
-
-      <p>Likes: <span ng-repeat="acc in question.likes">{{acc.username}} </span> <br/>
+      <p>Dislikes:
+        <a ng-repeat="acc in dislikeAccounts.accounts" href="/#/user-detail/{{acc.id}}">
+          <span>{{acc.username}} </span>
+        </a>  ({{dislikeCount.dislikeNum}})
+      </p>
+      <p>Likes:
+        <a ng-repeat="acc in likeAccounts.accounts" href="/#/user-detail/{{acc.id}}">
+          <span>{{acc.username}} </span>
+        </a>({{likeCount.likeNum}}) <br/>
         <button ng-show="!question.isLiked" ng-click="likeQuestion();">like question</button>
         <button ng-show="question.isLiked" ng-click="unlikeQuestion();">unlike question</button>
         <!--TODO srediti dislike funkciju-->
-        <!--<button ng-click="dislikeQuestion();">dislike question</button>
-        <button ng-click="undislikeQuestion();">undislike question</button>-->
+        <button ng-show="!question.isDisliked" ng-click="dislikeQuestion();">dislike question</button>
+        <button ng-show="question.isDisliked" ng-click="undislikeQuestion();">undislike question</button>
         <button ng-show="question.owner" ng-click="deleteQuestion()">delete question</button>
         <button ng-show="!editing && question.owner" ng-click="editing=true">edit question</button>
         <button ng-show="editing && question.owner" ng-click="updateQuestion(question)">save question</button>

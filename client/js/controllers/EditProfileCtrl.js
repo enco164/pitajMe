@@ -74,12 +74,11 @@ app.controller('EditProfileCtrl', [
     };
 
     $scope.followUnfollow = function(category){
-      var interest = {id: category.id, name: category.name, about: category.about};
       if (category.inter == 'default'){
         Category.interests.link({
           id: category.id,
           fk: Account.getCurrentId()
-        }, function(value, responseHeaders){
+        }, {}, function(value, responseHeaders){
           $scope.categories.forEach(function(e, i){
             if (e.id == category.id) $scope.categories[i].inter = 'success';
           });

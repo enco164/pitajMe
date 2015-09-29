@@ -36,6 +36,7 @@ module.exports = function(Post) {
    * ako se brise odgovor na pitanje, brisu se svi njegovi komentari
    */
   Post.observe('before delete', function(ctx, next) {
+    //TODO probati sa findById
     Post.find({
       where: {
         id:ctx.where.id

@@ -8,8 +8,9 @@ app.controller('QuestionCtrl', [
   'Question',
   'Account',
   'Post',
+  'Like',
   '$routeParams',
-  function($scope, Answer, Question, Account, Post, $routeParams){
+  function($scope, Answer, Question, Account, Post, Like, $routeParams){
     $scope.params = $routeParams;
     $scope.editing=false;
 
@@ -41,7 +42,24 @@ app.controller('QuestionCtrl', [
         /*$scope.question.likes = {};
          $scope.question.likes = Post.likes({id: $scope.question.id, filter: {where:{value: -1}}});
          */
+        $scope.dislikeCount = Like.dislikeCounterMethod({
+          postId: $scope.params.id
+        }, function(value, responseHeaders){}, function(httpResponse){});
+
+        $scope.likeCount = Like.likeCounterMethod({
+          postId: $scope.params.id
+        }, function(value, responseHeaders){}, function(httpResponse){});
+
+        $scope.likeAccounts = Like.likeAccountsMethod({
+          postId: $scope.params.id
+        }, function(value, responseHeaders){}, function(httpResponse){});
+
+        $scope.dislikeAccounts = Like.dislikeAccountsMethod({
+          postId: $scope.params.id
+        }, function(value, responseHeaders){}, function(httpResponse){});
+
         $scope.question.isLiked = false;
+        $scope.question.isDisliked = false;
         questionLiked();
         $scope.question.owner = $scope.question.accountId == Account.getCurrentId();
         $scope.question.wholeTime = getWholeDate(value.timestamp);
@@ -161,11 +179,13 @@ app.controller('QuestionCtrl', [
 
     /*Like and dislike for question*/
     $scope.likeQuestion = function(){
+      if ($scope.question.isDisliked) return; //TODO ispisati poruku da ne moze da lajkuje dok ne undislajkuje
       Post.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
         {value: 1},
         function successCb(value, responseHeaders){
           console.log(value);
           $scope.question.isLiked = true;
+          reloadQuestion();
         },
         function errorCb(error){
           console.log(error);
@@ -186,6 +206,7 @@ app.controller('QuestionCtrl', [
     };
 
     $scope.dislikeQuestion = function(){
+      if ($scope.question.isLiked) return;
       Post.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
         {value: -1},
         function successCb(value, responseHeaders){
@@ -199,7 +220,7 @@ app.controller('QuestionCtrl', [
     };
 
     $scope.undislikeQuestion = function(){
-      Post.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
+      Post.likes.unlink({id: $scope.question.id, fk: Account.getCurrentId()},
         function successCb(value, responseHeaders){
           console.log(value);
           reloadQuestion();
@@ -210,19 +231,23 @@ app.controller('QuestionCtrl', [
       );
     };
 
-    function questionLiked (){
+    function questionLiked(){
       Post.likes.exists({
         id: $scope.params.id,
         fk: Account.getCurrentId()
       }, function(value, responseHeaders){
-        $scope.question.isLiked = true;
-        console.log(value);
+        Like.findOne({
+          filter: { where: { accountId: Account.getCurrentId(),postId: $scope.params.id }}
+        }, function(value, responseHeaders){
+          if (value.value == 1) $scope.question.isLiked = true;
+          if (value.value == -1) $scope.question.isDisliked = true;
+        }, function(httpResponse){
+        });
       }, function(httpResponse){
-        console.log(httpResponse);
-        //$scope.question.isLiked = false;
+        $scope.question.isLiked = false;
+        $scope.question.isDisliked = false;
       });
     }
-
 
 
 

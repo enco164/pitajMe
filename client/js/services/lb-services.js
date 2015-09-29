@@ -6952,6 +6952,40 @@ module.factory(
           method: "GET"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Post#postLikes
+         * @methodOf lbServices.Post
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{string}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `likes` – `{Array=}` - 
+         */
+        "postLikes": {
+          url: urlBase + "/Posts/postLikes",
+          method: "GET"
+        },
+
         // INTERNAL. Use Account.posts.findById() instead.
         "::findById::Account::posts": {
           params: {
@@ -16369,6 +16403,142 @@ module.factory(
         "createChangeStream": {
           url: urlBase + "/Likes/change-stream",
           method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Like#likeCounterMethod
+         * @methodOf lbServices.Like
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `postId` – `{string}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `likeNum` – `{number=}` - 
+         */
+        "likeCounterMethod": {
+          url: urlBase + "/Likes/likeCounter",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Like#dislikeCounterMethod
+         * @methodOf lbServices.Like
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `postId` – `{string}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `dislikeNum` – `{number=}` - 
+         */
+        "dislikeCounterMethod": {
+          url: urlBase + "/Likes/dislikeCounter",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Like#likeAccountsMethod
+         * @methodOf lbServices.Like
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `postId` – `{string}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `accounts` – `{*=}` - 
+         */
+        "likeAccountsMethod": {
+          url: urlBase + "/Likes/likeAccounts",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Like#dislikeAccountsMethod
+         * @methodOf lbServices.Like
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `postId` – `{string}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `accounts` – `{*=}` - 
+         */
+        "dislikeAccountsMethod": {
+          url: urlBase + "/Likes/dislikeAccounts",
+          method: "GET"
         },
       }
     );
