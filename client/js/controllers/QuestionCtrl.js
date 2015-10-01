@@ -9,9 +9,11 @@ app.controller('QuestionCtrl', [
   'Account',
   'Post',
   'Like',
+  'Category',
   '$routeParams',
-  function($scope, Answer, Question, Account, Post, Like, $routeParams){
+  function($scope, Answer, Question, Account, Post, Like, Category, $routeParams){
     $scope.params = $routeParams;
+    document.body.id = '';
     $scope.editing=false;
 
     function reloadQuestion(){
@@ -42,6 +44,9 @@ app.controller('QuestionCtrl', [
         /*$scope.question.likes = {};
          $scope.question.likes = Post.likes({id: $scope.question.id, filter: {where:{value: -1}}});
          */
+        if (value.account.sex == 'Male') $scope.question.gender = 'boy';
+        else $scope.question.gender = 'girl';
+
         $scope.dislikeCount = Like.dislikeCounterMethod({
           postId: $scope.params.id
         }, function(value, responseHeaders){}, function(httpResponse){});
@@ -50,13 +55,17 @@ app.controller('QuestionCtrl', [
           postId: $scope.params.id
         }, function(value, responseHeaders){}, function(httpResponse){});
 
-        $scope.likeAccounts = Like.likeAccountsMethod({
-          postId: $scope.params.id
-        }, function(value, responseHeaders){}, function(httpResponse){});
+        //$scope.likeAccounts = Like.likeAccountsMethod({postId: $scope.params.id}, function(value, responseHeaders){}, function(httpResponse){});
+        //$scope.dislikeAccounts = Like.dislikeAccountsMethod({postId: $scope.params.id}, function(value, responseHeaders){}, function(httpResponse){});
 
-        $scope.dislikeAccounts = Like.dislikeAccountsMethod({
-          postId: $scope.params.id
-        }, function(value, responseHeaders){}, function(httpResponse){});
+        $scope.question.ans_female = 0;
+        $scope.question.ans_male = 0;
+        for(var k = 0; k < $scope.question.answers.length; k++){
+          if($scope.question.answers[k].account.sex == 'Male') $scope.question.ans_male++;
+          if($scope.question.answers[k].account.sex == 'Female') $scope.question.ans_female++;
+        }
+
+
 
         $scope.question.isLiked = false;
         $scope.question.isDisliked = false;
@@ -445,6 +454,55 @@ app.controller('QuestionCtrl', [
       }, function(value, responseHeaders){}, function(httpResponse){});
     };
 
+    $scope.categories = Category.find({}, function(value, responseHeaders){
+      $scope.categories.forEach(function(e, i){
+        $scope.categories[i].count = Category.posts.count({
+          id: e.id
+        }, function(){}, function(){});
+      });
+    }, function(httpResponse){});
+
+    var weekBefore = new Date(new Date() - new Date(1000*60*60*24*7));
+
+    $scope.topQuestions = Post.find({
+      filter:{
+        where:{
+          type: "question",
+          timestamp: {gte: weekBefore}
+        },
+        include: 'answers'
+      }
+    }, function(value, responseHeaders){
+      value = value.sort(sortByAnswersLen);
+      value = value.slice(0,5);
+      $scope.topQuestions = value;
+    }, function(httpResponse){
+      console.log(httpResponse);
+    });
+
+    $scope.mostLiked = Post.find({
+      filter:{
+        where:{
+          type: "question",
+          timestamp: {gte: weekBefore}
+        },
+        include: 'likes'
+      }
+    }, function(value, responseHeaders){
+      value = value.sort(sortByLikesLen);
+      value = value.slice(0,5);
+      $scope.mostLiked = value;
+    }, function(httpResponse){
+      console.log(httpResponse);
+    });
+
+    function sortByAnswersLen(a, b) {
+      return ((a.answers.length > b.answers.length) ? -1 : ((a.answers.length < b.answers.length) ? 1 : 0));
+    }
+
+    function sortByLikesLen(a, b) {
+      return ((a.likes.length > b.likes.length) ? -1 : ((a.likes.length < b.likes.length) ? 1 : 0));
+    }
 
   }
 ]);

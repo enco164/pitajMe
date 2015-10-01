@@ -6,6 +6,7 @@ app.controller('LoginCtrl', [
   '$scope',
   'Account',
   function($scope, Account){
+    document.body.id = '';
     $scope.check = true;
 
     $scope.login_fn = function(){

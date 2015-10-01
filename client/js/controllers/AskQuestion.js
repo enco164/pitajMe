@@ -8,6 +8,7 @@ app.controller('AskQuestionCtrl', [
   'Account',
   'Category',
   function($scope, Question, Account, Category){
+    document.body.id = '';
     $scope.error = false;
 
     $scope.question = {

@@ -1,0 +1,335 @@
+//Lorem ipsum
+mixin long-text
+  Candy tiramisu candy canes sweet roll candy canes marzipan danish macaroon chocolate. Dragée gummi bears donut sesame snaps jujubes chupa chups marshmallow. Cookie gingerbread powder carrot cake marshmallow liquorice pudding macaroon cookie. Tiramisu jelly-o topping toffee bear claw muffin jelly beans jelly beans. Liquorice cupcake dragée pudding sesame snaps gummi bears topping pastry. Pastry jelly cheesecake. Caramels apple pie bonbon soufflé. Wafer danish pie cookie donut croissant fruitcake. Marshmallow ice cream gummies carrot cake. Lemon drops lemon drops bear claw powder chocolate cake. Pastry candy canes ice cream sesame snaps marshmallow oat cake wafer ice cream. Pie oat cake wafer sesame snaps wafer bonbon powder tiramisu oat cake. Caramels cake powder. Muffin wafer brownie cake pudding bonbon.
+  
+mixin mid-text
+  Cake tart toffee jelly halvah candy canes powder muffin. Jelly-o pie muffin marzipan powder soufflé sweet roll cupcake pudding. Icing gummies cake cake. Bear claw icing gummies chocolate cake pie toffee carrot cake cake. Chocolate cake bear claw jujubes oat cake tart caramels. Gummies candy canes carrot cake marshmallow fruitcake sweet roll chocolate. Cupcake icing jujubes cookie pudding bonbon. Carrot cake marzipan soufflé lollipop gummies. Sweet fruitcake tart liquorice gingerbread jelly beans. Chocolate cake fruitcake sweet roll jelly chocolate bar oat cake.
+
+mixin short-text
+  Donut tootsie roll cake carrot cake. Liquorice carrot cake cotton candy soufflé sugar plum cotton candy jelly-o gummies. Jujubes biscuit jujubes carrot cake candy croissant. Candy canes pudding muffin tootsie roll sesame snaps cake jelly.
+
+//Head
+mixin head
+  head
+    title Pitaj me
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // Bootstrap Core CSS
+    link(href='/assets/css/2-basics/bootstrap.min.css', rel='stylesheet')
+    // Favicon
+    link(rel="shortcut icon", href="favicon.ico")
+    // Main CSS
+    link(rel='stylesheet', href='/assets/css/main.css')
+    //FontAwesome  
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
+
+//Header
+mixin header
+  header
+    .row
+      .container
+        .navbar.navbar-default#main-nav(role='navigation')
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href='index.html')
+              img.img-responsive(src='assets/img/logo.png', alt='Logo')
+          .navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-right
+              li.active
+                a(href='index.html') Pocetna
+              li
+                a(href='index-ulogovan.html') Pocetna ulogovan
+              li
+                a(href='pitanje-detaljnije.html') Pitanje detaljnije
+              li
+                a(href='style-page.html') Style page
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown') Ostale strane 
+                  span.caret
+                ul.dropdown-menu(role='menu')
+                  li
+                    a(href='login.html') Log in
+                  li
+                    a(href='registracija.html') Registracija
+                  li
+                    a(href='category.html') Category
+                  li.divider
+                  li.dropdown-header Jos stranica
+                  li
+                    a(href='index-ulogovan.html') Homepage Ulogovan
+                  li
+                    a(href='profil.html') Profil strana
+              li
+                form.navbar-form.navbar-right.search-form(action='')
+                  .form-group.has-feedback
+                    label.sr-only(for='search') Search
+                    input#search.form-control(type='text', name='search', placeholder='Search')
+                    span.glyphicon.glyphicon-search.form-control-feedback
+
+//Social links
+mixin social-networks
+  .social-networks.clearfix
+    .left
+      a.btn-red(href='#')
+        i.fa.fa-thumbs-o-up
+        | Like
+      a.btn-dark(href='#')
+        i.fa.fa-thumbs-o-down
+        | Dislike
+    .right
+      h5 Podeli na:
+      ul.clearfix
+        li
+          a(href='#')
+            i.fa.fa-facebook-square
+        li
+          a(href='#')
+            i.fa.fa-twitter-square
+        li
+          a(href='#')
+            i.fa.fa-google-plus-square
+        li
+          a(href='#')
+            i.fa.fa-youtube-square
+        li
+          a(href='#')
+            i.fa.fa-behance-square
+        li
+          a(href='#')
+            i.fa.fa-envelope-square
+        li
+          a(href='#')
+            i.fa.fa-linkedin-square
+
+//Quick post
+mixin quick-post
+  .quick-post
+    form.form-signin(role='form')
+      //- h1.form-signin-heading Please sign in
+      .row
+        .form-group.col-md-8
+          label(for="email") Email address
+          input.form-control(type='email', placeholder='Email address', required='')
+        .form-group.col-md-4
+          label(for="sel1") Select list:
+          select.form-control#sel1
+            option.selected Choose a category...
+            option Cars and girls
+            option Everyday stuff
+            option Animals
+            option Internet news
+            option Gaming
+        .form-group.col-md-12
+          label(for="topic-content") Topic content
+          textarea.form-control(type='topic-content', placeholder='Enter Topic content', rows="3", required='')
+      .form-bottom
+        label.checkbox
+          input(type='checkbox', value='remember-me')
+          |  Remember me
+        button.btn-red(type='submit') Sign in
+
+//Grid item
+mixin grid-item(imagelink, image, imagealt, userlink, username, date, titlelink, title, categorylink, category, description, posttype)
+  .grid-item
+    article
+      if imagelink, image, imagealt
+        a(href=imagelink)
+          img.img-responsive(src=image, alt=imagealt)
+      else
+        
+      .post-content.clearfix(class!=attributes.class)
+        h1 
+          a(href=userlink) #{username}
+          span #{date}
+        h2
+          a(href=titlelink) #{title}
+        h3
+          a(href=categorylink) #{category}
+        p #{description}
+        .stats
+          .favs
+            i.fa.fa-female 
+            | 213
+          .boys
+            i.fa.fa-male
+            | 42
+          .girls
+            i.fa.fa-heart
+            | 21
+
+//Aside main
+mixin aside-main
+  aside.main-sidebar.col-md-3
+    article
+      h4 
+        a(href="#") Top posts
+      ul
+        li
+          a(href="#") Caramels caramels lemon drops liquorice pudding
+        li
+          a(href="#") Tart cheesecake danish candy chocolate
+        li
+          a(href="#") Toffee lemon drops jujubes jelly  bar liquorice
+        li
+          a(href="#") Caramels caramels lemon drops liquorice pudding
+        li
+          a(href="#") Tart cheesecake danish candy chocolate
+        li
+          a(href="#") Toffee lemon drops jujubes jelly  bar liquorice
+    
+    article.most-loved
+      h4 
+        a(href="#") Most loved
+      ul
+        li
+          a(href="#") Caramels caramels lemon drops liquorice pudding
+        li
+          a(href="#") Tart cheesecake danish candy chocolate
+        li
+          a(href="#") Toffee lemon drops jujubes jelly  bar liquorice
+
+//Aside profile
+mixin aside-profile
+  aside.profile-sidebar.col-md-3
+    .top
+      .img-holder
+        img.img-responsive(src='assets/img/post-test-4.jpg', alt='Profile image')
+      a(href='#').edit-img
+        i.fa.fa-pencil
+    .info
+      h5 Ime Prezime
+      span Age: 29
+    ul
+      li.active
+        a(href='#') 
+          i.fa.fa-user
+          | Profile
+      li
+        a(href='#')
+          i.fa.fa-bell
+          | Notification
+      li
+        a(href='#')
+          i.fa.fa-cog
+          | Options
+      li
+        a(href='#')
+          i.fa.fa-anchor
+          | Follows
+
+//Profile header
+mixin profile-header
+  section.profile-header.clearfix
+    .user-info
+      .top
+        .img-holder
+          img.img-responsive(src='assets/img/post-test-4.jpg', alt='Profile image')
+        a(href='#').edit-img
+          i.fa.fa-pencil
+      .info
+        h5 Ime Prezime
+        span Age: 29
+    a.btn-olive.pull-right(href="#") Follow
+    ul.stats.clearfix      
+      li
+        i.fa.fa-female 
+        | 213
+        i.fa.fa-male
+        | 42
+        span Followers
+      li
+        i.fa.fa-female 
+        | 213
+        i.fa.fa-male
+        | 42
+        span Following
+      li
+        | 5.6
+        span Rating
+      
+//Profile tabs
+mixin profile-tabs
+  .profile-tabs.tabs
+    ul.nav.nav-tabs(role="tablist")
+      li(role="presentation" class="active")
+        a(href="#profile-tab-pitanja", aria-controls="profile-tab-pitanja", role="tab", data-toggle="tab") Pitanja
+      li(role="presentation")
+        a(href="#profile-tab-odgovori", aria-controls="profile-tab-odgovori", role="tab", data-toggle="tab") Odgovori
+      li(role="presentation")
+        a(href="#profile-tab-komentari", aria-controls="profile-tab-komentari", role="tab", data-toggle="tab") Komentari
+
+  div.tab-content
+    div(role="tabpanel" class="tab-pane active" id="profile-tab-pitanja")
+      +comment
+      +comment
+      +comment
+      +comment
+    div(role="tabpanel" class="tab-pane" id="profile-tab-odgovori")
+      | Odgovori
+    div(role="tabpanel" class="tab-pane" id="profile-tab-komentari")
+      | O meni
+
+
+//Comment
+mixin comment
+  .comment.clearfix      
+    .comment-user
+      .user-img
+        img.img-responsive(src='assets/img/post-test-2.jpg', alt='Profile image')
+      .info
+        h5 Ime Prezime
+        span 20.05.2015. 21:33
+    .comment-content
+      .description
+        p Donut tootsie roll cake carrot cake. Liquorice carrot cake cotton candy soufflé sugar plum cotton candy jelly-o gummies.
+        +social-networks
+
+//Category header    
+mixin category-header
+  .category-header.clearfix
+    .top
+      h3.pull-left Marriage & Weddings
+      a.pull-right.btn-red Follow
+    p Donut tootsie roll cake carrot cake. Liquorice carrot cake cotton candy soufflé sugar plum cotton candy jelly-o gummies. Jujubes biscuit jujubes carrot cake candy croissant.
+
+//Footer
+mixin footer
+  footer
+    .row
+      .container
+        .col-md-4
+          a.navbar-brand(href='#')
+            img.img-responsive(src='assets/img/logo.png', alt='Logo')
+        .col-md-4
+          h1 Favourite questions
+          hr
+          ul
+            li
+              a Link jedan
+            li
+              a Link jedan
+            li
+              a Link jedan
+        .col-md-4
+          h1 Favourite questions
+          hr
+          ul
+            li
+              a Link jedan
+            li
+              a Link jedan
+            li
+              a Link jedan
+
+//Scripts
+mixin scripts
+  script(src='/assets/js/jquery-2.1.4.min.js')
+  script(src='/assets/js/bootstrap.min.js')
+  script(src='/assets/js/functions.js', type='text/javascript')
+  script(src='/assets/js/isotope.pkgd.min.js')
+  //- script(src='/assets/js/jquery.isotope.js')
+  script(src='/assets/js/functions.js', type='text/javascript')

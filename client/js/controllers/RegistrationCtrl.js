@@ -8,6 +8,7 @@ app.controller('RegistrationCtrl', [
   'dateService',
   'Account',
   function($scope, countryService, dateService, Account){
+    document.body.id = '';
     $scope.countries = countryService.get();
     $scope.sex = dateService.getSex();
     $scope.days = dateService.getDay();

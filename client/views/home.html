@@ -1,6 +1,7 @@
-<section class="container">
+<div id="content-wrap">
+  <section class="container">
   <div class="row">
-    <div class="content col-md-9">
+    <div class="main-content col-md-9">
       <div class="row">
         <div class="col-md-12">
           <div class="quick-post">
@@ -38,34 +39,24 @@
         </div>
       </div>
       <div class="grid posts"  id="grid-posts">
-        <div class="grid-item col-md-3" ng-repeat="question in questions">
-          <article><a href="#"><img src="img/post-test-1.jpg" alt="Test image 1" class="img-responsive"/></a>
-            <!--TODO ako je musko onda je boy-post a ako je zensko onda girl-post-->
+        <div class="grid-item" ng-repeat="question in questions">
+          <article>
+            <a href="/#/question/{{question.id}}">
+              <img src="img/post-test-6.jpg" alt="Alt tekst za sliku" class="img-responsive"/>
+            </a>
             <div class="post-content clearfix {{question.gender}}-post">
               <h1>
-                <a ng-show="{{question.isAnonymous}}">Anonymous</a>
-                <a href="/#/user-detail/{{question.accountId}}" ng-show="{{!question.isAnonymous}}">{{question.account.username}}</a>
-                <span>{{question.timestamp}}</span><br/><br/>
-                Category: {{question.category.name}}</h1>
-
-              <h3><a href="/#/question/{{question.id}}">{{question.title}}</a></h3>
-              <h2>{{question.text}}</h2>
+                <a href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
+                <span>{{question.time}}</span>
+              </h1>
+              <h2><a href="/#/question/{{question.id}}">{{question.title}}</a></h2>
+              <h3><a href="/#/category/{{question.category.id}}">{{question.category.name}}</a></h3>
+              <p>{{question.text}}</p>
               <div class="stats">
-                <!--<div>Answers: {{question.answ.count}}</div>-->
-                <!--<div class="favs"><span class="glyphicon glyphicon-heart"></span>213</div>-->
-                <div class="boys"><span class="glyphicon glyphicon-comment"></span>{{question.ans_male}}</div>
-                <div class="girls"><span class="glyphicon glyphicon-comment"></span>{{question.ans_female}}</div>
-                <div class="boys"><span class="glyphicon glyphicon-heart"></span>{{question.likes_male}}</div>
-                <div class="girls"><span class="glyphicon glyphicon-heart"></span>{{question.likes_female}}</div>
-              </div>
-              <div>
-                <h1>
-                  <span>Question for:
-                    <span ng-show="question.opinionFrom == 1">boys</span>
-                    <span ng-show="question.opinionFrom == 2">girls</span>
-                    <span ng-show="question.opinionFrom == 3 || question.opinionFrom == undefined">boys and girls</span>
-                  </span>
-                </h1>
+                <div class="girls"><i class="fa fa-female"> </i>{{question.ans_female}}</div>
+                <div class="boys"><i class="fa fa-male"></i>{{question.ans_male}}</div>
+                <div class="girls"><i class="fa fa-thumbs-o-up"></i>{{question.likes_male}}</div>
+                <div class="girls"><i class="fa fa-thumbs-o-down"></i>{{question.likes_female}}</div>
               </div>
             </div>
           </article>
@@ -79,18 +70,19 @@
           <li ng-repeat="category in categories"><a href="/#/category/{{category.id}}">{{category.name}} ({{category.count.count}})</a></li>
         </ul>
       </article>
+      <article class="most-loved">
+        <h4 style="color: #fff;">Most liked questions:</h4>
+        <ul>
+          <li ng-repeat="q in mostLiked"><a href="/#/question/{{q.id}}">{{q.title}}</a></li>
+        </ul>
+      </article>
       <article>
         <h4 style="color:white">Top questions:</h4>
         <ul>
           <li ng-repeat="top in topQuestions"><a href="/#/question/{{top.id}}">{{top.title}}</a></li>
         </ul>
       </article>
-      <article>
-        <h4 style="color: #fff;">Most liked questions:</h4>
-        <ul>
-          <li ng-repeat="q in mostLiked"><a href="/#/question/{{q.id}}">{{q.title}}</a></li>
-        </ul>
-      </article>
     </aside>
   </div>
 </section>
+</div>

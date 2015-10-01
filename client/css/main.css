@@ -395,21 +395,12 @@ input[type="button"]:focus {
   outline: 0;
 }
 
-header {
-  background: linear-gradient(to bottom, #202a31, rgba(32, 42, 49, 0.6)), url("../img/header-bg-1.jpg") bottom center no-repeat;
-  margin-bottom: 30px;
-  background-size: cover;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  height: 400px;
-}
-
 .quick-post {
   justify-content: center;
   align-items: center;
   padding: 30px 30px;
   color: #fff;
-  background: linear-gradient(to top, rgba(32, 42, 49, 0.8), rgba(32, 42, 49, 0.6)), url("../img/swirl_pattern.png") top center repeat;
+  background: linear-gradient(to top, rgba(32, 42, 49, 0.8), rgba(32, 42, 49, 0.6)), url("/img/swirl_pattern.png") top center repeat;
   margin-bottom: 30px;
   border-radius: 10px;
 }
@@ -513,82 +504,7 @@ h5 {
   padding-right: 30px;
 }
 
-.posts article {
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 30px;
-}
-
-.posts article .post-content {
-  padding: 20px;
-}
-
-.posts article .post-content.boy-post {
-  border-top: 4px solid #4385F5;
-}
-
-.posts article .post-content.girl-post {
-  border-top: 4px solid #E57368;
-}
-
-.posts article h1, .posts article h1 a {
-  font-size: 12px;
-  font-weight: 500;
-  margin: 0;
-  margin-bottom: 15px;
-  font-family: 'Fira Sans', sans-serif;
-}
-
-.posts article h1 span, .posts article h1 a span {
-  display: inline-flex;
-  float: right;
-}
-
-.posts article h2, .posts article h2 a {
-  font-size: 18px;
-  line-height: 1.4;
-  font-weight: 500;
-  margin: 0;
-  margin-bottom: 15px;
-  color: #202A31;
-  display: block;
-}
-
-.posts article .stats {
-  float: right;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  font-family: 'Fira Sans', sans-serif;
-}
-
-.posts article .stats .favs, .posts article .stats .boys, .posts article .stats .girls {
-  float: left;
-  margin-left: 10px;
-}
-
-.posts article .stats .favs span {
-  color: #FFDC00;
-}
-
-.posts article .stats .boys span {
-  color: #4385F5;
-}
-
-.posts article .stats .girls span {
-  color: #E57368;
-}
-
-.posts article .stats span {
-  margin-right: 5px;
-  top: 2px;
-  position: relative;
-}
-
-#content-wrap .post-detail-content, #content-wrap .content {
+.post-detail-content, .content {
   background-color: #fff;
   padding: 30px;
   border-bottom-left-radius: 10px;
@@ -596,47 +512,58 @@ h5 {
   margin-bottom: 30px;
 }
 
-#content-wrap .post-detail-content.boy-post, #content-wrap .content.boy-post {
+.post-detail-content.boy-post, .content.boy-post {
   border-top: 4px solid #4385F5;
 }
 
-#content-wrap .post-detail-content.girl-post, #content-wrap .content.girl-post {
+.post-detail-content.girl-post, .content.girl-post {
   border-top: 4px solid #E57368;
 }
 
-#content-wrap .content {
+.content {
   border-radius: 10px;
 }
 
-#content-wrap header {
-  height: auto;
-  background: #202A31;
+.post-detail-content .social-networks {
+  margin-top: 10px;
 }
 
-#content-wrap .post-img {
+.main-content {
+  margin-bottom: 30px;
+}
+
+header {
+  height: auto;
+  background: #202A31;
+  margin-bottom: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.post-img {
   margin-bottom: 0px;
 }
 
-#content-wrap .post-img img {
+.post-img img {
   width: 100%;
   overflow: hidden;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-#content-wrap .post-user {
+.post-user {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-#content-wrap .post-user .username-wrap {
+.post-user .username-wrap {
   display: flex;
   align-items: center;
 }
 
-#content-wrap .post-user .username-wrap .user-thumb {
+.post-user .username-wrap .user-thumb {
   height: 30px;
   width: 30px;
   display: flex;
@@ -648,37 +575,44 @@ h5 {
   margin-right: 10px;
 }
 
-#content-wrap .post-user .username-wrap .user-thumb img {
+.post-user .username-wrap .user-thumb img {
   height: 100%;
 }
 
-#content-wrap .post-user a {
+.post-user a {
   font-size: 16px;
   font-weight: 500;
   margin: 0;
   font-family: 'Fira Sans', sans-serif;
 }
 
-#content-wrap .post-user span {
+.post-user span {
   float: right;
   right: 0;
 }
 
-#content-wrap .post-title {
+.post-title {
   width: 100%;
   margin-bottom: 30px;
 }
 
-#content-wrap .post-title h1 {
+.post-title h1 {
   font-size: 30px;
   font-weight: 800;
   margin: 0;
   float: left;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   line-height: 1.2;
 }
 
-#content-wrap .post-title .stats {
+.post-title h2 a {
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.post-title .stats {
   float: left;
   font-size: 12px;
   display: flex;
@@ -688,27 +622,134 @@ h5 {
   font-family: 'Fira Sans', sans-serif;
 }
 
-#content-wrap .post-title .stats .favs, #content-wrap .post-title .stats .boys, #content-wrap .post-title .stats .girls {
+.post-title .stats .girls, .post-title .stats .boys, .post-title .stats .likes, .post-title .stats .dislikes {
   float: left;
   margin-right: 10px;
 }
 
-#content-wrap .post-title .stats .favs span {
-  color: #FFDC00;
-}
-
-#content-wrap .post-title .stats .boys span {
-  color: #4385F5;
-}
-
-#content-wrap .post-title .stats .girls span {
+.post-title .stats .girls i {
   color: #E57368;
 }
 
-#content-wrap .post-title .stats span {
+.post-title .stats .boys i {
+  color: #4385F5;
+}
+
+.post-title .stats .likes i {
+  color: #FFDC00;
+}
+
+.post-title .stats .dislikes i {
+  color: #202A31;
+}
+
+.post-title .stats i {
   margin-right: 5px;
-  top: 2px;
   position: relative;
+}
+
+#content-wrap header {
+  background: linear-gradient(to bottom, #202a31, rgba(32, 42, 49, 0.6)), url("/img/header-bg-1.jpg") bottom center no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
+#content-wrap .posts article {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+#content-wrap .posts article .post-content {
+  padding: 20px;
+}
+
+#content-wrap .posts article .post-content.boy-post {
+  border-top: 4px solid #4385F5;
+}
+
+#content-wrap .posts article .post-content.girl-post {
+  border-top: 4px solid #E57368;
+}
+
+#content-wrap .posts article h1, #content-wrap .posts article h1 a {
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+#content-wrap .posts article h1 span, #content-wrap .posts article h1 a span {
+  display: inline-flex;
+  float: right;
+}
+
+#content-wrap .posts article h1 {
+  margin-bottom: 10px;
+}
+
+#content-wrap .posts article h2, #content-wrap .posts article h2 a {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 500;
+  margin: 0;
+  color: #202A31;
+  display: block;
+}
+
+#content-wrap .posts article h2 {
+  margin-bottom: 0px;
+}
+
+#content-wrap .posts article h3, #content-wrap .posts article h3 a {
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 500;
+  margin: 0;
+  margin-bottom: 10px;
+  color: #aaa;
+  display: block;
+}
+
+#content-wrap .posts article p {
+  margin-bottom: 10px;
+}
+
+#content-wrap .posts article .stats {
+  float: right;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+#content-wrap .posts article .stats i {
+  margin-right: 5px;
+  position: relative;
+}
+
+#content-wrap .posts article .stats .girls, #content-wrap .posts article .stats .boys, #content-wrap .posts article .stats .likes, #content-wrap .posts article .stats .dislikes {
+  float: left;
+  margin-left: 10px;
+}
+
+#content-wrap .posts article .stats .girls i {
+  color: #E57368;
+}
+
+#content-wrap .posts article .stats .boys i {
+  color: #4385F5;
+}
+
+#content-wrap .posts article .stats .likes i {
+  color: #FFDC00;
+}
+
+#content-wrap .posts article .stats .dislikes i {
+  color: #202A31;
 }
 
 .main-sidebar article {
@@ -749,6 +790,296 @@ h5 {
   opacity: 1;
 }
 
+.category-header {
+  padding: 30px 30px;
+  color: #fff;
+  background: linear-gradient(to top, rgba(32, 42, 49, 0.8), rgba(32, 42, 49, 0.6)), url("/img/swirl_pattern.png") top center repeat;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.category-header .top {
+  display: block;
+  float: left;
+  width: 100%;
+}
+
+.category-header .top h3 {
+  display: inline-block;
+  width: auto;
+  color: #fff;
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-sidebar .top {
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.profile-sidebar .top .img-holder {
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.profile-sidebar .top .img-holder img {
+  height: 100%;
+}
+
+.profile-sidebar .top a.edit-img {
+  padding: 5px;
+  background-color: #E57368;
+  border-radius: 50%;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 12px;
+}
+
+.profile-sidebar .info {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.profile-sidebar .info h5 {
+  margin-bottom: 5px;
+}
+
+.profile-sidebar .info span {
+  font-size: 14px;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.profile-sidebar ul {
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.profile-sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.profile-sidebar ul li i {
+  margin-right: 10px;
+}
+
+.profile-sidebar ul li a {
+  color: #202A31;
+}
+
+.profile-sidebar ul li.active a {
+  color: #E57368;
+}
+
+.profile-header {
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #eee;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.profile-header .user-info {
+  float: left;
+  display: flex;
+  align-items: center;
+}
+
+.profile-header .user-info .top {
+  margin: 0 auto;
+  position: relative;
+  float: left;
+  margin-right: 20px;
+}
+
+.profile-header .user-info .top .img-holder {
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.profile-header .user-info .top .img-holder img {
+  height: 100%;
+}
+
+.profile-header .user-info .top a.edit-img {
+  padding: 5px;
+  background-color: #E57368;
+  border-radius: 50%;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 12px;
+}
+
+.profile-header .user-info .info {
+  text-align: left;
+  float: left;
+}
+
+.profile-header .user-info .info h5 {
+  margin-bottom: 0px;
+}
+
+.profile-header .user-info .info span {
+  font-size: 14px;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+}
+
+.profile-header ul {
+  float: right;
+  margin-right: 30px;
+}
+
+.profile-header ul li {
+  float: left;
+  text-align: center;
+  margin-right: 30px;
+  font-size: 16px;
+}
+
+.profile-header ul li:last-child {
+  margin-right: 0;
+}
+
+.profile-header ul li i {
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.profile-header ul li i:first-child {
+  margin-left: 0;
+}
+
+.profile-header ul li i.fa-female {
+  color: #E57368;
+}
+
+.profile-header ul li i.fa-male {
+  color: #4385F5;
+}
+
+.profile-header ul li span {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.comment {
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+  border-bottom: 4px solid #4385F5;
+}
+
+.comment .comment-user {
+  display: flex;
+  align-items: center;
+}
+
+.comment .comment-user .user-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  float: left;
+  margin-right: 20px;
+}
+
+.comment .comment-user .user-img img {
+  height: 100%;
+}
+
+.comment .comment-user .info {
+  text-align: left;
+}
+
+.comment .comment-user .info h5 {
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+.comment .comment-user .info span {
+  font-size: 14px;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+}
+
+.comment .comment-content {
+  float: left;
+  padding-left: 70px;
+}
+
+.tabs {
+  margin-bottom: 15px;
+}
+
+.tabs a {
+  color: #202A31;
+}
+
+.tab-content {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.social-networks {
+  display: block;
+  width: 100%;
+  text-align: right;
+}
+
+.social-networks .left a {
+  margin-right: 10px;
+  float: left;
+}
+
+.social-networks .left a i {
+  margin-right: 5px;
+}
+
+.social-networks .right h5 {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.social-networks .right ul {
+  float: right;
+  margin-bottom: 0;
+}
+
+.social-networks .right ul li {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+}
+
+.social-networks .right ul li:last-child {
+  margin-right: 0;
+}
+
+.social-networks .right ul li a {
+  color: #202A31;
+  font-size: 18px;
+}
+
+.social-networks .right ul li a:hover {
+  color: #E57368;
+}
+
 footer {
   background-color: #202A31;
   color: #fff;
@@ -779,12 +1110,26 @@ footer ul li a {
   font-size: 14px;
 }
 
-.btn-red, .btn-dark, .btn-blue, .btn-border, .btn-green, .btn-yellow {
+.btn-red, .btn-dark, .btn-blue, .btn-border, .btn-green, .btn-yellow, .btn-olive {
   border: none;
+  display: inline-block;
   color: #fff !important;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
-.btn-red:hover, .btn-dark:hover, .btn-blue:hover, .btn-border:hover, .btn-green:hover, .btn-yellow:hover {
+.btn-red:hover, .btn-dark:hover, .btn-blue:hover, .btn-border:hover, .btn-green:hover, .btn-yellow:hover, .btn-olive:hover {
   color: #fff;
   opacity: 0.8;
 }
@@ -807,6 +1152,10 @@ footer ul li a {
 
 .btn-yellow {
   background-color: #FFDC00;
+}
+
+.btn-olive {
+  background-color: #3D9970;
 }
 
 .btn-border {
@@ -887,8 +1236,4 @@ textarea {
   margin: 0;
   margin-left: 0 !important;
   margin-right: 10px;
-}
-
-.dropdown-toggle{
-  cursor: pointer;
 }

@@ -13,6 +13,7 @@ app.controller('EditProfileCtrl', [
   'dateService',
   'detailsService',
   function($scope, Question, Account, Answer, Category, Interest, countryService, dateService, detailsService){
+    document.body.id = '';
     $scope.countries = countryService.get();
     $scope.relationships = detailsService.getRelationship();
     $scope.occupations = detailsService.getOccupation();

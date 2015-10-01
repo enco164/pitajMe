@@ -9,7 +9,7 @@ app.controller('HomeCtrl', [
   'Post',
   'Like',
   function($scope, Account, Category, Post){
-
+    document.body.id = 'content-wrap';
     $scope.class = 'content-wrap';
 
     $scope.questions = Post.find({
@@ -30,8 +30,7 @@ app.controller('HomeCtrl', [
         if (value[i].account.sex == 'Male') $scope.questions[i].gender = 'boy';
         else $scope.questions[i].gender = 'girl';
 
-        var timestamp = $scope.questions[i].timestamp;
-        $scope.questions[i].timestamp = time(timestamp);
+        $scope.questions[i].time = time($scope.questions[i].timestamp);
 
         $scope.questions[i].answ = Post.answers.count({
           id: $scope.questions[i].id
@@ -54,12 +53,6 @@ app.controller('HomeCtrl', [
 
       }
     }, function(httpResponse){});
-
-    $scope.categories = Category.find({}, function(value){
-      console.log(value);
-    }, function(httpResponse){
-      console.log(httpResponse);
-    });
 
     $scope.question = {
       title: "",
