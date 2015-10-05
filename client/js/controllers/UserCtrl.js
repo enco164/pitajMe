@@ -25,6 +25,7 @@ app.controller('UserCtrl', [
         id: $scope.params.id,
         filter: {include: ['following', 'followers']}
       }, function(){
+        //TODO error kada je korisnik izlogovan (zbog followera)
         var date = new Date(Date.now() - (new Date($scope.account.dob)).getTime());
         $scope.account.age = Math.abs(date.getUTCFullYear() - 1970);
         $scope.account.dob = getDate($scope.account.dob);

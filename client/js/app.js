@@ -6,7 +6,8 @@ var app = angular
     'ngResource',
     'ngRoute',
     'ngAnimate',
-    'lbServices'
+    'lbServices',
+    'iso.directives'
   ])
   .config(['$routeProvider', '$locationProvider', function($routeProvider,
                                                            $locationProvider) {

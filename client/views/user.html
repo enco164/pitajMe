@@ -18,8 +18,11 @@
                 <div class="info">
                   <h5>{{account.username}}</h5><span>Age: {{account.age}}</span>
                 </div>
-              </div><a href="#"><a href="" ng-show="isFollowing" ng-click="unfollow()" class="btn-olive pull-right">Unfollow</a>
-              <a href="" ng-show="!isFollowing" ng-click="follow()" class="btn-olive pull-right">Follow</a></a>
+              </div>
+              <a href="">
+                <a href="" ng-show="isFollowing && logged" ng-click="unfollow()" class="btn-olive pull-right">Unfollow</a>
+                <a href="" ng-show="!isFollowing && logged" ng-click="follow()" class="btn-olive pull-right">Follow</a>
+              </a>
               <ul class="stats clearfix">
                 <!--TODO FOLLOWERS/FOLLOWING-->
                 <li>
@@ -237,9 +240,9 @@
                             <i class="fa fa-thumbs-o-down"></i>Dislike</a>
                           <a href="" ng-show="question.isDisliked" ng-click="undislikePost(question);" class="btn-dark">
                             <i class="fa fa-thumbs-o-down"></i>Undislike</a>
-                          <button ng-show="question.owner" ng-click="deletePost(question)"><i class="fa fa-trash-o"></i> delete</button>
-                          <button ng-show="!question.editing && question.owner" ng-click="question.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
-                          <button ng-show="question.editing && question.owner" ng-click="updatePost(question)"><i class="fa fa-floppy-o"></i> save</button>
+                          <button class="btn btn-default btn-sm" ng-show="question.owner" ng-click="deletePost(question)"><i class="fa fa-trash-o"></i> delete</button>
+                          <button class="btn btn-default btn-sm" ng-show="!question.editing && question.owner" ng-click="question.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
+                          <button class="btn btn-default btn-sm" ng-show="question.editing && question.owner" ng-click="updatePost(question)"><i class="fa fa-floppy-o"></i> save</button>
                         </div>
                         <div class="right social">
                           <h5>Share:</h5>
@@ -285,9 +288,9 @@
                             <i class="fa fa-thumbs-o-down"></i>Dislike</a>
                           <a href="" ng-show="answer.isDisliked" ng-click="undislikePost(answer);" class="btn-dark">
                             <i class="fa fa-thumbs-o-down"></i>Undislike</a>
-                          <button ng-show="answer.owner" ng-click="deletePost(answer)"><i class="fa fa-trash-o"></i> delete</button>
-                          <button ng-show="!answer.editing && answer.owner" ng-click="answer.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
-                          <button ng-show="answer.editing && answer.owner" ng-click="updatePost(answer)"><i class="fa fa-floppy-o"></i> save</button>
+                          <button class="btn btn-default btn-sm" ng-show="answer.owner" ng-click="deletePost(answer)"><i class="fa fa-trash-o"></i> delete</button>
+                          <button class="btn btn-default btn-sm" ng-show="!answer.editing && answer.owner" ng-click="answer.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
+                          <button class="btn btn-default btn-sm" ng-show="answer.editing && answer.owner" ng-click="updatePost(answer)"><i class="fa fa-floppy-o"></i> save</button>
                         </div>
                       </div>
                     </div>
@@ -320,9 +323,9 @@
                             <i class="fa fa-thumbs-o-down"></i>Dislike</a>
                           <a href="" ng-show="comment.isDisliked" ng-click="undislikePost(comment);" class="btn-dark">
                             <i class="fa fa-thumbs-o-down"></i>Undislike</a>
-                          <button ng-show="comment.owner" ng-click="deletePost(comment)"><i class="fa fa-trash-o"></i> delete</button>
-                          <button ng-show="!comment.editing && comment.owner" ng-click="comment.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
-                          <button ng-show="comment.editing && comment.owner" ng-click="updatePost(comment)"><i class="fa fa-floppy-o"></i> save</button>
+                          <button class="btn btn-default btn-sm" ng-show="comment.owner" ng-click="deletePost(comment)"><i class="fa fa-trash-o"></i> delete</button>
+                          <button class="btn btn-default btn-sm" ng-show="!comment.editing && comment.owner" ng-click="comment.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
+                          <button class="btn btn-default btn-sm" ng-show="comment.editing && comment.owner" ng-click="updatePost(comment)"><i class="fa fa-floppy-o"></i> save</button>
                         </div>
                       </div>
                     </div>
