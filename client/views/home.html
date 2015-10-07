@@ -38,8 +38,8 @@
           </div>
         </div>
       </div>
-      <div class="grid posts"  id="grid-posts">
-        <div class="grid-item" ng-repeat="question in questions">
+      <div class="grid posts">
+        <div class="grid-item" ng-repeat="question in questions" on-last-repeat>
           <article>
             <a href="/#/question/{{question.id}}">
               <img src="img/post-test-6.jpg" alt="Alt tekst za sliku" class="img-responsive"/>

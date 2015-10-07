@@ -2,7 +2,15 @@
 /**
  * Created by enco on 7.9.15..
  */
-app.controller('HomeCtrl', [
+app
+  .directive('onLastRepeat', function() {
+    return function(scope, element, attrs) {
+      if (scope.$last) setTimeout(function(){
+        scope.$emit('onRepeatLast', element, attrs);
+      }, 1);
+    };
+  })
+  .controller('HomeCtrl', [
   '$scope',
   'Account',
   'Category',
@@ -11,6 +19,17 @@ app.controller('HomeCtrl', [
   function($scope, Account, Category, Post){
     document.body.id = 'content-wrap';
     $scope.class = 'content-wrap';
+
+    $scope.$on('onRepeatLast', function(scope, element, attrs){
+      $('.grid').isotope({
+        // options
+        layoutMode: 'masonry',
+        itemSelector: '.grid-item',
+        masonry: {
+          gutter: 30
+        }
+      });
+    });
 
     $scope.questions = Post.find({
       filter: {
@@ -27,7 +46,7 @@ app.controller('HomeCtrl', [
       }
     }, function(value, responseHeaders){
       for (var i = 0;i<$scope.questions.length; i++){
-        if (value[i].account.sex == 'Male') $scope.questions[i].gender = 'boy';
+        if (value[i].account && value[i].account.sex && value[i].account.sex == 'Male') $scope.questions[i].gender = 'boy';
         else $scope.questions[i].gender = 'girl';
 
         $scope.questions[i].time = time($scope.questions[i].timestamp);
@@ -35,7 +54,9 @@ app.controller('HomeCtrl', [
         $scope.questions[i].answ = Post.answers.count({
           id: $scope.questions[i].id
         }, function(value, responseHeaders){
-        }, function(httpResponse){});
+        }, function(httpResponse){
+
+        });
         /* TODO brojanje lajkova -- srediti da bude bolje, mozda cak i server to da uradi*/
         $scope.questions[i].likes_male = 0;
         $scope.questions[i].likes_female = 0;
@@ -47,8 +68,8 @@ app.controller('HomeCtrl', [
         $scope.questions[i].ans_female = 0;
         $scope.questions[i].ans_male = 0;
         for(var k = 0; k < $scope.questions[i].answers.length; k++){
-          if($scope.questions[i].answers[k].account.sex == 'Male') $scope.questions[i].ans_male++;
-          if($scope.questions[i].answers[k].account.sex == 'Female') $scope.questions[i].ans_female++;
+          if($scope.questions[i].answers[k].account && $scope.questions[i].answers[k].account.sex == 'Male') $scope.questions[i].ans_male++;
+          if($scope.questions[i].answers[k].account && $scope.questions[i].answers[k].account.sex == 'Female') $scope.questions[i].ans_female++;
         }
 
       }
