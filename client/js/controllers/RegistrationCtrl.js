@@ -7,7 +7,8 @@ app.controller('RegistrationCtrl', [
   'countryService',
   'dateService',
   'Account',
-  function($scope, countryService, dateService, Account){
+  '$location',
+  function($scope, countryService, dateService, Account, $location){
     document.body.id = '';
     $scope.countries = countryService.get();
     $scope.sex = dateService.getSex();
@@ -27,7 +28,11 @@ app.controller('RegistrationCtrl', [
       year: ""
     };
 
+    $scope.loading = false;
+
     $scope.createAccount = function(acc){
+      $scope.error = false;
+      $scope.loading = true;
       if (acc.day.name == 'Day' || acc.month.name == 'Month' || acc.year.name == 'Year'){
         $scope.error = true;
         $scope.errorMessage = 'Please insert Date of birth';
@@ -37,7 +42,6 @@ app.controller('RegistrationCtrl', [
       }else if(acc.sex == ''){
         $scope.error= true;
         $scope.errorMessage = 'Please choose gender';
-        document.getElementById("errorMessage").scrollIntoView();
       }else{
         Account.create({
           email: $scope.acc.email,
@@ -47,16 +51,22 @@ app.controller('RegistrationCtrl', [
           dob: $scope.acc.day.name+"/"+$scope.acc.month.name+"/"+$scope.acc.year.name,
           sex: $scope.acc.sex
         }, function(value, responseHeaders) {
-          window.location.replace('/#/login');
+          $location.path('/register-success');
+          $scope.loading = false;
         }, function(httpResponse){
           $scope.error= true;
-          $scope.errorMessage = httpResponse.data.error.message;
+          $scope.errorMessage = httpResponse.data;
+          $scope.loading = false;
         });
+      }
+
+      if($scope.error){
+        document.getElementById("errorMessage").scrollIntoView();
+        $scope.loading = false;
       }
     };
 
     $scope.logout = function(){
-      console.log("bla bla");
       Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
         console.log(err);
       });

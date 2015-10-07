@@ -62,7 +62,10 @@
                   <label class="checkbox">
                     <!--<input type="checkbox" value="remember-me"/> I agree to<a href="#">Terms &amp; Conditions</a>-->
                   </label>
-                  <button type="submit" class="btn-red" ng-click="createAccount(acc)">Register</button>
+                  <a type="submit"  class="btn-red" ng-click="createAccount(acc)">
+                    <div ng-show="loading" class="sp sp-circle" ></div>
+                    <span ng-show="!loading">Register</span>
+                  </a>
                 </div>
                 <div id="errorMessage" class="alert alert-danger" role="alert" ng-show="error">
                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -98,3 +101,40 @@
     </aside>
   </div>
 </section>
+
+<style>
+
+
+  .sp {
+    margin-top: 0.75em;
+    width: 2em;
+    height: 2em;
+  }
+
+  /* Spinner Circle Rotation */
+  .sp-circle {
+    border: 4px rgba(255, 255, 255, 0.5) solid;
+    border-top: 4px rgba(255, 255, 255, 1) solid;
+    border-radius: 50%;
+    -webkit-animation: spCircRot .6s infinite linear;
+    animation: spCircRot .6s infinite linear;
+  }
+
+  @-webkit-keyframes spCircRot {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(359deg);
+    }
+  }
+  @keyframes spCircRot {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+</style>

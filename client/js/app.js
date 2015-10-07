@@ -57,6 +57,22 @@ var app = angular
         controller: 'CategoryCtrl',
         controllerAs: 'category'
       })
+      .when('/verified', {
+        templateUrl: 'views/verified.html'
+      })
+      .when('/register-success', {
+        templateUrl: 'views/registerSuccess.html'
+      })
+      .when('/forgot-password', {
+        templateUrl: 'views/forgotPassword.html',
+        controller: 'ForgotPassCtrl',
+        controllerAs: 'forgotPass'
+      })
+      .when('/reset-password/:accessToken', {
+        templateUrl: 'views/resetPasswordForm.html',
+        controller: 'ResetPassCtrl',
+        controllerAs: 'forgotPass'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -34,7 +34,13 @@
   },
   "Account": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
+  },
+  "Email": {
+    "dataSource": "emailDs"
   },
   "Category": {
     "dataSource": "db",

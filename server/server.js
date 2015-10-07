@@ -1,12 +1,23 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 var path = require('path');
+var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 
 var app = module.exports = loopback();
 
 app.use(loopback.static(path.resolve(__dirname , '../client')));
 app.use(favicon(path.resolve(__dirname , '../client/favicon.ico')));
+
+// configure view handler
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// for parsing application/json
+app.use(bodyParser.json());
+
+// configure body parser
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.start = function() {
   // start the web server

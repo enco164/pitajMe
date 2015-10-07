@@ -8,21 +8,23 @@
             <form role="form" class="form-signin" ng-submit="login_fn();">
               <h1>Login</h1>
               <div class="form-group">
-                <label for="email">Username</label>
-                <input id="email" type="text" placeholder="Username" required="" class="form-control" ng-model="username"/>
+                <label for="username">Username</label>
+                <input id="username" type="text" placeholder="Username" required="" class="form-control" ng-model="username"/>
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" type="password" placeholder="Password" required="required" class="form-control" ng-model="password"/>
               </div>
+              <a href="/#/forgot-password">Forgot password?</a>
+              <hr class="form-devider"/>
+              <div class="form-bottom">
+                <label class="checkbox">
+                  <input type="checkbox" value="remember-me" checked="checked" ng-model="check"/> Remember me
+                </label>
+                <button type="submit" value="Log in" class="btn btn-red" ng-click="login_fn();">Log in</button>
+              </div>
             </form>
-            <hr class="form-devider"/>
-            <div class="form-bottom">
-              <label class="checkbox">
-                <input type="checkbox" value="remember-me" checked="checked" ng-model="check"/> Remember me
-              </label>
-              <button type="submit" class="btn-red" ng-click="login_fn();">Log in</button>
-            </div>
+
             <br/>
             <div class="alert alert-danger" role="alert" ng-show="message" style="text-transform: uppercase;">
               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

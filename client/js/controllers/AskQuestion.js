@@ -4,10 +4,10 @@
  */
 app.controller('AskQuestionCtrl', [
   '$scope',
-  'Question',
+  'Post',
   'Account',
   'Category',
-  function($scope, Question, Account, Category){
+  function($scope, Post, Account, Category){
     document.body.id = '';
     $scope.error = false;
 
@@ -22,11 +22,12 @@ app.controller('AskQuestionCtrl', [
     $scope.categories = Category.find();
 
     $scope.sendQuestion = function(question){
-      Question.create({
+      Post.create({ type: 'question',
         title: $scope.question.title, text: $scope.question.text, isAnonymous: $scope.question.isAnonymous,
         accountId: $scope.question.accountId, categoryId: $scope.question.category.id
       },function(question, err){
         console.log("question", question || err);
+        window.location.replace('/#/question/'+question.id);
       }, function(httpResponse){
         console.log(httpResponse);
         $scope.message = httpResponse.data.error.message;
