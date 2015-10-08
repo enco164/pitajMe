@@ -24,8 +24,7 @@ app.controller('UserCtrl', [
       $scope.account = Account.findById({
         id: $scope.params.id,
         filter: {include: ['following', 'followers']}
-      }, function(){
-        //TODO error kada je korisnik izlogovan (zbog followera)
+      }, function(value, responseHeaders){
         var date = new Date(Date.now() - (new Date($scope.account.dob)).getTime());
         $scope.account.age = Math.abs(date.getUTCFullYear() - 1970);
         $scope.account.dob = getDate($scope.account.dob);
@@ -41,6 +40,8 @@ app.controller('UserCtrl', [
           if (e.sex == 'Male') $scope.account.followers_male++;
           else if (e.sex == 'Female') $scope.account.followers_female++;
         });
+      }, function(httpResponse){
+        console.log(httpResponse);
       });
     };
 
@@ -362,7 +363,6 @@ app.controller('UserCtrl', [
       });
     }, function(httpResponse){});
 
-    var weekBefore = new Date(new Date() - new Date(1000*60*60*24*7));
 
     $scope.topQuestions = Post.find({
       filter:{

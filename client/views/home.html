@@ -2,7 +2,7 @@
   <section class="container">
   <div class="row">
     <div class="main-content col-md-9">
-      <div class="row">
+      <div class="row" ng-show="logged">
         <div class="col-md-12">
           <div class="quick-post">
             <form role="form" class="form-signin">
@@ -46,7 +46,8 @@
             </a>
             <div class="post-content clearfix {{question.gender}}-post">
               <h1>
-                <a href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
+                <a ng-show="!question.isAnonymous" href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
+                <a ng-show="question.isAnonymous" href="">Anonymous</a>
                 <span>{{question.time}}</span>
               </h1>
               <h2><a href="/#/question/{{question.id}}">{{question.title}}</a></h2>
@@ -55,8 +56,8 @@
               <div class="stats">
                 <div class="girls"><i class="fa fa-female"> </i>{{question.ans_female}}</div>
                 <div class="boys"><i class="fa fa-male"></i>{{question.ans_male}}</div>
-                <div class="girls"><i class="fa fa-thumbs-o-up"></i>{{question.likes_male}}</div>
-                <div class="girls"><i class="fa fa-thumbs-o-down"></i>{{question.likes_female}}</div>
+                <div class="girls"><i class="fa fa-thumbs-o-up"></i>{{question.likes_female}}</div>
+                <div class="girls"><i class="fa fa-thumbs-o-down"></i>{{question.likes_male}}</div>
               </div>
             </div>
           </article>
