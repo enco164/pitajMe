@@ -6,7 +6,7 @@ var app = angular
     'ngResource',
     'ngRoute',
     'ngAnimate',
-    'lbServices',
+    'lbServices'
   ])
   .config(['$routeProvider', '$locationProvider', function($routeProvider,
                                                            $locationProvider) {

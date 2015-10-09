@@ -7,7 +7,9 @@ app.controller('AskQuestionCtrl', [
   'Post',
   'Account',
   'Category',
-  function($scope, Post, Account, Category){
+  '$location',
+  'AppAuth',
+  function($scope, Post, Account, Category, $location, AppAuth){
     document.body.id = '';
     $scope.error = false;
 
@@ -22,12 +24,18 @@ app.controller('AskQuestionCtrl', [
     $scope.categories = Category.find();
 
     $scope.sendQuestion = function(question){
-      Post.create({ type: 'question',
-        title: $scope.question.title, text: $scope.question.text, isAnonymous: $scope.question.isAnonymous,
-        accountId: $scope.question.accountId, categoryId: $scope.question.category.id
-      },function(question, err){
-        console.log("question", question || err);
-        window.location.replace('/#/question/'+question.id);
+      Post.create({
+        type: 'question',
+        title: $scope.question.title,
+        text: $scope.question.text,
+        isAnonymous: $scope.question.isAnonymous,
+        accountId: $scope.question.accountId,
+        categoryId: $scope.question.category.id,
+        timestamp: new Date(),
+        opinionFrom: parseInt(question.opinionFrom)
+
+      },function(question, header){
+        $location.path('/#/question/'+question.id);
       }, function(httpResponse){
         console.log(httpResponse);
         $scope.message = httpResponse.data.error.message;
@@ -35,10 +43,7 @@ app.controller('AskQuestionCtrl', [
     };
 
     $scope.logout = function(){
-      console.log("bla bla");
-      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
-        console.log(err);
-      });
+      AppAuth.logout();
     };
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');

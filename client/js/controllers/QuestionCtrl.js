@@ -207,6 +207,7 @@ app.controller('QuestionCtrl', [
         function successCb(value, responseHeaders){
           console.log(value);
           $scope.question.isLiked = false;
+          reloadQuestion();
         },
         function errorCb(error){
           console.log(error);

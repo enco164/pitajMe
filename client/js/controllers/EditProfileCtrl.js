@@ -12,7 +12,11 @@ app.controller('EditProfileCtrl', [
   'countryService',
   'dateService',
   'detailsService',
-  function($scope, Question, Account, Answer, Category, Interest, countryService, dateService, detailsService){
+  'LoopBackAuth',
+  '$http',
+  function($scope, Question, Account, Answer, Category,
+           Interest, countryService, dateService, detailsService,
+           LoopBackAuth, $http){
     document.body.id = '';
     $scope.countries = countryService.get();
     $scope.relationships = detailsService.getRelationship();
@@ -100,6 +104,38 @@ app.controller('EditProfileCtrl', [
         });
       }
     };
+
+
+    $scope.resetLoading = false;
+
+    $scope.resetPassword = function (passwords) {
+      $scope.resetLoading = true;
+      $http({
+        method: 'POST',
+        url: '/change-password?access_token='+ LoopBackAuth.accessTokenId,
+        data: {current: passwords.currentPassword, password: passwords.newPassword, confirmation: passwords.confirmation}
+      }).then(function successCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log(response);
+        $scope.resetLoading = false;
+        $('#responseMsgContent').text(response.data.content);
+
+        $('#passForm').modal('hide');
+        $('#responseMsg').modal('show');
+
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log(response);
+        $scope.resetLoading = false;
+        $('#responseMsgContent').text(response.data);
+
+        $('#passForm').modal('hide');
+        $('#responseMsg').modal('show');
+      });
+    };
+
 
 
     $scope.logout = function(){

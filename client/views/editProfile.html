@@ -106,6 +106,10 @@
                 <hr class="form-devider"/>
                 <div class="form-bottom">
                   <button type="submit" class="btn-red" ng-click="editAccount(account)">Save changes</button>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn-primary" data-toggle="modal" data-target="#passForm">
+                    Change password
+                  </button>
                 </div>
               </div>
             </div>
@@ -115,3 +119,88 @@
     </form>
   </div>
 </div>
+
+
+<!-- Modal Pass Form -->
+<div class="modal fade" id="passForm" tabindex="-1" role="dialog" aria-labelledby="passFormLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="passFormLabel">Change password</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="current_password">Current password:</label>
+          <input type="password" ng-model="passwords.currentPassword" id="current_password" class="form-control">
+        </div>
+        <div>
+          <label for="password">New password:</label>
+          <input type="password" ng-model="passwords.newPassword" id="password" class="form-control">
+        </div>
+        <div>
+          <label for="confirmation">Confirm new password:</label>
+          <input type="password" ng-model="passwords.confirmation" id="confirmation" class="form-control">
+        </div>
+        <br/>
+        <div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-default" data-dismiss="modal" ng-show="!resetLoading">Close</button>
+          <button type="button" class="btn-primary" ng-click="resetPassword(passwords);" ng-show="!resetLoading">Reset password</button>
+          <div ng-show="resetLoading" class="sp sp-circle" ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal response message -->
+<div class="modal fade" id="responseMsg" tabindex="-1" role="dialog" aria-labelledby="responseMsgTitle">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p id="responseMsgContent"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+
+  .sp {
+    margin: 0 auto;
+    width: 2em;
+    height: 2em;
+  }
+
+  /* Spinner Circle Rotation */
+  .sp-circle {
+    border: 4px rgba(255, 255, 255, 0.25) solid;
+    border-top: 4px black solid;
+    border-radius: 50%;
+    -webkit-animation: spCircRot .6s infinite linear;
+    animation: spCircRot .6s infinite linear;
+  }
+
+  @-webkit-keyframes spCircRot {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(359deg);
+    }
+  }
+  @keyframes spCircRot {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+</style>

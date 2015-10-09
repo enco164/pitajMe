@@ -103,7 +103,7 @@
       <!--POST ANSWER END-->
 
       <!-- **** ANSWERS **** -->
-      <div class="content">
+      <div class="content" ng-show="question.answers.length">
         <div class="row">
           <div class="col-md-12">
             <!--ANSWER ITEM-->
@@ -122,9 +122,9 @@
                   <textarea ng-show="answer.editing" type="text" placeholder="Enter Answer content" rows="2" required="required" class="form-control" ng-model="answer.text"></textarea>
                   <div class="social-networks clearfix">
                     <div class="left">
-                      <a href="" ng-show="!answer.liked" ng-click="likeAnswer(answer);" class="btn-red">
+                      <a href="" ng-show="!answer.liked" ng-click="likeAnswer(answer);" class="btn-red" >
                         <i class="fa fa-thumbs-o-up"></i>Like</a>
-                      <a href="" ng-show="answer.liked" ng-click="unlikeAnswer(answer);" class="btn-red">
+                      <a href="" ng-show="answer.liked" ng-click="unlikeAnswer(answer);" class="btn-red" >
                         <i class="fa fa-thumbs-o-up"></i>Unike</a>
                       <button type="button" data-toggle="collapse" data-target="#collapse_{{answer.id}}" aria-expanded="false" aria-controls="collapseExample">
                         <i class="fa fa-comment-o"></i> comment
