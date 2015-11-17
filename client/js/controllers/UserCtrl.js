@@ -11,11 +11,11 @@ app.controller('UserCtrl', [
   'Post',
   'Interest',
   'Like',
-  '$routeParams',
-  function($scope, Question, Account, Category, Follow, Post, Interest, Like, $routeParams){
+  '$stateParams',
+  function($scope, Question, Account, Category, Follow, Post, Interest, Like, $stateParams){
     document.body.id = '';
 
-    $scope.params = $routeParams;
+    $scope.params = $stateParams;
 
     $scope.isMe = Account.getCurrentId() == $scope.params.id;
     $scope.logged = !!Account.isAuthenticated();

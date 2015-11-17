@@ -2,10 +2,10 @@
  * Created by enco on 14.9.15..
  */
 app.controller(
-  'MainCtrl', function($scope, $route, $routeParams, $location, Account) {
+  'MainCtrl', function($scope, $route, $stateParams, $location, Account) {
     $scope.$route = $route;
     $scope.$location = $location;
-    $scope.$routeParams = $routeParams;
+    $scope.$routeParams = $stateParams;
 
     $scope.currentId = Account.getCurrentId();
     $scope.isAuthenticated = Account.isAuthenticated();

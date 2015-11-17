@@ -8,10 +8,10 @@ app.controller('CategoryCtrl', [
   'Post',
   'Account',
   'Like',
-  '$routeParams',
-  function($scope, Category, Post, Account, Like, $routeParams){
+  '$stateParams',
+  function($scope, Category, Post, Account, Like, $stateParams){
     document.body.id = '';
-    $scope.params = $routeParams;
+    $scope.params = $stateParams;
     $scope.interest = false;
 
 

@@ -2,10 +2,10 @@
  * Created by enco on 7.10.15..
  */
 app.controller('ResetPassCtrl', [
-  '$scope', 'Account','$routeParams', '$http',
-  function($scope, Account, $routeParams, $http) {
+  '$scope', 'Account','$stateParams', '$http',
+  function($scope, Account, $stateParams, $http) {
 
-    $scope.accessToken = $routeParams.accessToken;
+    $scope.accessToken = $stateParams.accessToken;
     $scope.password = '';
     $scope.confirmation = '';
     $scope.response = false;
@@ -15,7 +15,7 @@ app.controller('ResetPassCtrl', [
       $scope.response = false;
       $http({
         method: 'POST',
-        url: '/reset-password?access_token='+ $routeParams.accessToken,
+        url: '/reset-password?access_token='+ $stateParams.accessToken,
         data: {password: $scope.password, confirmation: $scope.confirmation}
       }).then(function successCallback(response) {
         // this callback will be called asynchronously

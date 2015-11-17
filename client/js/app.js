@@ -5,79 +5,89 @@ var app = angular
   .module('app', [
     'ngResource',
     'ngRoute',
+    'ui.router',
     'ngAnimate',
     'lbServices'
   ])
-  .config(['$routeProvider', '$locationProvider', function($routeProvider,
-                                                           $locationProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl',
-        controllerAs: 'home'
-      })
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'login'
-      })
-      .when('/question/:id', {
-        templateUrl: 'views/question.html',
-        controller: 'QuestionCtrl',
-        controllerAs: 'questionView'
-      })
-      .when('/registration', {
-        templateUrl: 'views/registration.html',
-        controller: 'RegistrationCtrl',
-        controllerAs: 'registration'
-      })
-      .when('/my-profile', {
-        templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl',
-        controllerAs: 'profile'
-      })
-      .when('/user-detail/:id', {
-        templateUrl: 'views/user.html',
-        controller: 'UserCtrl',
-        controllerAs: 'user'
-      })
-      .when('/ask-question', {
-        templateUrl: 'views/askQuestion.html',
-        controller: 'AskQuestionCtrl',
-        controllerAs: 'askQuestion'
-      })
-      .when('/edit-profile', {
-        templateUrl: 'views/editProfile.html',
-        controller: 'EditProfileCtrl',
-        controllerAs: 'editProfile'
-      })
-      .when('/category/:id', {
-        templateUrl: 'views/category.html',
-        controller: 'CategoryCtrl',
-        controllerAs: 'category'
-      })
-      .when('/verified', {
-        templateUrl: 'views/verified.html'
-      })
-      .when('/register-success', {
-        templateUrl: 'views/registerSuccess.html'
-      })
-      .when('/forgot-password', {
-        templateUrl: 'views/forgotPassword.html',
-        controller: 'ForgotPassCtrl',
-        controllerAs: 'forgotPass'
-      })
-      .when('/reset-password/:accessToken', {
-        templateUrl: 'views/resetPasswordForm.html',
-        controller: 'ResetPassCtrl',
-        controllerAs: 'forgotPass'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  .config(['$stateProvider', '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
 
-    //$locationProvider.html5Mode(true);
-  }])
+      $urlRouterProvider.otherwise('/');
+
+      $stateProvider
+        .state('home',{
+          url: '/',
+          templateUrl:'views/home.html',
+          controller: 'HomeCtrl',
+          controllerAs: 'home'
+        })
+        .state('login',{
+          url: '/login',
+          templateUrl:'views/login.html',
+          controller: 'LoginCtrl',
+          controllerAs: 'login'
+        })
+        .state('question',{
+          url: '/question/:id',
+          templateUrl: 'views/question.html',
+          controller: 'QuestionCtrl',
+          controllerAs: 'questionView'
+        })
+        .state('registration', {
+          url:'/registration',
+          templateUrl: 'views/registration.html',
+          controller: 'RegistrationCtrl',
+          controllerAs: 'registration'
+        })
+        .state('my-profile', {
+          url:'/my-profile',
+          templateUrl: 'views/profile.html',
+          controller: 'ProfileCtrl',
+          controllerAs: 'profile'
+        })
+        .state('user', {
+          url:'/user-detail/:id',
+          templateUrl: 'views/user.html',
+          controller: 'UserCtrl',
+          controllerAs: 'user'
+        })
+        .state('ask-question',{
+          url:'/ask-question',
+          templateUrl: 'views/askQuestion.html',
+          controller: 'AskQuestionCtrl',
+          controllerAs: 'askQuestion'
+        })
+        .state('edit-profile', {
+          url:'/edit-profile',
+          templateUrl: 'views/editProfile.html',
+          controller: 'EditProfileCtrl',
+          controllerAs: 'editProfile'
+        })
+        .state('category', {url:'/category/:id',
+          templateUrl: 'views/category.html',
+          controller: 'CategoryCtrl',
+          controllerAs: 'category'
+        })
+        .state('verified',{url: '/verified',
+          templateUrl: 'views/verified.html'
+        })
+        .state('register-success',{url:'/register-success',
+          templateUrl: 'views/registerSuccess.html'
+        })
+        .state('forgot-password',{url:'/forgot-password',
+          templateUrl: 'views/forgotPassword.html',
+          controller: 'ForgotPassCtrl',
+          controllerAs: 'forgotPass'
+        })
+        .state('reset-password',{
+          url:'/reset-password/:accessToken',
+          templateUrl: 'views/resetPasswordForm.html',
+          controller: 'ResetPassCtrl',
+          controllerAs: 'forgotPass'
+        });
+
+      //$locationProvider.html5Mode(true);
+    }])
   .config(function(LoopBackResourceProvider) {
 
     // Use a custom auth header instead of the default 'Authorization'

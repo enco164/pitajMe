@@ -10,9 +10,10 @@ app.controller('QuestionCtrl', [
   'Post',
   'Like',
   'Category',
-  '$routeParams',
-  function($scope, Answer, Question, Account, Post, Like, Category, $routeParams){
-    $scope.params = $routeParams;
+  '$stateParams',
+  '$timeout',
+  function($scope, Answer, Question, Account, Post, Like, Category, $stateParams, $timeout){
+    $scope.params = $stateParams;
     document.body.id = '';
     $scope.editing=false;
 
@@ -138,6 +139,12 @@ app.controller('QuestionCtrl', [
           $scope.a.timestamp = time($scope.a.timestamp);
           //$scope.answers.unshift(value);
           $scope.answers.push($scope.a);
+          var scrollId = '#anchor' + $scope.a.id;
+          $timeout(function(){
+            $('html, body').animate({
+              scrollTop: $(scrollId).offset().top-30
+            }, 1000);
+          }, 500);
         }, function(httpResponse){});
       }, function(httpResponse){
         console.log(httpResponse);
