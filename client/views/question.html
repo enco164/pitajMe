@@ -14,7 +14,8 @@
               <a href="/#/user-detail/{{question.accountId}}" class="user-thumb">
                 <img src="img/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
               </a>
-              <a href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
+              <a ng-if="question.isAnonymous" href="">Anonymous</a>
+              <a ng-if="!question.isAnonymous" href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
             </div>
             <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
           </div>
@@ -167,18 +168,6 @@
                                   <button class="btn btn-default btn-sm" ng-show="comment.owner" ng-click="deleteComment(comment, answer);"><i class="fa fa-trash-o"></i> delete</button>
                                   <button class="btn btn-default btn-sm" ng-show="!comment.editing && comment.owner" ng-click="comment.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
                                   <button class="btn btn-default btn-sm" ng-show="comment.editing && comment.owner" ng-click="updateComment(comment)"><i class="fa fa-floppy-o"></i> save</button>
-                                </div>
-                                <div class="right social">
-                                  <h5>Podeli na:</h5>
-                                  <ul class="clearfix">
-                                    <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-youtube-square"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance-square"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-square"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-                                  </ul>
                                 </div>
                               </div>
                             </div>

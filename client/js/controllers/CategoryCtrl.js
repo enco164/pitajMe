@@ -2,7 +2,16 @@
 /**
  * Created by nevena on 7.9.15..
  */
-app.controller('CategoryCtrl', [
+app
+  .directive('onLastRepeat', function() {
+    return function(scope, element, attrs) {
+      if (scope.$last) setTimeout(function(){
+        console.log(element);
+        scope.$emit('onRepeatLast', element, attrs);
+      }, 1);
+    };
+  })
+  .controller('CategoryCtrl', [
   '$scope',
   'Category',
   'Post',
@@ -14,6 +23,16 @@ app.controller('CategoryCtrl', [
     $scope.params = $stateParams;
     $scope.interest = false;
 
+    $scope.$on('onRepeatLast', function(scope, element, attrs){
+      $('.grid').isotope({
+        // options
+        layoutMode: 'masonry',
+        itemSelector: '.grid-item',
+        masonry: {
+          gutter: 30
+        }
+      });
+    });
 
     $scope.cat = Category.findById({
       id: $scope.params.id

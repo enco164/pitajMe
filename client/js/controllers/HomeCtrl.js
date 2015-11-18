@@ -30,6 +30,7 @@ app
             gutter: 30
           }
         });
+        $('.question-text').emoticonize({});
       });
 
       $scope.questions = Post.find({
@@ -178,8 +179,8 @@ app
       $scope.topQuestions = Post.find({
         filter:{
           where:{
-            type: "question",
-            timestamp: {gte: weekBefore}
+            type: "question"
+            //timestamp: {gte: weekBefore}
           },
           include: 'answers'
         }
@@ -194,8 +195,8 @@ app
       $scope.mostLiked = Post.find({
         filter:{
           where:{
-            type: "question",
-            timestamp: {gte: weekBefore}
+            type: "question"
+            //timestamp: {gte: weekBefore}
           },
           include: 'likes'
         }

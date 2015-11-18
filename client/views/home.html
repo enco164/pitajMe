@@ -22,11 +22,9 @@
                 </div>
               </div>
               <div>
-                <label>
-                  <input type="radio" name="opinionFrom" value="1" ng-model="question.opinionFrom"/>Male
-                  <input type="radio" name="opinionFrom" value="2" ng-model="question.opinionFrom"/>Female
-                  <input type="radio" name="opinionFrom" value="3" ng-model="question.opinionFrom"/>Both
-                </label>
+                <label class="opinion"><input type="radio" name="opinionFrom" value="1" ng-model="question.opinionFrom"/> Male</label>
+                <label class="opinion"><input type="radio" name="opinionFrom" value="2" ng-model="question.opinionFrom"/> Female</label>
+                <label class="opinion"><input type="radio" name="opinionFrom" value="3" ng-model="question.opinionFrom"/> Both</label>
               </div>
               <div class="form-bottom">
                 <label class="checkbox">
@@ -52,7 +50,7 @@
               </h1>
               <h2><a href="/#/question/{{question.id}}">{{question.title}}</a></h2>
               <h3><a href="/#/category/{{question.category.id}}">{{question.category.name}}</a></h3>
-              <p>{{question.text}}</p>
+              <p class="question-text">{{question.text}}</p>
               <div class="stats">
                 <div class="girls"><i class="fa fa-female"> </i>{{question.ans_female}}</div>
                 <div class="boys"><i class="fa fa-male"></i>{{question.ans_male}}</div>

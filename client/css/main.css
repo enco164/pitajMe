@@ -834,7 +834,7 @@ header {
 }
 
 .profile-sidebar .top a.edit-img {
-  padding: 5px;
+  padding: 5px 10px;
   background-color: #E57368;
   border-radius: 50%;
   color: #fff;
@@ -1235,4 +1235,8 @@ textarea {
   margin: 0;
   margin-left: 0 !important;
   margin-right: 10px;
+}
+
+label.opinion {
+  margin-right: 2%;
 }

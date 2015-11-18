@@ -54,8 +54,8 @@ app.controller('UserCtrl', [
         filter:{
           where: {
             accountId: $scope.params.id,
-            type: 'question',
-            timestamp: {gte: weekBefore, lte: new Date()}
+            type: 'question'
+            //timestamp: {gte: weekBefore, lte: new Date()}
           },
           include: ['category', 'answers', 'account'],
           order: 'timestamp DESC',
@@ -80,8 +80,8 @@ app.controller('UserCtrl', [
         filter:{
           where: {
             accountId: $scope.params.id,
-            type: 'answer',
-            timestamp: {gte: weekBefore, lte: new Date()}
+            type: 'answer'
+            //timestamp: {gte: weekBefore, lte: new Date()}
           },
           include: ['question', 'account'],
           order: 'timestamp DESC',
@@ -106,8 +106,8 @@ app.controller('UserCtrl', [
         filter:{
           where: {
             accountId: $scope.params.id,
-            type: 'comment',
-            timestamp: {gte: weekBefore, lte: new Date()}
+            type: 'comment'
+            //timestamp: {gte: weekBefore, lte: new Date()}
           },
           include: [
             {relation: 'answer',
@@ -367,8 +367,8 @@ app.controller('UserCtrl', [
     $scope.topQuestions = Post.find({
       filter:{
         where:{
-          type: "question",
-          timestamp: {gte: weekBefore}
+          type: "question"
+          //timestamp: {gte: weekBefore}
         },
         include: 'answers'
       }
@@ -383,8 +383,8 @@ app.controller('UserCtrl', [
     $scope.mostLiked = Post.find({
       filter:{
         where:{
-          type: "question",
-          timestamp: {gte: weekBefore}
+          type: "question"
+          //timestamp: {gte: weekBefore}
         },
         include: 'likes'
       }
