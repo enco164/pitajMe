@@ -30,7 +30,7 @@ app
             gutter: 30
           }
         });
-        $('.question-text').emoticonize({});
+        /*$('.question-text').emoticonize({});*/
       });
 
       $scope.questions = Post.find({

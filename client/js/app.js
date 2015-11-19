@@ -7,7 +7,8 @@ var app = angular
     'ngRoute',
     'ui.router',
     'ngAnimate',
-    'lbServices'
+    'lbServices',
+    'ngEmoticons'
   ])
   .config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
