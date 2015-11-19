@@ -1,0 +1,220 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="content">
+        <div class="row">
+          <!-- TABS START-->
+          <div class="profile-tabs tabs">
+            <ul role="tablist" class="nav nav-tabs">
+              <li role="presentation" class="active"><a href="" data-target="#profile-tab-pitanja" aria-controls="profile-tab-pitanja" role="tab" data-toggle="tab">Questions</a></li>
+              <li role="presentation"><a href="" data-target="#profile-tab-odgovori" aria-controls="profile-tab-odgovori" role="tab" data-toggle="tab">Answers</a></li>
+              <li role="presentation"><a href="" data-target="#profile-tab-komentari" aria-controls="profile-tab-komentari" role="tab" data-toggle="tab">Comments</a></li>
+              <li role="presentation"><a href="" data-target="#profile-tab-kategorije" aria-controls="profile-tab-kategorije" role="tab" data-toggle="tab">Categories</a></li>
+              <li role="presentation"><a href="" data-target="#profile-tab-korisnici" aria-controls="profile-tab-korisnici" role="tab" data-toggle="tab">Users</a></li>
+            </ul>
+          </div>
+          <!-- TABS END -->
+
+          <div class="tab-content">
+            <!--QUESTIONS TAB-->
+            <div role="tabpanel" id="profile-tab-pitanja" class="tab-pane active">
+              <div class="comment clearfix" ng-repeat="question in questions">
+                <div class="comment-user">
+                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="info">
+                    <h5>
+                      <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
+                    </h5>
+                    <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
+                  </div>
+                </div>
+                <div class="comment-content" style="width: 100%;">
+                  <h4><a href="/#/question/{{question.id}}">{{question.title}}</a></h4>
+                  <p ng-bind-html="question.text | emoticons">{{question.text}}</p>
+                  <div class="social-networks clearfix">
+                    <div class="left">
+                      <a href="" ng-click="deletePost(question)" class="btn-red">
+                        <i class="fa fa-trash-o"></i>Delete Question</a>
+                      <a href="" ng-click="deleteAccount(question.account)" class="btn-dark">
+                        <i class="fa fa-trash-o"></i>Remove User</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--END QUESTIONS TAB-->
+
+            <!--ANSWERS TAB-->
+            <div role="tabpanel" id="profile-tab-odgovori" class="tab-pane">
+              <div class="comment clearfix" ng-repeat="answer in answers">
+                <div class="comment-user">
+                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="info">
+                    <h5>
+                      <a href="/#/user-detail/{{answer.account.id}}">{{answer.account.username}}</a>
+                    </h5>
+                    <span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
+                  </div>
+                </div>
+                <div class="comment-content" style="width: 100%;">
+                  <h4><a href="/#/question/{{answer.question[0].id}}">{{answer.question[0].title}}</a></h4>
+                  <p ng-bind-html="answer.text | emoticons">{{answer.text}}</p>
+                  <div class="social-networks clearfix">
+                    <div class="left">
+                      <a href="" ng-click="deletePost(answer)" class="btn-red">
+                        <i class="fa fa-trash-o"></i>Delete Answer</a>
+                      <a href="" ng-click="deleteAccount(answer.account)" class="btn-dark">
+                        <i class="fa fa-trash-o"></i>Remove User</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--END ANSWERS TAB-->
+
+            <!-- COMMENTS TAB -->
+            <div role="tabpanel" id="profile-tab-komentari" class="tab-pane">
+              <div class="comment clearfix" ng-repeat="comment in comments">
+                <div class="comment-user">
+                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="info">
+                    <h5>
+                      <a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a>
+                    </h5>
+                    <span title="{{comment.wholeTime}}">{{comment.timestamp}}</span>
+                  </div>
+                </div>
+                <div class="comment-content" style="width: 100%;">
+                  <h4><a href="/#/question/{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a></h4>
+                  <p ng-bind-html="comment.text | emoticons">{{comment.text}}</p>
+                  <div class="social-networks clearfix">
+                    <div class="left">
+                      <a href="" ng-click="deletePost(comment)" class="btn-red">
+                        <i class="fa fa-trash-o"></i>Delete Comment</a>
+                      <a href="" ng-click="deleteAccount(comment.account)" class="btn-dark">
+                        <i class="fa fa-trash-o"></i>Remove User</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--END COMMENTS TAB-->
+
+            <!-- CATEGORIES TAB-->
+            <div role="tabpanel" id="profile-tab-kategorije" class="tab-pane">
+              <!-- ADD CATEGORY -->
+              <div class="form-group" style="margin-top: 3%;">
+                <button class="btn-primary" type="button" data-toggle="collapse" data-target="#addCategory" aria-expanded="false" aria-controls="addCategory">
+                  <i class="fa fa-plus"></i> Add Category
+                </button>
+              </div>
+              <div class="collapse" id="addCategory">
+                <div class="content well">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <form role="form" class="form-signin">
+                        <div class="form-group">
+                          <div class="form-group col-md-12">
+                            <label for="topic-content">Add New Category</label>
+                            <input id ="title" type="text" placeholder="Category Title" required="required" class="form-control" ng-model="newCategory.name"/>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <textarea id="topic-content" placeholder="About Category" rows="3" required="required" class="form-control" ng-model="newCategory.about"></textarea>
+                          </div>
+                        </div>
+                        <hr class="form-devider"/>
+                        <button type="submit" class="btn-dark pull-right" ng-click="addCategory(newCategory)">Add Category</button>
+                      </form>
+                      <div class="alert alert-danger" role="alert" ng-show="message" style="text-transform: uppercase;">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        {{message}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--ADD CATEGORY END-->
+
+              <!-- CATEGORY CONTENT -->
+              <div id="category-{{category.id}}" class="comment clearfix" ng-repeat="category in categories" style="margin-top: 5%;">
+                <div class="comment-user">
+                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="info">
+                    <h4 ng-show="!category.editing">
+                      <a href="/#/category/{{category.id}}">{{category.name}}</a>
+                    </h4>
+                    <p ng-show="category.editing">
+                      <input type="text" placeholder="Category Title" required="required" class="form-control" ng-model="category.name"/>
+                    </p>
+                  </div>
+                </div>
+                <div class="comment-content" style="width: 100%;">
+                  <p ng-show="!category.editing">{{category.about}}</p>
+                  <p ng-show="category.editing">
+                    <textarea type="text" placeholder="About Category" rows="2" required="required" class="form-control" ng-model="category.about"></textarea>
+                  </p>
+                  <div class="social-networks clearfix">
+                    <div class="left">
+                      <a href="" ng-click="deleteCategory(category)" class="btn-dark">
+                        <i class="fa fa-trash-o"></i>Delete</a>
+                      <a href="" ng-if="!category.editing" ng-click="category.editing=true" class="btn-red">
+                        <span><i class="fa fa-pencil-square-o"></i> Edit</span>
+                      </a>
+                      <a href="" ng-if="category.editing" ng-click="updateCategory(category)" class="btn-red">
+                        <span><i class="fa fa-floppy-o"></i> Save</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- CATEGORY CONTENT END -->
+            </div>
+            <!-- END CATEGORIES TAB-->
+
+            <!-- USERS TAB -->
+            <div role="tabpanel" id="profile-tab-korisnici" class="tab-pane">
+              <div class="row" style="margin-bottom: 2%;">
+                <div class="col-md-12">
+                  <div class="left col-md-8">
+                    <!--A B C D E F G H I J K L M N O P Q R S T U V W X Y Z-->
+                  </div>
+                  <div class="right col-md-4">
+                    <label for="search">Search User: </label>
+                    <input id="search" type="text" placeholder="" ng-model="searchUser"/>
+                  </div>
+                </div>
+              </div>
+              <div class="comment clearfix" ng-repeat="account in accounts | filter:searchUser">
+                <div class="comment-user">
+                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="info">
+                    <h4>
+                      <a href="/#/user/{{account.id}}">{{account.username}}</a>
+                    </h4>
+                    <span>{{account.email}}</span>
+                  </div>
+                </div>
+                <div class="comment-content" style="width: 100%;">
+                  <p>{{account.about}}</p>
+                  <div class="social-networks clearfix">
+                    <div class="left">
+                      <a href="" ng-click="deleteAccount(account)" class="btn-dark">
+                        <i class="fa fa-trash-o"></i>Remove User</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- USERS TAB END -->
+        </div>
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -85,6 +85,12 @@ var app = angular
           templateUrl: 'views/resetPasswordForm.html',
           controller: 'ResetPassCtrl',
           controllerAs: 'forgotPass'
+        })
+        .state('admin',{
+          url:'/admin',
+          templateUrl: 'views/adminPanel.html',
+          controller: 'AdminCtrl',
+          controllerAs: 'admin'
         });
 
       //$locationProvider.html5Mode(true);

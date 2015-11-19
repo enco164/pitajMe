@@ -139,7 +139,7 @@ app.controller('QuestionCtrl', [
           $scope.a.timestamp = time($scope.a.timestamp);
           //$scope.answers.unshift(value);
           $scope.answers.push($scope.a);
-          var scrollId = '#anchor' + $scope.a.id;
+          var scrollId = '#answer-' + $scope.a.id;
           $timeout(function(){
             $('html, body').animate({
               scrollTop: $(scrollId).offset().top-30
@@ -169,7 +169,15 @@ app.controller('QuestionCtrl', [
           $scope.c.timestamp = time(value.timestamp);
           $scope.answers.forEach(function(e, i){
             if (!$scope.answers[i].comments) $scope.answers[i].comments = [];
-            if (e.id == answer.id) $scope.answers[i].comments.push($scope.c);
+            if (e.id == answer.id) {
+              $scope.answers[i].comments.push($scope.c);
+              var scrollId = '#comment-' + $scope.c.id;
+              $timeout(function(){
+                $('html, body').animate({
+                  scrollTop: $(scrollId).offset().top-30
+                }, 1000);
+              }, 500);
+            }
           });
         }, function(httpResponse){});
       }, function(httpResponse){

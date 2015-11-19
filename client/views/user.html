@@ -47,6 +47,7 @@
                 <li role="presentation"><a href="" data-target="#profile-tab-komentari" aria-controls="profile-tab-komentari" role="tab" data-toggle="tab">Comments</a></li>
               </ul>
             </div>
+
             <!--TABS CONTENT-->
             <div class="tab-content">
 
@@ -64,7 +65,7 @@
                   </div>
                   <div class="comment-content" style="width: 100%;">
                     <h4><a href="/#/question/{{question.id}}">{{question.title}}</a></h4>
-                    <p>{{question.text}}</p>
+                    <p ng-bind-html="question.text | emoticons">{{question.text}}</p>
                     <div class="social-networks clearfix">
                       <div class="left">
                         <a href="" ng-show="!question.isLiked" ng-click="likePost(question);" class="btn-red">
@@ -108,7 +109,7 @@
                   </div>
                   <div class="comment-content" style="width: 100%;">
                     <h4><a href="/#/question/{{answer.question.id}}">{{answer.question[0].title}}</a></h4>
-                    <p>{{answer.text}}</p>
+                    <p ng-bind-html="answer.text | emoticons">{{answer.text}}</p>
                     <div class="social-networks clearfix">
                       <div class="left">
                         <a href="" ng-show="!answer.isLiked" ng-click="likePost(answer);" class="btn-red">
@@ -152,7 +153,7 @@
                   </div>
                   <div class="comment-content" style="width: 100%;">
                     <h4><a href="/#/question/{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a></h4>
-                    <p>{{comment.text}}</p>
+                    <p ng-bind-html="comment.text | emoticons">{{comment.text}}</p>
                     <div class="social-networks clearfix">
                       <div class="left">
                         <a href="" ng-show="!comment.isLiked" ng-click="likePost(comment);" class="btn-red">
@@ -228,7 +229,7 @@
                     </div>
                     <div class="comment-content" style="width: 100%;">
                       <h4><a href="/#/question/{{question.id}}">{{question.title}}</a></h4>
-                      <p ng-show="!question.editing" >{{question.text}}</p>
+                      <p ng-show="!question.editing" ng-bind-html="question.text | emoticons">{{question.text}}</p>
                       <textarea ng-show="question.editing" type="text" placeholder="Enter Comment content" rows="2" required="required" class="form-control" ng-model="question.text"></textarea>
                       <div class="social-networks clearfix">
                         <div class="left">
@@ -276,7 +277,7 @@
                     </div>
                     <div class="comment-content" style="width: 100%;">
                       <h4><a href="/#/question/{{answer.question[0].id}}">{{answer.question[0].title}}</a></h4>
-                      <p ng-show="!answer.editing" >{{answer.text}}</p>
+                      <p ng-show="!answer.editing" ng-bind-html="answer.text | emoticons">{{answer.text}}</p>
                       <textarea ng-show="answer.editing" type="text" placeholder="Enter Comment content" rows="2" required="required" class="form-control" ng-model="answer.text"></textarea>
                       <div class="social-networks clearfix">
                         <div class="left">
@@ -311,7 +312,7 @@
                     </div>
                     <div class="comment-content" style="width: 100%;">
                       <h4><a href="/#/question/{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a></h4>
-                      <p ng-show="!comment.editing" >{{comment.text}}</p>
+                      <p ng-show="!comment.editing" ng-bind-html="comment.text | emoticons">{{comment.text}}</p>
                       <textarea ng-show="comment.editing" type="text" placeholder="Enter Comment content" rows="2" required="required" class="form-control" ng-model="comment.text"></textarea>
                       <div class="social-networks clearfix">
                         <div class="left">

@@ -37,7 +37,7 @@
         <!--LIKES AND DISLIKES COUNT END-->
         <!--QUESTION CONTENT-->
         <div class="row">
-          <div ng-show="!editing" class="col-md-12 post-description">
+          <div ng-show="!editing" ng-bind-html="question.text | emoticons" class="col-md-12 post-description">
             {{question.text}}
           </div>
           <div ng-show="editing" >
@@ -108,7 +108,7 @@
         <div class="row">
           <div class="col-md-12">
             <!--ANSWER ITEM-->
-            <div class="comment clearfix" ng-repeat="answer in question.answers">
+            <div id="answer-{{answer.id}}" class="comment clearfix" ng-repeat="answer in question.answers">
               <!--ANSWER USER INFO-->
               <div class="comment-user">
                 <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
@@ -119,7 +119,7 @@
               <!--ANSWER USER INFO END-->
               <div class="comment-content" style="width: 100%;">
                 <div class="description">
-                  <p ng-show="!answer.editing">{{answer.text}}</p>
+                  <p ng-show="!answer.editing" ng-bind-html="answer.text | emoticons">{{answer.text}}</p>
                   <textarea ng-show="answer.editing" type="text" placeholder="Enter Answer content" rows="2" required="required" class="form-control" ng-model="answer.text"></textarea>
                   <div class="social-networks clearfix">
                     <div class="left">
@@ -152,7 +152,7 @@
                   <div class="row">
                     <div class="collapse" id="collapse_{{answer.id}}">
                       <div class="well">
-                        <div class="comment clearfix" ng-repeat="comment in answer.comments">
+                        <div id="comment-{{comment.id}}" class="comment clearfix" ng-repeat="comment in answer.comments">
                           <div class="comment-user">
                             <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
                             <div class="info">
@@ -161,7 +161,7 @@
                           </div>
                           <div class="comment-content" style="width: 100%;">
                             <div class="description">
-                              <p ng-show="!comment.editing">{{comment.text}}</p>
+                              <p ng-show="!comment.editing" ng-bind-html="comment.text | emoticons">{{comment.text}}</p>
                               <textarea ng-show="comment.editing" type="text" rows="2" required="required" class="form-control" ng-model="comment.text"></textarea>
                               <div class="social-networks clearfix">
                                 <div class="left">
