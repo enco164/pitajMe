@@ -8,7 +8,8 @@ var app = angular
     'ui.router',
     'ngAnimate',
     'lbServices',
-    'ngEmoticons'
+    'ngEmoticons',
+    'ui.bootstrap'
   ])
   .config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {

@@ -9,6 +9,10 @@ app.controller('AdminCtrl', [
   '$timeout',
   function($scope, Account, Post, Category, $timeout) {
     document.body.id = '';
+    $scope.questionCurrentPage = 1;
+    $scope.answerCurrentPage = 1;
+    $scope.commentCurrentPage = 1;
+
 
     function getQuestions(){
       $scope.questions = Post.find({
@@ -22,6 +26,7 @@ app.controller('AdminCtrl', [
           //limit: 25
         }
       }, function(value, responseHeaders){
+        $scope.totalItems = $scope.questions.length;
         $scope.questions.forEach(function(e, i){
           $scope.questions[i].editing = false;
           $scope.questions[i].owner = $scope.questions[i].accountId == Account.getCurrentId();
@@ -155,7 +160,7 @@ app.controller('AdminCtrl', [
           $('html, body').animate({
             scrollTop: $(scrollId).offset().top-30
           }, 1000);
-        }, 500);
+        }, 1500);
       }, function(httpResponse){
         console.log(httpResponse);
       })
@@ -172,8 +177,20 @@ app.controller('AdminCtrl', [
     }, function(value, responseHeaders){
         category.editing = false;
       }, function(httpResponse){});
-    }
+    };
 
+    $scope.setPage = function (pageNo) {
+      $scope.questionCurrentPage = pageNo;
+    };
 
+    $scope.pageChanged = function() {
+      $timeout(function(){
+        $('html, body').animate({
+          scrollTop: 0
+        }, 1000);
+      }, 500);
+
+      console.log('Page changed to: ' + $scope.questionCurrentPage);
+    };
   }
  ]);
