@@ -8,6 +8,6 @@ app.controller('SidebarCtrl', [
   'Post',
   'Like',
   function($scope, Account, Category, Post){
-    $scope.aaa = 'aaa';
+
   }
 ]);

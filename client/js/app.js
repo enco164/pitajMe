@@ -19,13 +19,13 @@ var app = angular
       $stateProvider
         .state('home',{
           url: '/',
-          templateUrl:'views/home.html',
-          controller: 'HomeCtrl',
-          controllerAs: 'home'
-        })
-        .state('home.sidebar', {
-          views: {
-            "sidebar": {
+          views:{
+            '': {
+              templateUrl:'views/home.html',
+              controller: 'HomeCtrl',
+              controllerAs: 'home'
+            },
+            'sidebar@home':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
