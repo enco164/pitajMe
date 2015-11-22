@@ -9,9 +9,12 @@ app.controller('AdminCtrl', [
   '$timeout',
   function($scope, Account, Post, Category, $timeout) {
     document.body.id = '';
-    $scope.questionCurrentPage = 1;
+    /*$scope.questionCurrentPage = 1;
     $scope.answerCurrentPage = 1;
-    $scope.commentCurrentPage = 1;
+    $scope.commentCurrentPage = 1;*/
+    $scope.questionNum = 10;
+    $scope.answerNum = 10;
+    $scope.commentNum = 10;
 
 
     function getQuestions(){
@@ -192,5 +195,12 @@ app.controller('AdminCtrl', [
 
       console.log('Page changed to: ' + $scope.questionCurrentPage);
     };
+
+
+    $scope.loadMore = function(post) {
+      if (post == 'question') $scope.questionNum += 10;
+      if (post == 'answer') $scope.answerNum += 10;
+      if (post == 'comment') $scope.commentNum += 10;
+    }
   }
  ]);
