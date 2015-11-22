@@ -17,7 +17,7 @@ app
     'Category',
     'Post',
     'Like',
-    function($scope, Account, Category, Post){
+    function($scope, Account, Category, Post, Like){
       document.body.id = 'content-wrap';
       $scope.class = 'content-wrap';
 
@@ -60,12 +60,14 @@ app
 
           });
           /* TODO brojanje lajkova -- srediti da bude bolje, mozda cak i server to da uradi*/
-          $scope.questions[i].likes_male = 0;
-          $scope.questions[i].likes_female = 0;
-          for(var j = 0; j < $scope.questions[i].likes.length; j++){
-            if($scope.questions[i].likes[j].sex == 'Male') $scope.questions[i].likes_male++;
-            if($scope.questions[i].likes[j].sex == 'Female') $scope.questions[i].likes_female++;
-          }
+          $scope.questions[i].dislikes = 0;
+          $scope.questions[i].likes = 0;
+          $scope.questions[i].dislikes = Like.dislikeCounterMethod({
+            postId: $scope.questions[i].id
+          }, function(value, responseHeaders){}, function(httpResponse){});
+          $scope.questions[i].likes = Like.likeCounterMethod({
+            postId: $scope.questions[i].id
+          }, function(value, responseHeaders){ }, function(httpResponse){});
           // TODO brojanje odgovora na pitanje - srediti kao i brojanje lajkova
           $scope.questions[i].ans_female = 0;
           $scope.questions[i].ans_male = 0;
@@ -122,8 +124,8 @@ app
               $scope.q.timestamp = time($scope.q.timestamp);
               if (value.account.sex == 'Male') $scope.q.gender = 'boy';
               else $scope.q.gender = 'girl';
-              $scope.q.likes_male = 0;
-              $scope.q.likes_female = 0;
+              $scope.q.dislikes = 0;
+              $scope.q.likes = 0;
               $scope.q.ans_male = 0;
               $scope.q.ans_female = 0;
               console.log('new item', value);
@@ -144,8 +146,8 @@ app
                 '<div class="stats">'+
                 '<div class="girls"><i class="fa fa-female"> </i>'+$scope.q.ans_female+'</div>'+
                 '<div class="boys"><i class="fa fa-male"> </i>'+$scope.q.ans_male+'</div>'+
-                '<div class="girls"><i class="fa fa-thumbs-o-up"></i>'+$scope.q.likes_male+'</div>'+
-                '<div class="girls"><i class="fa fa-thumbs-o-down"></i>'+$scope.q.likes_male+'</div>'+
+                '<div class="girls"><i class="fa fa-thumbs-o-up"></i>'+$scope.q.dislikes+'</div>'+
+                '<div class="girls"><i class="fa fa-thumbs-o-down"></i>'+$scope.q.dislikes+'</div>'+
                 '</div>'+
                 '</div>'+
                 '</article>'+

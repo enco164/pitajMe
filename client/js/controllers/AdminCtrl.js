@@ -182,7 +182,7 @@ app.controller('AdminCtrl', [
       }, function(httpResponse){});
     };
 
-    $scope.setPage = function (pageNo) {
+    /*$scope.setPage = function (pageNo) {
       $scope.questionCurrentPage = pageNo;
     };
 
@@ -194,13 +194,25 @@ app.controller('AdminCtrl', [
       }, 500);
 
       console.log('Page changed to: ' + $scope.questionCurrentPage);
-    };
+    };*/
 
 
     $scope.loadMore = function(post) {
-      if (post == 'question') $scope.questionNum += 10;
-      if (post == 'answer') $scope.answerNum += 10;
-      if (post == 'comment') $scope.commentNum += 10;
+      if (post == 'question') {
+        $scope.questionNum += 10;
+        if ($scope.questionNum >= $scope.questions.length)
+          $scope.hideQuestionLoad = true;
+      }
+      if (post == 'answer') {
+        $scope.answerNum += 10;
+        if ($scope.answerNum >= $scope.answers.length)
+          $scope.hideAnswerLoad = true;
+      }
+      if (post == 'comment') {
+        $scope.commentNum += 10;
+        if ($scope.commentNum >= $scope.comments.length)
+          $scope.hideCommentLoad = true;
+      }
     }
   }
  ]);
