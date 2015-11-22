@@ -18,7 +18,11 @@
                 </div>
                 <div class="form-group col-md-12">
                   <label for="topic-content">Question content</label>
-                  <textarea id="topic-content" placeholder="Enter Question content" rows="3" required="required" class="form-control" ng-model="question.text"></textarea>
+                  <textarea id="topic-content" placeholder="Enter Question content" rows="2" required="required" class="form-control" ng-model="question.text"></textarea>
+                </div>
+                <div class="form-group col-md-12 input-group" style="padding: 0 15px;">
+                  <span class="input-group-addon" id="attachment"><i class="fa fa-paperclip"></i></span>
+                  <input id="image-url" placeholder="Insert Image URL" type="text" required="required" class="form-control" ng-model="question.image" aria-describedby="attachment"/>
                 </div>
               </div>
               <div>
@@ -48,7 +52,7 @@
                 <a ng-show="question.isAnonymous" href="">Anonymous</a>
                 <span>{{question.time}}</span>
               </h1>
-              <h2><a href="/#/question/{{question.id}}">{{question.title}}</a></h2>
+              <h2><a href="/#/question/{{question.id}}">{{question.title}}&nbsp; <i class="fa fa-picture-o" ng-show="question.image"></i></a></h2>
               <h3><a href="/#/category/{{question.category.id}}">{{question.category.name}}</a></h3>
               <div ng-bind-html="question.text | emoticons:{linkTarget:'_blank'}"><p class="question-text">{{question.text}}</p></div>
               <div class="stats">

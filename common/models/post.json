@@ -25,6 +25,9 @@
     },
     "isAnonymous": {
       "type": "boolean"
+    },
+    "image":{
+      "type": "string"
     }
   },
   "validations": [],

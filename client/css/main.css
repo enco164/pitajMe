@@ -651,7 +651,7 @@ header {
 #content-wrap header {
   background: linear-gradient(to bottom, #202a31, rgba(32, 42, 49, 0.6)), url("/img/header-bg-1.jpg") bottom center no-repeat;
   background-size: cover;
-  height: 400px;
+  height: 480px;
 }
 
 #content-wrap .posts article {
@@ -1239,4 +1239,8 @@ textarea {
 
 label.opinion {
   margin-right: 2%;
+}
+
+.question-attachment {
+  padding: 5%;
 }

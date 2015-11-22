@@ -11,7 +11,8 @@
               <div class="user-info">
                 <div class="top">
                   <div class="img-holder">
-                    <img src="img/post-test-4.jpg" alt="Profile image" class="img-responsive"/>
+                    <img ng-if="!account.image" src="img/post-test-4.jpg" alt="Profile image" class="img-responsive"/>
+                    <img ng-if="account.image" src="{{account.image}}" alt="Profile image" class="img-responsive"/>
                   </div>
                   <!--<a href="#" class="edit-img" style="line-height: 1.1;"><i class="fa fa-pencil"></i></a>-->
                 </div>
@@ -55,7 +56,10 @@
                 <!-- **** QUESTION **** -->
                 <div class="comment clearfix" ng-repeat="question in questions">
                   <div class="comment-user">
-                    <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                    <div class="user-img">
+                      <img ng-if="!question.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                      <img ng-if="question.account.image" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
+                    </div>
                     <div class="info">
                       <h5>
                         <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
@@ -99,7 +103,10 @@
                 <!-- **** ANSWER **** -->
                 <div class="comment clearfix" ng-repeat="answer in answers">
                   <div class="comment-user">
-                    <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                    <div class="user-img">
+                      <img ng-if="!answer.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                      <img ng-if="answer.account.image" src="{{answer.account.image}}" alt="Profile image" class="img-responsive"/>
+                    </div>
                     <div class="info">
                       <h5>
                         <a href="/#/user-detail/{{answer.account.id}}">{{answer.account.username}}</a>
@@ -143,7 +150,10 @@
                 <!-- **** COMMENT **** -->
                 <div class="comment clearfix" ng-repeat="comment in comments">
                   <div class="comment-user">
-                    <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                    <div class="user-img">
+                      <img ng-if="!comment.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                      <img ng-if="comment.account.image" src="{{comment.account.image}}" alt="Profile image" class="img-responsive"/>
+                    </div>
                     <div class="info">
                       <h5>
                         <a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a>
@@ -190,7 +200,10 @@
           <div class="col-md-12" ng-show="logged && isMe">
             <aside class="profile-sidebar col-md-3">
               <div class="top">
-                <div class="img-holder"><img src="img/post-test-4.jpg" alt="Profile image" class="img-responsive"/></div>
+                <div class="img-holder">
+                  <img ng-if="!account.image" src="img/post-test-4.jpg" alt="Profile image" class="img-responsive"/>
+                  <img ng-if="account.image" src="{{account.image}}" alt="Profile image" class="img-responsive"/>
+                </div>
                 <a href="/#/edit-profile" class="edit-img"><i class="fa fa-pencil"></i></a>
               </div>
               <div class="info">
@@ -219,7 +232,10 @@
                   <!-- **** QUESTION **** -->
                   <div class="comment clearfix" ng-repeat="question in questions">
                     <div class="comment-user">
-                      <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                      <div class="user-img">
+                        <img ng-if="!question.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                        <img ng-if="question.account.image" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
+                      </div>
                       <div class="info">
                         <h5>
                           <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
@@ -267,7 +283,10 @@
                   <!-- **** ANSWER **** -->
                   <div class="comment clearfix" ng-repeat="answer in answers">
                     <div class="comment-user">
-                      <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                      <div class="user-img">
+                        <img ng-if="!answer.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                        <img ng-if="answer.account.image" src="{{answer.account.image}}" alt="Profile image" class="img-responsive"/>
+                      </div>
                       <div class="info">
                         <h5>
                           <a href="/#/user-detail/{{answer.account.id}}">{{answer.account.username}}</a>
@@ -302,7 +321,10 @@
                   <!-- **** COMMENT **** -->
                   <div class="comment clearfix" ng-repeat="comment in comments">
                     <div class="comment-user">
-                      <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                      <div class="user-img">
+                        <img ng-if="!comment.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                        <img ng-if="comment.account.image" src="{{comment.account.image}}" alt="Profile image" class="img-responsive"/>
+                      </div>
                       <div class="info">
                         <h5>
                           <a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a>

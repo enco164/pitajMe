@@ -12,7 +12,8 @@
           <div class="col-md-12 post-user">
             <div class="username-wrap">
               <a href="/#/user-detail/{{question.accountId}}" class="user-thumb">
-                <img src="img/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
+                <img ng-if="!question.account.image" src="img/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
+                <img ng-if="question.account.image" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
               </a>
               <a ng-if="question.isAnonymous" href="">Anonymous</a>
               <a ng-if="!question.isAnonymous" href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
@@ -40,8 +41,11 @@
           <div ng-show="!editing" ng-bind-html="question.text | emoticons" class="col-md-12 post-description">
             {{question.text}}
           </div>
-          <div ng-show="editing" >
+          <div ng-show="editing" class="col-md-12">
             <textarea type="text" placeholder="Enter Comment content" rows="2" required="required" class="form-control" ng-model="question.text"></textarea>
+          </div>
+          <div class="col-md-12 question-attachment" ng-if="question.image">
+            <img src="{{question.image}}" alt="Attachment"/>
           </div>
         </div>
         <!--CONTENT END-->
@@ -111,7 +115,10 @@
             <div id="answer-{{answer.id}}" class="comment clearfix" ng-repeat="answer in question.answers">
               <!--ANSWER USER INFO-->
               <div class="comment-user">
-                <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                <div class="user-img">
+                  <img ng-if="!answer.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                  <img ng-if="answer.account.image" src="{{answer.account.image}}" alt="Profile image" class="img-responsive"/>
+                </div>
                 <div class="info">
                   <h5><a href="/#/user-detail/{{answer.account.id}}">{{answer.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
                 </div>
@@ -154,7 +161,10 @@
                       <div class="well">
                         <div id="comment-{{comment.id}}" class="comment clearfix" ng-repeat="comment in answer.comments">
                           <div class="comment-user">
-                            <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                            <div class="user-img">
+                              <img ng-if="!comment.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                              <img ng-if="comment.account.image" src="comment.account.image" alt="Profile image" class="img-responsive"/>
+                            </div>
                             <div class="info">
                               <h5><a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{comment.timestamp}}</span>
                             </div>
