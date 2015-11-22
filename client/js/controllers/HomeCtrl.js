@@ -105,7 +105,8 @@ app
             accountId: $scope.question.accountId,
             categoryId: $scope.question.category.id,
             timestamp: new Date(),
-            opinionFrom: parseInt(question.opinionFrom)
+            opinionFrom: parseInt(question.opinionFrom),
+            image: $scope.question.image
           }, function (value, responseHeaders) {
             console.log(value);
             $scope.q = Post.findById({
