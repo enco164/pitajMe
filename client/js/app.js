@@ -23,6 +23,14 @@ var app = angular
           controller: 'HomeCtrl',
           controllerAs: 'home'
         })
+        .state('home.sidebar', {
+          views: {
+            "sidebar": {
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
+        })
         .state('login',{
           url: '/login',
           templateUrl:'views/login.html',

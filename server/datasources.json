@@ -1,9 +1,18 @@
 {
   "db": {
     "host": "localhost",
+    "port": 3306,
+    "database": "pitajMe",
+    "username": "root",
+    "password": "root",
+    "name": "db",
+    "connector": "mysql"
+  },
+  "db2": {
+    "host": "localhost",
     "port": 27017,
     "database": "pitajMe",
-    "name": "db",
+    "name": "db2",
     "connector": "mongodb"
   },
   "emailDs": {
