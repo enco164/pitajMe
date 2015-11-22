@@ -20,10 +20,10 @@
             <div role="tabpanel" id="profile-tab-pitanja" class="tab-pane active">
               <div class="row">
                 <div class="col-md-12">
-              <div class="pull-right">
-                <uib-pagination class="" total-items="totalItems" items-per-page="10"  max-size="6" ng-model="questionCurrentPage" ng-change="pageChanged()"></uib-pagination>
-              </div>
-              </div>
+                  <div class="pull-right">
+                    <uib-pagination class="" total-items="totalItems" items-per-page="10"  max-size="6" ng-model="questionCurrentPage" ng-change="pageChanged()"></uib-pagination>
+                  </div>
+                </div>
               </div>
               <div class="comment clearfix col-md-12" ng-repeat="question in questions.slice(((questionCurrentPage -1)*10), ((questionCurrentPage)*10))">
                 <div class="comment-user">
@@ -50,10 +50,10 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-              <div class="pull-right">
-                <uib-pagination total-items="totalItems" items-per-page="10" max-size="6" ng-model="questionCurrentPage" ng-change="pageChanged()"></uib-pagination>
-              </div>
-              </div>
+                  <div class="pull-right">
+                    <uib-pagination total-items="totalItems" items-per-page="10" max-size="6" ng-model="questionCurrentPage" ng-change="pageChanged()"></uib-pagination>
+                  </div>
+                </div>
               </div>
             </div>
             <!--END QUESTIONS TAB-->
@@ -62,10 +62,10 @@
             <div role="tabpanel" id="profile-tab-odgovori" class="tab-pane">
               <div class="row">
                 <div class="col-md-12">
-              <div class="pull-right">
-                <uib-pagination total-items="answers.length" items-per-page="10" max-size="6" ng-model="answerCurrentPage" ng-change="pageChanged()"></uib-pagination>
-              </div>
-              </div>
+                  <div class="pull-right">
+                    <uib-pagination total-items="answers.length" items-per-page="10" max-size="6" ng-model="answerCurrentPage" ng-change="pageChanged()"></uib-pagination>
+                  </div>
+                </div>
               </div>
               <div class="comment clearfix" ng-repeat="answer in answers.slice(((answerCurrentPage-1)*10), ((answerCurrentPage)*10))">
                 <div class="comment-user">
@@ -92,10 +92,10 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-              <div class="pull-right">
-                <uib-pagination total-items="answers.length" items-per-page="10" max-size="6" ng-model="answerCurrentPage" ng-change="pageChanged()"></uib-pagination>
-              </div>
-              </div>
+                  <div class="pull-right">
+                    <uib-pagination total-items="answers.length" items-per-page="10" max-size="6" ng-model="answerCurrentPage" ng-change="pageChanged()"></uib-pagination>
+                  </div>
+                </div>
               </div>
             </div>
             <!--END ANSWERS TAB-->
@@ -104,9 +104,9 @@
             <div role="tabpanel" id="profile-tab-komentari" class="tab-pane">
               <div class="row">
                 <div class="col-md-12">
-              <div class="pull-right">
-                <uib-pagination total-items="comments.length" items-per-page="10" max-size="6" ng-model="commentCurrentPage" ng-change="pageChanged()"></uib-pagination>
-              </div>
+                  <div class="pull-right">
+                    <uib-pagination total-items="comments.length" items-per-page="10" max-size="6" ng-model="commentCurrentPage" ng-change="pageChanged()"></uib-pagination>
+                  </div>
                 </div>
               </div>
               <div class="comment clearfix" ng-repeat="comment in comments.slice(((commentCurrentPage-1)*10), ((commentCurrentPage)*10))">
@@ -134,10 +134,10 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-              <div class="pull-right">
-                <uib-pagination total-items="comments.length" items-per-page="10" max-size="6" ng-model="commentCurrentPage" ng-change="pageChanged()"></uib-pagination>
-              </div>
-              </div>
+                  <div class="pull-right">
+                    <uib-pagination total-items="comments.length" items-per-page="10" max-size="6" ng-model="commentCurrentPage" ng-change="pageChanged()"></uib-pagination>
+                  </div>
+                </div>
               </div>
             </div>
             <!--END COMMENTS TAB-->
@@ -147,9 +147,9 @@
               <!-- ADD CATEGORY -->
               <div class="container" style="margin-top: 3%;">
                 <div class="row">
-                <button class="btn-primary" type="button" data-toggle="collapse" data-target="#addCategory" aria-expanded="false" aria-controls="addCategory">
-                  <i class="fa fa-plus"></i> Add Category
-                </button>
+                  <button class="btn-primary" type="button" data-toggle="collapse" data-target="#addCategory" aria-expanded="false" aria-controls="addCategory">
+                    <i class="fa fa-plus"></i> Add Category
+                  </button>
                 </div>
               </div>
               <div class="collapse" id="addCategory">
