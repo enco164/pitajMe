@@ -162,7 +162,8 @@ var app = angular
           url:'/admin',
           templateUrl: 'views/adminPanel.html',
           controller: 'AdminCtrl',
-          controllerAs: 'admin'
+          controllerAs: 'admin',
+          admin: true
         });
 
       //$locationProvider.html5Mode(true);

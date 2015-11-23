@@ -1,7 +1,29 @@
 /**
  * Created by nevena on 19.11.15..
  */
-app.controller('AdminCtrl', [
+app
+  .run(function($rootScope, $state, Account){
+    $rootScope.$on("$stateChangeStart",
+      function(event, toState, toParams, fromState, fromParams) {
+
+        if(toState.admin){
+          console.log("stateChangeStart: ToState: " + toState.name +"; fromState: "+fromState.name);
+
+          Account.findById({id: Account.getCurrentId()}, function(user){ // TODO: ispravi ovo da ne prikazuje na kratko admin
+            if (user.username == 'admin' ) {
+              $state.go("admin");
+            } else {
+              event.preventDefault();
+              $state.go("home");
+            }
+          }, function(){
+            event.preventDefault();
+            $state.go("home");
+          });
+        }
+    });
+  })
+  .controller('AdminCtrl', [
   '$scope',
   'Account',
   'Post',
