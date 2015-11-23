@@ -20,7 +20,10 @@
             <div role="tabpanel" id="profile-tab-pitanja" class="tab-pane active">
               <div class="comment clearfix col-md-12" ng-repeat="question in questions.slice(0, questionNum)">
                 <div class="comment-user">
-                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="user-img">
+                    <img ng-if="!question.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                    <img ng-if="question.account.image" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
+                  </div>
                   <div class="info">
                     <h5>
                       <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
@@ -53,7 +56,10 @@
             <div role="tabpanel" id="profile-tab-odgovori" class="tab-pane">
               <div class="comment clearfix" ng-repeat="answer in answers.slice(0, answerNum)">
                 <div class="comment-user">
-                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="user-img">
+                    <img ng-if="!answer.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                    <img ng-if="answer.account.image" src="{{answer.account.image}}" alt="Profile image" class="img-responsive"/>
+                  </div>
                   <div class="info">
                     <h5>
                       <a href="/#/user-detail/{{answer.account.id}}">{{answer.account.username}}</a>
@@ -86,7 +92,10 @@
             <div role="tabpanel" id="profile-tab-komentari" class="tab-pane">
               <div class="comment clearfix" ng-repeat="comment in comments.slice(0, commentNum)">
                 <div class="comment-user">
-                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="user-img">
+                    <img ng-if="!comment.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                    <img ng-if="comment.account.image" src="{{comment.account.image}}" alt="Profile image" class="img-responsive"/>
+                  </div>
                   <div class="info">
                     <h5>
                       <a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a>
@@ -156,7 +165,9 @@
               <!-- CATEGORY CONTENT -->
               <div id="category-{{category.id}}" class="comment clearfix" ng-repeat="category in categories" style="margin-top: 5%;">
                 <div class="comment-user">
-                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="user-img">
+                    <img src="img/post-test-3.jpg" alt="Profile image" class="img-responsive"/>
+                  </div>
                   <div class="info">
                     <h4 ng-show="!category.editing">
                       <a href="/#/category/{{category.id}}">{{category.name}}</a>
@@ -204,7 +215,10 @@
               </div>
               <div class="comment clearfix" ng-repeat="account in accounts | filter:searchUser">
                 <div class="comment-user">
-                  <div class="user-img"><img src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/></div>
+                  <div class="user-img">
+                    <img ng-if="!account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                    <img ng-if="account.image" src="{{account.image}}" alt="Profile image" class="img-responsive"/>
+                  </div>
                   <div class="info">
                     <h4>
                       <a href="/#/user-detail/{{account.id}}">{{account.username}}</a>

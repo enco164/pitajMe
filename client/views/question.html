@@ -12,8 +12,8 @@
           <div class="col-md-12 post-user">
             <div class="username-wrap">
               <a href="/#/user-detail/{{question.accountId}}" class="user-thumb">
-                <img ng-if="!question.account.image" src="img/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
-                <img ng-if="question.account.image" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
+                <img ng-if="!question.account.image || question.isAnonymous" src="img/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
+                <img ng-if="question.account.image && !question.isAnonymous" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
               </a>
               <a ng-if="question.isAnonymous" href="">Anonymous</a>
               <a ng-if="!question.isAnonymous" href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
@@ -22,6 +22,7 @@
           </div>
         </div>
         <!--END USER DETAILS-->
+
         <!--LIKES AND DISLIKES COUNT-->
         <div class="row">
           <div class="col-md-12 post-title">
@@ -66,7 +67,7 @@
           </div>
           <!--CONTENT MANAGE END-->
           <!--SOCIAL-->
-          <div class="right">
+          <!--<div class="right">
             <h5>Podeli na:</h5>
             <ul class="clearfix">
               <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
@@ -77,7 +78,7 @@
               <li><a href=""><i class="fa fa-envelope-square"></i></a></li>
               <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
             </ul>
-          </div>
+          </div>-->
           <!--SOCIAL END-->
         </div>
       </div>
@@ -141,7 +142,7 @@
                       <button class="btn btn-default btn-sm" ng-show="!answer.editing && answer.owner" ng-click="answer.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
                       <button class="btn btn-default btn-sm" ng-show="answer.editing && answer.owner" ng-click="updateAnswer(answer)"><i class="fa fa-floppy-o"></i> save</button>
                     </div>
-                    <div class="right social">
+                    <!--<div class="right social">
                       <h5>Podeli na:</h5>
                       <ul class="clearfix">
                         <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
@@ -152,7 +153,7 @@
                         <li><a href=""><i class="fa fa-envelope-square"></i></a></li>
                         <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
                       </ul>
-                    </div>
+                    </div>-->
                   </div>
 
                   <!-- **** COMMENTS **** -->

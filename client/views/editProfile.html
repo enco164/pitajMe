@@ -91,10 +91,6 @@
                   </label>
                 </div>
                 <label for="category">Follow category</label>
-                <!--<div id="category" ng-repeat="category in categories" >
-                  &lt;!&ndash;<input type="checkbox" value="category.id" name="category.name" ng-checked="category.isChecked"/>{{category.name}}&ndash;&gt;
-                  <input type="checkbox" ng-model="category.isChecked" checklist-value="category">{{category.name}}
-                </div>-->
                 <div id="category">
                   <a href="" ng-repeat="category in categories"  ng-click="followUnfollow(category)">
                     <span class="category label label-{{category.inter}} col-md-3"

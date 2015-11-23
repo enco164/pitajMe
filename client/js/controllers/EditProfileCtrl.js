@@ -80,9 +80,9 @@ app.controller('EditProfileCtrl', [
 
     $scope.followUnfollow = function(category){
       if (category.inter == 'default'){
-        Category.interests.link({
-          id: category.id,
-          fk: Account.getCurrentId()
+        Account.interests.link({
+          id: Account.getCurrentId(),
+          fk: category.id
         }, {}, function(value, responseHeaders){
           $scope.categories.forEach(function(e, i){
             if (e.id == category.id) $scope.categories[i].inter = 'success';
@@ -92,9 +92,9 @@ app.controller('EditProfileCtrl', [
         });
       }
       else if (category.inter == 'success'){
-        Category.interests.unlink({
-          id: category.id,
-          fk: Account.getCurrentId()
+        Account.interests.unlink({
+          id: Account.getCurrentId(),
+          fk: category.id
         }, function(value, responseHeaders){
           $scope.categories.forEach(function(e, i){
             if (e.id == category.id) $scope.categories[i].inter = 'default';

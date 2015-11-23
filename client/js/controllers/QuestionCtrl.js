@@ -239,21 +239,23 @@ app.controller('QuestionCtrl', [
 
     // *** LIKE, DISLIKE, UNLIKE, UNDISLIKE ***
 
-    var likeDislikePost = function(post, value){
+    var likeDislikePost = function(post, value, successCb){
       Account.likes.link({
           id:Account.getCurrentId(),
           fk: post.id
         },
         { value: value },
-        function successCb(value, responseHeaders){ },
-        function errorCb(httpResponse){ console.log(httpResponse); }
+        function (value, responseHeaders){
+        successCb();
+        },
+        function (httpResponse){ console.log(httpResponse); }
       );
     };
 
-    var unlikeUndislikePost = function(post){
+    var unlikeUndislikePost = function(post, successCb){
       Account.likes.unlink({ id: Account.getCurrentId(), fk: post.id },
-        function successCb(value, responseHeaders){ },
-        function errorCb(httpResponse){ console.log(httpResponse) }
+        function (value, responseHeaders){ successCb(); },
+        function (httpResponse){ console.log(httpResponse); }
       );
     };
 
@@ -261,42 +263,49 @@ app.controller('QuestionCtrl', [
     $scope.likeDislikeQuestion = function(value){
       if ( value == 1 && $scope.question.isDisliked) return; //TODO ispisati poruku da ne moze da lajkuje dok ne undislajkuje
       if ( value == -1 && $scope.question.isLiked) return;
-      likeDislikePost($scope.question, value);
-      reloadQuestion();
+      likeDislikePost($scope.question, value, function(){
+        reloadQuestion();
+      });
+
     };
 
     $scope.unlikeUndislikeQuestion = function(){
-      unlikeUndislikePost($scope.question);
-      reloadQuestion();
+      unlikeUndislikePost($scope.question, function(){
+        reloadQuestion();
+      });
     };
 
 
     // ANSWER
     $scope.likeDislikeAnswer = function(answer, value){
-      likeDislikePost(answer, value);
-      $scope.answers.forEach(function(e, i){
-        if (value == 1 && e.id == answer.id) $scope.answers[i].liked = true;
-        if (value == -1 && e.id == answer.id) $scope.answers[i].liked = false;
+      likeDislikePost(answer, value, function(){
+        $scope.answers.forEach(function(e, i){
+          if (value == 1 && e.id == answer.id) $scope.answers[i].liked = true;
+          if (value == -1 && e.id == answer.id) $scope.answers[i].liked = false;
+        });
       });
     };
 
     $scope.unlikeUndislikeAnswer = function(answer){
-      unlikeUndislikePost(answer);
-      $scope.answers.forEach(function(e, i){
-        if (e.id == answer.id) $scope.answers[i].liked = false;
+      unlikeUndislikePost(answer, function(){
+        $scope.answers.forEach(function(e, i){
+          if (e.id == answer.id) $scope.answers[i].liked = false;
+        });
       });
     };
 
 
     // COMMENT
     $scope.likeDislikeComment = function(comment, value){
-      likeDislikePost(comment, value);
-      reloadQuestion();
+      likeDislikePost(comment, value, function(){
+        reloadQuestion();
+      });
     };
 
     $scope.unlikeUndislikeComment = function(comment){
-      unlikeUndislikePost(comment);
-      reloadQuestion();
+      unlikeUndislikePost(comment, function(){
+        reloadQuestion();
+      });
     };
 
 

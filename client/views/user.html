@@ -54,7 +54,7 @@
 
               <div role="tabpanel" id="profile-tab-pitanja" class="tab-pane active">
                 <!-- **** QUESTION **** -->
-                <div class="comment clearfix" ng-repeat="question in questions">
+                <div class="comment clearfix" ng-if="!question.isAnonymous" ng-repeat="question in questions">
                   <div class="comment-user">
                     <div class="user-img">
                       <img ng-if="!question.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
@@ -81,7 +81,7 @@
                         <a href="" ng-show="question.isDisliked" ng-click="undislikePost(question);" class="btn-dark">
                           <i class="fa fa-thumbs-o-down"></i>Undislike</a>
                       </div>
-                      <div class="right social">
+                      <!--<div class="right social">
                         <h5>Share:</h5>
                         <ul class="clearfix">
                           <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
@@ -92,7 +92,7 @@
                           <li><a href=""><i class="fa fa-envelope-square"></i></a></li>
                           <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
                         </ul>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div>
@@ -128,7 +128,7 @@
                         <a href="" ng-show="answer.isDisliked" ng-click="undislikePost(answer);" class="btn-dark">
                           <i class="fa fa-thumbs-o-down"></i>Undislike</a>
                       </div>
-                      <div class="right social">
+                      <!--<div class="right social">
                         <h5>Share:</h5>
                         <ul class="clearfix">
                           <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
@@ -139,7 +139,7 @@
                           <li><a href=""><i class="fa fa-envelope-square"></i></a></li>
                           <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
                         </ul>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div>
@@ -175,7 +175,7 @@
                         <a href="" ng-show="comment.isDisliked" ng-click="undislikePost(comment);" class="btn-dark">
                           <i class="fa fa-thumbs-o-down"></i>Undislike</a>
                       </div>
-                      <div class="right social">
+                      <!--<div class="right social">
                         <h5>Share:</h5>
                         <ul class="clearfix">
                           <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
@@ -186,7 +186,7 @@
                           <li><a href=""><i class="fa fa-envelope-square"></i></a></li>
                           <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
                         </ul>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div>
@@ -261,7 +261,7 @@
                           <button class="btn btn-default btn-sm" ng-show="!question.editing && question.owner" ng-click="question.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
                           <button class="btn btn-default btn-sm" ng-show="question.editing && question.owner" ng-click="updateQuestion(question)"><i class="fa fa-floppy-o"></i> save</button>
                         </div>
-                        <div class="right social">
+                        <!--<div class="right social">
                           <h5>Share:</h5>
                           <ul class="clearfix">
                             <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
@@ -272,7 +272,7 @@
                             <li><a href=""><i class="fa fa-envelope-square"></i></a></li>
                             <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
                           </ul>
-                        </div>
+                        </div>-->
                       </div>
                     </div>
                   </div>
