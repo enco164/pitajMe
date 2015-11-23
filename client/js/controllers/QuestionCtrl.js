@@ -388,71 +388,56 @@ app.controller('QuestionCtrl', [
     };
 
 
+    var updatePost = function(post){
+      Account.posts.updateById({id: Account.getCurrentId(), fk: post.id}, {text: post.text},
+        function(value, response){
+        },
+        function(httpResponse){console.log(httpResponse)});
+    };
+
+    var deletePost = function(post, successCb){
+      Account.posts.destroyById({id: Account.getCurrentId(), fk: post.id}, {text: post.text},
+        function(value, response){
+          successCb();
+        },
+        function(httpResponse){console.log(httpResponse)});
+    };
 
     $scope.deleteQuestion = function(){
-      //TODO Post.question.destroyAll ??
-      Post.removeById({id: $scope.question.id},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          window.location.replace('/#/');
-        },
-        function errorCb(error){
-          console.log(error);
-        });
+      deletePost($scope.question, function(){
+        window.location.replace('/#/');
+      });
     };
 
     $scope.updateQuestion = function(question){
       $scope.editing = false;
-      Post.update({
-        where:{
-          id: question.id
-        }
-      }, {
-        text: question.text
-      }, function(value, responseHeaders){}, function(httpResponse){});
+      updatePost(question);
     };
 
     $scope.deleteAnswer = function(answer){
-      Post.removeById({id: answer.id},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          $scope.answers.forEach(function(e, i){
-            if (answer.id == e.id) $scope.answers.splice(i, 1);
-          });
-        },
-        function errorCb(error){
-          console.log(error);
+      deletePost(answer, function(){
+        $scope.answers.forEach(function(e, i){
+          if (answer.id == e.id) $scope.answers.splice(i, 1);
         });
+      });
     };
 
     $scope.updateAnswer = function(answer){
       $scope.answers.forEach(function(e, i){
         if (e.id == answer.id) $scope.answers[i].editing = false;
       });
-      Post.update({
-        where:{
-          id: answer.id
-        }
-      }, {
-        text: answer.text
-      }, function(value, responseHeaders){}, function(httpResponse){});
+      updatePost(answer);
     };
 
     $scope.deleteComment = function(comment, answer){
-      console.log(comment, answer);
-      Post.removeById({id: comment.id},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          $scope.answers.forEach(function(e, i){
-            if (answer.id == e.id)
-              $scope.answers[i].comments.forEach(function(c, j){
-                if (comment.id == c.id) $scope.answers[i].comments.splice(j, 1);
-              })
-          });
-        },
-        function errorCb(error){
-          console.log(error);
+      deletePost(comment, function(){
+        $scope.answers.forEach(function(e, i){
+          if (answer.id == e.id)
+            $scope.answers[i].comments.forEach(function(c, j){
+              if (comment.id == c.id) $scope.answers[i].comments.splice(j, 1);
+            });
         });
+      });
     };
 
     $scope.updateComment = function(comment){
@@ -461,13 +446,7 @@ app.controller('QuestionCtrl', [
           if (m.id == comment.id) $scope.answers[i].comments[j].editing = false;
         });
       });
-      Post.update({
-        where:{
-          id: comment.id
-        }
-      }, {
-        text: comment.text
-      }, function(value, responseHeaders){}, function(httpResponse){});
+      updatePost(comment);
     };
 
 
