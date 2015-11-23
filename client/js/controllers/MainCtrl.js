@@ -36,5 +36,9 @@ app
     $scope.isAuth = function(){
       return Account.isAuthenticated();
     };
+
+    $scope.currentID = function(){
+      return Account.getCurrentId();
+    }
   }
 );
