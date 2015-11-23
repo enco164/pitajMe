@@ -11,7 +11,7 @@
         <p>{{cat.about}}</p>
       </div>
       <div class="grid posts">
-        <div class="grid-item" ng-repeat="question in questions" on-last-repeat>
+        <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in questions" on-last-repeat>
           <article>
             <a href="/#/question/{{question.id}}">
               <img src="img/post-test-6.jpg" alt="Alt tekst za sliku" class="img-responsive"/>
@@ -23,7 +23,7 @@
               </h1>
               <h2><a href="/#/question/{{question.id}}">{{question.title}}</a></h2>
               <h3><a href="/#/category/{{question.category.id}}">{{question.category.name}}</a></h3>
-              <p>{{question.text}}</p>
+              <div class="question-text" ng-bind-html="question.text | emoticons"><p class="question-text">{{question.text}}</p></div>
               <div class="stats">
                 <div class="girls"><i class="fa fa-female"> </i>{{question.ans_female}}</div>
                 <div class="boys"><i class="fa fa-male"></i>{{question.ans_male}}</div>

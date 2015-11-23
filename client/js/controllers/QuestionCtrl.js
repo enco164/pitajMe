@@ -6,13 +6,14 @@ app.controller('QuestionCtrl', [
   '$scope',
   'Answer',
   'Question',
+  'Comment',
   'Account',
   'Post',
   'Like',
   'Category',
   '$stateParams',
   '$timeout',
-  function($scope, Answer, Question, Account, Post, Like, Category, $stateParams, $timeout){
+  function($scope, Answer, Question, Comment, Account, Post, Like, Category, $stateParams, $timeout){
     $scope.params = $stateParams;
     document.body.id = '';
     $scope.editing=false;
@@ -77,18 +78,10 @@ app.controller('QuestionCtrl', [
         $scope.answers = value.answers;
         if(!!$scope.answers) {
           for (var i = 0; i < $scope.answers.length; i++) {
+            $scope.answers[i].liked = false;
+            answerLiked(i);
             $scope.answers[i].wholeTime = getWholeDate($scope.answers[i].timestamp);
             $scope.index = i;
-            Post.likes.exists({
-              id: $scope.answers[i].id,
-              fk: Account.getCurrentId()
-            }, function(value, responseHeaders){
-              console.log(value);
-              $scope.answers[$scope.index].liked = true;
-            }, function(httpResponse){
-              console.log(httpResponse);
-              $scope.answers[$scope.index].liked = false;
-            });
             $scope.answers[i].editing = false; //da li se trenutno edituje odgovor
             $scope.answers[i].owner = $scope.answers[i].account.id == Account.getCurrentId();
             $scope.answers[i].timestamp = time($scope.answers[i].timestamp);
@@ -115,8 +108,8 @@ app.controller('QuestionCtrl', [
       if (answer.isAnonymous == undefined) {
         answer.isAnonymous = false;
       }
-      Post.answers.create({
-        id: $scope.question.id
+      Account.posts.create({
+        id: Account.getCurrentId()
       },{
         type: 'answer',
         text: answer.text,
@@ -125,6 +118,15 @@ app.controller('QuestionCtrl', [
         accountId: Account.getCurrentId()
       }, function(value, responseHeaders){
         console.log(value, responseHeaders);
+        //Linkovanje odgovora i pitanja
+        Post.answers.link({
+          id: $scope.question.id,
+          fk: value.id
+        }, {}, function(value, responseHeaders){
+          console.log("success", value);
+        }, function(httpResponse){
+          console.log("failure", httpResponse)
+        });
         $scope.a = Post.findById({
           id: value.id,
           filter: {
@@ -152,15 +154,23 @@ app.controller('QuestionCtrl', [
     };
 
     $scope.sendComment = function(answer, comment){
-      Post.comments.create({
-        id: answer.id
-      },{
+      Account.posts.create({
+        id: Account.getCurrentId()
+      }, {
         type: 'comment',
         text: comment.text,
         accountId: Account.getCurrentId(),
         timestamp: new Date()
       }, function(value, responseHeaders){
-        console.log(value);
+        //Linkovanje komentara i odgovora
+        Post.comments.link({
+          id: answer.id,
+          fk: value.id
+        }, {}, function(value, responseHeaders){
+          console.log("success", value);
+        }, function(httpResponse){
+          console.log("failure", httpResponse)
+        });
         $scope.c = Post.findById({
           id: value.id,
           filter: { include: [ {relation: 'account'} ] }
@@ -180,10 +190,8 @@ app.controller('QuestionCtrl', [
             }
           });
         }, function(httpResponse){});
-      }, function(httpResponse){
-        console.log(httpResponse);
-      })
-    }
+      });
+    };
 
     $scope.logout = function(){
       Account.logout({},{
@@ -197,64 +205,6 @@ app.controller('QuestionCtrl', [
 
     $scope.logged = !!Account.isAuthenticated();
 
-
-
-
-
-    /*Like and dislike for question*/
-    $scope.likeQuestion = function(){
-      if ($scope.question.isDisliked) return; //TODO ispisati poruku da ne moze da lajkuje dok ne undislajkuje
-      Post.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
-        {value: 1},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          $scope.question.isLiked = true;
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
-    };
-
-    $scope.unlikeQuestion = function(){
-      Post.likes.unlink({id: $scope.question.id, fk: Account.getCurrentId()},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          $scope.question.isLiked = false;
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
-    };
-
-    $scope.dislikeQuestion = function(){
-      if ($scope.question.isLiked) return;
-      Post.likes.link({id: $scope.question.id, fk: Account.getCurrentId()},
-        {value: -1},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
-    };
-
-    $scope.undislikeQuestion = function(){
-      Post.likes.unlink({id: $scope.question.id, fk: Account.getCurrentId()},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
-    };
 
     function questionLiked(){
       Post.likes.exists({
@@ -274,119 +224,85 @@ app.controller('QuestionCtrl', [
       });
     }
 
+    function answerLiked(index){
+      Post.likes.exists({
+        id: $scope.answers[index].id,
+        fk: Account.getCurrentId()
+      }, function(value, responseHeaders){
+        $scope.answers[index].liked = true;
+      }, function(httpResponse){
+        $scope.answers[index].liked = false;
+      });
+    }
 
 
 
-    /*Like and dislike for answers*/
-    $scope.likeAnswer = function(answer){
-      Post.likes.link({id: answer.id, fk: Account.getCurrentId()},
-        {value: 1},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          $scope.answers.forEach(function(e, i){
-            if (e.id == answer.id) $scope.answers[i].liked = true;
-          });
-          //reloadQuestion();
+    // *** LIKE, DISLIKE, UNLIKE, UNDISLIKE ***
+
+    var likeDislikePost = function(post, value){
+      Account.likes.link({
+          id:Account.getCurrentId(),
+          fk: post.id
         },
-        function errorCb(error){
-          console.log(error);
-        }
+        { value: value },
+        function successCb(value, responseHeaders){ },
+        function errorCb(httpResponse){ console.log(httpResponse); }
       );
     };
 
-    $scope.unlikeAnswer = function(answer){
-      Post.likes.unlink({id: answer.id, fk: Account.getCurrentId()},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          $scope.answers.forEach(function(e, i){
-            if (e.id == answer.id) $scope.answers[i].liked = false;
-          });
-          //reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
+    var unlikeUndislikePost = function(post){
+      Account.likes.unlink({ id: Account.getCurrentId(), fk: post.id },
+        function successCb(value, responseHeaders){ },
+        function errorCb(httpResponse){ console.log(httpResponse) }
       );
     };
 
-    $scope.dislikeAnswer = function(answer){
-      Post.likes.link({id: answer.id, fk: Account.getCurrentId()},
-        {value: -1},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
+    // QUESTION
+    $scope.likeDislikeQuestion = function(value){
+      if ( value == 1 && $scope.question.isDisliked) return; //TODO ispisati poruku da ne moze da lajkuje dok ne undislajkuje
+      if ( value == -1 && $scope.question.isLiked) return;
+      likeDislikePost($scope.question, value);
+      reloadQuestion();
     };
 
-    $scope.undislikeAnswer = function(answer){
-      Post.likes.link({id: answer.id, fk: Account.getCurrentId()},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
+    $scope.unlikeUndislikeQuestion = function(){
+      unlikeUndislikePost($scope.question);
+      reloadQuestion();
     };
 
 
-
-    /*Like and dislike for comments*/
-    $scope.likeComment = function(comment){
-      Post.likes.link({id: comment.id, fk: Account.getCurrentId()},
-        {value: 1},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
+    // ANSWER
+    $scope.likeDislikeAnswer = function(answer, value){
+      likeDislikePost(answer, value);
+      $scope.answers.forEach(function(e, i){
+        if (value == 1 && e.id == answer.id) $scope.answers[i].liked = true;
+        if (value == -1 && e.id == answer.id) $scope.answers[i].liked = false;
+      });
     };
 
-    $scope.unlikeComment = function(comment){
-      Post.likes.unlink({id: comment.id, fk: Account.getCurrentId()},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
+    $scope.unlikeUndislikeAnswer = function(answer){
+      unlikeUndislikePost(answer);
+      $scope.answers.forEach(function(e, i){
+        if (e.id == answer.id) $scope.answers[i].liked = false;
+      });
     };
 
-    $scope.dislikeComment = function(comment){
-      Post.likes.link({id: comment.id, fk: Account.getCurrentId()},
-        {value: -1},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
+
+    // COMMENT
+    $scope.likeDislikeComment = function(comment, value){
+      likeDislikePost(comment, value);
+      reloadQuestion();
     };
 
-    $scope.undislikeComment = function(comment){
-      Post.likes.link({fk: comment.id, id: Account.getCurrentId()},
-        function successCb(value, responseHeaders){
-          console.log(value);
-          reloadQuestion();
-        },
-        function errorCb(error){
-          console.log(error);
-        }
-      );
+    $scope.unlikeUndislikeComment = function(comment){
+      unlikeUndislikePost(comment);
+      reloadQuestion();
     };
 
+
+
+
+    // *** UPDATE ***
 
     var updatePost = function(post){
       Account.posts.updateById({id: Account.getCurrentId(), fk: post.id}, {text: post.text},
@@ -394,6 +310,31 @@ app.controller('QuestionCtrl', [
         },
         function(httpResponse){console.log(httpResponse)});
     };
+
+    $scope.updateQuestion = function(question){
+      $scope.editing = false;
+      updatePost(question);
+    };
+
+    $scope.updateAnswer = function(answer){
+      $scope.answers.forEach(function(e, i){
+        if (e.id == answer.id) $scope.answers[i].editing = false;
+      });
+      updatePost(answer);
+    };
+
+    $scope.updateComment = function(comment){
+      $scope.answers.forEach(function(e, i){
+        $scope.answers[i].comments.forEach(function(m, j){
+          if (m.id == comment.id) $scope.answers[i].comments[j].editing = false;
+        });
+      });
+      updatePost(comment);
+    };
+
+
+
+    // *** DELETE ***
 
     var deletePost = function(post, successCb){
       Account.posts.destroyById({id: Account.getCurrentId(), fk: post.id}, {text: post.text},
@@ -409,24 +350,12 @@ app.controller('QuestionCtrl', [
       });
     };
 
-    $scope.updateQuestion = function(question){
-      $scope.editing = false;
-      updatePost(question);
-    };
-
     $scope.deleteAnswer = function(answer){
       deletePost(answer, function(){
         $scope.answers.forEach(function(e, i){
           if (answer.id == e.id) $scope.answers.splice(i, 1);
         });
       });
-    };
-
-    $scope.updateAnswer = function(answer){
-      $scope.answers.forEach(function(e, i){
-        if (e.id == answer.id) $scope.answers[i].editing = false;
-      });
-      updatePost(answer);
     };
 
     $scope.deleteComment = function(comment, answer){
@@ -439,16 +368,6 @@ app.controller('QuestionCtrl', [
         });
       });
     };
-
-    $scope.updateComment = function(comment){
-      $scope.answers.forEach(function(e, i){
-        $scope.answers[i].comments.forEach(function(m, j){
-          if (m.id == comment.id) $scope.answers[i].comments[j].editing = false;
-        });
-      });
-      updatePost(comment);
-    };
-
 
   }
 ]);

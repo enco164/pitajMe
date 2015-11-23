@@ -3,14 +3,14 @@
  * Created by nevena on 7.9.15..
  */
 app
-  .directive('onLastRepeat', function() {
+  /*.directive('onLastRepeat', function() {
     return function(scope, element, attrs) {
       if (scope.$last) setTimeout(function(){
         console.log(element);
         scope.$emit('onRepeatLast', element, attrs);
       }, 1);
     };
-  })
+  })*/
   .controller('CategoryCtrl', [
   '$scope',
   'Category',
@@ -23,7 +23,7 @@ app
     $scope.params = $stateParams;
     $scope.interest = false;
 
-    $scope.$on('onRepeatLast', function(scope, element, attrs){
+    /*$scope.$on('onRepeatLast', function(scope, element, attrs){
       $('.grid').isotope({
         // options
         layoutMode: 'masonry',
@@ -32,7 +32,7 @@ app
           gutter: 30
         }
       });
-    });
+    });*/
 
     $scope.cat = Category.findById({
       id: $scope.params.id
@@ -101,21 +101,19 @@ app
     });
 
     $scope.likeCategory = function(){
-      Category.interests.link({
-        id: $scope.params.id,
-        fk: Account.getCurrentId()
+      Account.interests.link({
+        id: Account.getCurrentId(),
+        fk: $scope.params.id
       }, {}, function(value, responseHeaders){
-        console.log(value);
-        $scope.interest = true;
-      }, function(httpResponse){
-        console.log(httpResponse);
-      });
+          $scope.interest = true;
+        },
+        function(httpResponse){console.log(httpResponse)});
     };
 
     $scope.dislikeCategory = function(){
-      Category.interests.unlink({
-        id: $scope.params.id,
-        fk: Account.getCurrentId()
+      Account.interests.unlink({
+        id: Account.getCurrentId(),
+        fk: $scope.params.id
       }, function(value, responseHeaders){
         console.log(value);
         $scope.interest = false;
