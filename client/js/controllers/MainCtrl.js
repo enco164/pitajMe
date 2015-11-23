@@ -1,8 +1,12 @@
 /**
  * Created by enco on 14.9.15..
  */
-app.controller(
-  'MainCtrl', function($scope, $route, $stateParams, $location, Account) {
+app
+  .run(function ($state,$rootScope) {
+    $rootScope.$state = $state;
+  })
+  .controller(
+  'MainCtrl', function($scope, $route, $stateParams, $location, Account, $state) {
     $scope.$route = $route;
     $scope.$location = $location;
     $scope.$routeParams = $stateParams;
@@ -12,8 +16,10 @@ app.controller(
 
     $scope.getProfile = function(){
       $scope.currentId = Account.getCurrentId();
-      window.location.replace('/#/user-detail/'+$scope.currentId);
+      $state.go('user-detail');
     };
+
+    $scope.logged = Account.isAuthenticated();
 
     $scope.logout = function(){
       Account.logout({},{

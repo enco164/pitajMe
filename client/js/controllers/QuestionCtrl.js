@@ -245,9 +245,7 @@ app.controller('QuestionCtrl', [
           fk: post.id
         },
         { value: value },
-        function (value, responseHeaders){
-        successCb();
-        },
+        function (value, responseHeaders){ successCb(); },
         function (httpResponse){ console.log(httpResponse); }
       );
     };
