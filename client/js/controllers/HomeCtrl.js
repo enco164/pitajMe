@@ -3,14 +3,14 @@
  * Created by enco on 7.9.15..
  */
 app
-  .directive('onLastRepeat', function() {
+  /*.directive('onLastRepeat', function() {
     return function(scope, element, attrs) {
       //console.log(element);
       if (scope.$last) setTimeout(function(){
         scope.$emit('onRepeatLast', element, attrs);
       }, 1);
     };
-  })
+  })*/
   .controller('HomeCtrl', [
     '$scope',
     'Account',
@@ -22,7 +22,7 @@ app
       document.body.id = 'content-wrap';
       $scope.class = 'content-wrap';
 
-      $scope.$on('onRepeatLast', function(scope, element, attrs){
+      /*$scope.$on('onRepeatLast', function(scope, element, attrs){
         $('.grid').isotope({
           // options
           layoutMode: 'masonry',
@@ -31,8 +31,7 @@ app
             gutter: 30
           }
         });
-        /*$('.question-text').emoticonize({});*/
-      });
+      });*/
 
       $scope.questions = Post.find({
         filter: {

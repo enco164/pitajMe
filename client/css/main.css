@@ -494,8 +494,26 @@ h5 {
 }
 
 .grid-sizer, .grid-item {
-  width: 31%;
+  /*width: 31%;*/
   box-sizing: border-box;
+}
+
+.grid-item .post-content{
+  height: 240px !important;
+  position: relative;
+}
+
+.grid-item .post-content .stats{
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  margin-top: 5%;
+}
+
+.grid-item .question-text{
+  max-height: 90px;
+  overflow:hidden !important;
+  text-overflow: ellipsis;
 }
 
 /* 2 columns wide */
