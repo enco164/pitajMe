@@ -33,21 +33,47 @@ var app = angular
         })
         .state('login',{
           url: '/login',
-          templateUrl:'views/login.html',
-          controller: 'LoginCtrl',
-          controllerAs: 'login'
+          views:{
+            '':{
+              templateUrl:'views/login.html',
+              controller: 'LoginCtrl',
+              controllerAs: 'login'
+            },
+            'sidebar@login':{
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
+
         })
         .state('question',{
           url: '/question/:id',
-          templateUrl: 'views/question.html',
-          controller: 'QuestionCtrl',
-          controllerAs: 'questionView'
+          views:{
+            '': {
+              templateUrl: 'views/question.html',
+              controller: 'QuestionCtrl',
+              controllerAs: 'questionView'
+            },
+            'sidebar@question':{
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
         })
         .state('registration', {
           url:'/registration',
-          templateUrl: 'views/registration.html',
-          controller: 'RegistrationCtrl',
-          controllerAs: 'registration'
+          views:{
+            '': {
+              templateUrl: 'views/registration.html',
+              controller: 'RegistrationCtrl',
+              controllerAs: 'registration'
+            },
+            'sidebar@registration':{
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
+
         })
         .state('my-profile', {
           url:'/my-profile',
@@ -57,15 +83,32 @@ var app = angular
         })
         .state('user', {
           url:'/user-detail/:id',
-          templateUrl: 'views/user.html',
-          controller: 'UserCtrl',
-          controllerAs: 'user'
+          views: {
+            '':{
+              templateUrl: 'views/user.html',
+              controller: 'UserCtrl',
+              controllerAs: 'user'
+            },
+            'sidebar@user':{
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
+
         })
         .state('ask-question',{
           url:'/ask-question',
-          templateUrl: 'views/askQuestion.html',
-          controller: 'AskQuestionCtrl',
-          controllerAs: 'askQuestion'
+          views:{
+            '':{
+              templateUrl: 'views/askQuestion.html',
+              controller: 'AskQuestionCtrl',
+              controllerAs: 'askQuestion'
+            },
+            'sidebar@ask-question':{
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
         })
         .state('edit-profile', {
           url:'/edit-profile',
@@ -73,18 +116,38 @@ var app = angular
           controller: 'EditProfileCtrl',
           controllerAs: 'editProfile'
         })
-        .state('category', {url:'/category/:id',
-          templateUrl: 'views/category.html',
-          controller: 'CategoryCtrl',
-          controllerAs: 'category'
+        .state('category', {
+          url:'/category/:id',
+          views:{
+            '':{
+              templateUrl: 'views/category.html',
+              controller: 'CategoryCtrl',
+              controllerAs: 'category'
+            },
+            'sidebar@category':{
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
         })
-        .state('verified',{url: '/verified',
+        .state('verified',{
+          url: '/verified',
           templateUrl: 'views/verified.html'
         })
-        .state('register-success',{url:'/register-success',
-          templateUrl: 'views/registerSuccess.html'
+        .state('register-success',{
+          url:'/register-success',
+          views:{
+            '':{
+              templateUrl: 'views/registerSuccess.html'
+            },
+            'sidebar@register-success':{
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
         })
-        .state('forgot-password',{url:'/forgot-password',
+        .state('forgot-password',{
+          url:'/forgot-password',
           templateUrl: 'views/forgotPassword.html',
           controller: 'ForgotPassCtrl',
           controllerAs: 'forgotPass'

@@ -200,17 +200,17 @@ app.controller('AdminCtrl', [
     $scope.loadMore = function(post) {
       if (post == 'question') {
         $scope.questionNum += 10;
-        if ($scope.questionNum >= $scope.questions.length)
+        if ($scope.questionNum >= $scope.questions.length-1)
           $scope.hideQuestionLoad = true;
       }
       if (post == 'answer') {
         $scope.answerNum += 10;
-        if ($scope.answerNum >= $scope.answers.length)
+        if ($scope.answerNum >= $scope.answers.length-1)
           $scope.hideAnswerLoad = true;
       }
       if (post == 'comment') {
         $scope.commentNum += 10;
-        if ($scope.commentNum >= $scope.comments.length)
+        if ($scope.commentNum >= $scope.comments.length-1)
           $scope.hideCommentLoad = true;
       }
     }

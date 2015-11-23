@@ -470,7 +470,7 @@ app.controller('QuestionCtrl', [
       }, function(value, responseHeaders){}, function(httpResponse){});
     };
 
-    $scope.categories = Category.find({}, function(value, responseHeaders){
+    /*$scope.categories = Category.find({}, function(value, responseHeaders){
       $scope.categories.forEach(function(e, i){
         $scope.categories[i].count = Category.posts.count({
           id: e.id
@@ -518,7 +518,7 @@ app.controller('QuestionCtrl', [
 
     function sortByLikesLen(a, b) {
       return ((a.likes.length > b.likes.length) ? -1 : ((a.likes.length < b.likes.length) ? 1 : 0));
-    }
+    }*/
 
   }
 ]);

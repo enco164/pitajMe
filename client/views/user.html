@@ -365,76 +365,8 @@
     </div>
 
     <!--SIDEBAR-->
-    <aside class="main-sidebar col-md-3">
-      <article>
-        <h4> <a href="#">Categories</a></h4>
-        <ul>
-          <li ng-repeat="category in categories"><a href="/#/category/{{category.id}}">{{category.name}} ({{category.count.count}})</a></li>
-        </ul>
-      </article>
-      <article class="most-loved">
-        <h4 style="color: #fff;">Most liked questions:</h4>
-        <ul>
-          <li ng-repeat="q in mostLiked"><a href="/#/question/{{q.id}}">{{q.title}}</a></li>
-        </ul>
-      </article>
-      <article>
-        <h4 style="color:white">Top questions:</h4>
-        <ul>
-          <li ng-repeat="top in topQuestions"><a href="/#/question/{{top.id}}">{{top.title}}</a></li>
-        </ul>
-      </article>
-    </aside>
+    <aside class="main-sidebar col-md-3" ui-view="sidebar"></aside>
     <!--END SIDEBAR-->
 
   </div>
 </div>
-
-
-<!--<h1 ng-if="isMe">ME</h1>
-<h1 ng-if="!isMe">NOT ME</h1>
-
-<div class="container">
-  <din class="row">
-    <div class="col-md-8">
-      <div><span id="dob">{{account.dob}}</span></div>
-      <div><span id="email">{{account.email}}</span></div>
-      <div><span id="country">{{account.country}}</span></div>
-      <div><span id="sex">{{account.sex}}</span></div>
-      <div><span id="id">{{account.id}}</span></div>
-      <div><label for="img">Image</label>
-        <img id="img" src="{{account.image}}" alt="user_image" ng-show="account.image"/>
-        <img src="" alt="avatar" ng-show="!account.image"/>
-      </div>
-      <div>
-        <label for="interest">Interests: </label>
-        <div class="col-md-12">
-          <h6 ng-repeat="interest in interests">
-            <span id="interest" class="label label-primary col-md-2" style="margin: 0.8%; padding: 1%;">
-              {{interest.name}}
-            </span>
-          </h6>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <a ng-if="!isMe" href="" ng-show="isFollowing" ng-click="unfollow()">Unfollow</a>
-      <a ng-if="!isMe" href="" ng-show="!isFollowing" ng-click="follow()">Follow</a>
-      <a ng-if="isMe" href="/#/edit-profile">Edit Profile</a>
-    </div>
-    <hr/>
-
-    <div ng-show="isFollowing || isMe">
-      <h1>Following</h1>
-      <div ng-repeat="acc in account.following">
-        {{acc.username}}, {{acc.sex}}
-        <hr/>
-      </div>
-      <h1>Followers</h1>
-      <div ng-repeat="acc in account.followers">
-        {{acc.username}}, {{acc.sex}}
-        <hr/>
-      </div>
-    </div>
-  </din>
-</div>-->

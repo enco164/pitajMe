@@ -17,7 +17,8 @@ app
     'Category',
     'Post',
     'Like',
-    function($scope, Account, Category, Post, Like){
+    '$state',
+    function($scope, Account, Category, Post, Like, $state){
       document.body.id = 'content-wrap';
       $scope.class = 'content-wrap';
 
@@ -109,6 +110,7 @@ app
             image: $scope.question.image
           }, function (value, responseHeaders) {
             console.log(value);
+            $state.transitionTo('question', {id: value.id});
             $scope.q = Post.findById({
               id: value.id,
               filter: {
@@ -175,48 +177,5 @@ app
       };
 
       $scope.logged = !!Account.isAuthenticated();
-
-      //TODO sortiranje postova po broju odgovora
-      var weekBefore = new Date(new Date() - new Date(1000*60*60*24*7));
-
-      $scope.topQuestions = Post.find({
-        filter:{
-          where:{
-            type: "question"
-            //timestamp: {gte: weekBefore}
-          },
-          include: 'answers'
-        }
-      }, function(value, responseHeaders){
-        value = value.sort(sortByAnswersLen);
-        value = value.slice(0,5);
-        $scope.topQuestions = value;
-      }, function(httpResponse){
-        console.log(httpResponse);
-      });
-
-      $scope.mostLiked = Post.find({
-        filter:{
-          where:{
-            type: "question"
-            //timestamp: {gte: weekBefore}
-          },
-          include: 'likes'
-        }
-      }, function(value, responseHeaders){
-        value = value.sort(sortByLikesLen);
-        value = value.slice(0,5);
-        $scope.mostLiked = value;
-      }, function(httpResponse){
-        console.log(httpResponse);
-      });
-
-      function sortByAnswersLen(a, b) {
-        return ((a.answers.length > b.answers.length) ? -1 : ((a.answers.length < b.answers.length) ? 1 : 0));
-      }
-
-      function sortByLikesLen(a, b) {
-        return ((a.likes.length > b.likes.length) ? -1 : ((a.likes.length < b.likes.length) ? 1 : 0));
-      }
     }
   ]);
