@@ -94,8 +94,30 @@
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__link__answers"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__link__comments"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
       "principalId": "$owner",
-      "permission": "ALLOW"
+      "permission": "ALLOW",
+      "property": "upsert"
     },
     {
       "accessType": "WRITE",
@@ -108,6 +130,12 @@
       "accessType": "EXECUTE",
       "principalType": "ROLE",
       "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
       "permission": "ALLOW"
     },
     {

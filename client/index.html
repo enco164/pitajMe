@@ -65,7 +65,7 @@
           </div>
         </div>
       </div>
-      <div class="container" data-ng-show="$state.includes('home') && isAuth()" >
+      <div class="container askQuestion" data-ng-show="$state.includes('home') && isAuth()" style="padding: 0px;">
         <div class="row">
           <div class="col-md-8 col-md-push-2">
             <div class="row" >
@@ -88,7 +88,8 @@
                       </div>
                       <div class="form-group col-md-12 input-group" style="padding: 0 15px;">
                         <span class="input-group-addon" id="attachment"><i class="fa fa-paperclip"></i></span>
-                        <input id="image-url" placeholder="Insert Image URL" type="text" class="form-control" ng-model="question.image" aria-describedby="attachment"/>
+                        <input id="image-url" placeholder="Insert Image URL" type="text" class="form-control" ng-model="question.image" aria-describedby="attachment"
+                               data-toggle="popover" data-placement="bottom" data-content="Image URL is invalid. Check your URL and try again."/>
                       </div>
                     </div>
                     <div>

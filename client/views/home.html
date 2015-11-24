@@ -6,7 +6,8 @@
         <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in questions" on-last-repeat>
           <article>
             <a href="/#/question/{{question.id}}">
-              <img src="img/post-test-6.jpg" alt="Alt tekst za sliku" class="img-responsive"/>
+              <img ng-if="!question.image || !checkImageUrl(question.image)" src="img/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+              <img ng-if="question.image && checkImageUrl(question.image)" src="{{question.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
             </a>
             <div class="post-content clearfix {{question.gender}}-post">
               <h1>

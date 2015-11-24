@@ -79,7 +79,7 @@ app
         }
       }, function(httpResponse){});
 
-      $scope.question = {
+      /*$scope.question = {
         title: "",
         text: "",
         isAnonymous: "",
@@ -93,9 +93,9 @@ app
             id: e.id
           }, function(){}, function(){});
         });
-      }, function(httpResponse){});
+      }, function(httpResponse){});*/
 
-      $scope.sendQuestion = function(question){
+      /*$scope.sendQuestion = function(question){
         if (question.title != "" && question.text != "") {
           Post.create({}, {
             type: 'question',
@@ -163,7 +163,7 @@ app
             console.log(httpResponse);
           });
         }
-      };
+      };*/
 
       $scope.logout = function(){
         Account.logout({},{
@@ -176,5 +176,9 @@ app
       };
 
       $scope.logged = !!Account.isAuthenticated();
+
+      $scope.checkImageUrl = function (url) {
+        return(url.match(/\.(jpeg|jpg|gif|png|svg)$/) != null);
+      };
     }
   ]);

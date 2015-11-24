@@ -53,13 +53,13 @@
         <div class="social-networks clearfix">
           <!--CONTENT MANAGE-->
           <div class="left">
-            <a href="" ng-show="!question.isLiked" ng-click="likeDislikeQuestion(1);" class="btn-red">
+            <a href="" ng-if="!question.isLiked" ng-click="likeDislikeQuestion(1);" class="btn-red">
               <i class="fa fa-thumbs-o-up"></i>Like</a>
-            <a href="" ng-show="question.isLiked" ng-click="unlikeUndislikeQuestion();" class="btn-red">
+            <a href="" ng-if="question.isLiked" ng-click="unlikeUndislikeQuestion();" class="btn-red">
               <i class="fa fa-thumbs-o-up"></i>Unike</a>
-            <a href="" ng-show="!question.isDisliked" ng-click="likeDislikeQuestion(-1);" class="btn-dark">
+            <a href="" ng-if="!question.isDisliked" ng-click="likeDislikeQuestion(-1);" class="btn-dark">
               <i class="fa fa-thumbs-o-down"></i>Dislike</a>
-            <a href="" ng-show="question.isDisliked" ng-click="unlikeUndislikeQuestion();" class="btn-dark">
+            <a href="" ng-if="question.isDisliked" ng-click="unlikeUndislikeQuestion();" class="btn-dark">
               <i class="fa fa-thumbs-o-down"></i>Undislike</a>
             <button class="btn btn-default btn-sm" ng-show="question.owner" ng-click="deleteQuestion()"><i class="fa fa-trash-o"></i> delete</button>
             <button class="btn btn-default btn-sm" ng-show="!editing && question.owner" ng-click="editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
@@ -131,16 +131,16 @@
                   <textarea ng-show="answer.editing" type="text" placeholder="Enter Answer content" rows="2" required="required" class="form-control" ng-model="answer.text"></textarea>
                   <div class="social-networks clearfix">
                     <div class="left">
-                      <a href="" ng-show="!answer.liked" ng-click="likeDislikeAnswer(answer, 1);" class="btn-red" >
+                      <a href="" ng-if="!answer.liked" ng-click="likeDislikeAnswer(answer, 1);" class="btn-red" >
                         <i class="fa fa-thumbs-o-up"></i>Like</a>
-                      <a href="" ng-show="answer.liked" ng-click="unlikeUndislikeAnswer(answer);" class="btn-red" >
+                      <a href="" ng-if="answer.liked" ng-click="unlikeUndislikeAnswer(answer);" class="btn-red" >
                         <i class="fa fa-thumbs-o-up"></i>Unike</a>
                       <button type="button" data-toggle="collapse" data-target="#collapse_{{answer.id}}" aria-expanded="false" aria-controls="collapseExample">
                         <i class="fa fa-comment-o"></i> comment
                       </button>
-                      <button class="btn btn-default btn-sm" ng-show="answer.owner" ng-click="deleteAnswer(answer);"><i class="fa fa-trash-o"></i> delete</button>
-                      <button class="btn btn-default btn-sm" ng-show="!answer.editing && answer.owner" ng-click="answer.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
-                      <button class="btn btn-default btn-sm" ng-show="answer.editing && answer.owner" ng-click="updateAnswer(answer)"><i class="fa fa-floppy-o"></i> save</button>
+                      <button class="btn btn-default btn-sm" ng-if="answer.owner" ng-click="deleteAnswer(answer);"><i class="fa fa-trash-o"></i> delete</button>
+                      <button class="btn btn-default btn-sm" ng-if="!answer.editing && answer.owner" ng-click="answer.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
+                      <button class="btn btn-default btn-sm" ng-if="answer.editing && answer.owner" ng-click="updateAnswer(answer)"><i class="fa fa-floppy-o"></i> save</button>
                     </div>
                     <!--<div class="right social">
                       <h5>Podeli na:</h5>
@@ -176,9 +176,9 @@
                               <textarea ng-show="comment.editing" type="text" rows="2" required="required" class="form-control" ng-model="comment.text"></textarea>
                               <div class="social-networks clearfix">
                                 <div class="left">
-                                  <button class="btn btn-default btn-sm" ng-show="comment.owner" ng-click="deleteComment(comment, answer);"><i class="fa fa-trash-o"></i> delete</button>
-                                  <button class="btn btn-default btn-sm" ng-show="!comment.editing && comment.owner" ng-click="comment.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
-                                  <button class="btn btn-default btn-sm" ng-show="comment.editing && comment.owner" ng-click="updateComment(comment)"><i class="fa fa-floppy-o"></i> save</button>
+                                  <button class="btn btn-default btn-sm" ng-if="comment.owner" ng-click="deleteComment(comment, answer);"><i class="fa fa-trash-o"></i> delete</button>
+                                  <button class="btn btn-default btn-sm" ng-if="!comment.editing && comment.owner" ng-click="comment.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
+                                  <button class="btn btn-default btn-sm" ng-if="comment.editing && comment.owner" ng-click="updateComment(comment)"><i class="fa fa-floppy-o"></i> save</button>
                                 </div>
                               </div>
                             </div>

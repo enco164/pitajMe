@@ -770,6 +770,14 @@ header {
   color: #202A31;
 }
 
+.askQuestion {
+  display: none;
+}
+
+#content-wrap .askQuestion{
+  display: initial;
+}
+
 .main-sidebar article {
   background-color: #202A31;
   padding: 30px;
@@ -1261,4 +1269,8 @@ label.opinion {
 
 .question-attachment {
   padding: 5%;
+}
+
+.popover-content{
+  color: #333;
 }
