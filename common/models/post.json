@@ -26,7 +26,7 @@
     "isAnonymous": {
       "type": "boolean"
     },
-    "image":{
+    "image": {
       "type": "string"
     }
   },
@@ -145,5 +145,5 @@
       "permission": "ALLOW"
     }
   ],
-  "methods": {}
+  "methods": []
 }

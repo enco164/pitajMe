@@ -1274,3 +1274,7 @@ label.opinion {
 .popover-content{
   color: #333;
 }
+
+.sponsoredNumber{
+  cursor: pointer;
+}

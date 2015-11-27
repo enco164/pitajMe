@@ -1,0 +1,14 @@
+{
+  "name": "Sponsored",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "postId": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

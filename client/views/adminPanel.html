@@ -19,29 +19,44 @@
             <!--QUESTIONS TAB-->
             <div role="tabpanel" id="profile-tab-pitanja" class="tab-pane active">
               <div class="comment clearfix col-md-12" ng-repeat="question in questions.slice(0, questionNum)">
-                <div class="comment-user">
-                  <div class="user-img">
-                    <img ng-if="!question.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
-                    <img ng-if="question.account.image" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
-                  </div>
-                  <div class="info">
-                    <h5>
-                      <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
-                    </h5>
-                    <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
-                  </div>
-                </div>
-                <div class="comment-content" style="width: 100%;">
-                  <h4><a href="/#/question/{{question.id}}">{{question.title}}</a></h4>
-                  <p ng-bind-html="question.text | emoticons">{{question.text}}</p>
-                  <div class="social-networks clearfix">
-                    <div class="left">
-                      <a href="" ng-click="deletePost(question)" class="btn-red">
-                        <i class="fa fa-trash-o"></i>Delete Question</a>
-                      <a href="" ng-click="deleteAccount(question.account)" class="btn-dark">
-                        <i class="fa fa-trash-o"></i>Remove User</a>
+                <div class="col-md-9">
+                  <div class="comment-user">
+                    <div class="user-img">
+                      <img ng-if="!question.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                      <img ng-if="question.account.image" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
+                    </div>
+                    <div class="info">
+                      <h5>
+                        <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
+                      </h5>
+                      <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
                     </div>
                   </div>
+                  <div class="comment-content" style="width: 100%;">
+                    <h4><a href="/#/question/{{question.id}}">{{question.title}}</a></h4>
+                    <p ng-bind-html="question.text | emoticons">{{question.text}}</p>
+                    <div class="social-networks clearfix">
+                      <div class="left">
+                        <a href="" ng-click="deletePost(question)" class="btn-red">
+                          <i class="fa fa-trash-o"></i>Delete Question</a>
+                        <a href="" ng-click="deleteAccount(question.account)" class="btn-dark">
+                          <i class="fa fa-trash-o"></i>Remove User</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <span>Daily posts:</span>
+                  <h5>
+                    <span ng-if="!question.sponsored || question.sponsored!=1" ng-click="sponsoredPost(1, question.id)" class="label label-default sponsoredNumber">1</span>
+                    <span ng-if="question.sponsored==1" class="label label-success sponsoredNumber">1</span>
+
+                    <span ng-if="!question.sponsored || question.sponsored!=2" ng-click="sponsoredPost(2, question.id)" class="label label-default sponsoredNumber">2</span>
+                    <span ng-if="question.sponsored==2" class="label label-success sponsoredNumber">2</span>
+
+                    <span ng-if="!question.sponsored || question.sponsored!=3" ng-click="sponsoredPost(3, question.id)" class="label label-default sponsoredNumber">3</span>
+                    <span ng-if="question.sponsored==3" class="label label-success sponsoredNumber">3</span>
+                  </h5>
                 </div>
               </div>
               <div class="row" ng-show="!hideQuestionLoad">

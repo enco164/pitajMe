@@ -3,6 +3,25 @@
   <div class="row">
     <div class="main-content col-md-9">
       <div class="grid posts">
+        <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in sponsoredPosts" on-last-repeat>
+          <article>
+            <a href="/#/question/{{question.id}}">
+              <img ng-if="!question.image || !checkImageUrl(question.image)" src="img/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+              <img ng-if="question.image && checkImageUrl(question.image)" src="{{question.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+            </a>
+            <div class="post-content clearfix {{question.gender}}-post" style="height: 180px !important;">
+              <h1>
+                <a ng-show="!question.isAnonymous" href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
+                <a ng-show="question.isAnonymous" href="">Anonymous</a>
+                <span>{{question.time}}</span>
+              </h1>
+              <h2><a href="/#/question/{{question.id}}">{{question.title}}&nbsp; <i class="fa fa-picture-o" ng-show="question.image"></i></a></h2>
+              <h3><a href="/#/category/{{question.category.id}}">{{question.category.name}}</a></h3>
+              <div  ng-bind-html="question.text | emoticons:{linkTarget:'_blank'}"><p class="question-text">{{question.text}}</p></div>
+            </div>
+          </article>
+        </div>
+        <hr class="form-devider"/>
         <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in questions" on-last-repeat>
           <article>
             <a href="/#/question/{{question.id}}">

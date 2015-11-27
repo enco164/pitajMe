@@ -73,5 +73,9 @@
   "Like": {
     "dataSource": "db",
     "public": true
+  },
+  "Sponsored": {
+    "dataSource": "db",
+    "public": true
   }
 }

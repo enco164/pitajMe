@@ -3,7 +3,8 @@
     <div class="col-md-9">
       <!--QUESTION IMAGE-->
       <div class="row">
-        <div class="col-md-12 post-img"><a href=""><img src="img/big-post-img.jpg" alt="Category image" class="img-responsive"/></a></div>
+        <div ng-if="!question.image" class="col-md-12 post-img"><a href=""><img src="img/big-post-img.jpg" alt="Category image" class="img-responsive"/></a></div>
+        <div ng-if="question.image" class="col-md-12 post-img"><a href=""><img src="{{question.image}}" alt="Category image" class="img-responsive"/></a></div>
       </div>
       <!--QUESTION CONTENT-->
       <div class="post-detail-content {{question.gender}}-post">
@@ -45,9 +46,9 @@
           <div ng-show="editing" class="col-md-12">
             <textarea type="text" placeholder="Enter Comment content" rows="2" required="required" class="form-control" ng-model="question.text"></textarea>
           </div>
-          <div class="col-md-12 question-attachment" ng-if="question.image">
+          <!--<div class="col-md-12 question-attachment" ng-if="question.image">
             <img src="{{question.image}}" alt="Attachment"/>
-          </div>
+          </div>-->
         </div>
         <!--CONTENT END-->
         <div class="social-networks clearfix">
