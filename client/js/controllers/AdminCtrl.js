@@ -214,25 +214,6 @@ app
 
 
       $scope.sponsoredPost = function(sponId, postId){
-        //TODO provera da li vec postoji u tabeli na nekom drugom mestu.
-        // Ako postoji, napraviti zamenu ta dva posta
-        Sponsored.findOne({filter: {where:{ postId: postId}}},
-        function(value, responseHeaders){
-          $scope.stara = value;
-          Sponsored.findById(
-            {id: sponId},
-            function(value, responseHeaders){
-              updateSponsored($scope.stara.id, value.postId);
-              updateSponsored(sponId, postId);
-            },
-            function(httpResponse){});
-        }, function(httpResponse){
-            updateSponsored(sponId, postId);
-          });
-
-      };
-
-      var updateSponsored = function(sponId, postId){
         Sponsored.update({
             where:{ id: sponId }
           }, {
@@ -249,6 +230,7 @@ app
           },
           function(httpResponse){ console.log(httpResponse);}
         );
+
       };
 
 

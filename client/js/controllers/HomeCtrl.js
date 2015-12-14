@@ -70,30 +70,31 @@ app
       }, function(httpResponse){});
 
       $scope.sponsoredPosts = [];
-      $scope.sponsoredList = Sponsored.find({}, function(value, responseHeaders){
-        value.forEach(function(e, i){
-          Post.find({
-              filter: {
-                where: {id: e.postId},
-                include: [
-                  {relation: 'account'},
-                  {relation: 'category'},
-                  {relation: 'likes'},
-                  {relation: 'answers',
-                    scope: {include: 'account'}
-                  }
-                ]
-              }
-            },
-            function(value, responseHeaders){
-              if (value[0].account && value[0].account.sex && value[0].account.sex == 'Male') value[0].gender = 'boy';
-              else value[0].gender = 'girl';
-              $scope.sponsoredPosts.push(value[0]);
-            },
-            function(httpResponse){console.log(httpResponse)});
-        });
-      }, function(httpResponse){});
-
+      $scope.sponsoredList = Sponsored.find(
+        {filter: {order: 'id ASC'}},
+        function(value, responseHeaders){
+	  value.forEach(function(e, i){
+            Post.find({
+                filter: {
+                  where: {id: e.postId},
+                  include: [
+                    {relation: 'account'},
+                    {relation: 'category'},
+                    {relation: 'likes'},
+                    {relation: 'answers',
+                      scope: {include: 'account'}
+                    }
+                  ]
+                }
+              },
+              function(value, responseHeaders){
+                if (value[0].account && value[0].account.sex && value[0].account.sex == 'Male') value[0].gender = 'boy';
+                else value[0].gender = 'girl';
+                $scope.sponsoredPosts[e.id-1] = value[0];
+              },
+              function(httpResponse){console.log(httpResponse)});
+          });
+        }, function(httpResponse){});
 
 
       $scope.logout = function(){
