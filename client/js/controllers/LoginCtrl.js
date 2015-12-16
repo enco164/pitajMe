@@ -2,10 +2,8 @@
 /**
  * Created by enco on 7.9.15..
  */
-app.controller('LoginCtrl', [
-  '$scope',
-  'Account',
-  function($scope, Account){
+app.controller('LoginCtrl',
+  function($scope, Account, $rootScope){
     document.body.id = '';
     $scope.check = true;
 
@@ -16,8 +14,9 @@ app.controller('LoginCtrl', [
         username: $scope.username,
         password: $scope.password
       }, function(value, responseHeaders) {
+        $rootScope.AT = localStorage.getItem('$LoopBack$accessTokenId');
+        console.log(JSON.stringify(value.user.username));
         window.location.replace('/#/');
-        console.log(value);
       }, function(httpResponse){
         console.log(httpResponse);
         $scope.message = httpResponse.data.error.message;
@@ -26,7 +25,7 @@ app.controller('LoginCtrl', [
 
     $scope.logout = function(){
       Account.logout({},{
-        id: localStorage.getItem('$LoopBack$currentUserId')
+        id: Account.getCurrentId()
       }, function(value, responseHeaders) {
         console.log(value);
       }, function(httpResponse){
@@ -42,5 +41,4 @@ app.controller('LoginCtrl', [
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 
-  }
-]);
+  });

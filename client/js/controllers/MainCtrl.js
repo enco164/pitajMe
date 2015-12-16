@@ -4,9 +4,10 @@
 app
   .run(function ($state,$rootScope) {
     $rootScope.$state = $state;
+    $rootScope.AT = localStorage.getItem('$LoopBack$accessTokenId');
   })
   .controller(
-  'MainCtrl', function($scope, $route, $stateParams, $location, Account, $state, Category, Post) {
+  'MainCtrl', function($scope, $route, $stateParams, $location, Account, $state, Category, Post, $rootScope) {
     $scope.$route = $route;
     $scope.$location = $location;
     $scope.$routeParams = $stateParams;
@@ -19,15 +20,23 @@ app
       $state.go('user-detail');
     };
 
+    $scope.getAT = function(){
+      return $rootScope.AT;
+    };
+
+    $scope.isAdmin = function(){
+      return true;
+    };
+
     $scope.logged = Account.isAuthenticated();
 
     $scope.logout = function(){
       Account.logout({},{
         id: Account.getCurrentId()
       }, function(value, responseHeaders) {
-        console.log(value);
         $scope.isAuthenticated = false;
-        window.location.replace('/#/login');
+        $rootScope.AT = '';
+        $state.go('login');
       }, function(httpResponse){
         console.log(httpResponse);
       });

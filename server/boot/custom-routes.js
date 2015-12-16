@@ -1,6 +1,7 @@
 /**
  * Created by enco on 6.10.15..
  */
+var loopback = require('loopback');
 
 module.exports = function(server) {
 
@@ -76,4 +77,22 @@ module.exports = function(server) {
   server.get('/verified', function(req, res){
     res.render('verified',{});
   });
-}
+
+  server.get('/admin', function(req, res){
+    if (!req.accessToken){
+      //return server.middleware.urlNotFound();
+      console.log('Lik nema ni token');
+      return res.render('404', { url: req.url });
+    }
+
+    server.models.Account.findById(req.accessToken.userId, function(err, user){
+      if(err || (user.username !== 'admin')){
+        console.log('Nasao ga ali nije sve ok');
+        return res.render('404', { url: req.url });
+      }
+      console.log('Sve ok!!!!!!!');
+      return res.render('admin', {url: 'ovo je jedan url'});
+
+    });
+  });
+};

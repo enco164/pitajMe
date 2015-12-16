@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a href="/#/" class="navbar-brand"><img src="img/logo.png" alt="Logo" class="img-responsive"/></a>
+              <a ui-sref="home" class="navbar-brand"><img src="img/logo.png" alt="Logo" class="img-responsive"/></a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
@@ -50,6 +50,8 @@
                     <li class="divider"></li>
                     <li class="dropdown-header">More options</li>
                     <li><a href="/#/forgot-password">Forgot password</a></li>
+                    <li ng-show="isAuth() && isAdmin()"><a href="/admin?access_token={{getAT()}}">Admin panel</a></li>
+
                   </ul>
                 </li>
                 <!--<li>
@@ -159,7 +161,6 @@
 <script src="js/controllers/EditProfileCtrl.js"></script>
 <script src="js/controllers/ForgotPassCtrl.js"></script>
 <script src="js/controllers/ResetPassCtrl.js"></script>
-<script src="js/controllers/AdminCtrl.js"></script>
 <script src="js/controllers/SidebarCtrl.js"></script>
 
 </body>

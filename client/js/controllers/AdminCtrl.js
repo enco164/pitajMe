@@ -1,27 +1,41 @@
 /**
  * Created by nevena on 19.11.15..
  */
-app
-  .run(function($rootScope, $state, Account){
-    $rootScope.$on("$stateChangeStart",
-      function(event, toState, toParams, fromState, fromParams) {
 
-        if(toState.admin){
-          console.log("stateChangeStart: ToState: " + toState.name +"; fromState: "+fromState.name);
 
-          Account.findById({id: Account.getCurrentId()}, function(user){ // TODO: ispravi ovo da ne prikazuje na kratko admin
-            if (user.username == 'admin' ) {
-              $state.go("admin");
-            } else {
-              event.preventDefault();
-              $state.go("home");
-            }
-          }, function(){
-            event.preventDefault();
-            $state.go("home");
-          });
-        }
+var app = angular
+  .module('app', [
+    'ngResource',
+    'ngRoute',
+    'ui.router',
+    'ngAnimate',
+    'lbServices',
+    'ngEmoticons',
+    'ui.bootstrap'
+  ])
+  .config(['$stateProvider', '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+
+      $urlRouterProvider.otherwise('/');
+
+
+      $stateProvider.state('admin',{
+        url:'/',
+        templateUrl: 'views/adminPanel.html',
+        controller: 'AdminCtrl',
+        controllerAs: 'admin',
+        admin: true
       });
+
+      //$locationProvider.html5Mode(true);
+    }])
+  .config(function(LoopBackResourceProvider) {
+
+    // Use a custom auth header instead of the default 'Authorization'
+    LoopBackResourceProvider.setAuthHeader('X-Access-Token');
+
+    // Change the URL where to access the LoopBack REST API server
+    LoopBackResourceProvider.setUrlBase('http://localhost:3000/api');
   })
   .controller('AdminCtrl', [
     '$scope',
@@ -50,8 +64,8 @@ app
           }
         }, function(value, responseHeaders){
           $scope.totalItems = $scope.questions.length;
+          findSponsoredPosts();
           $scope.questions.forEach(function(e, i){
-            findSponsoredPosts(e, i);
             $scope.questions[i].editing = false;
             $scope.questions[i].owner = $scope.questions[i].accountId == Account.getCurrentId();
             $scope.questions[i].wholeTime = getWholeDate(e.timestamp);
@@ -131,12 +145,17 @@ app
         }, function(value, responseHeaders){}, function(httpResponse){});
       }
 
-      function findSponsoredPosts(e, i){
-        Sponsored.findOne({
-            filter: {where:{postId: e.id}}},
-          function(value, responseHeaders){ $scope.questions[i].sponsored = value.id},
-          function(httpResponse){}
-        );
+      function findSponsoredPosts(){
+        Sponsored.find({},function(value){
+          $scope.questions.forEach(function(question) {
+            question.sponsored = [];
+          });
+          $scope.questions.forEach(function(question) {
+            value.forEach(function(sp, i){
+              if (question.id == sp.postId) question.sponsored.push(sp.id);
+            });
+          });
+        });
       }
 
       getQuestions();
@@ -196,7 +215,7 @@ app
         }, function(httpResponse){
           console.log(httpResponse);
         })
-      }
+      };
 
       $scope.updateCategory = function(category){
         Category.update({
@@ -219,14 +238,7 @@ app
           }, {
             postId: postId
           }, function(value, responseHeaders){
-            $scope.questions.forEach(function(e, i){
-              if (e.sponsored == sponId) $scope.questions[i].sponsored = null;
-            });
-            $scope.questions.forEach(function(e, i){
-              if (e.id == postId) {
-                $scope.questions[i].sponsored = sponId;
-              }
-            });
+            findSponsoredPosts();
           },
           function(httpResponse){ console.log(httpResponse);}
         );
@@ -251,6 +263,7 @@ app
           if ($scope.commentNum >= $scope.comments.length-1)
             $scope.hideCommentLoad = true;
         }
-      }
+      };
+
     }
   ]);
