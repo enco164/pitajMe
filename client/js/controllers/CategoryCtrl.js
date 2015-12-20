@@ -56,7 +56,7 @@ app
     $scope.questions = Category.posts({
       id: $scope.params.id,
       filter: {
-        where: {type: 'question'},
+        where: { or :[{type: 'question'}, {type: 'article'} ]},
         order: 'timestamp DESC',
         include: [
           {relation: 'account'},

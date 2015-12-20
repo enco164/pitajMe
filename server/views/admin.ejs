@@ -120,7 +120,8 @@
               <!-- TABS START-->
               <div class="profile-tabs tabs">
                 <ul role="tablist" class="nav nav-tabs">
-                  <li role="presentation" class="active"><a href="" data-target="#profile-tab-pitanja" aria-controls="profile-tab-pitanja" role="tab" data-toggle="tab">Questions</a></li>
+                  <li role="presentation" class="active"><a href="" data-target="#profile-tab-articles" aria-controls="profile-tab-articles" role="tab" data-toggle="tab">Članci</a></li>
+                  <li role="presentation"><a href="" data-target="#profile-tab-pitanja" aria-controls="profile-tab-pitanja" role="tab" data-toggle="tab">Questions</a></li>
                   <li role="presentation"><a href="" data-target="#profile-tab-odgovori" aria-controls="profile-tab-odgovori" role="tab" data-toggle="tab">Answers</a></li>
                   <li role="presentation"><a href="" data-target="#profile-tab-komentari" aria-controls="profile-tab-komentari" role="tab" data-toggle="tab">Comments</a></li>
                   <li role="presentation"><a href="" data-target="#profile-tab-kategorije" aria-controls="profile-tab-kategorije" role="tab" data-toggle="tab">Categories</a></li>
@@ -130,8 +131,108 @@
               <!-- TABS END -->
 
               <div class="tab-content">
+
+
+                <!-- ARTICLES TAB -->
+                <div role="tabpanel" id="profile-tab-articles" class="tab-pane active">
+
+                  <!-- ADD ARTICLE -->
+                  <div class="container" style="margin-top: 3%;">
+                    <div class="row">
+                      <button class="btn-primary" type="button" data-toggle="collapse" data-target="#addArticle" aria-expanded="false" aria-controls="addArticle">
+                        <i class="fa fa-plus"></i> Dodaj članak
+                      </button>
+                    </div>
+                  </div>
+
+
+                  <div class="collapse" id="addArticle">
+                    <div class="content well">
+                      <div class="" style="padding: 0px;">
+                        <div class="row">
+                          <div class="col-md-8 col-md-push-2">
+                            <div class="row" >
+                              <div class="col-md-12">
+                                <div class="quick-post">
+                                  <form role="form" class="form-signin">
+                                    <div class="row">
+                                      <div class="form-group col-md-8">
+                                        <label for="title">Naslov članka</label>
+                                        <input id ="title" type="text" placeholder="Naslov članka" required="required" class="form-control" ng-model="article.title"/>
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="category">Kategorija:</label>
+                                        <select class="form-control" placeholder="Kategorija članka" name="category" id="category" required="required" ng-model="article.category" ng-options="category.name for category in categories">
+                                        </select>
+                                      </div>
+                                      <div class="form-group col-md-12">
+                                        <label for="topic-content">Tekst članka</label>
+                                        <textarea id="topic-content" placeholder="Unesi tekst članka" rows="2" required="required" class="form-control" ng-model="article.text"></textarea>
+                                      </div>
+                                      <div class="form-group col-md-12 input-group" style="padding: 0 15px;">
+                                        <span class="input-group-addon" id="attachment"><i class="fa fa-paperclip"></i></span>
+                                        <input id="image-url" placeholder="Insert Image URL" type="text" class="form-control" ng-model="question.image" aria-describedby="attachment"
+                                               data-toggle="popover" data-placement="bottom" data-content="Image URL is invalid. Check your URL and try again."/>
+                                      </div>
+                                    </div>
+                                    <div class="form-bottom">
+                                      <button type="submit" class="btn-red" ng-click="addPost(article)">Pošalji članak</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--ADD ARTICLE END-->
+
+                  <!-- ARTICLE CONTENT -->
+                  <div id="article-{{article.id}}" class="comment clearfix" ng-repeat="article in articles" style="margin-top: 5%;">
+                    <div class="comment-user">
+                      <div class="user-img">
+                        <img src="img/post-test-3.jpg" alt="Profile image" class="img-responsive"/>
+                      </div>
+                      <div class="info">
+                        <h5>{{article.category.name}}</h5>
+                        <span title="{{article.wholeTime}}">{{article.timestamp}}</span>
+                        <h4 ng-show="!article.editing">
+                          <a href="/#/article/{{article.id}}">{{article.title}}</a>
+                        </h4>
+                        <p ng-show="article.editing">
+                          <input type="text" placeholder="Naslov članka" required="required" class="form-control" ng-model="article.title"/>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="comment-content" style="width: 100%;">
+                      <p ng-show="!article.editing">{{article.text}}</p>
+                      <p ng-show="article.editing">
+                        <textarea type="text" placeholder="Tekst članka" rows="2" required="required" class="form-control" ng-model="article.text"></textarea>
+                      </p>
+                      <div class="social-networks clearfix">
+                        <div class="left">
+                          <a href="" ng-click="deletePost(article)" class="btn-dark">
+                            <i class="fa fa-trash-o"></i> Obriši</a>
+                          <a href="" ng-if="!article.editing" ng-click="article.editing=true" class="btn-red">
+                            <span><i class="fa fa-pencil-square-o"></i> Izmeni</span>
+                          </a>
+                          <a href="" ng-if="article.editing" ng-click="updateArticle(article)" class="btn-red">
+                            <span><i class="fa fa-floppy-o"></i> Sačuvaj</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ARTICLES CONTENT END -->
+
+                </div>
+                <!-- END ARTICLES TAB-->
+
+
                 <!--QUESTIONS TAB-->
-                <div role="tabpanel" id="profile-tab-pitanja" class="tab-pane active">
+                <div role="tabpanel" id="profile-tab-pitanja" class="tab-pane">
                   <div class="comment clearfix col-md-12" ng-repeat="question in questions.slice(0, questionNum)">
                     {{question.account.image}}
                     <div class="col-md-9">
@@ -143,12 +244,13 @@
                         <div class="info">
                           <h5>
                             <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
-                          </h5>
+                          </h5><h5>{{question.category.name}}</h5>
                           <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
                         </div>
                       </div>
                       <div class="comment-content" style="width: 100%;">
                         <h4><a href="/#/question/{{question.id}}">{{question.title}}</a></h4>
+
                         <p ng-bind-html="question.text | emoticons">{{question.text}}</p>
                         <div class="social-networks clearfix">
                           <div class="left">

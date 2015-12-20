@@ -3,11 +3,15 @@
  * Created by enco on 7.9.15..
  */
 app.controller('LoginCtrl',
-  function($scope, Account, $rootScope){
+  function($scope, Account, $rootScope, AuthService){
     document.body.id = '';
     $scope.check = true;
 
     $scope.login_fn = function(){
+
+      AuthService.login($scope.username, $scope.password, $scope.rememberMe);
+
+  /*
       Account.login({
         rememberMe: $scope.check
       },{
@@ -21,6 +25,7 @@ app.controller('LoginCtrl',
         console.log(httpResponse);
         $scope.message = httpResponse.data.error.message;
       });
+      */
     };
 
     $scope.logout = function(){

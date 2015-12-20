@@ -44,7 +44,8 @@ var app = angular
     'Category',
     '$timeout',
     'Sponsored',
-    function($scope, Account, Post, Category, $timeout, Sponsored) {
+    '$location',
+    function($scope, Account, Post, Category, $timeout, Sponsored, $location) {
       document.body.id = '';
       $scope.questionNum = 10;
       $scope.answerNum = 10;
@@ -71,6 +72,31 @@ var app = angular
             $scope.questions[i].wholeTime = getWholeDate(e.timestamp);
             $scope.questions[i].timestamp = time(e.timestamp);
           });
+          //console.log(value);
+        }, function(error){
+          console.log(error);
+        });
+      }
+
+      function getArticles(callback){
+        $scope.articles = Post.find({
+          filter:{
+            where: {
+              type: 'article'
+              //timestamp: {gte: weekBefore, lte: new Date()}
+            },
+            include: ['category', 'answers', 'account'],
+            order: 'timestamp DESC'
+            //limit: 25
+          }
+        }, function(value, responseHeaders){
+          $scope.articles.forEach(function(e, i){
+            $scope.articles[i].editing = false;
+            $scope.articles[i].owner = $scope.articles[i].accountId == Account.getCurrentId();
+            $scope.articles[i].wholeTime = getWholeDate(e.timestamp);
+            $scope.articles[i].timestamp = time(e.timestamp);
+          });
+          if(callback) callback();
           //console.log(value);
         }, function(error){
           console.log(error);
@@ -159,6 +185,7 @@ var app = angular
       }
 
       getQuestions();
+      getArticles();
       getAnswers();
       getComments();
       getCategories();
@@ -210,8 +237,8 @@ var app = angular
           $timeout(function(){
             $('html, body').animate({
               scrollTop: $(scrollId).offset().top-30
-            }, 1000);
-          }, 1500);
+            }, 500);
+          }, 1000);
         }, function(httpResponse){
           console.log(httpResponse);
         })
@@ -245,6 +272,48 @@ var app = angular
 
       };
 
+
+      $scope.addPost = function(post){
+        Post.create({
+          type: 'article',
+          title: post.title,
+          text: post.text,
+          isAnonymous: false,
+          accountId: Account.getCurrentId(),
+          categoryId: post.category.id,
+          timestamp: new Date(),
+          opinionFrom: 3
+
+        },function(article, header){
+          getArticles(function(){
+            var scrollId = '#article-' + article.id;
+            $timeout(function(){
+              $('html, body').animate({
+                scrollTop: $(scrollId).offset().top-30
+              }, 200);
+            }, 1000);
+          });
+        }, function(httpResponse){
+          console.log(httpResponse);
+          $scope.message = httpResponse.data.error.message;
+        });
+      };
+
+
+      $scope.updateArticle = function(article){
+        Post.update({
+          where: {
+            id: article.id
+          }
+        }, {
+          title: article.title,
+          text: article.text
+        }, function(value, responseHeaders){
+          article.editing = false;
+        }, function(httpResponse){
+          console.log(JSON.stringify(httpResponse));
+        });
+      };
 
 
       $scope.loadMore = function(post) {

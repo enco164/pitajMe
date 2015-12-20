@@ -2,7 +2,7 @@
 /**
  * Created by nevena on 7.9.15..
  */
-app.controller('QuestionCtrl', [
+app.controller('ArticleCtrl', [
   '$scope',
   'Answer',
   'Question',
@@ -12,9 +12,9 @@ app.controller('QuestionCtrl', [
   'Like',
   'Category',
   '$stateParams',
-  '$timeout',
   '$state',
-  function($scope, Answer, Question, Comment, Account, Post, Like, Category, $stateParams, $timeout, $state){
+  '$timeout',
+  function($scope, Answer, Question, Comment, Account, Post, Like, Category, $stateParams, $state, $timeout){
     $scope.params = $stateParams;
     document.body.id = '';
     $scope.editing=false;
@@ -23,7 +23,7 @@ app.controller('QuestionCtrl', [
       $scope.question = Post.findById({
         id: $scope.params.id,
         filter: {
-          where: {type: 'question'},
+          where : { type: 'article'},
           include: [
             {relation: 'category'},
             {relation: 'account'},
@@ -45,7 +45,7 @@ app.controller('QuestionCtrl', [
           ]
         }
       }, function(value, responseHeaders){
-        if(value.type !== 'question') $state.go('home');
+        if (value.type !== 'article') $state.go('home');
         /*$scope.question.likes = {};
          $scope.question.likes = Post.likes({id: $scope.question.id, filter: {where:{value: -1}}});
          */
@@ -153,46 +153,6 @@ app.controller('QuestionCtrl', [
         }, function(httpResponse){});
       }, function(httpResponse){
         console.log(httpResponse);
-      });
-    };
-
-    $scope.sendComment = function(answer, comment){
-      Account.posts.create({
-        id: Account.getCurrentId()
-      }, {
-        type: 'comment',
-        text: comment.text,
-        accountId: Account.getCurrentId(),
-        timestamp: new Date()
-      }, function(value, responseHeaders){
-        //Linkovanje komentara i odgovora
-        Post.comments.link({
-          id: answer.id,
-          fk: value.id
-        }, {}, function(value, responseHeaders){
-          console.log("success", value);
-        }, function(httpResponse){
-          console.log("failure", httpResponse)
-        });
-        $scope.c = Post.findById({
-          id: value.id,
-          filter: { include: [ {relation: 'account'} ] }
-        }, function(value, responseHeaders){
-          $scope.c.owner = true;
-          $scope.c.timestamp = time(value.timestamp);
-          $scope.answers.forEach(function(e, i){
-            if (!$scope.answers[i].comments) $scope.answers[i].comments = [];
-            if (e.id == answer.id) {
-              $scope.answers[i].comments.push($scope.c);
-              var scrollId = '#comment-' + $scope.c.id;
-              $timeout(function(){
-                $('html, body').animate({
-                  scrollTop: $(scrollId).offset().top-30
-                }, 1000);
-              }, 500);
-            }
-          });
-        }, function(httpResponse){});
       });
     };
 

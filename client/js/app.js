@@ -60,6 +60,39 @@ var app = angular
             }
           }
         })
+        .state('articles', {
+          abstract: true,
+          url: '/articles',
+          template: '<ui-view/>'
+        })
+        .state('articles.list',{
+          url: '/list',
+          views:{
+            '': {
+              templateUrl: 'views/article_list.html',
+              controller: 'ArticleListCtrl',
+              controllerAs: 'articleList'
+            },
+            'sidebar@articles.list':{
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
+        })
+        .state('articles.detail',{
+          url: '/detail/:id',
+          views:{
+            '': {
+              templateUrl: 'views/article.html',
+              controller: 'ArticleCtrl',
+              controllerAs: 'articleView'
+            },
+            'sidebar@articles.detail':{
+              templateUrl: 'views/sidebar.html',
+              controller: 'SidebarCtrl'
+            }
+          }
+        })
         .state('registration', {
           url:'/registration',
           views:{

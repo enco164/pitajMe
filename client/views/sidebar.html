@@ -1,17 +1,17 @@
 <article>
-  <h4> <a href="#">Categories</a></h4>
+  <h4> <a href="#">Kategorije</a></h4>
   <ul>
     <li ng-repeat="category in categories"><a href="/#/category/{{category.id}}">{{category.name}} ({{category.count.count}})</a></li>
   </ul>
 </article>
 <article class="most-loved">
-  <h4 style="color: #fff;">Most liked questions:</h4>
+  <h4 style="color: #fff;">Najviše lajkovana pitanja</h4>
   <ul>
     <li ng-repeat="q in mostLiked"><a href="/#/question/{{q.id}}">{{q.title}}</a></li>
   </ul>
 </article>
 <article>
-  <h4 style="color:white">Top questions:</h4>
+  <h4 style="color:white">Popularna pitanja</h4>
   <ul>
     <li ng-repeat="top in topQuestions"><a href="/#/question/{{top.id}}">{{top.title}}</a></li>
   </ul>

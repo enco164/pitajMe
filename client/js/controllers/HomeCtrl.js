@@ -67,13 +67,14 @@ app
           }
 
         }
-      }, function(httpResponse){});
+      }, function(httpResponse){
+      });
 
       $scope.sponsoredPosts = [];
       $scope.sponsoredList = Sponsored.find(
         {filter: {order: 'id ASC'}},
         function(value, responseHeaders){
-	  value.forEach(function(e, i){
+          value.forEach(function(e, i){
             Post.find({
                 filter: {
                   where: {id: e.postId},
@@ -96,6 +97,23 @@ app
           });
         }, function(httpResponse){});
 
+
+      Post.find({
+        filter: {
+          where: {type: 'article'},
+          order: 'timestamp DESC',
+          include: [
+            {relation: 'account'},
+            {relation: 'category'},
+            {relation: 'likes'},
+            {relation: 'answers',
+              scope: {include: 'account'}
+            }
+          ]
+        }
+      }, function(value, responseHeaders){
+        $scope.articles = value.slice(0, 3);
+      });
 
       $scope.logout = function(){
         Account.logout({},{

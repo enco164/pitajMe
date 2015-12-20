@@ -21,11 +21,12 @@ app
     };
 
     $scope.getAT = function(){
-      return $rootScope.AT;
+      if($rootScope.currentUser) return $rootScope.currentUser.tokenId;
+      return null;
     };
 
     $scope.isAdmin = function(){
-      return true;
+      return ($rootScope.currentUser && $rootScope.currentUser.username == 'admin');
     };
 
     $scope.logged = Account.isAuthenticated();
@@ -35,7 +36,8 @@ app
         id: Account.getCurrentId()
       }, function(value, responseHeaders) {
         $scope.isAuthenticated = false;
-        $rootScope.AT = '';
+        $rootScope.AT = null;
+        $rootScope.currentUser = null;
         $state.go('login');
       }, function(httpResponse){
         console.log(httpResponse);

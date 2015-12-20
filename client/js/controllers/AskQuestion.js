@@ -8,8 +8,8 @@ app.controller('AskQuestionCtrl', [
   'Account',
   'Category',
   '$location',
-  'AppAuth',
-  function($scope, Post, Account, Category, $location, AppAuth){
+  'AuthService',
+  function($scope, Post, Account, Category, $location, AuthService){
     document.body.id = '';
     $scope.error = false;
 
@@ -43,7 +43,7 @@ app.controller('AskQuestionCtrl', [
     };
 
     $scope.logout = function(){
-      AppAuth.logout();
+      AuthService.logout();
     };
 
     $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');

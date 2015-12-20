@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app" >
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,8 @@
   <link rel="stylesheet" href="css/ng-emoticons.css"/>
 
 </head>
-<body ng-app="app" id="">
+<body id="">
+
 <div ng-controller="MainCtrl">
   <div class="" id="{{profile.class}}">
     <header>
@@ -38,19 +39,19 @@
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active"><a ui-sref="home">Homepage</a></li>
-                <li ui-sref-active="active"><a ui-sref="ask-question">Ask Question</a></li>
-                <li ng-if="isAuth()" ui-sref-active="active"><a ui-sref="user({id: currentID()})" >Profile page</a></li>
+                <li ui-sref-active="active"><a ui-sref="home">Početna</a></li>
+                <li ui-sref-active="active"><a ui-sref="ask-question">Postavi pitanje</a></li>
+                <li ng-if="isAuth()" ui-sref-active="active"><a ui-sref="user({id: currentID()})">Profil</a></li>
                 <li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
                   <ul role="menu" class="dropdown-menu">
-                    <li ng-show="!isAuth()"><a href="/#/login">Login</a></li>
-                    <li ng-show="isAuth()"><a href="/#/login" ng-click="logout()">Logout</a></li>
-                    <li><a href="/#/registration">Registration</a></li>
+                    <li ng-show="!isAuth()"><a href="/#/login">Prijavi se</a></li>
+                    <li ng-show="isAuth()"><a href="/#/login" ng-click="logout()">Odjavi se</a></li>
+                    <li ng-show="!isAuth()"><a href="/#/registration">Registruj se</a></li>
                     <li><a href="#">Contact</a></li>
                     <li class="divider"></li>
-                    <li class="dropdown-header">More options</li>
+                    <li class="dropdown-header">Još opcija</li>
                     <li><a href="/#/forgot-password">Forgot password</a></li>
-                    <li ng-show="isAuth() && isAdmin()"><a href="/admin?access_token={{getAT()}}">Admin panel</a></li>
+                    <li ng-show="isAdmin()"><a href="/admin?access_token={{getAT()}}">Admin panel</a></li>
 
                   </ul>
                 </li>
@@ -67,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div class="container askQuestion" data-ng-show="$state.includes('home') && isAuth()" style="padding: 0px;">
+      <div class="container askQuestion" data-ng-show="$state.includes('home')" style="padding: 0px;">
         <div class="row">
           <div class="col-md-8 col-md-push-2">
             <div class="row" >
@@ -113,7 +114,7 @@
         </div>
       </div>
     </header>
-    <div ui-view></div>
+    <main ui-view></main>
   </div>
 </div>
 
@@ -146,13 +147,15 @@
 <script src="js/services/lb-services.js"></script>
 <script src="js/app.js"></script>
 <script src="js/services/countryService.js"></script>
-<script src="js/services/AppAuth.js"></script>
+<script src="js/services/AuthService.js"></script>
 <script src="js/services/dateServices.js"></script>
 <script src="js/services/detailsService.js"></script>
 <script src="js/controllers/MainCtrl.js"></script>
 <script src="js/controllers/HomeCtrl.js"></script>
 <script src="js/controllers/LoginCtrl.js"></script>
 <script src="js/controllers/QuestionCtrl.js"></script>
+<script src="js/controllers/ArticleCtrl.js"></script>
+<script src="js/controllers/ArticleListCtrl.js"></script>
 <script src="js/controllers/CategoryCtrl.js"></script>
 <script src="js/controllers/RegistrationCtrl.js"></script>
 <script src="js/controllers/ProfileCtrl.js"></script>

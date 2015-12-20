@@ -18,10 +18,14 @@
             </a>
             <div class="post-content clearfix {{question.gender}}-post">
               <h1>
-                <a href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
+                <a ng-if="question.type == 'question'" href="/#/user-detail/{{question.accountId}}">{{question.account.username}}</a>
+                <a ng-if="question.type == 'article'" href="">članak</a>
                 <span>{{question.timestamp}}</span>
               </h1>
-              <h2><a href="/#/question/{{question.id}}">{{question.title}}</a></h2>
+              <h2>
+                <a ng-if="question.type == 'question'" ui-sref="question({ id : question.id})">{{question.title}}</a>
+                <a ng-if="question.type == 'article'" ui-sref="articles.detail({ id : question.id})">{{question.title}}</a>
+              </h2>
               <h3><a href="/#/category/{{question.category.id}}">{{question.category.name}}</a></h3>
               <div class="question-text" ng-bind-html="question.text | emoticons"><p class="question-text">{{question.text}}</p></div>
               <div class="stats">
