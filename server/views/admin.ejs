@@ -34,11 +34,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a href="/#/" class="navbar-brand"><img src="img/logo.png" alt="Logo" class="img-responsive"/></a>
+              <a ui-sref="home()" class="navbar-brand"><img src="img/logo.png" alt="Logo" class="img-responsive"/></a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active"><a href="/#/">Homepage</a></li>
+                <li ui-sref-active="active"><a ui-sref="home()" >Homepage</a></li>
                 <li ui-sref-active="active"><a ui-sref="ask-question">Ask Question</a></li>
                 <li ng-if="isAuth()" ui-sref-active="active"><a ui-sref="user({id: currentID()})" >Profile page</a></li>
                 <li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
@@ -65,7 +65,7 @@
           </div>
         </div>
       </div>
-      <div class="container askQuestion" data-ng-show="$state.includes('home') && isAuth()" style="padding: 0px;">
+      <div class="container askQuestion" data-ng-show="$state.includes('home') && isAuth()" style="padding: 0;">
         <div class="row">
           <div class="col-md-8 col-md-push-2">
             <div class="row" >
@@ -148,7 +148,7 @@
 
                   <div class="collapse" id="addArticle">
                     <div class="content well">
-                      <div class="" style="padding: 0px;">
+                      <div class="" style="padding: 0;">
                         <div class="row">
                           <div class="col-md-8 col-md-push-2">
                             <div class="row" >
@@ -162,7 +162,7 @@
                                       </div>
                                       <div class="form-group col-md-4">
                                         <label for="category">Kategorija:</label>
-                                        <select class="form-control" placeholder="Kategorija članka" name="category" id="category" required="required" ng-model="article.category" ng-options="category.name for category in categories">
+                                        <select class="form-control" name="category" id="category" required="required" ng-model="article.category" ng-options="category.name for category in categories">
                                         </select>
                                       </div>
                                       <div class="form-group col-md-12">
@@ -171,7 +171,7 @@
                                       </div>
                                       <div class="form-group col-md-12 input-group" style="padding: 0 15px;">
                                         <span class="input-group-addon" id="attachment"><i class="fa fa-paperclip"></i></span>
-                                        <input id="image-url" placeholder="Insert Image URL" type="text" class="form-control" ng-model="question.image" aria-describedby="attachment"
+                                        <input id="image-url" placeholder="Insert Image URL" type="text" class="form-control" ng-model="article.image" aria-describedby="attachment"
                                                data-toggle="popover" data-placement="bottom" data-content="Image URL is invalid. Check your URL and try again."/>
                                       </div>
                                     </div>
@@ -199,7 +199,7 @@
                         <h5>{{article.category.name}}</h5>
                         <span title="{{article.wholeTime}}">{{article.timestamp}}</span>
                         <h4 ng-show="!article.editing">
-                          <a href="/#/article/{{article.id}}">{{article.title}}</a>
+                          <a ui-sref="articles.detail({id:article.id})" >{{article.title}}</a>
                         </h4>
                         <p ng-show="article.editing">
                           <input type="text" placeholder="Naslov članka" required="required" class="form-control" ng-model="article.title"/>
@@ -209,7 +209,7 @@
                     <div class="comment-content" style="width: 100%;">
                       <p ng-show="!article.editing">{{article.text}}</p>
                       <p ng-show="article.editing">
-                        <textarea type="text" placeholder="Tekst članka" rows="2" required="required" class="form-control" ng-model="article.text"></textarea>
+                        <textarea placeholder="Tekst članka" rows="2" required="required" class="form-control" ng-model="article.text"></textarea>
                       </p>
                       <div class="social-networks clearfix">
                         <div class="left">
@@ -239,17 +239,18 @@
                       <div class="comment-user">
                         <div class="user-img">
                           <img ng-if="!question.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
-                          <img ng-if="question.account.image" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
+                          <img ng-if="question.account.image" ng-src="question.account.image" alt="Profile image" class="img-responsive"/>
                         </div>
                         <div class="info">
                           <h5>
-                            <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
-                          </h5><h5>{{question.category.name}}</h5>
+                            <a ui-sref="user({ id: question.account.id})">{{question.account.username}}</a>
+                          </h5>
+                          <h5>{{question.category.name}}</h5>
                           <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
                         </div>
                       </div>
                       <div class="comment-content" style="width: 100%;">
-                        <h4><a href="/#/question/{{question.id}}">{{question.title}}</a></h4>
+                        <h4><a ui-sref="question({id:question.id})">{{question.title}}</a></h4>
 
                         <p ng-bind-html="question.text | emoticons">{{question.text}}</p>
                         <div class="social-networks clearfix">

@@ -257,8 +257,6 @@ var app = angular
         }, function(httpResponse){});
       };
 
-
-
       $scope.sponsoredPost = function(sponId, postId){
         Sponsored.update({
             where:{ id: sponId }
@@ -273,30 +271,43 @@ var app = angular
       };
 
 
-      $scope.addPost = function(post){
-        Post.create({
-          type: 'article',
-          title: post.title,
-          text: post.text,
-          isAnonymous: false,
-          accountId: Account.getCurrentId(),
-          categoryId: post.category.id,
-          timestamp: new Date(),
-          opinionFrom: 3
+      var checkImageUrl = function (url) {
+        return(url.match(/\.(jpeg|jpg|gif|png|svg)$/) != null);
+      };
 
-        },function(article, header){
-          getArticles(function(){
-            var scrollId = '#article-' + article.id;
-            $timeout(function(){
-              $('html, body').animate({
-                scrollTop: $(scrollId).offset().top-30
-              }, 200);
-            }, 1000);
+
+      $scope.addPost = function(post){
+        if (post.image && !checkImageUrl(post.image)) {
+          $('#image-url').popover('show');
+          return;
+        }
+        if (post.title != "" && post.text != "") {
+
+          Post.create({
+            type: 'article',
+            title: post.title,
+            text: post.text,
+            isAnonymous: false,
+            accountId: Account.getCurrentId(),
+            categoryId: post.category.id,
+            timestamp: new Date(),
+            opinionFrom: 3,
+            image: post.image
+
+          }, function (article, header) {
+            getArticles(function () {
+              var scrollId = '#article-' + article.id;
+              $timeout(function () {
+                $('html, body').animate({
+                  scrollTop: $(scrollId).offset().top - 30
+                }, 200);
+              }, 1000);
+            });
+          }, function (httpResponse) {
+            console.log(httpResponse);
+            $scope.message = httpResponse.data.error.message;
           });
-        }, function(httpResponse){
-          console.log(httpResponse);
-          $scope.message = httpResponse.data.error.message;
-        });
+        }
       };
 
 
