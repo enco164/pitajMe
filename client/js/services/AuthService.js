@@ -17,8 +17,6 @@ app.factory('AuthService',[
         .login({rememberMe: rememberMe}, {username: username, password: password})
         .$promise
         .then(function(response) {
-          //console.log(JSON.stringify(response));
-
           $rootScope.currentUser = {
             id: response.user.id,
             tokenId: response.id,

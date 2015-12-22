@@ -44,13 +44,13 @@
                 <li ng-if="isAuth()" ui-sref-active="active"><a ui-sref="user({id: currentID()})">Profil</a></li>
                 <li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
                   <ul role="menu" class="dropdown-menu">
-                    <li ng-show="!isAuth()"><a href="/#/login">Prijavi se</a></li>
-                    <li ng-show="isAuth()"><a href="/#/login" ng-click="logout()">Odjavi se</a></li>
-                    <li ng-show="!isAuth()"><a href="/#/registration">Registruj se</a></li>
+                    <li ng-show="!isAuth()"><a ui-sref="login()">Prijavi se</a></li>
+                    <li ng-show="isAuth()"><a ui-sref="login()" ng-click="logout()">Odjavi se</a></li>
+                    <li ng-show="!isAuth()"><a ui-sref="registration()">Registruj se</a></li>
                     <li><a href="#">Contact</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">Još opcija</li>
-                    <li><a href="/#/forgot-password">Forgot password</a></li>
+                    <li><a ui-sref="forgot-password()">Forgot password</a></li>
                     <li ng-show="isAdmin()"><a href="/admin?access_token={{getAT()}}">Admin panel</a></li>
 
                   </ul>
@@ -68,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div class="container askQuestion" data-ng-show="$state.includes('home')" style="padding: 0px;">
+      <div class="container askQuestion" data-ng-show="$state.includes(['home', 'articles'])" style="padding: 0;">
         <div class="row">
           <div class="col-md-8 col-md-push-2">
             <div class="row" >
@@ -116,7 +116,87 @@
     </header>
     <main ui-view></main>
   </div>
+
+
+
+  <!-- Modal Login -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginFormLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="passFormLabel">Postavljanje pitanja</h4>
+        </div>
+        <div class="modal-body">
+          <p>Da bi ste postavili pitanje potrebno je da se prijavite</p>
+          <div>
+            <label for="username">Korisničko ime:</label>
+            <input type="text" ng-model="newUser.username" id="username" class="form-control">
+          </div>
+          <div>
+            <label for="password">Lozinka:</label>
+            <input type="password" ng-model="newUser.password" id="password" class="form-control">
+          </div>
+          <br/>
+          <div class="modal-footer">
+            <button type="button" class="btn-default" data-dismiss="modal" >Zatvori</button>
+            <button type="button" class="btn-default" data-dismiss="modal" ui-sref="registration()">Registruj se</button>
+            <button type="button" class="btn-primary" ng-click="loginAndSendQuestion(newUser);" ng-show="!loging">Prijavi se i pošalji pitanje</button>
+            <div ng-show="loging" class="sp sp-circle" ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
+
+
+
+
+
+
+
+
+
+<footer>
+  <div class="row">
+    <div class="container">
+      <div class="col-md-4"><a href="#" class="navbar-brand"><img src="img/logo.png" alt="Logo" class="img-responsive"/></a></div>
+      <div class="col-md-4">
+        <h1>Na sajtu</h1>
+        <hr/>
+        <ul>
+          <li><a>Pitanja</a></li>
+          <li><a>Članci</a></li>
+          <li><a>Terms and conditions</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h1>Društvene mreže</h1>
+        <hr/>
+        <ul>
+          <li><a>Facebook</a></li>
+          <li><a>Twitter</a></li>
+          <li><a>Google+</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script src="js/timeago.js"></script>

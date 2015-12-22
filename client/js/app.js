@@ -66,7 +66,7 @@ var app = angular
           template: '<ui-view/>'
         })
         .state('articles.list',{
-          url: '/list',
+          url: '/',
           views:{
             '': {
               templateUrl: 'views/article_list.html',
