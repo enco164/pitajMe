@@ -7,9 +7,8 @@ app
     $rootScope.AT = localStorage.getItem('$LoopBack$accessTokenId');
   })
   .controller(
-  'MainCtrl', function($scope, $route, $stateParams, $location, Account, $state, Category, Post, $rootScope, AuthService) {
+  'MainCtrl', function($scope, $route, $stateParams, Account, $state, Category, Post, $rootScope, AuthService) {
     $scope.$route = $route;
-    $scope.$location = $location;
     $scope.$routeParams = $stateParams;
 
     $scope.currentId = Account.getCurrentId();

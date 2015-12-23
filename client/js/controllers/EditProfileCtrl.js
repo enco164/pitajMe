@@ -14,9 +14,10 @@ app.controller('EditProfileCtrl', [
   'detailsService',
   'LoopBackAuth',
   '$http',
+  '$state',
   function($scope, Question, Account, Answer, Category,
            Interest, countryService, dateService, detailsService,
-           LoopBackAuth, $http){
+           LoopBackAuth, $http, $state){
     document.body.id = '';
     $scope.countries = countryService.get();
     $scope.relationships = detailsService.getRelationship();
@@ -62,7 +63,7 @@ app.controller('EditProfileCtrl', [
       $scope.account.dob= newAccount.year+"/"+newAccount.month+"/"+day;
       Account.prototype$updateAttributes({ id: $scope.account.id }, $scope.account)
         .$promise.then(function() {
-          window.location.replace('/#/user-detail/'+Account.getCurrentId());
+          $state.go('user', {id: Account.getCurrentId()});
         });
       /*category.forEach(function(e, i){
        if (e.isChecked == true){

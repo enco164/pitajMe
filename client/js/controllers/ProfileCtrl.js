@@ -7,7 +7,8 @@ app.controller('ProfileCtrl', [
   'Question',
   'Account',
   'Answer',
-  function($scope, Question, Account, Answer){
+  '$state',
+  function($scope, Question, Account, Answer, $state){
 
     $scope.account = Account.findById({
       id: localStorage.getItem('$LoopBack$currentUserId')
@@ -86,7 +87,7 @@ app.controller('ProfileCtrl', [
       $scope.logged = true;
     } else {
       $scope.logged = false;
-      window.location.replace('/#/');
+      $state.go('home');
     }
   }
 ]);

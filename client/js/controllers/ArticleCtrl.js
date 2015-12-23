@@ -316,7 +316,7 @@ app.controller('ArticleCtrl', [
 
     $scope.deleteQuestion = function(){
       deletePost($scope.question, function(){
-        window.location.replace('/#/');
+        $state.go('home');
       });
     };
 

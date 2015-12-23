@@ -7,9 +7,9 @@ app.controller('AskQuestionCtrl', [
   'Post',
   'Account',
   'Category',
-  '$location',
   'AuthService',
-  function($scope, Post, Account, Category, $location, AuthService){
+  '$state',
+  function($scope, Post, Account, Category, AuthService, $state){
     document.body.id = '';
     $scope.error = false;
 
@@ -35,7 +35,7 @@ app.controller('AskQuestionCtrl', [
         opinionFrom: parseInt(question.opinionFrom)
 
       },function(question, header){
-        $location.path('/#/question/'+question.id);
+        $state.go('question', {id: question.id});
       }, function(httpResponse){
         console.log(httpResponse);
         $scope.message = httpResponse.data.error.message;

@@ -80,7 +80,7 @@ var app = angular
           }
         })
         .state('articles.detail',{
-          url: '/detail/:id',
+          url: '/:id',
           views:{
             '': {
               templateUrl: 'views/article.html',

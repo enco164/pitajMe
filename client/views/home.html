@@ -34,7 +34,7 @@
                 </a>
                 <div class="post-content clearfix {{question.gender}}-post" style="height: 180px !important;">
                   <h1>
-                    <a ng-show="!question.isAnonymous" ui-sref="user-detail({id: question.accountId})">{{question.account.username}}</a>
+                    <a ng-show="!question.isAnonymous" ui-sref="user({id: question.accountId})">{{question.account.username}}</a>
                     <a ng-show="question.isAnonymous" href="">Anonymous</a>
                     <span>{{question.time}}</span>
                   </h1>

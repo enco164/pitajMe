@@ -17,24 +17,24 @@
                   <!--<a href="#" class="edit-img" style="line-height: 1.1;"><i class="fa fa-pencil"></i></a>-->
                 </div>
                 <div class="info">
-                  <h5>{{account.username}}</h5><span>Age: {{account.age}}</span>
+                  <h5>{{account.username}}</h5><span>Godina: {{account.age}}</span>
                 </div>
               </div>
               <a href="">
-                <a href="" ng-show="isFollowing && logged" ng-click="unfollow()" class="btn-olive pull-right">Unfollow</a>
-                <a href="" ng-show="!isFollowing && logged" ng-click="follow()" class="btn-olive pull-right">Follow</a>
+                <a href="" ng-show="isFollowing && logged" ng-click="unfollow()" class="btn-olive pull-right">Prekini praćenje</a>
+                <a href="" ng-show="!isFollowing && logged" ng-click="follow()" class="btn-olive pull-right">Prati</a>
               </a>
               <ul class="stats clearfix">
                 <!--TODO FOLLOWERS/FOLLOWING-->
                 <li>
                   <i class="fa fa-female"></i>{{account.followers_female}}
                   <i class="fa fa-male"></i>{{account.followers_male}}
-                  <span>Followers</span>
+                  <span>Pratioci</span>
                 </li>
                 <li>
                   <i class="fa fa-female"></i>{{account.following_female}}
                   <i class="fa fa-male"></i>{{account.following_male}}
-                  <span>Following</span>
+                  <span>Pratim</span>
                 </li>
               </ul>
             </section>
@@ -43,9 +43,9 @@
             <!-- **** TABS **** -->
             <div class="profile-tabs tabs">
               <ul role="tablist" class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="" data-target="#profile-tab-pitanja" aria-controls="profile-tab-pitanja" role="tab" data-toggle="tab">Questions</a></li>
-                <li role="presentation"><a href="" data-target="#profile-tab-odgovori" aria-controls="profile-tab-odgovori" role="tab" data-toggle="tab">Answers</a></li>
-                <li role="presentation"><a href="" data-target="#profile-tab-komentari" aria-controls="profile-tab-komentari" role="tab" data-toggle="tab">Comments</a></li>
+                <li role="presentation" class="active"><a href="" data-target="#profile-tab-pitanja" aria-controls="profile-tab-pitanja" role="tab" data-toggle="tab">Pitanja</a></li>
+                <li role="presentation"><a href="" data-target="#profile-tab-odgovori" aria-controls="profile-tab-odgovori" role="tab" data-toggle="tab">Odgovori</a></li>
+                <li role="presentation"><a href="" data-target="#profile-tab-komentari" aria-controls="profile-tab-komentari" role="tab" data-toggle="tab">Komentari</a></li>
               </ul>
             </div>
 
@@ -62,13 +62,13 @@
                     </div>
                     <div class="info">
                       <h5>
-                        <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
+                        <a ui-sref="user({id : question.account.id})">{{question.account.username}}</a>
                       </h5>
                       <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
                     </div>
                   </div>
                   <div class="comment-content" style="width: 100%;">
-                    <h4><a href="/#/question/{{question.id}}">{{question.title}}</a></h4>
+                    <h4><a ui-sref="question({id: question.id})">{{question.title}}</a></h4>
                     <p ng-bind-html="question.text | emoticons">{{question.text}}</p>
                     <div class="social-networks clearfix">
                       <div class="left">
@@ -109,13 +109,13 @@
                     </div>
                     <div class="info">
                       <h5>
-                        <a href="/#/user-detail/{{answer.account.id}}">{{answer.account.username}}</a>
+                        <a ui-sref="user({id: answer.account.id})">{{answer.account.username}}</a>
                       </h5>
                       <span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
                     </div>
                   </div>
                   <div class="comment-content" style="width: 100%;">
-                    <h4><a href="/#/question/{{answer.question.id}}">{{answer.question[0].title}}</a></h4>
+                    <h4><a ui-sref="question({id: answer.question.id})">{{answer.question[0].title}}</a></h4>
                     <p ng-bind-html="answer.text | emoticons">{{answer.text}}</p>
                     <div class="social-networks clearfix">
                       <div class="left">
@@ -156,13 +156,13 @@
                     </div>
                     <div class="info">
                       <h5>
-                        <a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a>
+                        <a ui-sref="user({id: comment.account.id})">{{comment.account.username}}</a>
                       </h5>
                       <span title="{{comment.wholeTime}}">{{comment.timestamp}}</span>
                     </div>
                   </div>
                   <div class="comment-content" style="width: 100%;">
-                    <h4><a href="/#/question/{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a></h4>
+                    <h4><a ui-sref="question({ id: comment.answer[0].question[0].id})">{{comment.answer[0].question[0].title}}</a></h4>
                     <p ng-bind-html="comment.text | emoticons">{{comment.text}}</p>
                     <div class="social-networks clearfix">
                       <div class="left">
@@ -204,10 +204,10 @@
                   <img ng-if="!account.image" src="img/post-test-4.jpg" alt="Profile image" class="img-responsive"/>
                   <img ng-if="account.image" src="{{account.image}}" alt="Profile image" class="img-responsive"/>
                 </div>
-                <a href="/#/edit-profile" class="edit-img"><i class="fa fa-pencil"></i></a>
+                <a ui-sref="edit-profile()" class="edit-img"><i class="fa fa-pencil"></i></a>
               </div>
               <div class="info">
-                <h5>{{account.username}}</h5><span>Age: {{account.age}}</span>
+                <h5>{{account.username}}</h5><span>Godine: {{account.age}}</span>
               </div>
               <ul>
                 <li class="active"><a href=""> <i class="fa fa-user"></i>Profile</a></li>
@@ -219,9 +219,9 @@
             <div class="col-md-9">
               <div class="profile-tabs tabs">
                 <ul role="tablist" class="nav nav-tabs">
-                  <li role="presentation" class="active"><a href="" data-target="#profile-tab-myquestions" aria-controls="profile-tab-myquestions" role="tab" data-toggle="tab">Questions</a></li>
-                  <li role="presentation"><a href="" data-target="#profile-tab-myanswers" aria-controls="profile-tab-myanswers" role="tab" data-toggle="tab">Answers</a></li>
-                  <li role="presentation"><a href="" data-target="#profile-tab-mycomments" aria-controls="profile-tab-mycomments" role="tab" data-toggle="tab">Comments</a></li>
+                  <li role="presentation" class="active"><a href="" data-target="#profile-tab-myquestions" aria-controls="profile-tab-myquestions" role="tab" data-toggle="tab">Pitanja</a></li>
+                  <li role="presentation"><a href="" data-target="#profile-tab-myanswers" aria-controls="profile-tab-myanswers" role="tab" data-toggle="tab">Odgovori</a></li>
+                  <li role="presentation"><a href="" data-target="#profile-tab-mycomments" aria-controls="profile-tab-mycomments" role="tab" data-toggle="tab">Komentari</a></li>
                 </ul>
               </div>
 
@@ -238,15 +238,15 @@
                       </div>
                       <div class="info">
                         <h5>
-                          <a href="/#/user-detail/{{question.account.id}}">{{question.account.username}}</a>
+                          <a ui-sref="user({id: question.account.id})">{{question.account.username}}</a>
                         </h5>
                         <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
                       </div>
                     </div>
                     <div class="comment-content" style="width: 100%;">
-                      <h4><a href="/#/question/{{question.id}}">{{question.title}}</a></h4>
+                      <h4><a ui-sref="question({id: question.id})">{{question.title}}</a></h4>
                       <p ng-show="!question.editing" ng-bind-html="question.text | emoticons">{{question.text}}</p>
-                      <textarea ng-show="question.editing" type="text" placeholder="Enter Comment content" rows="2" required="required" class="form-control" ng-model="question.text"></textarea>
+                      <textarea ng-show="question.editing" placeholder="Upiši komentar" rows="2" required="required" class="form-control" ng-model="question.text"></textarea>
                       <div class="social-networks clearfix">
                         <div class="left">
                           <a href="" ng-show="!question.isLiked" ng-click="likePost(question);" class="btn-red">
@@ -257,9 +257,9 @@
                             <i class="fa fa-thumbs-o-down"></i>Dislike</a>
                           <a href="" ng-show="question.isDisliked" ng-click="undislikePost(question);" class="btn-dark">
                             <i class="fa fa-thumbs-o-down"></i>Undislike</a>
-                          <button class="btn btn-default btn-sm" ng-show="question.owner" ng-click="deleteQuestion(question)"><i class="fa fa-trash-o"></i> delete</button>
-                          <button class="btn btn-default btn-sm" ng-show="!question.editing && question.owner" ng-click="question.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
-                          <button class="btn btn-default btn-sm" ng-show="question.editing && question.owner" ng-click="updateQuestion(question)"><i class="fa fa-floppy-o"></i> save</button>
+                          <button class="btn btn-default btn-sm" ng-show="question.owner" ng-click="deleteQuestion(question)"><i class="fa fa-trash-o"></i> Obriši</button>
+                          <button class="btn btn-default btn-sm" ng-show="!question.editing && question.owner" ng-click="question.editing=true"><i class="fa fa-pencil-square-o"></i> Izmeni</button>
+                          <button class="btn btn-default btn-sm" ng-show="question.editing && question.owner" ng-click="updateQuestion(question)"><i class="fa fa-floppy-o"></i> Sačuvaj</button>
                         </div>
                         <!--<div class="right social">
                           <h5>Share:</h5>
@@ -289,15 +289,15 @@
                       </div>
                       <div class="info">
                         <h5>
-                          <a href="/#/user-detail/{{answer.account.id}}">{{answer.account.username}}</a>
+                          <a ui-sref="user({id: answer.account.id})">{{answer.account.username}}</a>
                         </h5>
                         <span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
                       </div>
                     </div>
                     <div class="comment-content" style="width: 100%;">
-                      <h4><a href="/#/question/{{answer.question[0].id}}">{{answer.question[0].title}}</a></h4>
+                      <h4><a ui-sref="question({id: answer.question[0].id})">{{answer.question[0].title}}</a></h4>
                       <p ng-show="!answer.editing" ng-bind-html="answer.text | emoticons">{{answer.text}}</p>
-                      <textarea ng-show="answer.editing" type="text" placeholder="Enter Comment content" rows="2" required="required" class="form-control" ng-model="answer.text"></textarea>
+                      <textarea ng-show="answer.editing" placeholder="Upiši komentar" rows="2" required="required" class="form-control" ng-model="answer.text"></textarea>
                       <div class="social-networks clearfix">
                         <div class="left">
                           <a href="" ng-show="!answer.isLiked" ng-click="likePost(answer);" class="btn-red">
@@ -308,9 +308,9 @@
                             <i class="fa fa-thumbs-o-down"></i>Dislike</a>
                           <a href="" ng-show="answer.isDisliked" ng-click="undislikePost(answer);" class="btn-dark">
                             <i class="fa fa-thumbs-o-down"></i>Undislike</a>
-                          <button class="btn btn-default btn-sm" ng-show="answer.owner" ng-click="deleteAnswer(answer)"><i class="fa fa-trash-o"></i> delete</button>
-                          <button class="btn btn-default btn-sm" ng-show="!answer.editing && answer.owner" ng-click="answer.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
-                          <button class="btn btn-default btn-sm" ng-show="answer.editing && answer.owner" ng-click="updateAnswer(answer)"><i class="fa fa-floppy-o"></i> save</button>
+                          <button class="btn btn-default btn-sm" ng-show="answer.owner" ng-click="deleteAnswer(answer)"><i class="fa fa-trash-o"></i> obriši</button>
+                          <button class="btn btn-default btn-sm" ng-show="!answer.editing && answer.owner" ng-click="answer.editing=true"><i class="fa fa-pencil-square-o"></i> izmeni</button>
+                          <button class="btn btn-default btn-sm" ng-show="answer.editing && answer.owner" ng-click="updateAnswer(answer)"><i class="fa fa-floppy-o"></i> sačuvaj</button>
                         </div>
                       </div>
                     </div>
@@ -327,15 +327,15 @@
                       </div>
                       <div class="info">
                         <h5>
-                          <a href="/#/user-detail/{{comment.account.id}}">{{comment.account.username}}</a>
+                          <a ui-sref="user({id: comment.account.id})">{{comment.account.username}}</a>
                         </h5>
                         <span title="{{comment.wholeTime}}">{{comment.timestamp}}</span>
                       </div>
                     </div>
                     <div class="comment-content" style="width: 100%;">
-                      <h4><a href="/#/question/{{comment.answer[0].question[0].id}}">{{comment.answer[0].question[0].title}}</a></h4>
+                      <h4><a ui-sref="question({id: comment.answer[0].question[0].id})">{{comment.answer[0].question[0].title}}</a></h4>
                       <p ng-show="!comment.editing" ng-bind-html="comment.text | emoticons">{{comment.text}}</p>
-                      <textarea ng-show="comment.editing" type="text" placeholder="Enter Comment content" rows="2" required="required" class="form-control" ng-model="comment.text"></textarea>
+                      <textarea ng-show="comment.editing" placeholder="Upiši komentar" rows="2" required="required" class="form-control" ng-model="comment.text"></textarea>
                       <div class="social-networks clearfix">
                         <div class="left">
                           <a href="" ng-show="!comment.isLiked" ng-click="likePost(comment);" class="btn-red">
@@ -346,9 +346,9 @@
                             <i class="fa fa-thumbs-o-down"></i>Dislike</a>
                           <a href="" ng-show="comment.isDisliked" ng-click="undislikePost(comment);" class="btn-dark">
                             <i class="fa fa-thumbs-o-down"></i>Undislike</a>
-                          <button class="btn btn-default btn-sm" ng-show="comment.owner" ng-click="deleteComment(comment)"><i class="fa fa-trash-o"></i> delete</button>
-                          <button class="btn btn-default btn-sm" ng-show="!comment.editing && comment.owner" ng-click="comment.editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
-                          <button class="btn btn-default btn-sm" ng-show="comment.editing && comment.owner" ng-click="updateComment(comment)"><i class="fa fa-floppy-o"></i> save</button>
+                          <button class="btn btn-default btn-sm" ng-show="comment.owner" ng-click="deleteComment(comment)"><i class="fa fa-trash-o"></i> Obriši</button>
+                          <button class="btn btn-default btn-sm" ng-show="!comment.editing && comment.owner" ng-click="comment.editing=true"><i class="fa fa-pencil-square-o"></i> Izmeni</button>
+                          <button class="btn btn-default btn-sm" ng-show="comment.editing && comment.owner" ng-click="updateComment(comment)"><i class="fa fa-floppy-o"></i> Sačuvaj</button>
                         </div>
                       </div>
                     </div>

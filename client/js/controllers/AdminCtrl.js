@@ -44,8 +44,7 @@ var app = angular
     'Category',
     '$timeout',
     'Sponsored',
-    '$location',
-    function($scope, Account, Post, Category, $timeout, Sponsored, $location) {
+    function($scope, Account, Post, Category, $timeout, Sponsored) {
       document.body.id = '';
       $scope.questionNum = 10;
       $scope.answerNum = 10;

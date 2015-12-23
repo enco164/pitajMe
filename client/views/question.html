@@ -12,12 +12,12 @@
         <div class="row">
           <div class="col-md-12 post-user">
             <div class="username-wrap">
-              <a ui-sref="user-detail({id: question.accountId})" class="user-thumb">
+              <a ui-sref="user({id: question.accountId})" class="user-thumb">
                 <img ng-if="!question.account.image || question.isAnonymous" src="img/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
                 <img ng-if="question.account.image && !question.isAnonymous" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
               </a>
               <a ng-if="question.isAnonymous" href="">Anonymous</a>
-              <a ng-if="!question.isAnonymous" ui-sref="user-detail({id: question.accountId})" >{{question.account.username}}</a>
+              <a ng-if="!question.isAnonymous" ui-sref="user({id: question.accountId})" >{{question.account.username}}</a>
             </div>
             <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
           </div>
@@ -124,7 +124,7 @@
                   <img ng-if="answer.account.image" src="{{answer.account.image}}" alt="Profile image" class="img-responsive"/>
                 </div>
                 <div class="info">
-                  <h5><a ui-sref="user-detail({id: answer.account.id})">{{answer.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
+                  <h5><a ui-sref="user({id: answer.account.id})">{{answer.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
                 </div>
               </div>
               <!--ANSWER USER INFO END-->
@@ -170,7 +170,7 @@
                               <img ng-if="comment.account.image" src="{{comment.account.image}}" alt="Profile image" class="img-responsive"/>
                             </div>
                             <div class="info">
-                              <h5><a ui-sref="user-detail({id: comment.account.id})" >{{comment.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{comment.timestamp}}</span>
+                              <h5><a ui-sref="user({id: comment.account.id})" >{{comment.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{comment.timestamp}}</span>
                             </div>
                           </div>
                           <div class="comment-content" style="width: 100%;">
