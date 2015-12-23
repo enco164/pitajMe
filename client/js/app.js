@@ -11,8 +11,8 @@ var app = angular
     'ngEmoticons',
     'ui.bootstrap'
   ])
-  .config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+    function($stateProvider, $urlRouterProvider, $locationProvider) {
 
       $urlRouterProvider.otherwise('/');
 
@@ -192,7 +192,7 @@ var app = angular
           controllerAs: 'forgotPass'
         });
 
-      //$locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(true);
     }])
   .config(function(LoopBackResourceProvider) {
 

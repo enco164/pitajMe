@@ -26,6 +26,9 @@ app.factory('AuthService',[
           var next = $location.nextAfterLogin || '/';
           $location.nextAfterLogin = null;
           $location.path(next);
+        }, function(error){
+          console.log(error);
+          $rootScope.errorMessage = error.data.error.message;
         });
     }
     function logout() {
