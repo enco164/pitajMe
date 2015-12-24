@@ -25,7 +25,7 @@
                 <li class="divider"></li>
                 <li class="dropdown-header">Još opcija</li>
                 <li><a ui-sref="root.forgot-password()">Forgot password</a></li>
-                <li ng-show="isAdmin()"><a href="/admin?access_token={{getAT()}}">Admin panel</a></li>
+                <li ng-show="isAdmin()"><a ng-click="goToAdmin()">Admin panel</a></li>
 
               </ul>
             </li>

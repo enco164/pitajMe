@@ -4,24 +4,20 @@
 /**
  * Created by enco on 25.9.15..
  */
-app.factory('AuthService',[
-  'LoopBackAuth',
-  'Account',
-  '$q',
-  '$rootScope',
-  '$location',
-  function(LoopBackAuth, Account, $q, $rootScope, $location){
+app.factory('AuthService',
+  function(LoopBackAuth, Account, $q, $rootScope, $location, $state){
 
     function login(username, password, rememberMe) {
       return Account
         .login({rememberMe: rememberMe}, {username: username, password: password})
         .$promise
         .then(function(response) {
-          $rootScope.currentUser = {
+          var currentUser = {
             id: response.user.id,
             tokenId: response.id,
             username: username
           };
+          localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
           var next = $location.nextAfterLogin || '/';
           $location.nextAfterLogin = null;
@@ -35,7 +31,8 @@ app.factory('AuthService',[
         .logout()
         .$promise
         .then(function() {
-          $rootScope.currentUser = null;
+          localStorage.clear();
+          $state.go('root.login');
         });
     }
     function register(email, password) {
@@ -52,5 +49,4 @@ app.factory('AuthService',[
       register: register
     };
 
-  }
-]);
+  });

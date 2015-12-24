@@ -2,7 +2,7 @@
  * Created by enco on 24.12.15..
  */
 app
-  .run(function ($state,$rootScope) {
+  .run(function ($state, $rootScope) {
     $rootScope.$state = $state;
     $rootScope.AT = localStorage.getItem('$LoopBack$accessTokenId');
   })
@@ -14,19 +14,23 @@ app
 
       $scope.currentId = Account.getCurrentId();
       $scope.isAuthenticated = Account.isAuthenticated();
-
+      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
       $scope.getProfile = function(){
         $scope.currentId = Account.getCurrentId();
         $state.go('root.user({id: $scope.currentId})');
       };
 
       $scope.getAT = function(){
-        if($rootScope.currentUser) return $rootScope.currentUser.tokenId;
+        if(currentUser) return currentUser.tokenId;
         return null;
       };
 
       $scope.isAdmin = function(){
-        return ($rootScope.currentUser && $rootScope.currentUser.username == 'admin');
+        return (currentUser && currentUser.username == 'admin');
+      };
+
+      $scope.goToAdmin = function(){
+        window.location = '/admin?access_token='+currentUser.tokenId;
       };
 
       $scope.logged = Account.isAuthenticated();
@@ -34,16 +38,7 @@ app
 
 
       $scope.logout = function(){
-        Account.logout({},{
-          id: Account.getCurrentId()
-        }, function(value, responseHeaders) {
-          $scope.isAuthenticated = false;
-          $rootScope.AT = null;
-          $rootScope.currentUser = null;
-          $state.go('root.login');
-        }, function(httpResponse){
-          console.log(httpResponse);
-        });
+        AuthService.logout();
       };
 
       $scope.isAuth = function(){

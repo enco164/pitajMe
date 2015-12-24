@@ -6,7 +6,7 @@ var loopback = require('loopback');
 module.exports = function(server) {
 
 //show password reset form
-  server.get('/reset-password', function (req, res, next) {
+  server.get('/reset-password', function (req, res) {
     if (!req.accessToken) return res.sendStatus(401);
     res.render('password-reset', {
       accessToken: req.accessToken.id
@@ -14,7 +14,7 @@ module.exports = function(server) {
   });
 
 //reset the user's pasword
-  server.post('/reset-password', function (req, res, next) {
+  server.post('/reset-password', function (req, res) {
     if (!req.accessToken) return res.sendStatus(401, new Error('Your access token is not valid'));
 
     //verify passwords match
@@ -39,7 +39,7 @@ module.exports = function(server) {
   });
 
   //change the user's pasword
-  server.post('/change-password', function (req, res, next) {
+  server.post('/change-password', function (req, res) {
     if (!req.accessToken) return res.sendStatus(401, new Error('Your access token is not valid, try to login again.'));
 
     //verify passwords match
@@ -90,7 +90,6 @@ module.exports = function(server) {
         console.log('Nasao ga ali nije sve ok');
         return res.render('404', { url: req.url });
       }
-      console.log('Sve ok!!!!!!!');
       return res.render('admin', {url: 'ovo je jedan url'});
 
     });

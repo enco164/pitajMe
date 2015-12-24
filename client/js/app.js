@@ -14,7 +14,7 @@ var app = angular
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-      $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/404');
 
       $stateProvider
         .state('root',{
