@@ -107,7 +107,6 @@ app.controller('ArticleCtrl', [
     reloadQuestion();
 
     $scope.sendAnswer = function (answer) {
-      console.log(JSON.stringify(answer));
       if (answer.isAnonymous == undefined) {
         answer.isAnonymous = false;
       }
@@ -120,7 +119,7 @@ app.controller('ArticleCtrl', [
         timestamp: new Date,
         accountId: Account.getCurrentId()
       }, function(value, responseHeaders){
-        console.log(value, responseHeaders);
+
         //Linkovanje odgovora i pitanja
         Post.answers.link({
           id: $scope.question.id,
@@ -197,14 +196,14 @@ app.controller('ArticleCtrl', [
         },
         { value: value },
         function (value, responseHeaders){ successCb(); },
-        function (httpResponse){ console.log(httpResponse); }
+        function (httpResponse){  }
       );
     };
 
     var unlikeUndislikePost = function(post, successCb){
       Account.likes.unlink({ id: Account.getCurrentId(), fk: post.id },
         function (value, responseHeaders){ successCb(); },
-        function (httpResponse){ console.log(httpResponse); }
+        function (httpResponse){  }
       );
     };
 
@@ -266,7 +265,7 @@ app.controller('ArticleCtrl', [
       Account.posts.updateById({id: Account.getCurrentId(), fk: post.id}, {text: post.text},
         function(value, response){
         },
-        function(httpResponse){console.log(httpResponse)});
+        function(httpResponse){});
     };
 
     $scope.updateQuestion = function(question){

@@ -147,12 +147,10 @@ app.controller('UserCtrl', [
         },
         {},
         function successCb(value, responseHeaders){
-          console.log('follow() return value: ' + JSON.stringify(value));
           $scope.isFollowing = true;
           $scope.getAccount();
         },
         function error(httpResponse){
-          console.log('follow() error: ' + JSON.stringify(httpResponse));
         }
       );
     };
@@ -165,7 +163,7 @@ app.controller('UserCtrl', [
         },
         function successCb(value, responseHeaders){
           $scope.isFollowing = false;
-          console.log('unfollow() return value: ' + JSON.stringify(value));
+
           $scope.getAccount();
         },
         function error(httpResponse){
@@ -181,11 +179,11 @@ app.controller('UserCtrl', [
       },
       function successCb(value, responseHeaders){
         $scope.isFollowing = true;
-        console.log('isFollowing return value: ' + JSON.stringify(value));
+
       },
       function error(httpResponse){
         $scope.isFollowing = false;
-        console.log('isFollowing error: ' + JSON.stringify(httpResponse));
+
       }
     );
 

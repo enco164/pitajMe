@@ -63,7 +63,6 @@ app
       };
 
       $scope.loginAndSendQuestion = function(newUser){
-        console.log('kliknuo');
         AuthService.login(newUser.username, newUser.password, true).then(function(){
           $('#loginModal').modal('hide');
           $scope.sendQuestion($rootScope.postedQuestion);

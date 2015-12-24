@@ -126,7 +126,7 @@ app.controller('QuestionCtrl', [
           id: $scope.question.id,
           fk: value.id
         }, {}, function(value, responseHeaders){
-          console.log("success", value);
+
         }, function(httpResponse){
           console.log("failure", httpResponse)
         });

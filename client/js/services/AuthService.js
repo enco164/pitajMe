@@ -27,7 +27,6 @@ app.factory('AuthService',[
           $location.nextAfterLogin = null;
           $location.path(next);
         }, function(error){
-          console.log(error);
           $rootScope.errorMessage = error.data.error.message;
         });
     }

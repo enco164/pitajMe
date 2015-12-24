@@ -37,9 +37,7 @@ app
     $scope.cat = Category.findById({
       id: $scope.params.id
     }, function(value){
-      console.log(value);
     }, function(httpResponse){
-      console.log(httpResponse);
     });
 
 
