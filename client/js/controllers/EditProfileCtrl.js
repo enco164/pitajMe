@@ -63,7 +63,7 @@ app.controller('EditProfileCtrl', [
       $scope.account.dob= newAccount.year+"/"+newAccount.month+"/"+day;
       Account.prototype$updateAttributes({ id: $scope.account.id }, $scope.account)
         .$promise.then(function() {
-          $state.go('user', {id: Account.getCurrentId()});
+          $state.go('root.user', {id: Account.getCurrentId()});
         });
       /*category.forEach(function(e, i){
        if (e.isChecked == true){

@@ -20,7 +20,7 @@ app.controller('LoginCtrl',
       }, function(value, responseHeaders) {
         $rootScope.AT = localStorage.getItem('$LoopBack$accessTokenId');
         console.log(JSON.stringify(value.user.username));
-        $state.go('home');
+        $state.go('root.home');
       }, function(httpResponse){
         console.log(httpResponse);
         $scope.message = httpResponse.data.error.message;

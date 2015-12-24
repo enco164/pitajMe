@@ -4,7 +4,7 @@
       <!--QUESTION IMAGE-->
       <div class="row">
         <div ng-if="!question.image" class="col-md-12 post-img"><a href=""><img src="img/big-post-img.jpg" alt="Category image" class="img-responsive"/></a></div>
-        <div ng-if="question.image" class="col-md-12 post-img"><a href=""><img src="{{question.image}}" alt="Category image" class="img-responsive"/></a></div>
+        <div ng-if="question.image" class="col-md-12 post-img"><a href=""><img ng-src="{{question.image}}" alt="Category image" class="img-responsive"/></a></div>
       </div>
       <!--QUESTION CONTENT-->
       <div class="post-detail-content">
@@ -13,7 +13,7 @@
           <div class="col-md-12 post-title">
             <h1>{{question.title}}</h1>
             <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
-            <h2><a ui-sref="category({ id : question.category.id })" >{{question.category.name}}</a></h2>
+            <h2><a ui-sref="root.category({ id : question.category.id })" >{{question.category.name}}</a></h2>
             <div class="stats">
               <div class="girls"><i class="fa fa-female"> </i>{{question.ans_female}}</div>
               <div class="boys"><i class="fa fa-male"></i>{{question.ans_male}}</div>
@@ -47,24 +47,25 @@
               <i class="fa fa-thumbs-o-down"></i>Dislike</a>
             <a href="" ng-if="question.isDisliked" ng-click="unlikeUndislikeQuestion();" class="btn-dark">
               <i class="fa fa-thumbs-o-down"></i>Undislike</a>
-            <button class="btn btn-default btn-sm" ng-show="question.owner" ng-click="deleteQuestion()"><i class="fa fa-trash-o"></i> delete</button>
-            <button class="btn btn-default btn-sm" ng-show="!editing && question.owner" ng-click="editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>
-            <button class="btn btn-default btn-sm" ng-show="editing && question.owner" ng-click="updateQuestion(question)"><i class="fa fa-floppy-o"></i> save</button>
+            <button class="btn btn-default btn-sm" ng-show="question.owner" ng-click="deleteQuestion()"><i class="fa fa-trash-o"></i> obriši</button>
+            <button class="btn btn-default btn-sm" ng-show="!editing && question.owner" ng-click="editing=true"><i class="fa fa-pencil-square-o"></i> izmeni</button>
+            <button class="btn btn-default btn-sm" ng-show="editing && question.owner" ng-click="updateQuestion(question)"><i class="fa fa-floppy-o"></i> sačuvaj</button>
           </div>
           <!--CONTENT MANAGE END-->
           <!--SOCIAL-->
-          <!--<div class="right">
+          <div class="right">
             <h5>Podeli na:</h5>
             <ul class="clearfix">
               <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
               <li><a href=""><i class="fa fa-twitter-square"></i></a></li>
               <li><a href=""><i class="fa fa-google-plus-square"></i></a></li>
-              <li><a href=""><i class="fa fa-youtube-square"></i></a></li>
+              <!--<li><a href=""><i class="fa fa-youtube-square"></i></a></li>
               <li><a href=""><i class="fa fa-behance-square"></i></a></li>
               <li><a href=""><i class="fa fa-envelope-square"></i></a></li>
               <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
+              -->
             </ul>
-          </div>-->
+          </div>
           <!--SOCIAL END-->
         </div>
       </div>
@@ -107,7 +108,7 @@
                   <img ng-if="answer.account.image" ng-src="answer.account.image" alt="Profile image" class="img-responsive"/>
                 </div>
                 <div class="info">
-                  <h5><a ui-sref="user({id : answer.account.id})" >{{answer.account.username}}</a></h5>
+                  <h5><a ui-sref="root.user({id : answer.account.id})" >{{answer.account.username}}</a></h5>
                   <span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
                 </div>
               </div>

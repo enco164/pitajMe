@@ -45,7 +45,7 @@ app.controller('QuestionCtrl', [
           ]
         }
       }, function(value, responseHeaders){
-        if(value.type !== 'question') $state.go('home');
+        if(value.type !== 'question') $state.go('root.home');
         /*$scope.question.likes = {};
          $scope.question.likes = Post.likes({id: $scope.question.id, filter: {where:{value: -1}}});
          */
@@ -100,7 +100,7 @@ app.controller('QuestionCtrl', [
           }
         }
       }, function(httpResponse){
-        $state.go('home');
+        $state.go('root.home');
       });
     }
 
@@ -356,7 +356,7 @@ app.controller('QuestionCtrl', [
 
     $scope.deleteQuestion = function(){
       deletePost($scope.question, function(){
-        $state.go('home');
+        $state.go('root.home');
       });
     };
 

@@ -16,7 +16,7 @@ app
 
     $scope.getProfile = function(){
       $scope.currentId = Account.getCurrentId();
-      $state.go('user-detail({id: $scope.currentId})');
+      $state.go('root.user({id: $scope.currentId})');
     };
 
     $scope.getAT = function(){
@@ -39,7 +39,7 @@ app
         $scope.isAuthenticated = false;
         $rootScope.AT = null;
         $rootScope.currentUser = null;
-        $state.go('login');
+        $state.go('root.login');
       }, function(httpResponse){
         console.log(httpResponse);
       });

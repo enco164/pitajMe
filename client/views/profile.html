@@ -56,14 +56,14 @@
       </div>
     </div>
     <div class="col-md-4">
-      <a ui-sref="edit-profile()">Edit Profile</a>
+      <a ui-sref="root.edit-profile()">Edit Profile</a>
     </div>
     <hr/>
     <div class="col-md-12">
       <h1>Questions</h1><br/>
       <div ng-repeat="question in questions">
         <div class="col-md-8">
-          Title: <a ui-sref="question({id: question.id})">{{question.title}}</a><br/>
+          Title: <a ui-sref="root.question({id: question.id})">{{question.title}}</a><br/>
           Text: {{question.text}}<br/>
           Category: {{question.category.name}}<br/>
           Timestamp: {{question.timestamp}}

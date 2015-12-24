@@ -24,17 +24,17 @@
                   <div class="comment-user">
                     <div class="user-img">
                       <img ng-if="!question.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
-                      <img ng-if="question.account.image" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
+                      <img ng-if="question.account.image" ng-src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
                     </div>
                     <div class="info">
                       <h5>
-                        <a ui-sref="user({id : question.account.id})">{{question.account.username}}</a>
+                        <a ui-sref="root.user({id : question.account.id})">{{question.account.username}}</a>
                       </h5>
                       <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
                     </div>
                   </div>
                   <div class="comment-content" style="width: 100%;">
-                    <h4><a ui-sref="question({id : question.id})">{{question.title}}</a></h4>
+                    <h4><a ui-sref="root.question({id : question.id})">{{question.title}}</a></h4>
                     <p ng-bind-html="question.text | emoticons">{{question.text}}</p>
                     <div class="social-networks clearfix">
                       <div class="left">
@@ -74,17 +74,17 @@
                 <div class="comment-user">
                   <div class="user-img">
                     <img ng-if="!answer.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
-                    <img ng-if="answer.account.image" src="{{answer.account.image}}" alt="Profile image" class="img-responsive"/>
+                    <img ng-if="answer.account.image" ng-src="{{answer.account.image}}" alt="Profile image" class="img-responsive"/>
                   </div>
                   <div class="info">
                     <h5>
-                      <a ui-sref="user({id: answer.account.id})">{{answer.account.username}}</a>
+                      <a ui-sref="root.user({id: answer.account.id})">{{answer.account.username}}</a>
                     </h5>
                     <span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
                   </div>
                 </div>
                 <div class="comment-content" style="width: 100%;">
-                  <h4><a ui-sref="question({id: answer.question[0].id})">{{answer.question[0].title}}</a></h4>
+                  <h4><a ui-sref="root.question({id: answer.question[0].id})">{{answer.question[0].title}}</a></h4>
                   <p ng-bind-html="answer.text | emoticons">{{answer.text}}</p>
                   <div class="social-networks clearfix">
                     <div class="left">
@@ -110,17 +110,17 @@
                 <div class="comment-user">
                   <div class="user-img">
                     <img ng-if="!comment.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
-                    <img ng-if="comment.account.image" src="{{comment.account.image}}" alt="Profile image" class="img-responsive"/>
+                    <img ng-if="comment.account.image" ng-src="{{comment.account.image}}" alt="Profile image" class="img-responsive"/>
                   </div>
                   <div class="info">
                     <h5>
-                      <a ui-sref="user({id: comment.account.id})">{{comment.account.username}}</a>
+                      <a ui-sref="root.user({id: comment.account.id})">{{comment.account.username}}</a>
                     </h5>
                     <span title="{{comment.wholeTime}}">{{comment.timestamp}}</span>
                   </div>
                 </div>
                 <div class="comment-content" style="width: 100%;">
-                  <h4><a ui-sref="question({id: comment.answer[0].question[0].id})">{{comment.answer[0].question[0].title}}</a></h4>
+                  <h4><a ui-sref="root.question({id: comment.answer[0].question[0].id})">{{comment.answer[0].question[0].title}}</a></h4>
                   <p ng-bind-html="comment.text | emoticons">{{comment.text}}</p>
                   <div class="social-networks clearfix">
                     <div class="left">
@@ -186,7 +186,7 @@
                   </div>
                   <div class="info">
                     <h4 ng-show="!category.editing">
-                      <a ui-sref="category({id: category.id})">{{category.name}}</a>
+                      <a ui-sref="root.category({id: category.id})">{{category.name}}</a>
                     </h4>
                     <p ng-show="category.editing">
                       <input type="text" placeholder="Category Title" required="required" class="form-control" ng-model="category.name"/>
@@ -239,11 +239,11 @@
                 <div class="comment-user">
                   <div class="user-img">
                     <img ng-if="!account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
-                    <img ng-if="account.image" src="{{account.image}}" alt="Profile image" class="img-responsive"/>
+                    <img ng-if="account.image" ng-src="{{account.image}}" alt="Profile image" class="img-responsive"/>
                   </div>
                   <div class="info">
                     <h4>
-                      <a ui-sref="user({id: account.id})">{{account.username}}</a>
+                      <a ui-sref="root.user({id: account.id})">{{account.username}}</a>
                     </h4>
                     <span>{{account.email}}</span>
                   </div>

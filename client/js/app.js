@@ -17,55 +17,71 @@ var app = angular
       $urlRouterProvider.otherwise('/');
 
       $stateProvider
-        .state('home',{
+        .state('root',{
+          url: '',
+          abstract: true,
+          views: {
+            'header': {
+              templateUrl: 'views/header.html',
+              controller: 'HeaderCtrl'
+            },
+            'footer': {
+              templateUrl: 'views/footer.html',
+              controller: 'FooterCtrl'
+            }
+          }
+        })
+        .state('root.home',{
           url: '/',
           views:{
-            '': {
+            'container@': {
               templateUrl:'views/home.html',
               controller: 'HomeCtrl',
               controllerAs: 'home'
             },
-            'sidebar@home':{
+            'sidebar@root.home':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
         })
-        .state('login',{
+        .state('root.login',{
           url: '/login',
           views:{
-            '':{
+            'container@':{
               templateUrl:'views/login.html',
               controller: 'LoginCtrl',
               controllerAs: 'login'
             },
-            'sidebar@login':{
+            'sidebar@root.login':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
 
         })
-        .state('question',{
+        .state('root.question',{
           url: '/question/:id',
           views:{
-            '': {
+            'container@': {
               templateUrl: 'views/question.html',
               controller: 'QuestionCtrl',
               controllerAs: 'questionView'
             },
-            'sidebar@question':{
+            'sidebar@root.question':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
         })
-        .state('articles', {
+        .state('root.articles', {
           abstract: true,
           url: '/articles',
-          template: '<ui-view/>'
+          views:{
+            'container@': {template: '<ui-view/>'}
+          }
         })
-        .state('articles.list',{
+        .state('root.articles.list',{
           url: '/',
           views:{
             '': {
@@ -73,13 +89,13 @@ var app = angular
               controller: 'ArticleListCtrl',
               controllerAs: 'articleList'
             },
-            'sidebar@articles.list':{
+            'sidebar@root.articles.list':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
         })
-        .state('articles.detail',{
+        .state('root.articles.detail',{
           url: '/:id',
           views:{
             '': {
@@ -87,109 +103,129 @@ var app = angular
               controller: 'ArticleCtrl',
               controllerAs: 'articleView'
             },
-            'sidebar@articles.detail':{
+            'sidebar@root.articles.detail':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
         })
-        .state('registration', {
+        .state('root.registration', {
           url:'/registration',
           views:{
-            '': {
+            'container@': {
               templateUrl: 'views/registration.html',
               controller: 'RegistrationCtrl',
               controllerAs: 'registration'
             },
-            'sidebar@registration':{
+            'sidebar@root.registration':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
 
         })
-        .state('my-profile', {
+        .state('root.my-profile', {
           url:'/my-profile',
-          templateUrl: 'views/profile.html',
-          controller: 'ProfileCtrl',
-          controllerAs: 'profile'
+          views: {
+            'container@': {
+              templateUrl: 'views/profile.html',
+              controller: 'ProfileCtrl',
+              controllerAs: 'profile'
+            }
+          }
         })
-        .state('user', {
+        .state('root.user', {
           url:'/user-detail/:id',
           views: {
-            '':{
+            'container@':{
               templateUrl: 'views/user.html',
               controller: 'UserCtrl',
               controllerAs: 'user'
             },
-            'sidebar@user':{
+            'sidebar@root.user':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
 
         })
-        .state('ask-question',{
+        .state('root.ask-question',{
           url:'/ask-question',
           views:{
-            '':{
+            'container@':{
               templateUrl: 'views/askQuestion.html',
               controller: 'AskQuestionCtrl',
               controllerAs: 'askQuestion'
             },
-            'sidebar@ask-question':{
+            'sidebar@root.ask-question':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
         })
-        .state('edit-profile', {
+        .state('root.edit-profile', {
           url:'/edit-profile',
-          templateUrl: 'views/editProfile.html',
-          controller: 'EditProfileCtrl',
-          controllerAs: 'editProfile'
+          views: {
+            'container@': {
+              templateUrl: 'views/editProfile.html',
+              controller: 'EditProfileCtrl',
+              controllerAs: 'editProfile'
+            }
+          }
         })
-        .state('category', {
+        .state('root.category', {
           url:'/category/:id',
           views:{
-            '':{
+            'container@':{
               templateUrl: 'views/category.html',
               controller: 'CategoryCtrl',
               controllerAs: 'category'
             },
-            'sidebar@category':{
+            'sidebar@root.category':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
         })
-        .state('verified',{
+        .state('root.verified',{
           url: '/verified',
-          templateUrl: 'views/verified.html'
+          views: {
+            'container@':{
+              templateUrl: 'views/verified.html'
+            }
+          }
         })
-        .state('register-success',{
+        .state('root.register-success',{
           url:'/register-success',
           views:{
-            '':{
+            'container@':{
               templateUrl: 'views/registerSuccess.html'
             },
-            'sidebar@register-success':{
+            'sidebar@root.register-success':{
               templateUrl: 'views/sidebar.html',
               controller: 'SidebarCtrl'
             }
           }
         })
-        .state('forgot-password',{
+        .state('root.forgot-password',{
           url:'/forgot-password',
-          templateUrl: 'views/forgotPassword.html',
-          controller: 'ForgotPassCtrl',
-          controllerAs: 'forgotPass'
+          views: {
+            'container@': {
+              templateUrl: 'views/forgotPassword.html',
+              controller: 'ForgotPassCtrl',
+              controllerAs: 'forgotPass'
+            }
+          }
         })
-        .state('reset-password',{
+        .state('root.reset-password',{
           url:'/reset-password/:accessToken',
-          templateUrl: 'views/resetPasswordForm.html',
-          controller: 'ResetPassCtrl',
-          controllerAs: 'forgotPass'
+          views: {
+            'container@': {
+              templateUrl: 'views/resetPasswordForm.html',
+              controller: 'ResetPassCtrl',
+              controllerAs: 'forgotPass'
+            }
+          }
         });
 
       $locationProvider.html5Mode(true);

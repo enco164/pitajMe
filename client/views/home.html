@@ -7,39 +7,39 @@
           <div ng-if="articles">
             <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="article in articles" on-last-repeat>
               <article>
-                <a ui-sref="articles.detail({id : article.id})" >
+                <a ui-sref="root.articles.detail({id : article.id})" >
                   <img ng-if="!article.image || !checkImageUrl(article.image)" src="img/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
-                  <img ng-if="article.image && checkImageUrl(article.image)" src="{{article.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+                  <img ng-if="article.image && checkImageUrl(article.image)" ng-src="{{article.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
                 </a>
                 <div class="post-content clearfix {{article.gender}}-post" style="height: 180px !important;">
                   <h1>
                     <span>{{article.time}}</span>
                   </h1>
-                  <h2><a ui-sref="articles.detail({id : article.id})">{{article.title}}&nbsp; <i class="fa fa-picture-o" ng-show="article.image"></i></a></h2>
-                  <h3><a ui-sref="category({id : article.category.id})">{{article.category.name}}</a></h3>
+                  <h2><a ui-sref="root.articles.detail({id : article.id})">{{article.title}}&nbsp; <i class="fa fa-picture-o" ng-show="article.image"></i></a></h2>
+                  <h3><a ui-sref="root.category({id : article.category.id})">{{article.category.name}}</a></h3>
                   <div  ng-bind-html="article.text | emoticons:{linkTarget:'_blank'}"><p class="question-text">{{article.text}}</p></div>
                 </div>
               </article>
             </div>
-            <span class="pull-right"><a ui-sref="articles.list()">Pročitaj još čalnaka ></a></span>
+            <span class="pull-right"><a ui-sref="root.articles.list()">Pročitaj još čalnaka ></a></span>
             <hr class="form-devider"/>
           </div>
 
           <div ng-if="sponsoredPosts">
             <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in sponsoredPosts" on-last-repeat>
               <article>
-                <a ui-sref="question({id: question.id})">
+                <a ui-sref="root.question({id: question.id})">
                   <img ng-if="!question.image || !checkImageUrl(question.image)" src="img/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
-                  <img ng-if="question.image && checkImageUrl(question.image)" src="{{question.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+                  <img ng-if="question.image && checkImageUrl(question.image)" ng-src="{{question.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
                 </a>
                 <div class="post-content clearfix {{question.gender}}-post" style="height: 180px !important;">
                   <h1>
-                    <a ng-show="!question.isAnonymous" ui-sref="user({id: question.accountId})">{{question.account.username}}</a>
+                    <a ng-show="!question.isAnonymous" ui-sref="root.user({id: question.accountId})">{{question.account.username}}</a>
                     <a ng-show="question.isAnonymous" href="">Anonymous</a>
                     <span>{{question.time}}</span>
                   </h1>
-                  <h2><a ui-sref="question({id: question.id})">{{question.title}}&nbsp; <i class="fa fa-picture-o" ng-show="question.image"></i></a></h2>
-                  <h3><a ui-sref="category({id: question.category.id})">{{question.category.name}}</a></h3>
+                  <h2><a ui-sref="root.question({id: question.id})">{{question.title}}&nbsp; <i class="fa fa-picture-o" ng-show="question.image"></i></a></h2>
+                  <h3><a ui-sref="root.category({id: question.category.id})">{{question.category.name}}</a></h3>
                   <div  ng-bind-html="question.text | emoticons:{linkTarget:'_blank'}"><p class="question-text">{{question.text}}</p></div>
                 </div>
               </article>
@@ -49,18 +49,18 @@
 
           <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in questions" on-last-repeat>
             <article>
-              <a ui-sref="question({id: question.id})">
+              <a ui-sref="root.question({id: question.id})">
                 <img ng-if="!question.image || !checkImageUrl(question.image)" src="img/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
-                <img ng-if="question.image && checkImageUrl(question.image)" src="{{question.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+                <img ng-if="question.image && checkImageUrl(question.image)" ng-src="{{question.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
               </a>
               <div class="post-content clearfix {{question.gender}}-post">
                 <h1>
-                  <a ng-show="!question.isAnonymous" ui-sref="user({ id: question.accountId })" >{{question.account.username}}</a>
+                  <a ng-show="!question.isAnonymous" ui-sref="root.user({ id: question.accountId })" >{{question.account.username}}</a>
                   <a ng-show="question.isAnonymous" href="">Anonymous</a>
                   <span>{{question.time}}</span>
                 </h1>
-                <h2><a ui-sref="question({ id: question.id})">{{question.title}}&nbsp; <i class="fa fa-picture-o" ng-show="question.image"></i></a></h2>
-                <h3><a ui-sref="category({ id: question.category.id})">{{question.category.name}}</a></h3>
+                <h2><a ui-sref="root.question({ id: question.id})">{{question.title}}&nbsp; <i class="fa fa-picture-o" ng-show="question.image"></i></a></h2>
+                <h3><a ui-sref="root.category({ id: question.category.id})">{{question.category.name}}</a></h3>
                 <div class="question-text" ng-bind-html="question.text | emoticons:{linkTarget:'_blank'}"><p class="question-text">{{question.text}}</p></div>
                 <div class="stats">
                   <div class="girls"><i class="fa fa-female"> </i>{{question.ans_female}}</div>

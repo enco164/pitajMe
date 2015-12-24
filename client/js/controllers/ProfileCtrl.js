@@ -87,7 +87,7 @@ app.controller('ProfileCtrl', [
       $scope.logged = true;
     } else {
       $scope.logged = false;
-      $state.go('home');
+      $state.go('root.home');
     }
   }
 ]);

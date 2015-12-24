@@ -45,7 +45,7 @@ app.controller('ArticleCtrl', [
           ]
         }
       }, function(value, responseHeaders){
-        if (value.type !== 'article') $state.go('home');
+        if (value.type !== 'article') $state.go('root.home');
         /*$scope.question.likes = {};
          $scope.question.likes = Post.likes({id: $scope.question.id, filter: {where:{value: -1}}});
          */
@@ -100,7 +100,7 @@ app.controller('ArticleCtrl', [
           }
         }
       }, function(httpResponse){
-        $state.go('home');
+        $state.go('root.home');
       });
     }
 
@@ -316,7 +316,7 @@ app.controller('ArticleCtrl', [
 
     $scope.deleteQuestion = function(){
       deletePost($scope.question, function(){
-        $state.go('home');
+        $state.go('root.home');
       });
     };
 

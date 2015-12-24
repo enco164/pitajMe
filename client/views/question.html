@@ -4,7 +4,7 @@
       <!--QUESTION IMAGE-->
       <div class="row">
         <div ng-if="!question.image" class="col-md-12 post-img"><a href=""><img src="img/big-post-img.jpg" alt="Category image" class="img-responsive"/></a></div>
-        <div ng-if="question.image" class="col-md-12 post-img"><a href=""><img src="{{question.image}}" alt="Category image" class="img-responsive"/></a></div>
+        <div ng-if="question.image" class="col-md-12 post-img"><a href=""><img ng-src="{{question.image}}" alt="Category image" class="img-responsive"/></a></div>
       </div>
       <!--QUESTION CONTENT-->
       <div class="post-detail-content {{question.gender}}-post">
@@ -12,12 +12,12 @@
         <div class="row">
           <div class="col-md-12 post-user">
             <div class="username-wrap">
-              <a ui-sref="user({id: question.accountId})" class="user-thumb">
+              <a ui-sref="root.user({id: question.accountId})" class="user-thumb">
                 <img ng-if="!question.account.image || question.isAnonymous" src="img/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
-                <img ng-if="question.account.image && !question.isAnonymous" src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
+                <img ng-if="question.account.image && !question.isAnonymous" ng-src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
               </a>
               <a ng-if="question.isAnonymous" href="">Anonymous</a>
-              <a ng-if="!question.isAnonymous" ui-sref="user({id: question.accountId})" >{{question.account.username}}</a>
+              <a ng-if="!question.isAnonymous" ui-sref="root.user({id: question.accountId})" >{{question.account.username}}</a>
             </div>
             <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
           </div>
@@ -28,7 +28,7 @@
         <div class="row">
           <div class="col-md-12 post-title">
             <h1>{{question.title}}</h1>
-            <h2><a ui-sref="category({id: question.category.id})" >{{question.category.name}}</a></h2>
+            <h2><a ui-sref="root.category({id: question.category.id})" >{{question.category.name}}</a></h2>
             <div class="stats">
               <div class="girls"><i class="fa fa-female"> </i>{{question.ans_female}}</div>
               <div class="boys"><i class="fa fa-male"></i>{{question.ans_male}}</div>
@@ -121,10 +121,10 @@
               <div class="comment-user">
                 <div class="user-img">
                   <img ng-if="!answer.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
-                  <img ng-if="answer.account.image" src="{{answer.account.image}}" alt="Profile image" class="img-responsive"/>
+                  <img ng-if="answer.account.image" ng-src="{{answer.account.image}}" alt="Profile image" class="img-responsive"/>
                 </div>
                 <div class="info">
-                  <h5><a ui-sref="user({id: answer.account.id})">{{answer.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
+                  <h5><a ui-sref="root.user({id: answer.account.id})">{{answer.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
                 </div>
               </div>
               <!--ANSWER USER INFO END-->
@@ -167,10 +167,10 @@
                           <div class="comment-user">
                             <div class="user-img">
                               <img ng-if="!comment.account.image" src="img/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
-                              <img ng-if="comment.account.image" src="{{comment.account.image}}" alt="Profile image" class="img-responsive"/>
+                              <img ng-if="comment.account.image" ng-src="{{comment.account.image}}" alt="Profile image" class="img-responsive"/>
                             </div>
                             <div class="info">
-                              <h5><a ui-sref="user({id: comment.account.id})" >{{comment.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{comment.timestamp}}</span>
+                              <h5><a ui-sref="root.user({id: comment.account.id})" >{{comment.account.username}}</a></h5><span title="{{answer.wholeTime}}">{{comment.timestamp}}</span>
                             </div>
                           </div>
                           <div class="comment-content" style="width: 100%;">

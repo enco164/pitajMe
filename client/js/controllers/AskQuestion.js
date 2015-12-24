@@ -35,7 +35,7 @@ app.controller('AskQuestionCtrl', [
         opinionFrom: parseInt(question.opinionFrom)
 
       },function(question, header){
-        $state.go('question', {id: question.id});
+        $state.go('root.question', {id: question.id});
       }, function(httpResponse){
         console.log(httpResponse);
         $scope.message = httpResponse.data.error.message;
