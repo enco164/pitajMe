@@ -48,19 +48,10 @@ app.controller('ProfileCtrl', [
       }
     });
 
-    $scope.logout = function(){
-      console.log("bla bla");
-      Account.logout({
-        id: Account.getCurrentId()
-      }, function(err) {
-        console.log(err);
-      });
-    };
-
     $scope.deleteQuestion = function(question){
       Question.destroyById({
         id: question.id
-      }, function(value, responseHeaders){
+      }, function(value){
         $scope.questions.forEach(function(q, index){
           if (q.id == question.id) {
             $scope.questions.splice(index, 1);

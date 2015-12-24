@@ -36,7 +36,7 @@ app
 
     $scope.cat = Category.findById({
       id: $scope.params.id
-    }, function(value, responseHeaders){
+    }, function(value){
       console.log(value);
     }, function(httpResponse){
       console.log(httpResponse);
@@ -46,7 +46,7 @@ app
     Category.interests.exists({
       id: $scope.params.id,
       fk: Account.getCurrentId()
-    }, function(value, responseHeaders){
+    }, function(value){
       console.log(value);
       $scope.interest = true;
     }, function(httpResponse){
@@ -67,7 +67,7 @@ app
           }
         ]
       }
-    }, function(value, responseHeaders){
+    }, function(value){
       for (var i = 0;i<$scope.questions.length; i++){
         if (value[i].account.sex == 'Male') $scope.questions[i].gender = 'boy';
         else $scope.questions[i].gender = 'girl';
@@ -104,7 +104,7 @@ app
       Account.interests.link({
         id: Account.getCurrentId(),
         fk: $scope.params.id
-      }, {}, function(value, responseHeaders){
+      }, {}, function(value){
           $scope.interest = true;
         },
         function(httpResponse){console.log(httpResponse)});
@@ -114,21 +114,13 @@ app
       Account.interests.unlink({
         id: Account.getCurrentId(),
         fk: $scope.params.id
-      }, function(value, responseHeaders){
+      }, function(value){
         console.log(value);
         $scope.interest = false;
       }, function(httpResponse){
         console.log(httpResponse);
       });
     };
-
-    $scope.logout = function(){
-      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
-        console.log(err);
-      });
-    };
-
-    $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 
   }
 ]);

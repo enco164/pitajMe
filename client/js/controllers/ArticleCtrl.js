@@ -44,7 +44,7 @@ app.controller('ArticleCtrl', [
             }
           ]
         }
-      }, function(value, responseHeaders){
+      }, function(value){
         if (value.type !== 'article') $state.go('root.home');
         /*$scope.question.likes = {};
          $scope.question.likes = Post.likes({id: $scope.question.id, filter: {where:{value: -1}}});
@@ -125,7 +125,7 @@ app.controller('ArticleCtrl', [
         Post.answers.link({
           id: $scope.question.id,
           fk: value.id
-        }, {}, function(value, responseHeaders){
+        }, {}, function(value){
           console.log("success", value);
         }, function(httpResponse){
           console.log("failure", httpResponse)
@@ -138,7 +138,7 @@ app.controller('ArticleCtrl', [
               {relation: 'comments', scope: {include: 'account'}}
             ]
           }
-        }, function(value, responseHeaders){
+        }, function(value){
           $scope.a.comments = [];
           $scope.a.owner = true;
           $scope.a.timestamp = time($scope.a.timestamp);
@@ -156,27 +156,15 @@ app.controller('ArticleCtrl', [
       });
     };
 
-    $scope.logout = function(){
-      Account.logout({},{
-        id: localStorage.getItem('$LoopBack$currentUserId')
-      }, function(value, responseHeaders) {
-        console.log(value);
-      }, function(httpResponse){
-        console.log(httpResponse);
-      });
-    };
-
-    $scope.logged = !!Account.isAuthenticated();
-
 
     function questionLiked(){
       Post.likes.exists({
         id: $scope.params.id,
         fk: Account.getCurrentId()
-      }, function(value, responseHeaders){
+      }, function(value){
         Like.findOne({
           filter: { where: { accountId: Account.getCurrentId(),postId: $scope.params.id }}
-        }, function(value, responseHeaders){
+        }, function(value){
           if (value.value == 1) $scope.question.isLiked = true;
           if (value.value == -1) $scope.question.isDisliked = true;
         }, function(httpResponse){

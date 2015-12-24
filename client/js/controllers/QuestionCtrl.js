@@ -196,19 +196,6 @@ app.controller('QuestionCtrl', [
       });
     };
 
-    $scope.logout = function(){
-      Account.logout({},{
-        id: localStorage.getItem('$LoopBack$currentUserId')
-      }, function(value, responseHeaders) {
-        console.log(value);
-      }, function(httpResponse){
-        console.log(httpResponse);
-      });
-    };
-
-    $scope.logged = !!Account.isAuthenticated();
-
-
     function questionLiked(){
       Post.likes.exists({
         id: $scope.params.id,

@@ -84,7 +84,7 @@ app.controller('EditProfileCtrl', [
         Account.interests.link({
           id: Account.getCurrentId(),
           fk: category.id
-        }, {}, function(value, responseHeaders){
+        }, {}, function(value){
           $scope.categories.forEach(function(e, i){
             if (e.id == category.id) $scope.categories[i].inter = 'success';
           });
@@ -136,16 +136,6 @@ app.controller('EditProfileCtrl', [
         $('#responseMsg').modal('show');
       });
     };
-
-
-
-    $scope.logout = function(){
-      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
-        console.log(err);
-      });
-    };
-
-    $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
 
   }
 ]);

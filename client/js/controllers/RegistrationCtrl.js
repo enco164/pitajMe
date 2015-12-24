@@ -50,7 +50,7 @@ app.controller('RegistrationCtrl', [
           country: $scope.acc.country.name,
           dob: $scope.acc.day.name+"/"+$scope.acc.month.name+"/"+$scope.acc.year.name,
           sex: $scope.acc.sex
-        }, function(value, responseHeaders) {
+        }, function(value) {
           $location.path('/register-success');
           $scope.loading = false;
         }, function(httpResponse){
@@ -66,12 +66,5 @@ app.controller('RegistrationCtrl', [
       }
     };
 
-    $scope.logout = function(){
-      Account.logout({id: localStorage.getItem('$LoopBack$currentUserId')}, function(err) {
-        console.log(err);
-      });
-    };
-
-    $scope.logged = !!localStorage.getItem('$LoopBack$accessTokenId');
   }
 ]);

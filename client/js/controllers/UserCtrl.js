@@ -139,8 +139,6 @@ app.controller('UserCtrl', [
     getAnswers();
     getComments();
 
-    $scope.logout = function(){Account.logout({id: Account.getCurrentId()});};
-
     $scope.follow = function(){
       Account.prototype$__link__following(
         {
