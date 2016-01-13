@@ -20,6 +20,9 @@ app
 
     var pageLength = 3;
     var multiplier = 1;
+    var maxPostTextLen = 95;
+
+
     $scope.hasMoreQuestions = true;
 
     $scope.questions = [];
@@ -28,7 +31,7 @@ app
     $scope.sponsoredList = Sponsored.find(
       {filter: {order: 'id ASC'}},
       function(value){
-        value.forEach(function(e, i){
+        value.forEach(function(e){
           Post.find({
               filter: {
                 where: {id: e.postId},
@@ -46,6 +49,9 @@ app
               if (value[0].account && value[0].account.sex && value[0].account.sex == 'Male') value[0].gender = 'boy';
               else value[0].gender = 'girl';
               $scope.sponsoredPosts[e.id-1] = value[0];
+              $scope.sponsoredPosts.forEach(function(item){
+                item.text = readMoreFunction(item.text, maxPostTextLen, '/question/'+item.id);
+              });
             },
             function(httpResponse){console.log(httpResponse)});
         });
@@ -67,6 +73,9 @@ app
       }
     }, function(value){
       $scope.articles = value.slice(0, 3);
+      $scope.articles.forEach(function(item){
+        item.text = readMoreFunction(item.text, maxPostTextLen, '/articles/'+item.id);
+      });
     });
 
     $scope.loadNextQuestions = function(){
@@ -118,6 +127,7 @@ app
         }
         value.forEach(function(item){
           $scope.questions.push(item);
+          item.text = readMoreFunction(item.text, maxPostTextLen, '/question/'+item.id);
         });
         if(value.length < pageLength) $scope.hasMoreQuestions = false;
       }, function(httpResponse){
@@ -129,6 +139,9 @@ app
     $scope.checkImageUrl = function (url) {
       return(url.match(/\.(jpeg|jpg|gif|png|svg)$/) != null);
     };
+
+
+
 
   }
 );

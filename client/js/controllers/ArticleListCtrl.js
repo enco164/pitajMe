@@ -16,6 +16,8 @@ app
     document.body.id = 'content-wrap';
     $scope.class = 'content-wrap';
 
+    var maxPostTextLen = 95;
+
     Post.find({
       filter: {
         where: {type: 'article'},
@@ -31,6 +33,9 @@ app
       }
     }, function(value){
       $scope.articles = value;
+      $scope.articles.forEach(function(item){
+        item.text = readMoreFunction(item.text, maxPostTextLen, '/articles/'+item.id);
+      });
     });
 
     $scope.checkImageUrl = function (url) {

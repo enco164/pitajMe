@@ -34,6 +34,9 @@ app
       });
     });*/
 
+
+    var maxPostTextLen = 95;
+
     $scope.cat = Category.findById({
       id: $scope.params.id
     }, function(value){
@@ -45,7 +48,6 @@ app
       id: $scope.params.id,
       fk: Account.getCurrentId()
     }, function(value){
-      console.log(value);
       $scope.interest = true;
     }, function(httpResponse){
       console.log(httpResponse);
@@ -93,7 +95,10 @@ app
         }, function(value, responseHeaders){}, function(httpResponse){});
 
       }
-      console.log(value);
+      $scope.questions.forEach(function(item){
+        item.text = readMoreFunction(item.text, maxPostTextLen, '/question/'+item.id);
+      });
+
     }, function(httpResponse){
       console.log(httpResponse);
     });
