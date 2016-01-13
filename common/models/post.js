@@ -1,4 +1,26 @@
+var app = require('../../server/server');
+
 module.exports = function(Post) {
+
+  Post.observe('before save', function(ctx, next){
+    if(ctx.instance.type == 'article'){
+      var RoleMapping = app.models.RoleMapping;
+      var Role = app.models.Role;
+      RoleMapping.find({where:{principalId: ctx.instance.accountId}}, function(err,rm){
+        Role.find({where:{id: rm.roleId}}, function(err, role){
+          if(err) {
+            console.log(err);
+            return;
+          }
+          if(role && role[0].name=='admin'){
+            next();
+          } else {
+            console.log('neko ko nema admin rolu pokusava da doda article!');
+          }
+        });
+      });
+    }
+  });
 
   /*Remote method for top questions*/
   Post.topQuestionsMethod = function(limit, cb){
