@@ -34,13 +34,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a ui-sref="home()" class="navbar-brand"><img src="img/logo.png" alt="Logo" class="img-responsive"/></a>
+              <a href="/" class="navbar-brand"><img src="img/logo.png" alt="Logo" class="img-responsive"/></a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active"><a ui-sref="home()" >Homepage</a></li>
-                <li ui-sref-active="active"><a ui-sref="ask-question">Ask Question</a></li>
-                <li ng-if="isAuth()" ui-sref-active="active"><a ui-sref="user({id: currentID()})" >Profile page</a></li>
+                <li ui-sref-active="active"><a href="/" >Homepage</a></li>
+
                 <li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">User Help <span class="caret"></span></a>
                   <ul role="menu" class="dropdown-menu">
                     <li ng-show="!isAuth()"><a href="/#/login">Login</a></li>
@@ -49,7 +48,7 @@
                     <li><a href="#">Contact</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">More options</li>
-                    <li><a href="/#/forgot-password">Forgot password</a></li>
+                    <li><a href="/forgot-password">Forgot password</a></li>
                   </ul>
                 </li>
                 <!--<li>
@@ -121,11 +120,11 @@
               <div class="profile-tabs tabs">
                 <ul role="tablist" class="nav nav-tabs">
                   <li role="presentation" class="active"><a href="" data-target="#profile-tab-articles" aria-controls="profile-tab-articles" role="tab" data-toggle="tab">Članci</a></li>
-                  <li role="presentation"><a href="" data-target="#profile-tab-pitanja" aria-controls="profile-tab-pitanja" role="tab" data-toggle="tab">Questions</a></li>
-                  <li role="presentation"><a href="" data-target="#profile-tab-odgovori" aria-controls="profile-tab-odgovori" role="tab" data-toggle="tab">Answers</a></li>
-                  <li role="presentation"><a href="" data-target="#profile-tab-komentari" aria-controls="profile-tab-komentari" role="tab" data-toggle="tab">Comments</a></li>
-                  <li role="presentation"><a href="" data-target="#profile-tab-kategorije" aria-controls="profile-tab-kategorije" role="tab" data-toggle="tab">Categories</a></li>
-                  <li role="presentation"><a href="" data-target="#profile-tab-korisnici" aria-controls="profile-tab-korisnici" role="tab" data-toggle="tab">Users</a></li>
+                  <li role="presentation"><a href="" data-target="#profile-tab-pitanja" aria-controls="profile-tab-pitanja" role="tab" data-toggle="tab">Pitanja</a></li>
+                  <li role="presentation"><a href="" data-target="#profile-tab-odgovori" aria-controls="profile-tab-odgovori" role="tab" data-toggle="tab">Odgovori</a></li>
+                  <li role="presentation"><a href="" data-target="#profile-tab-komentari" aria-controls="profile-tab-komentari" role="tab" data-toggle="tab">Komentari</a></li>
+                  <li role="presentation"><a href="" data-target="#profile-tab-kategorije" aria-controls="profile-tab-kategorije" role="tab" data-toggle="tab">Kategorije</a></li>
+                  <li role="presentation"><a href="" data-target="#profile-tab-korisnici" aria-controls="profile-tab-korisnici" role="tab" data-toggle="tab">Korisnici</a></li>
                 </ul>
               </div>
               <!-- TABS END -->
@@ -199,17 +198,24 @@
                         <h5>{{article.category.name}}</h5>
                         <span title="{{article.wholeTime}}">{{article.timestamp}}</span>
                         <h4 ng-show="!article.editing">
-                          <a ui-sref="articles.detail({id:article.id})" >{{article.title}}</a>
+                          <a href="/articles/{{article.id}}" >{{article.title}}</a>
                         </h4>
                         <p ng-show="article.editing">
                           <input type="text" placeholder="Naslov članka" required="required" class="form-control" ng-model="article.title"/>
+
                         </p>
                       </div>
                     </div>
                     <div class="comment-content" style="width: 100%;">
-                      <p ng-show="!article.editing">{{article.text}}</p>
+                      <p ng-show="!article.editing">
+                        <img ng-if="article.image" src="{{article.image}}" alt="article.image"/>
+                        <br/>
+                        {{article.text}}
+                      </p>
                       <p ng-show="article.editing">
                         <textarea placeholder="Tekst članka" rows="2" required="required" class="form-control" ng-model="article.text"></textarea>
+                        <input id="image-url" placeholder="Insert Image URL" type="text" class="form-control" ng-model="article.image" aria-describedby="attachment"
+                               data-toggle="popover" data-placement="bottom" data-content="Image URL is invalid. Check your URL and try again."/>
                       </p>
                       <div class="social-networks clearfix">
                         <div class="left">
@@ -243,14 +249,14 @@
                         </div>
                         <div class="info">
                           <h5>
-                            <a ui-sref="user({ id: question.account.id})">{{question.account.username}}</a>
+                            <a href="/user/{{question.account.id}}">{{question.account.username}}</a>
                           </h5>
                           <h5>{{question.category.name}}</h5>
                           <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
                         </div>
                       </div>
                       <div class="comment-content" style="width: 100%;">
-                        <h4><a ui-sref="question({id:question.id})">{{question.title}}</a></h4>
+                        <h4><a href="/question/{{question.id}}">{{question.title}}</a></h4>
 
                         <p ng-bind-html="question.text | emoticons">{{question.text}}</p>
                         <div class="social-networks clearfix">

@@ -7,11 +7,17 @@ module.exports = function(Post) {
       var RoleMapping = app.models.RoleMapping;
       var Role = app.models.Role;
       RoleMapping.find({where:{principalId: ctx.instance.accountId}}, function(err,rm){
+        if(err) {
+          console.log(err);
+          return;
+        }
+
         Role.find({where:{id: rm.roleId}}, function(err, role){
           if(err) {
             console.log(err);
             return;
           }
+
           if(role && role[0].name=='admin'){
             next();
           } else {
@@ -19,6 +25,8 @@ module.exports = function(Post) {
           }
         });
       });
+    } else {
+      next();
     }
   });
 
