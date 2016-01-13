@@ -96,7 +96,7 @@ app
             }, function (value, responseHeaders) {
               console.log(value);
               $rootScope.postedQuestion = {};
-              $state.transitionTo('question', {id: value.id});
+              $state.go('root.question', {id: value.id});
               /*
                $scope.q = Post.findById({
                id: value.id,
