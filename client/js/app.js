@@ -9,10 +9,14 @@ var app = angular
     'ngAnimate',
     'lbServices',
     'ngEmoticons',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'djds4rce.angular-socialshare'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
-    function($stateProvider, $urlRouterProvider, $locationProvider) {
+  .run(function($FB){
+    $FB.init('891256094245407');
+  })
+  .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+
 
       $urlRouterProvider.otherwise('/404');
 
@@ -229,7 +233,7 @@ var app = angular
         });
 
       $locationProvider.html5Mode(true);
-    }])
+    })
   .config(function(LoopBackResourceProvider) {
 
     // Use a custom auth header instead of the default 'Authorization'

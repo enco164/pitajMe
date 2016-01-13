@@ -16,52 +16,13 @@ app
     document.body.id = 'content-wrap';
     $scope.class = 'content-wrap';
 
-    $scope.questions = Post.find({
-      filter: {
-        where: {type: 'question'},
-        order: 'timestamp DESC',
-        include: [
-          {relation: 'account'},
-          {relation: 'category'},
-          {relation: 'likes'},
-          {relation: 'answers',
-            scope: {include: 'account'}
-          }
-        ]
-      }
-    }, function(value){
-      for (var i = 0;i<$scope.questions.length; i++){
-        if (value[i].account && value[i].account.sex && value[i].account.sex == 'Male') $scope.questions[i].gender = 'boy';
-        else $scope.questions[i].gender = 'girl';
 
-        $scope.questions[i].time = time($scope.questions[i].timestamp);
 
-        $scope.questions[i].answ = Post.answers.count({
-          id: $scope.questions[i].id
-        }, function(value, responseHeaders){
-        }, function(httpResponse){
+    var pageLength = 3;
+    var multiplier = 1;
+    $scope.hasMoreQuestions = true;
 
-        });
-        /* TODO brojanje lajkova -- srediti da bude bolje, mozda cak i server to da uradi*/
-        $scope.questions[i].dislikes = 0;
-        $scope.questions[i].likes = 0;
-        $scope.questions[i].dislikes = Like.dislikeCounterMethod({
-          postId: $scope.questions[i].id
-        }, function(value, responseHeaders){}, function(httpResponse){});
-        $scope.questions[i].likes = Like.likeCounterMethod({
-          postId: $scope.questions[i].id
-        }, function(value, responseHeaders){ }, function(httpResponse){});
-        // TODO brojanje odgovora na pitanje - srediti kao i brojanje lajkova
-        $scope.questions[i].ans_female = 0;
-        $scope.questions[i].ans_male = 0;
-        for(var k = 0; k < $scope.questions[i].answers.length; k++){
-          if($scope.questions[i].answers[k].account && $scope.questions[i].answers[k].account.sex == 'Male') $scope.questions[i].ans_male++;
-          if($scope.questions[i].answers[k].account && $scope.questions[i].answers[k].account.sex == 'Female') $scope.questions[i].ans_female++;
-        }
-
-      }
-    }, function(httpResponse){
-    });
+    $scope.questions = [];
 
     $scope.sponsoredPosts = [];
     $scope.sponsoredList = Sponsored.find(
@@ -107,6 +68,63 @@ app
     }, function(value){
       $scope.articles = value.slice(0, 3);
     });
+
+    $scope.loadNextQuestions = function(){
+      var len = $scope.questions.length;
+      Post.find({
+        filter: {
+          where: {type: 'question'},
+          order: 'timestamp DESC',
+          limit: pageLength,
+          skip: len,
+          include: [
+            {relation: 'account'},
+            {relation: 'category'},
+            {relation: 'likes'},
+            {relation: 'answers',
+              scope: {include: 'account'}
+            }
+          ]
+        }
+      }, function(value){
+        multiplier++;
+        for (var i = 0;i<value.length; i++){
+          if (value[i].account && value[i].account.sex && value[i].account.sex == 'Male') value[i].gender = 'boy';
+          else value[i].gender = 'girl';
+
+          value[i].time = time(value[i].timestamp);
+
+          value[i].answ = Post.answers.count({
+            id: value[i].id
+          }, function(value, responseHeaders){
+          }, function(httpResponse){
+
+          });
+          value[i].dislikes = 0;
+          value[i].likes = 0;
+          value[i].dislikes = Like.dislikeCounterMethod({
+            postId: value[i].id
+          }, function(value, responseHeaders){}, function(httpResponse){});
+          value[i].likes = Like.likeCounterMethod({
+            postId: value[i].id
+          }, function(value, responseHeaders){ }, function(httpResponse){});
+          // TODO brojanje odgovora na pitanje - srediti kao i brojanje lajkova
+          value[i].ans_female = 0;
+          value[i].ans_male = 0;
+          for(var k = 0; k < value[i].answers.length; k++){
+            if(value[i].answers[k].account && value[i].answers[k].account.sex == 'Male') value[i].ans_male++;
+            if(value[i].answers[k].account && value[i].answers[k].account.sex == 'Female') value[i].ans_female++;
+          }
+        }
+        value.forEach(function(item){
+          $scope.questions.push(item);
+        });
+        if(value.length < pageLength) $scope.hasMoreQuestions = false;
+      }, function(httpResponse){
+      });
+    };
+
+    $scope.loadNextQuestions();
 
     $scope.checkImageUrl = function (url) {
       return(url.match(/\.(jpeg|jpg|gif|png|svg)$/) != null);
