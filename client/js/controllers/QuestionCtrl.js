@@ -106,6 +106,21 @@ app.controller('QuestionCtrl', [
 
     reloadQuestion();
 
+    /*$scope.share = function(post){
+      FB.ui(
+        {
+          method: 'share',
+          name: 'This is the content of the "name" field.',
+          href: window.location.href,
+          picture: $scope.question.image,
+          caption: post.caption,
+          description: 'This is the content of the "description" field, below the caption.',
+          message: ''
+        }, function(response){
+          console.log(response);
+        });
+    };*/
+
     $scope.sendAnswer = function (answer) {
       console.log(JSON.stringify(answer));
       if (answer.isAnonymous == undefined) {
