@@ -22,6 +22,7 @@ module.exports = function(Post) {
     }
   });
 
+
   /*Remote method for top questions*/
   Post.topQuestionsMethod = function(limit, cb){
     Post.find({
