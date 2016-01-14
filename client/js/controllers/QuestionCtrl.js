@@ -182,7 +182,6 @@ app.controller('QuestionCtrl', [
                 timestamp: new Date()
             }, function(value, responseHeaders){
                 //Linkovanje komentara i odgovora
-                console.log('DEBUG');
                 Post.comments.link({
                     id: answer.id,
                     fk: value.id

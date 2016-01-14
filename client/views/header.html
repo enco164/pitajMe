@@ -21,11 +21,10 @@
                 <li ng-show="!isAuth()"><a ui-sref="root.login()">Prijavi se</a></li>
                 <li ng-show="isAuth()"><a ui-sref="root.login()" ng-click="logout()">Odjavi se</a></li>
                 <li ng-show="!isAuth()"><a ui-sref="root.registration()">Registruj se</a></li>
-                <li><a href="#">Contact</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Još opcija</li>
-                <li><a ui-sref="root.forgot-password()">Forgot password</a></li>
-                <li ng-show="isAdmin()"><a ng-click="goToAdmin()">Admin panel</a></li>
+                <li><a ui-sref="root.forgot-password()">Zaboravljena lozinka?</a></li>
+                <li ng-show="isAdmin()"><a href="" ng-click="goToAdmin()">Admin panel</a></li>
 
               </ul>
             </li>

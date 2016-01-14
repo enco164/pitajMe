@@ -311,17 +311,12 @@ var app = angular
 
 
         $scope.updateArticle = function(article){
-          console.log('article: '+JSON.stringify(article));
-          Post.update(
-              { where: {id: article.id }},
+          Account.posts.updateById({id: Account.getCurrentId(), fk: article.id},
               { title: article.title,
                 text: article.text,
-                type: 'article',
                 isAnonymous: false,
                 accountId: Account.getCurrentId(),
-                categoryId: article.category.id,
                 timestamp: new Date(),
-                opinionFrom: 3,
                 image: article.image
               },
               function(value, responseHeaders){

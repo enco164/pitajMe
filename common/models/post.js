@@ -3,7 +3,7 @@ var app = require('../../server/server');
 module.exports = function(Post) {
 
   Post.observe('before save', function(ctx, next){
-    if(ctx.instance.type == 'article'){
+    if(ctx.instance && ctx.instance.type  && ctx.instance.type == 'article'){
       var RoleMapping = app.models.RoleMapping;
       var Role = app.models.Role;
       RoleMapping.find({where:{principalId: ctx.instance.accountId}}, function(err,rm){

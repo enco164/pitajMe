@@ -18,10 +18,10 @@ app.factory('AuthService',
             username: username
           };
           localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-          var next = $location.nextAfterLogin || '/';
+            $state.go('root.home', {}, {reload: true});
+          /*var next = $location.nextAfterLogin || '/';
           $location.nextAfterLogin = null;
-          $location.path(next);
+          $location.path(next);*/
         }, function(error){
           $rootScope.errorMessage = error.data.error.message;
         });
